@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS Documento (
+	ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+	Numero TEXT NOT NULL,
+    UsuarioID INTEGER NOT NULL,
+    ClienteID INTEGER,
+    FechaEmision TEXT NOT NULL,
+    FechaVencimiento TEXT,
+    FechaActualizacion TEXT,
+    TipoDocumentoID INTEGER NOT NULL,
+    AlmacenID INTEGER NOT NULL,
+    Nota TEXT,
+    Estado INTEGER NOT NULL,
+    Impuesto NUMERIC,
+    SubTotal NUMERIC,
+    Total NUMERIC,
+    ProveedorID INTEGER,
+    FOREIGN KEY (UsuarioID) REFERENCES Usuario (ID)  ON DELETE CASCADE,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente (ID)  ON DELETE CASCADE,
+    FOREIGN KEY (ProveedorID) REFERENCES Proveedor (ID)  ON DELETE CASCADE,
+    FOREIGN KEY (TipoDocumentoID) REFERENCES TipoDocumento (ID)  ON DELETE CASCADE,
+    FOREIGN KEY (AlmacenID) REFERENCES Almacen (ID)  ON DELETE CASCADE
+);

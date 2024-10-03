@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS Almacen (
+	ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+	Nombre varchar(150) NOT NULL
+);
+
+INSERT INTO Almacen (Nombre) VALUES('Principal');
