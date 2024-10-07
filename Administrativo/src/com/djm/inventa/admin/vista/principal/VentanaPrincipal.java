@@ -1,37 +1,28 @@
 package com.djm.inventa.admin.vista.principal;
 
-import com.djm.common.GlobalFrame;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.util.Image;
 import com.djm.util.LayoutPanel;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.JFrame;
 import javax.swing.JSeparator;
-import javax.swing.SwingUtilities;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Enumeration;
 
 public class VentanaPrincipal extends JFrame  implements WindowListener {
+
     public VentanaPrincipal(){
-        crearGUI();
         init();
     }
-    private void crearGUI(){
+    public void crearGUI(){
         Container content= getContentPane();
         content.setLayout(new GridBagLayout());
 
-        content.add(new PanelTarea(), LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
+        content.add(Global.panelDesktop, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
         content.add(new JSeparator(), LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 0.0f));
         content.add(new PanelInfo(), LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 0.0f));
 

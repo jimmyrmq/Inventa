@@ -40,4 +40,12 @@ public class TextField extends JTextField {
     public void numericTextOnly(){
         addKeyListener(new FieldNumeric());
     }
+
+    public void borderNoError(){
+        putClientProperty("JComponent.outline", "default");
+    }
+
+    public void borderError(){
+        putClientProperty("JComponent.outline", "error");
+    }
 }

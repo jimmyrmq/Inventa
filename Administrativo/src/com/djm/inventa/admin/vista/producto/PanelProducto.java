@@ -1,9 +1,11 @@
 package com.djm.inventa.admin.vista.producto;
 
+import com.djm.common.GlobalFrame;
 import com.djm.inventa.admin.modelo.Categoria;
 import com.djm.inventa.admin.modelo.Marca;
 import com.djm.inventa.admin.modelo.Proveedor;
 import com.djm.inventa.admin.util.BorderUtil;
+import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.component.TextField;
 import com.djm.inventa.admin.vista.component.TextArea;
@@ -31,7 +33,9 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -39,7 +43,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 public class PanelProducto extends JPanel {
     private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo, tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3, tStockCritico,
@@ -60,28 +63,41 @@ public class PanelProducto extends JPanel {
     private Color greenButton = new Color(77, 170, 71);
     private LostFocusPrecio lostFocusPrecio = new LostFocusPrecio();
     private ProcesadorProducto procesadorProducto = new ProcesadorProducto();
-    private final Color color1 = UIManager.getColor("Panel.background");
-    private final Color color2 = UIManager.getColor("TextField.background");
-    private final Color color3 = UIManager.getColor("TextField.foreground");
+    private Color color1 = UIManager.getColor("Panel.background");
+    private Color color2 = UIManager.getColor("TextField.background");
+    private Color color3 = UIManager.getColor("TextField.foreground");
+    private JPanel pDetalles, pPrecio, pStock;
+    private ImageIcon iok, icancel;
+
     public PanelProducto(){
         setOpaque(false);
         setLayout(new GridBagLayout());
 
-        add(panelDatelle(), LayoutPanel.constantePane(0, 0, 1, 3, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 0, 10, 0, 0, 0.0f, 0.0f));
-        add(panelPrecio(), LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 0, 10, 0, 0, 1.0f, 0.0f));
-        add(panelStock(), LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 1.0f, 0.0f));
-        add(getPanelButton(), LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 10, 0, 0, 1.0f, 0.0f));
+        pDetalles = panelDatelle();
+        pPrecio = panelPrecio();
+        pStock = panelStock();
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setOpaque(false);
+
+        panel.add(pDetalles, LayoutPanel.constantePane(0, 1, 1, 3, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 10, 0, 0.0f, 0.0f));
+        panel.add(pPrecio, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
+        panel.add(pStock, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
+        panel.add(getPanelButton(), LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 10, 0, 10, 1.0f, 0.0f));
+
+        add(panel, LayoutPanel.constantePane(0, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
     }
+
 
     public JPanel getPanelButton(){
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
-        ImageIcon iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("ok16.png") ,color3,false));
-        ImageIcon iguardar = new ImageIcon(ColorFilter.filterImage( Image.getIcon("closed.png") ,color3,false));
+        iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("ok16.png") ,color3,false));
+        icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("closed.png") ,color3,false));
 
         bGuardar = new JButton(CONSTANTS.LANG.getValue("button.guardar"), iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
-        bCancelar = new JButton(CONSTANTS.LANG.getValue("button.cancelar"), iguardar);//,new ImageIcon("com.djm.inventa.icon/close.png"));
+        bCancelar = new JButton(CONSTANTS.LANG.getValue("button.cancelar"), icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
 
         //bGuardar.setForeground(new Color(66, 89, 147));
 
@@ -109,7 +125,7 @@ public class PanelProducto extends JPanel {
     private JPanel panelDatelle() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
-        panel.setBorder(BorderUtil.getBorder(CONSTANTS.LANG.getValue("producto.border.title.producto")));
+        panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.detalle")));
 
         JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("producto.label.codigo"));
         JLabel lCodigoBarra = new JLabel(CONSTANTS.LANG.getValue("producto.label.codigobarra"));
@@ -283,7 +299,7 @@ public class PanelProducto extends JPanel {
     private JPanel panelPrecio() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
-        panel.setBorder(BorderUtil.getBorder(CONSTANTS.LANG.getValue("producto.border.title.precio")));
+        panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.precio")));
 
         JLabel lPrecioCosto = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciocompra"));
         JLabel  lUtilidad= new JLabel(CONSTANTS.LANG.getValue("producto.label.utilidad"));
@@ -392,7 +408,7 @@ public class PanelProducto extends JPanel {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
         //panel.setBackground(Color.RED);
-        panel.setBorder(BorderUtil.getBorder(CONSTANTS.LANG.getValue("producto.border.title.stock")));
+        panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.stock")));
 
         bAddCantidad = new Button(Image.getIcon("add.png"));
         bAddCantidad.setPaintBack(false);
@@ -426,6 +442,88 @@ public class PanelProducto extends JPanel {
 
         return panel;
     }
+    private JPanel pTitulo(){
+        Color color = new Color(48, 103, 222);//UIManager.getColor("TextField.background");
+        Font aux = UIManager.getFont("Label.font");
+        Font font = aux.deriveFont(20f);
+
+        JPanel panel= new JPanel(new GridBagLayout());
+        panel.setOpaque(true);
+        panel.setBackground(color);
+
+        JLabel label = new JLabel(CONSTANTS.LANG.getValue("producto.label.titulo"));
+        label.setFont(font);
+        label.setForeground(Color.WHITE);
+
+        panel.add(label, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 3, 3, 3, 0, 1.0f, 1.0f));
+
+        return panel;
+    }
+    protected void clear(){
+        GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
+        tPrecio1.borderNoError();
+        tPrecio2.borderNoError();
+        tPrecio3.borderNoError();
+
+        //tableProductGUI.enabledPane(true);
+
+        //isEditingProduct = false;
+
+        tCodigo.setText(null);
+        tCodigoBarra.setText(null);
+        tNombre.setText(null);
+        tUnidadMedida.setText(null);
+        tModelo.setText(null);
+        tSerie.setText(null);
+
+        disponible.setSelected(true);
+        noRequiereStock.setSelected(false);
+
+        tStockCritico.setEditable(true);
+        bAddCantidad.setEnabled(true);
+
+        tNota.setText(null);
+        tCosto.setText("0,00");
+        tUtilidad.setText("0");
+
+        tPrecio1.setText("0,00");
+        tPrecio2.setText("0,00");
+        tPrecio3.setText("0,00");
+
+        lInfo.setText(null);
+        lInfo.setVisible(false);
+
+        lUtilidadAdv.setVisible(false);
+        lPrecio1Adv.setVisible(false);
+        lPrecio2Adv.setVisible(false);
+        lPrecio3Adv.setVisible(false);
+
+        tPrecio1.setToolTipText(null);
+        tPrecio2.setToolTipText(null);
+        tPrecio3.setToolTipText(null);
+
+        precioImpuesto.setSelected(true);
+
+        if(cbCategoria.getItemCount() > 0)
+            cbCategoria.setSelectedIndex(0);
+
+        if(cbMarca.getItemCount() > 0)
+            cbMarca.setSelectedIndex(0);
+
+        if(cbMarca.getItemCount() > 0)
+            cbMarca.setSelectedIndex(0);
+
+        if(cbProveedor.getItemCount() > 0)
+            cbProveedor.setSelectedIndex(0);
+
+        tStockCritico.setText("0");
+        tCantidadDisponible.setText("0");
+
+        tCodigo.requestFocus();
+
+        GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
 
     private class LostFocusPrecio implements FocusListener{
         @Override
@@ -440,7 +538,7 @@ public class PanelProducto extends JPanel {
         KeyStroke SR= KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0,false);
         Action action =new AbstractAction(){
             public void actionPerformed(ActionEvent e) {
-                //clear();
+                clear();
             }
         };
         InputMap inputMap = bCancelar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
@@ -461,4 +559,48 @@ public class PanelProducto extends JPanel {
         ActionMap actionMap = bCancelar.getActionMap();
         actionMap.put("GUARDAR_PRODUCTO", action);
     }
+
+
+    @Override
+    public void updateUI(){
+        super.updateUI();
+
+        color1 = UIManager.getColor("Panel.background");
+        color2 = UIManager.getColor("TextField.background");
+        color3 = UIManager.getColor("TextField.foreground");
+
+        if(pDetalles != null)
+            pDetalles.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.detalle")));
+
+        if(pStock != null)
+            pStock.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.stock")));
+
+        if(pPrecio != null)
+            pPrecio.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.precio")));
+
+        Color colButton = Color.ORANGE;
+        if(PropiedadesSistema.getPropiedad("Apariencia.lookandfeel").equals("LIGTH")){
+            colButton = color3;
+        }
+
+        if(bCodigoBarra != null)
+            bCodigoBarra.setColorFilter(colButton);
+
+        iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("ok16.png") ,colButton,false));
+        icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("closed.png") ,colButton,false));
+
+        if(bCancelar != null) {
+            bCancelar.updateUI();
+            bCancelar.setIcon(icancel);
+        }
+
+        if(bGuardar != null) {
+            bGuardar.updateUI();
+            bGuardar.setIcon(iok);
+        }
+
+        revalidate();
+        repaint();
+    }
+
 }

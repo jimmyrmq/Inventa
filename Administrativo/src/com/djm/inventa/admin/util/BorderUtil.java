@@ -1,27 +1,64 @@
 package com.djm.inventa.admin.util;
 
-import com.djm.ui.themes.global.GlobalUI;
-
-import javax.swing.BorderFactory;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
 
-public class BorderUtil {
+public class BorderUtil implements Border {
+    private int thickness = 1;
+    private int titleHeight;
+    private String title;
+    private Color colTextTile;
+    private Color colBorder;//new Color(190,190,190);
+    private Font fontTitle;//new Color(190,190,190);
 
-    public static Border getBorder(String title, int ar, int iz, int ab, int der){
-        Color colTextTile = UIManager.getColor("Label.foreground");
-        TitledBorder tbor= BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(190,190,190)),title,TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.ABOVE_TOP,GlobalUI.getInstance().getTheme().getPanelUI().getFont(),colTextTile);//0,54,77
-
-        javax.swing.border.Border border=BorderFactory.createCompoundBorder(tbor,BorderFactory.createEmptyBorder(ar,iz,ab,der));
-
-        return border;
+    public BorderUtil(String titulo){
+        this.title = titulo;
+        colTextTile = UIManager.getColor("Label.foreground");//new Color(190,190,190);//
+        colBorder =  UIManager.getColor("Component.borderColor");
+        fontTitle = UIManager.getFont("Label.font");//new Color(190,190,190);
     }
 
-    public static Border getBorder(String title){//
-        javax.swing.border.Border border=getBorder(title,5,5,5,5);
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        return border;
+        g2.setFont(fontTitle);
+        FontMetrics metrics = g.getFontMetrics(fontTitle);
+        // Dibujar el título
+        //int titleWidth = metrics.stringWidth(title);
+        titleHeight = metrics.getHeight();
+
+       // Dibujar el borde
+        g2.setColor(colBorder);
+         /*g2.fillRect(x, y+titleHeight, width, thickness); // Parte superior
+        g2.fillRect(x, y + height - thickness, width, thickness); // Parte inferior
+        g2.fillRect(x, y+titleHeight, thickness, height); // Lado izquierdo
+        g2.fillRect(x + width - thickness, y+titleHeight, thickness, height); // Lado derecho*/
+        g2.drawRoundRect(x, y+titleHeight, width - 1, height - titleHeight -1, 7, 7);
+
+        // Dibujar el título centrado
+        g2.setColor(colTextTile);
+        g2.drawString(title, x + thickness + 5, y + (titleHeight + thickness) / 2);
+    }
+
+    @Override
+    public Insets getBorderInsets(Component c) {
+        if(titleHeight == 0)
+            titleHeight = 15;
+        return new Insets(titleHeight+10, 10, 10, 10); // Espaciado del borde
+    }
+
+    @Override
+    public boolean isBorderOpaque() {
+        return false;
     }
 }
