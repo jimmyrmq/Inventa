@@ -1,6 +1,7 @@
 package com.djm.inventa.admin.util;
 
 import com.djm.common.GlobalFrame;
+import com.djm.inventa.admin.vista.principal.Global;
 import com.djm.ui.component.ColorFilter;
 import com.djm.util.Image;
 
@@ -13,13 +14,13 @@ import javax.swing.event.InternalFrameListener;
 import java.awt.Color;
 import java.awt.Dimension;
 
-public class CrearFrameInterno extends JInternalFrame{
+public class CrearFrameInterno extends JInternalFrame implements InternalFrameListener{
     private String icon;
     private boolean filterIcon;
-    private String id;
+    private String ID;
     public CrearFrameInterno(JPanel panel,String titulo, String icon, boolean filterIcon, String id) {
         super(titulo, false, true, false, false);
-        this.id = id;
+        this.ID = id;
 
         this.filterIcon = filterIcon;
         this.icon = icon;
@@ -29,9 +30,8 @@ public class CrearFrameInterno extends JInternalFrame{
 
         pack();
 
-        /*
         setResizable(false);
-        setClosable(false);
+        /*setClosable(false);
         setMaximizable(false);
         setIconifiable(false);*/
 
@@ -40,6 +40,8 @@ public class CrearFrameInterno extends JInternalFrame{
         Dimension dim = getSize();
         setLocation((width - dim.width) / 2, ((height - dim.height) / 2) - 70);
 
+        setDefaultCloseOperation(0);//Deshabilitar el botton  de cerrar
+        addInternalFrameListener(this);
         setVisible(true);
     }
 
@@ -72,6 +74,26 @@ public class CrearFrameInterno extends JInternalFrame{
         }else
             setFrameIcon(null);
     }
+
+    @Override
+    public void internalFrameOpened(InternalFrameEvent e) {}
+
+    @Override
+    public void internalFrameClosing(InternalFrameEvent e) {
+        Global.panelDesktop.cerrarVentana(ID);
+    }
+    @Override
+    public void internalFrameClosed(InternalFrameEvent e) {}
+    @Override
+    public void internalFrameIconified(InternalFrameEvent e) {}
+    @Override
+    public void internalFrameDeiconified(InternalFrameEvent e) {}
+    @Override
+    public void internalFrameActivated(InternalFrameEvent e) {}
+    @Override
+    public void internalFrameDeactivated(InternalFrameEvent e) {}
+
+
     @Override
     public void updateUI(){
         super.updateUI();
@@ -80,6 +102,6 @@ public class CrearFrameInterno extends JInternalFrame{
     }
 
     public String getID(){
-        return id;
+        return ID;
     }
 }

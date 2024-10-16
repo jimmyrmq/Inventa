@@ -6,6 +6,7 @@ import com.djm.ui.themes.global.GlobalUI;
 import com.djm.util.FormatNumber;
 
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 import java.awt.Color;
 
 public class ProcesadorProducto {
@@ -27,7 +28,7 @@ public class ProcesadorProducto {
 
             double p = ut * costo;
 
-            tUtilidad.setForeground(excesivo ? Color.RED : GlobalUI.getInstance().getTheme().getTextUI().getForeground());
+            tUtilidad.setForeground(excesivo ? Color.RED : UIManager.getColor("Textfield.foreground"));
             lUtilidadAdv.setVisible(excesivo);
 
             tPrecio1.setText(FormatNumber.doubleToString(p));
@@ -64,7 +65,7 @@ public class ProcesadorProducto {
                     intValue = 0;
                 }
 
-                tUtilidad.setForeground(excesivo ? Color.RED : GlobalUI.getInstance().getTheme().getTextUI().getForeground());
+                tUtilidad.setForeground(excesivo ? Color.RED : UIManager.getColor("Textfield.foreground"));
                 lUtilidadAdv.setVisible(excesivo);
 
                 tUtilidad.setText(String.valueOf(intValue));

@@ -33,7 +33,7 @@ public class VentanaPrincipal extends JFrame  implements WindowListener {
 
         setTitle(CONSTANTS.TITULO);
         setResizable(true);
-        setIconImage (Image.getIcon("ico.png").getImage());
+        setIconImage (Image.getIcon("32/ico.png").getImage());
         //frame.setSize(dim);
         setMinimumSize(dimension);
         setDefaultCloseOperation(0);//Deshabilitar el botton  de cerrar
@@ -50,7 +50,6 @@ public class VentanaPrincipal extends JFrame  implements WindowListener {
     public void cerrar() {
         setVisible(false);
         dispose();
-        System.gc();
         System.exit(0);
     }
 

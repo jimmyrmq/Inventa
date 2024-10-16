@@ -3,15 +3,18 @@ package com.djm.inventa.admin.vista.producto;
 import com.djm.common.GlobalFrame;
 import com.djm.inventa.admin.modelo.Categoria;
 import com.djm.inventa.admin.modelo.Marca;
+import com.djm.inventa.admin.modelo.Producto;
 import com.djm.inventa.admin.modelo.Proveedor;
+import com.djm.inventa.admin.modelo.Stock;
 import com.djm.inventa.admin.util.BorderUtil;
+import com.djm.inventa.admin.util.LoggerApp;
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.component.TextField;
 import com.djm.inventa.admin.vista.component.TextArea;
 import com.djm.ui.component.Button;
-import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.ToggleButton;
+import com.djm.util.FormatNumber;
 import com.djm.util.Image;
 import com.djm.util.LayoutPanel;
 
@@ -20,7 +23,6 @@ import javax.swing.Action;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -35,7 +37,6 @@ import javax.swing.border.Border;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -67,7 +68,9 @@ public class PanelProducto extends JPanel {
     private Color color2 = UIManager.getColor("TextField.background");
     private Color color3 = UIManager.getColor("TextField.foreground");
     private JPanel pDetalles, pPrecio, pStock;
-    private ImageIcon iok, icancel;
+    //private ImageIcon iok, icancel;
+    private final ProductoListener productoListener = new ProductoListener();
+    private Producto producto = null;
 
     public PanelProducto(){
         setOpaque(false);
@@ -83,7 +86,7 @@ public class PanelProducto extends JPanel {
         panel.add(pDetalles, LayoutPanel.constantePane(0, 1, 1, 3, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 10, 0, 0.0f, 0.0f));
         panel.add(pPrecio, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
         panel.add(pStock, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
-        panel.add(getPanelButton(), LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 10, 0, 10, 1.0f, 0.0f));
+        panel.add(getPanelButton(), LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 10, 0, 10, 1.0f, 1.0f));
 
         add(panel, LayoutPanel.constantePane(0, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
     }
@@ -93,12 +96,11 @@ public class PanelProducto extends JPanel {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
-        iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("ok16.png") ,color3,false));
-        icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("closed.png") ,color3,false));
+        //iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,color3,false));
+        //icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,color3,false));
 
-        bGuardar = new JButton(CONSTANTS.LANG.getValue("button.guardar"), iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
-        bCancelar = new JButton(CONSTANTS.LANG.getValue("button.cancelar"), icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
-
+        bGuardar = new JButton(CONSTANTS.LANG.getValue("button.guardar"));//, iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
+        bCancelar = new JButton(CONSTANTS.LANG.getValue("button.cancelar"));//, icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
         //bGuardar.setForeground(new Color(66, 89, 147));
 
         bCancelar.setActionCommand("BUTTON_CANCELAR");
@@ -111,13 +113,13 @@ public class PanelProducto extends JPanel {
         cancelEsc();
         guardarF5();
 
-        //bGuardar.addActionListener(this);
-        //bCancelar.addActionListener(this);
+        bGuardar.addActionListener(productoListener);
+        bCancelar.addActionListener(productoListener);
 
         bGuardar.setFocusable(true);
 
-        panel.add(bCancelar, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_END, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(bGuardar, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 5, 0, 0, 0.0f, 01.0f));
+        panel.add(bCancelar, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LAST_LINE_START, 5, 0, 0, 0, 0.0f, 1.0f));
+        panel.add(bGuardar, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LAST_LINE_END, 5, 5, 0, 0, 0.0f, 1.0f));
 
         return panel;
     }
@@ -138,7 +140,7 @@ public class PanelProducto extends JPanel {
         JLabel lProveedor = new JLabel(CONSTANTS.LANG.getValue("producto.label.proveedor"));
         JLabel lNota= new JLabel(CONSTANTS.LANG.getValue("producto.label.nota"));
 
-        bBuscar = new Button(Image.getIcon("ok.png"),true);
+        bBuscar = new Button(Image.getIcon("20/ok.png"),true);
         bBuscar.setPaintBack(false);
         bBuscar.setColorFilter(greenButton);
         bBuscar.setActionCommand("BUSCAR_PRODUCTO");
@@ -153,14 +155,16 @@ public class PanelProducto extends JPanel {
         bCodigoBarra.setToolTipText(CONSTANTS.LANG.getValue("producto.inf.buscarporcodbarra"));
         bCodigoBarra.setColorIn(color2);
         bCodigoBarra.setColorFilter(color3);
+        bCodigoBarra.setFocusable(false);
 
         bCodigoBarra.addActionListener((e)->{
             boolean edo = bCodigoBarra.isSelected();
             String value = edo?"producto.inf.buscarporcodbarra":"producto.inf.buscarcodigo";
             tCodigo.setPlaceHolder(CONSTANTS.LANG.getValue(value));
+            tCodigo.requestFocus();
         });
 
-        bAddMarca = new Button(Image.getIcon("add.png"),true);
+        bAddMarca = new Button(Image.getIcon("16/add.png"),true);
         bAddMarca.setPaintBack(false);
         bAddMarca.setColorFilter(greenButton);
         bAddMarca.setForeground(Color.RED);
@@ -172,7 +176,7 @@ public class PanelProducto extends JPanel {
         bAddMarca.setColorBackIn(color1);
         bAddMarca.setColorBackSelected(color2);
 
-        bAddProveedor = new Button(Image.getIcon("add.png"));
+        bAddProveedor = new Button(Image.getIcon("16/add.png"));
         bAddProveedor.setPaintBack(false);
         bAddProveedor.setColorFilter(greenButton);
         bAddProveedor.setActionCommand("ADD_PROVEEDOR");
@@ -410,7 +414,7 @@ public class PanelProducto extends JPanel {
         //panel.setBackground(Color.RED);
         panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.stock")));
 
-        bAddCantidad = new Button(Image.getIcon("add.png"));
+        bAddCantidad = new Button(Image.getIcon("16/add.png"));
         bAddCantidad.setPaintBack(false);
         bAddCantidad.setColorFilter(greenButton);
         bAddCantidad.setActionCommand("ADD_CANTIDAD_PRODUCTO");
@@ -442,7 +446,7 @@ public class PanelProducto extends JPanel {
 
         return panel;
     }
-    private JPanel pTitulo(){
+   /* private JPanel pTitulo(){
         Color color = new Color(48, 103, 222);//UIManager.getColor("TextField.background");
         Font aux = UIManager.getFont("Label.font");
         Font font = aux.deriveFont(20f);
@@ -458,9 +462,11 @@ public class PanelProducto extends JPanel {
         panel.add(label, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 3, 3, 3, 0, 1.0f, 1.0f));
 
         return panel;
-    }
+    }*/
     protected void clear(){
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
+        this.producto = null;
 
         tPrecio1.borderNoError();
         tPrecio2.borderNoError();
@@ -525,6 +531,210 @@ public class PanelProducto extends JPanel {
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
+    public Producto getProducto(){
+        if(this.producto != null)
+            this.producto = new Producto();
+
+        String cod = tCodigo.getText();
+        String codBarra = tCodigoBarra.getText();
+        String nombre = tNombre.getText();
+        String unidMed = tUnidadMedida.getText();
+        String modelo = tModelo.getText();
+        String serie = tSerie.getText();
+        boolean disp = disponible.isSelected();
+        boolean noReqStock = noRequiereStock.isSelected();
+        String nota = tNota.getText();
+        String costo = tCosto.getText();
+        String utilidad = tUtilidad.getText();
+        String precio1 = tPrecio1.getText();
+        String precio2 = tPrecio2.getText();
+        String precio3 = tPrecio3.getText();
+        boolean isImpuesto = precioImpuesto.isSelected();
+
+        if((cod == null || cod.trim().isEmpty()) && (codBarra != null &&!codBarra.trim().isEmpty())){
+            cod = codBarra;
+            tCodigo.setText(cod);
+        }
+
+        Marca marca = (Marca)dcbMarca.getSelectedItem();
+        Categoria categoria = (Categoria) dcbCategoria.getSelectedItem();
+        Proveedor proveedor = (Proveedor)dcbProveedor.getSelectedItem();
+
+        String stockCrititco = tStockCritico.getText();
+
+        Double c = 0.0;
+        if(costo!=null && !costo.trim().isEmpty()) {
+            c = FormatNumber.stringToDouble(costo);
+        }
+
+        Double p1 = 0.0;
+        if(precio1!= null && !precio1.trim().isEmpty()) {
+            p1 = FormatNumber.stringToDouble(precio1);
+        }
+
+        Double p2 = 0.0;
+        if(precio2!= null && !precio2.trim().isEmpty()){
+            p2 = FormatNumber.stringToDouble(precio2);
+        }
+
+        Double p3 = 0.0;
+        if(precio3!= null && !precio3.trim().isEmpty()) {
+            p3 = FormatNumber.stringToDouble(precio3);
+        }
+
+        Integer scritico = 0;
+        if(stockCrititco !=null && !stockCrititco.trim().isEmpty()) {
+            scritico = Integer.parseInt(stockCrititco);
+        }
+
+        int util = 0;
+        if(utilidad != null && !utilidad.trim().isEmpty()) {
+            try {
+                util = Integer.parseInt(utilidad);
+            }catch (NumberFormatException exc){
+                LoggerApp.error("Error al tratar de convertir la utilidad en entero: "+exc.getMessage());
+            }
+        }
+
+        producto.setCodigo(cod);
+        producto.setCodigoBarra(codBarra);
+        producto.setNombre(nombre);
+        producto.setUnidadMedida(unidMed);
+        producto.setModelo(modelo);
+        producto.setSerie(serie);
+        producto.setMarca(marca);
+        producto.setCategoria(categoria);
+        producto.setDisponible(disp);
+        producto.setNoRequiereStock(noReqStock);
+        producto.setNota(nota);
+        producto.setUtilidad(util);
+        producto.setPrecioCosto(c);
+        producto.setPrecio1(p1);
+        producto.setPrecio2(p2);
+        producto.setPrecio3(p3);
+        producto.setPrecioIncluyeImpuesto(isImpuesto);
+        producto.setStockCritico(scritico);
+        producto.setProveedor(proveedor);
+
+        return this.producto;
+    }
+
+    public void insertProducto(Producto producto, Stock stock){
+        this.producto = producto;
+
+        GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
+        eText(false);
+
+        tCodigo.setText(producto.getCodigo());
+        tCodigoBarra.setText(producto.getCodigoBarra());
+        tNombre.setText(producto.getNombre());
+        tUnidadMedida.setText(producto.getUnidadMedida());
+        tModelo.setText(producto.getModelo());
+        tSerie.setText(producto.getSerie());
+        tCosto.setText(FormatNumber.doubleToString(producto.getPrecioCosto()));
+        tUtilidad.setText(String.valueOf(producto.getUtilidad()));
+        tPrecio1.setText(FormatNumber.doubleToString(producto.getPrecio1()));
+        tPrecio2.setText(FormatNumber.doubleToString(producto.getPrecio2()));
+        tPrecio3.setText(FormatNumber.doubleToString(producto.getPrecio3()));
+        tStockCritico.setText(String.valueOf(producto.getStockCritico()));
+        disponible.setSelected(producto.isDisponible());
+        noRequiereStock.setSelected(producto.isNoRequiereStock());
+        precioImpuesto.setSelected(producto.isPrecioIncluyeImpuesto());
+        tNota.setText(producto.getNota());
+
+        Marca marca = producto.getMarca();
+        Categoria categoria = producto.getCategoria();
+        Proveedor proveedor = producto.getProveedor();
+
+        int sizeList;
+
+        if(categoria != null) {
+            sizeList = dcbCategoria.getSize();
+            cont:
+            for (int i = 0; i < sizeList; i++) {
+                Categoria c = dcbCategoria.getElementAt(i);
+                if (c.getID() == categoria.getID()) {
+                    cbCategoria.setSelectedIndex(i);
+                    break cont;
+                }
+            }
+        }
+
+        if(marca != null) {
+            sizeList = dcbMarca.getSize();
+            cont:
+            for (int i = 0; i < sizeList; i++) {
+                Marca m = dcbMarca.getElementAt(i);
+                if (m.getID() == marca.getID()) {
+                    cbMarca.setSelectedIndex(i);
+                    break cont;
+                }
+            }
+        }
+
+        if(proveedor != null) {
+            sizeList = dcbProveedor.getSize();
+            cont:
+            for (int i = 0; i < sizeList; i++) {
+                Proveedor prod = dcbProveedor.getElementAt(i);
+                if (prod.getID() == proveedor.getID()) {
+                    cbProveedor.setSelectedIndex(i);
+                    break cont;
+                }
+            }
+        }
+
+        boolean excesivo = producto.getUtilidad() > 100;
+        tUtilidad.setForeground(excesivo ? Color.RED : UIManager.getColor("Textfield.foreground"));
+        lUtilidadAdv.setVisible(excesivo);
+
+        procesadorProducto.validadPrecio(tCosto, tPrecio1, lPrecio1Adv, tPrecio2, lPrecio2Adv, tPrecio3, lPrecio3Adv);
+
+        if (stock != null) {
+            tCantidadDisponible.setText(String.valueOf(stock.getCantidad()));
+        }
+
+        eText(true);
+
+        tNombre.requestFocus();
+
+        GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }
+
+    public void eText(boolean enabled){
+        tCodigo.setEnabled(enabled);
+        bBuscar.setEnabled(enabled);
+
+        tCodigoBarra.setEnabled(enabled);
+        tNombre.setEnabled(enabled);
+        tUnidadMedida.setEnabled(enabled);
+        tModelo.setEnabled(enabled);
+        tSerie.setEnabled(enabled);
+
+        cbMarca.setEnabled(enabled);
+        bAddMarca.setEnabled(enabled);
+        cbCategoria.setEnabled(enabled);
+        cbProveedor.setEnabled(enabled);
+
+        disponible.setEnabled(enabled);
+        noRequiereStock.setEnabled(enabled);
+        tNota.setEnabled(enabled);
+
+        tCosto.setEnabled(enabled);
+        tUtilidad.setEnabled(enabled);
+        tPrecio1.setEnabled(enabled);
+        tPrecio2.setEnabled(enabled);
+        tPrecio3.setEnabled(enabled);
+        precioImpuesto.setEnabled(enabled);
+
+        tCantidadDisponible.setEnabled(enabled);
+        tStockCritico.setEnabled(enabled);
+        bAddCantidad.setEnabled(enabled);
+    }
+
+
     private class LostFocusPrecio implements FocusListener{
         @Override
         public void focusGained(FocusEvent e) {}
@@ -578,7 +788,7 @@ public class PanelProducto extends JPanel {
         if(pPrecio != null)
             pPrecio.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.precio")));
 
-        Color colButton = Color.ORANGE;
+        Color colButton = PropiedadesSistema.getColor("Label.colorDarker");
         if(PropiedadesSistema.getPropiedad("Apariencia.lookandfeel").equals("LIGTH")){
             colButton = color3;
         }
@@ -586,21 +796,20 @@ public class PanelProducto extends JPanel {
         if(bCodigoBarra != null)
             bCodigoBarra.setColorFilter(colButton);
 
-        iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("ok16.png") ,colButton,false));
-        icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("closed.png") ,colButton,false));
+        /*iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,colButton,false));
+        icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,colButton,false));
 
         if(bCancelar != null) {
-            bCancelar.updateUI();
             bCancelar.setIcon(icancel);
+            bCancelar.updateUI();
         }
 
         if(bGuardar != null) {
-            bGuardar.updateUI();
             bGuardar.setIcon(iok);
-        }
+            bGuardar.updateUI();
+        }*/
 
         revalidate();
         repaint();
     }
-
 }

@@ -46,19 +46,19 @@ public class PropiedadesSistema {
 
         return  value;
     }
-    public Color getColor(Object key) {
+    public static Color getColor(Object key) {
         Object value = propiedades.get(key);
         return (value instanceof Color) ? (Color)value : null;
     }
-    public AparienciaLookFeel getAparienciaLookFeel(Object key) {
+    public static AparienciaLookFeel getAparienciaLookFeel(Object key) {
         Object value = propiedades.get(key);
         return (value instanceof AparienciaLookFeel) ? (AparienciaLookFeel)value : null;
     }
-    public String getString(Object key) {
+    public static String getString(Object key) {
         Object value = propiedades.get(key);
         return (value instanceof String) ? (String)value : null;
     }
-    public int getInt(Object key) {
+    public static int getInt(Object key) {
         Object value = propiedades.get(key);
         return (value instanceof Integer) ? (Integer)value : null;
     }

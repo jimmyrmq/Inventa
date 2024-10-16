@@ -1,7 +1,9 @@
 package com.djm.inventa.admin;
 
 import com.djm.common.GlobalFrame;
+import com.djm.inventa.admin.util.LoggerApp;
 import com.djm.inventa.admin.util.PropiedadesSistema;
+import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.principal.AparienciaLookFeel;
 import com.djm.util.Image;
 import com.djm.inventa.admin.vista.principal.VentanaPrincipal;
@@ -27,6 +29,12 @@ public class App {
         });
     }
     private static void run(){
+        if(!CONSTANTS.READER_FILE_SYSTEM.isExistFileDB()){
+            File directory = new File(CONSTANTS.READER_FILE_SYSTEM.getPathAppData()+"data");
+            boolean wasCreated = directory.mkdirs(); // Usa mkdirs() para crear directorios intermedios
+            LoggerApp.info("Carpeta data del db creado: "+wasCreated+".");
+        }
+
         Image.init(App.class,"icon");
 
         lookAndFeel();
@@ -48,6 +56,12 @@ public class App {
 
             PropiedadesSistema.setPropiedad("Apariencia.lookandfeel", AparienciaLookFeel.Light);
 
+            PropiedadesSistema.setPropiedad("Button.color", new Color(77,77,77));
+            PropiedadesSistema.setPropiedad("Label.colorDarker", Color.ORANGE);
+            PropiedadesSistema.setPropiedad("Panel.backgroundTitle", new Color(81, 99, 124));
+            PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
+            PropiedadesSistema.setPropiedad("Usuario.Nombre","Jimmy Morales");
+
             //Cambiamos la letra
             Font font = UIManager.getFont("Label.font");
             Font font2 = font.deriveFont(11f);
@@ -57,7 +71,11 @@ public class App {
             Enumeration<Object> keys = defaults.keys();
             while (keys.hasMoreElements()) {
                 Object key = keys.nextElement();
-                //Object value = defaults.get(key);
+
+                /*Object value = defaults.get(key);
+                if(String.valueOf(key).indexOf("background")!=-1)
+                    System.out.println(key+": "+value);*/
+
                 if(String.valueOf(key).indexOf("font")!=-1) {
                     UIManager.put(key, font2);
                 }

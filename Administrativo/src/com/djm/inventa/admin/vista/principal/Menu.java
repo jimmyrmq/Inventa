@@ -1,9 +1,14 @@
 package com.djm.inventa.admin.vista.principal;
 
+
 import com.djm.inventa.admin.vista.CONSTANTS;
+import com.djm.ui.component.ColorFilter;
+import com.djm.util.Image;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -49,6 +54,7 @@ public class Menu extends JMenuBar {
         bg.add(light);
 
         JMenuItem salir = new JMenuItem(CONSTANTS.LANG.getValue("menu.sistema.salir"));
+        salir.setIcon( new ImageIcon(ColorFilter.filterImage(Image.getIcon("16/exit.png"), Color.RED, true)));
         salir.setActionCommand("SALIR");
 
         sistema.add(configuracion);
@@ -66,6 +72,8 @@ public class Menu extends JMenuBar {
         add(menuProducto());
         add(documento);
         add(cliente);
+        add(Box.createGlue());
+        add(new UsuarioButton());
     }
 
     private JMenu menuProducto(){
@@ -75,19 +83,27 @@ public class Menu extends JMenuBar {
         JMenuItem registroProducto = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.registro"));
         registroProducto.setActionCommand("PRODUCTO");
         registroProducto.addActionListener(actionListenerMenu);
-        producto.add(registroProducto);
 
         JMenuItem stock = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.stock"));
         stock.setActionCommand("STOCK_PRODUCTO");
-        producto.add(stock);
 
         JMenuItem entrada = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.entrada"));
         entrada.setActionCommand("ENTRADA_PRODUCTO");
-        producto.add(entrada);
 
         JMenuItem importar = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.importar"));
         importar.setActionCommand("IMPORTAR_PRODUCTO");
+
+        JCheckBoxMenuItem verLista = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.producto.verlista"));
+        verLista.setActionCommand("PANEL_PRODUCTO");
+
+        producto.add(registroProducto);
+        producto.addSeparator();
+        producto.add(stock);
+        producto.addSeparator();
+        producto.add(entrada);
         producto.add(importar);
+        producto.addSeparator();
+        producto.add(verLista);
 
         return producto;
     }
