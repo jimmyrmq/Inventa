@@ -5,6 +5,7 @@ import com.djm.inventa.admin.util.LoggerApp;
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.principal.AparienciaLookFeel;
+import com.djm.inventa.admin.vista.principal.Global;
 import com.djm.util.Image;
 import com.djm.inventa.admin.vista.principal.VentanaPrincipal;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -35,6 +36,13 @@ public class App {
             LoggerApp.info("Carpeta data del db creado: "+wasCreated+".");
         }
 
+        boolean ver = Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellista"));
+        //Ver Lista Panel
+        PropiedadesSistema.setPropiedad("PanelProducto.mostrar", ver);
+        PropiedadesSistema.setPropiedad("PanelProducto.producto", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaproducto")));
+        PropiedadesSistema.setPropiedad("PanelProducto.servicio", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaservicio")));
+
+
         Image.init(App.class,"icon");
 
         lookAndFeel();
@@ -42,6 +50,7 @@ public class App {
         VentanaPrincipal frame = new VentanaPrincipal();
 
         GlobalFrame.getInstance().setFrame(frame);
+        Global.panelDesktop.mostrarPanelListaProducto(ver);
 
         frame.crearGUI();
         frame.setVisible(true);
@@ -50,11 +59,17 @@ public class App {
     private static void lookAndFeel(){
 
         try {
-            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            //UIManager.setLookAndFeel(new FlatDarkLaf());
-            UIManager.setLookAndFeel(new FlatLightLaf());
+            String look = CONSTANTS.CONFIG.getValue("lookandfeel");
 
-            PropiedadesSistema.setPropiedad("Apariencia.lookandfeel", AparienciaLookFeel.Light);
+            AparienciaLookFeel aparienciaLookFeel = look.equals(AparienciaLookFeel.Dark.getDescripcion())?AparienciaLookFeel.Dark:AparienciaLookFeel.Light;
+
+            PropiedadesSistema.setPropiedad("Apariencia.lookandfeel",aparienciaLookFeel);
+
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            if(AparienciaLookFeel.Dark.getDescripcion().equalsIgnoreCase(look) )
+                UIManager.setLookAndFeel(new FlatDarkLaf());
+            else
+                UIManager.setLookAndFeel(new FlatLightLaf());
 
             PropiedadesSistema.setPropiedad("Button.color", new Color(77,77,77));
             PropiedadesSistema.setPropiedad("Label.colorDarker", Color.ORANGE);
@@ -73,7 +88,7 @@ public class App {
                 Object key = keys.nextElement();
 
                 /*Object value = defaults.get(key);
-                if(String.valueOf(key).indexOf("background")!=-1)
+                if(String.valueOf(key).indexOf("Table")!=-1)
                     System.out.println(key+": "+value);*/
 
                 if(String.valueOf(key).indexOf("font")!=-1) {

@@ -1,13 +1,13 @@
 package com.djm.inventa.admin.vista.principal;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
+import java.awt.event.ActionListener;
 
-public interface IPanelDesktop {
+public interface IPanelDesktop<E> {
         JInternalFrame getDesktopPane();
-        JPanel getPanel();
-        JPanel getToolBar();
         String getID();
-        String getTitulo();
+
+        void insertData(E e);
+
+        IPanel<E> getIPanel();
 }

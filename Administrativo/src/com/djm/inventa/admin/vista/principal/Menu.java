@@ -1,6 +1,7 @@
 package com.djm.inventa.admin.vista.principal;
 
 
+import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.ui.component.ColorFilter;
 import com.djm.util.Image;
@@ -44,10 +45,17 @@ public class Menu extends JMenuBar {
         apariencia.add(dark);
 
         JCheckBoxMenuItem light = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.apariencia.light"));
-        light.setSelected(true);
+
         light.setActionCommand("LIGHT");
         light.addActionListener(actionListenerMenu);
         apariencia.add(light);
+
+        AparienciaLookFeel look = PropiedadesSistema.getAparienciaLookFeel("Apariencia.lookandfeel");
+
+        if("dark".equalsIgnoreCase(look.getDescripcion())){
+            dark.setSelected(true);
+        }else
+            light.setSelected(true);
 
         ButtonGroup bg = new ButtonGroup();
         bg.add(dark);
@@ -95,6 +103,8 @@ public class Menu extends JMenuBar {
 
         JCheckBoxMenuItem verLista = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.producto.verlista"));
         verLista.setActionCommand("PANEL_PRODUCTO");
+        verLista.setSelected(PropiedadesSistema.getBoolean("PanelProducto.mostrar"));
+        verLista.addActionListener(actionListenerMenu);
 
         producto.add(registroProducto);
         producto.addSeparator();

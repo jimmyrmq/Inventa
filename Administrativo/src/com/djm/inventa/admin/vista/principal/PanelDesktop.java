@@ -1,18 +1,12 @@
 package com.djm.inventa.admin.vista.principal;
 
-import com.djm.util.LayoutPanel;
+import com.djm.inventa.admin.modelo.Producto;
+import com.djm.inventa.admin.vista.producto.PanelListaProducto;
 
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JPanel;
 import javax.swing.JInternalFrame;
-import javax.swing.JSeparator;
-import javax.swing.JToolBar;
-import javax.swing.UIManager;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,47 +14,51 @@ public class PanelDesktop extends JPanel {
     private JDesktopPane desktop;
     //private JPanel desktop;
     private List<IPanelDesktop> listIDPane;
+    private PanelListaProducto pListaProducto;
     public PanelDesktop(){
         listIDPane = new ArrayList<>();
 
         setOpaque(false);
-        setLayout(new GridBagLayout());
+        setLayout(new BorderLayout());
 
         pEscritorio();
 
-        add(Global.panelTitulo, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 0.0f));
-        add(desktop, LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
+        //add(Global.panelTitulo, BorderLayout.NORTH);//LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 0.0f));
+        add(desktop, BorderLayout.CENTER);//LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
     }
 
-    public void addVentana(IPanelDesktop panelDesktop){
+    public void addVentana(IPanelDesktop panelDesktop, Object data){
         boolean add = true;
 
-        JInternalFrame destopPanel = null;
+        //Buscamos si la ventana ya esta abierta
+        IPanelDesktop iPanelDesktop = getIPanelDesktop(panelDesktop.getID());
 
-        cont:for(IPanelDesktop id: listIDPane){
-            if(id.getID().equalsIgnoreCase(panelDesktop.getID())){
-                destopPanel = id.getDesktopPane();
-                add = false;
-                break cont;
-            }
+        if(iPanelDesktop != null){
+            add = false;
+            panelDesktop = iPanelDesktop;
         }
+
+        JInternalFrame desktopPanel = panelDesktop.getDesktopPane();
 
         if(add){
-            /*if(panelDesktop.getToolBar() != null) {
-                add(panelDesktop.getToolBar(), LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 0.0f));
-                add(new JSeparator(), LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 0.0f));
-            }*/
-            destopPanel = panelDesktop.getDesktopPane();
-            desktop.add(destopPanel);//panelDesktop.getPanel());//
+            //Mostrar en el centro del DesktopPane
+            int x = (desktop.getWidth() - desktopPanel.getWidth()) / 2;
+            int y = ((desktop.getHeight() - desktopPanel.getHeight()) / 2)-50;
+
+            desktopPanel.setLocation(x, y);
+
+            desktop.add(desktopPanel);
             listIDPane.add(panelDesktop);
-            Global.panelTitulo.setTitulo(panelDesktop.getTitulo());
-            Global.panelTitulo.setVisible(true);
         }
 
-        destopPanel.moveToFront();
+        desktopPanel.moveToFront();
+
+        if(data != null){
+            panelDesktop.insertData(data);
+        }
 
         try {
-            destopPanel.setSelected(true);
+            desktopPanel.setSelected(true);
         } catch (java.beans.PropertyVetoException exc){
             System.err.println(exc);
         }
@@ -68,20 +66,29 @@ public class PanelDesktop extends JPanel {
 
     public void cerrarVentana(String idPanelDesktop){
 
-
         cont:for(IPanelDesktop panelDesktop: listIDPane) {
             if (panelDesktop.getID().equalsIgnoreCase(idPanelDesktop)) {
                 panelDesktop.getDesktopPane().setVisible(false);
                 panelDesktop.getDesktopPane().dispose();
                 listIDPane.remove(panelDesktop);
-                desktop.removeAll();
-                Global.panelTitulo.setVisible(false);
 
-                remove(panelDesktop.getToolBar());
                 break cont;
             }
         }
+    }
+    public void mostrarPanelListaProducto(boolean ver){
+        if(ver) {
+            pListaProducto = new PanelListaProducto();
+            add(pListaProducto, BorderLayout.EAST);
+        }
+        else if(pListaProducto != null) {
 
+            remove(pListaProducto);
+            pListaProducto = null;
+        }
+
+        revalidate(); // Actualizar el contenedor
+        repaint();    // Redibujar el contenedor
     }
 
     private void pEscritorio(){
@@ -115,4 +122,41 @@ public class PanelDesktop extends JPanel {
         //desktop.setBackground(colFondo);
     }
 
+    public JDesktopPane getDesktop(){
+        return desktop;
+    }
+
+    public IPanelDesktop getIPanelDesktop(String id){
+        IPanelDesktop panelDesktop = null;
+        //Buscamos si la ventana ya esta abierta
+        cont:for(IPanelDesktop iPanelDesktop: listIDPane){
+            if(iPanelDesktop.getID().equalsIgnoreCase(id)){
+                panelDesktop = iPanelDesktop;
+                break cont;
+            }
+        }
+
+        return panelDesktop;
+    }
+
+    public void setProductoList(Producto producto){
+        if(pListaProducto != null)
+            pListaProducto.setProductoList(producto);
+    }
+
+    public void delProductoList(Producto producto){
+        if(pListaProducto != null)
+            pListaProducto.delProductoList(producto);
+    }
+
+    /*public IPanel getIPanel(String id){
+        IPanelDesktop panelDesktop = getIPanelDesktop(id);
+        IPanel iPanel = null;
+
+        if(panelDesktop != null){
+            iPanel = panelDesktop.getIPanel();
+        }
+
+        return iPanel;
+    }*/
 }

@@ -1,38 +1,30 @@
 package com.djm.inventa.admin.vista.producto;
 
+import com.djm.inventa.admin.modelo.Producto;
 import com.djm.inventa.admin.util.CrearFrameInterno;
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
+import com.djm.inventa.admin.vista.principal.IPanel;
 import com.djm.inventa.admin.vista.principal.IPanelDesktop;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
+import java.awt.event.ActionListener;
 
-public class DesktopProducto implements IPanelDesktop {
+public class DesktopProducto implements IPanelDesktop<Producto> {
     private JInternalFrame internalFrame;
-    private JPanel toolBar;
-    private JPanel producto;
+    private IPanel<Producto> pProducto;
     public DesktopProducto(){
 
-        producto = new PanelProducto();
+        pProducto = new PanelProducto();
 
-        this.internalFrame =new CrearFrameInterno(producto, CONSTANTS.LANG.getValue("producto.label.titulo"), "product.png",false, PropiedadesSistema.getString("Producto.ID"));
-        this.toolBar = new ToolBarProducto();
-    }
+        pProducto.actionListener(new ProductoListener(pProducto));
 
-    @Override
-    public JPanel getToolBar(){
-        return toolBar;
+        this.internalFrame = new CrearFrameInterno(pProducto.getPanel(), CONSTANTS.LANG.getValue("producto.label.titulo"), "16/product.png",false, PropiedadesSistema.getString("Producto.ID"));
+
     }
 
     @Override
     public JInternalFrame getDesktopPane() { return internalFrame;}
-
-    @Override
-    public JPanel getPanel() {
-        return producto;
-    }
 
     @Override
     public String getID() {
@@ -40,7 +32,12 @@ public class DesktopProducto implements IPanelDesktop {
     }
 
     @Override
-    public String getTitulo() {
-        return CONSTANTS.LANG.getValue("producto.label.titulo");
+    public void insertData(Producto producto) {
+        pProducto.insertData(producto);
+    }
+
+    @Override
+    public IPanel<Producto> getIPanel() {
+        return pProducto;
     }
 }

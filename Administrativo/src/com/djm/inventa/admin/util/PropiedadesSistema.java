@@ -62,9 +62,13 @@ public class PropiedadesSistema {
         Object value = propiedades.get(key);
         return (value instanceof Integer) ? (Integer)value : null;
     }
-    public double getDouble(Object key) {
+    public static double getDouble(Object key) {
         Object value = propiedades.get(key);
         return (value instanceof Double) ? (Double) value : null;
+    }
+    public static boolean getBoolean(Object key) {
+        Object value = propiedades.get(key);
+        return Boolean.valueOf(value.toString());//(value instanceof Boolean) ? (Boolean) value : null;
     }
 
     private static void check(String clave){

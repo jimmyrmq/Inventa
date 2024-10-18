@@ -37,4 +37,11 @@ public class Propiedades {
 
         return result;
     }
+    public void setValue(String key,Object value){
+        try {
+            systemProperties.setValue(key, String.valueOf(value));
+        }catch (PropertiesException exc){
+            LoggerApp.error(exc.getMessage());
+        }
+    }
 }

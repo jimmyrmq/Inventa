@@ -13,6 +13,9 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class CrearFrameInterno extends JInternalFrame implements InternalFrameListener{
     private String icon;
@@ -35,10 +38,12 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
         setMaximizable(false);
         setIconifiable(false);*/
 
-        int width = GlobalFrame.getInstance().getFrame().getWidth();
+        /*int width = GlobalFrame.getInstance().getFrame().getWidth();
         int height = GlobalFrame.getInstance().getFrame().getHeight();
         Dimension dim = getSize();
-        setLocation((width - dim.width) / 2, ((height - dim.height) / 2) - 70);
+        setLocation((width - dim.width) / 2, ((height - dim.height) / 2) - 70);*/
+
+        limite();
 
         setDefaultCloseOperation(0);//Deshabilitar el botton  de cerrar
         addInternalFrameListener(this);
@@ -73,6 +78,35 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
             setFrameIcon(iIcon);
         }else
             setFrameIcon(null);
+    }
+
+
+    private void limite(){
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                // Obtener límites del JDesktopPane
+                Rectangle bounds = Global.panelDesktop.getDesktop().getBounds();
+                Rectangle internalBounds = getBounds();
+
+                // Limitar la posición del internalFrame dentro del desktopPane
+                if (internalBounds.x < bounds.x) {
+                    internalBounds.x = bounds.x;
+                }
+                if (internalBounds.y < bounds.y) {
+                    internalBounds.y = bounds.y;
+                }
+                if (internalBounds.x + internalBounds.width > bounds.x + bounds.width) {
+                    internalBounds.x = bounds.x + bounds.width - internalBounds.width;
+                }
+                if (internalBounds.y + internalBounds.height > bounds.y + bounds.height) {
+                    internalBounds.y = bounds.y + bounds.height - internalBounds.height;
+                }
+
+                // Aplicar la nueva posición
+                setBounds(internalBounds);
+            }
+        });
     }
 
     @Override
