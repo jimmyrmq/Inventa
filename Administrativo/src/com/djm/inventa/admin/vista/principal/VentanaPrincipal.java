@@ -29,7 +29,7 @@ public class VentanaPrincipal extends JFrame  implements WindowListener {
     }
     private void init(){
 
-        Dimension dimension =new Dimension(1410,830);
+        Dimension dimension =new Dimension(1490,830);
 
         setTitle(CONSTANTS.TITULO);
         setResizable(true);

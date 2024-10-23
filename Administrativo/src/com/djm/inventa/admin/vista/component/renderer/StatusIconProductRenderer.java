@@ -1,7 +1,6 @@
 package com.djm.inventa.admin.vista.component.renderer;
 
 import com.djm.inventa.admin.vista.component.EtiquetaComponent;
-import com.djm.inventa.admin.vista.producto.TipoEtiqueta;
 import com.djm.ui.component.ITipoEtiqueta;
 
 import javax.swing.JTable;

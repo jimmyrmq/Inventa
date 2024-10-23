@@ -2,8 +2,10 @@ package com.djm.inventa.admin.vista.producto;
 
 import com.djm.inventa.admin.modelo.Producto;
 import com.djm.inventa.admin.util.PropiedadesSistema;
+import com.djm.inventa.admin.util.Utils;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.component.renderer.StatusIconProductRenderer;
+import com.djm.inventa.admin.vista.component.renderer.TipoEtiqueta;
 import com.djm.inventa.admin.vista.principal.Global;
 import com.djm.inventa.admin.vista.principal.IPanelDesktop;
 import com.djm.ui.component.ColorFilter;
@@ -45,7 +47,6 @@ import java.util.List;
 import java.util.Random;
 
 public class PanelListaProducto extends JPanel implements ActionListener {
-    private ModeloTabla<Producto> modelo;
     private ModelTableProductoCustom mpc;
     private Table<Producto> tabla;
     private TextField tBuscar;
@@ -112,7 +113,7 @@ public class PanelListaProducto extends JPanel implements ActionListener {
                 Color cb = UIManager.getColor("TextField.background");
                 Color fb = UIManager.getColor("TextField.foreground");
                 if(tabla.getRowCount() ==  0){
-                    cb = new Color(255,125,125);
+                    cb = PropiedadesSistema.getColor("TextField.backgroundError");
                     fb = Color.WHITE;
                     //tBuscar.mostrarError(CONSTANTS.LANG.getValue("producto.noencontrado"),2000);
                 }
@@ -129,7 +130,8 @@ public class PanelListaProducto extends JPanel implements ActionListener {
     private void pTable(){
 
         mpc = new ModelTableProductoCustom();
-        modelo = new ModeloTabla(mpc);
+
+        ModeloTabla<Producto> modelo = new ModeloTabla(mpc);
 
         tabla = new Table(modelo, 250);
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -285,7 +287,7 @@ public class PanelListaProducto extends JPanel implements ActionListener {
                 p1.setID(i);
                 serv = random.nextBoolean();
 
-                p1.setCodigo(generateAlphanumericCode(10));
+                p1.setCodigo(Utils.generateAlphanumericCode(10));
                 p1.setNombre((serv?"Servicio ":"Producto ") + i);
                 p1.setDisponible(random.nextBoolean());
                 p1.setNoRequiereStock(serv);
@@ -380,19 +382,6 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         super.updateUI();
     }
 
-    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    public String generateAlphanumericCode(int length) {
-        StringBuilder code = new StringBuilder();
-        SecureRandom random = new SecureRandom(); // Usar SecureRandom para una mejor aleatoriedad
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(ALPHA_NUMERIC_STRING.length());
-            code.append(ALPHA_NUMERIC_STRING.charAt(index));
-        }
-
-        return code.toString();
-    }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
@@ -418,7 +407,6 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         boolean serv = servicio.isSelected();//PropiedadesSistema.getBoolean("PanelProducto.servicio");
 
         if(prod && serv){//Mostrar todo
-            System.out.println("producto y servicio");
             tabla.getSorter().setRowFilter(null); // Muestra todas las filas
         }else {
 

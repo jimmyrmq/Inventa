@@ -33,6 +33,14 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
 
         pack();
 
+        Dimension dim = getPreferredSize();
+        dim.width += 10;
+        dim.height += 10;
+
+        setPreferredSize(dim);
+        setSize(dim);
+        setMinimumSize(dim);
+
         setResizable(false);
         /*setClosable(false);
         setMaximizable(false);

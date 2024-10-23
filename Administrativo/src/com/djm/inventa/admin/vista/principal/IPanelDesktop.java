@@ -8,6 +8,4 @@ public interface IPanelDesktop<E> {
         String getID();
 
         void insertData(E e);
-
-        IPanel<E> getIPanel();
 }

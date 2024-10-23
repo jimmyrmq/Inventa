@@ -93,12 +93,10 @@ public class Menu extends JMenuBar {
         registroProducto.addActionListener(actionListenerMenu);
 
         JMenuItem stock = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.stock"));
-        stock.setActionCommand("STOCK_PRODUCTO");
+        stock.setActionCommand("STOCK");
+        stock.addActionListener(actionListenerMenu);
 
-        JMenuItem entrada = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.entrada"));
-        entrada.setActionCommand("ENTRADA_PRODUCTO");
-
-        JMenuItem importar = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.importar"));
+        JMenuItem importar = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.importarProduto"));
         importar.setActionCommand("IMPORTAR_PRODUCTO");
 
         JCheckBoxMenuItem verLista = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.producto.verlista"));
@@ -110,7 +108,6 @@ public class Menu extends JMenuBar {
         producto.addSeparator();
         producto.add(stock);
         producto.addSeparator();
-        producto.add(entrada);
         producto.add(importar);
         producto.addSeparator();
         producto.add(verLista);

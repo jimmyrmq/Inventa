@@ -6,6 +6,7 @@ import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.producto.DesktopProducto;
 import com.djm.inventa.admin.vista.producto.ProductoListener;
+import com.djm.inventa.admin.vista.stock.DesktopStock;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -21,6 +22,10 @@ public class ActionListenerMenu implements ActionListener {
         String action = ae.getActionCommand();
         if(action.equals("PRODUCTO")){
             IPanelDesktop iPanelDesktop = new DesktopProducto();
+            Global.panelDesktop.addVentana(iPanelDesktop, null);
+        }
+        else if(action.equals("STOCK")){
+            IPanelDesktop iPanelDesktop = new DesktopStock();
             Global.panelDesktop.addVentana(iPanelDesktop, null);
         }
         else if(action.equals("DARK") || action.equals("LIGHT")){

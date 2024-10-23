@@ -42,6 +42,8 @@ public class App {
         PropiedadesSistema.setPropiedad("PanelProducto.producto", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaproducto")));
         PropiedadesSistema.setPropiedad("PanelProducto.servicio", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaservicio")));
 
+        PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
+        PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
 
         Image.init(App.class,"icon");
 
@@ -74,7 +76,7 @@ public class App {
             PropiedadesSistema.setPropiedad("Button.color", new Color(77,77,77));
             PropiedadesSistema.setPropiedad("Label.colorDarker", Color.ORANGE);
             PropiedadesSistema.setPropiedad("Panel.backgroundTitle", new Color(81, 99, 124));
-            PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
+            PropiedadesSistema.setPropiedad("TextField.backgroundError", new Color(238, 46, 46));
             PropiedadesSistema.setPropiedad("Usuario.Nombre","Jimmy Morales");
 
             //Cambiamos la letra

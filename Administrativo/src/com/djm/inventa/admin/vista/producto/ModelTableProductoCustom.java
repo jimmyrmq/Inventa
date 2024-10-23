@@ -16,7 +16,7 @@ public class ModelTableProductoCustom  implements IModelTableCustom<Producto> {
     private LinkedList<Producto> datos = new LinkedList();
     private List<ObjectModelTable> listObject;
     private String[] columnName = {CONSTANTS.LANG.getValue("table.header.codigoproducto"),
-            CONSTANTS.LANG.getValue("table.header.nombre"),
+            CONSTANTS.LANG.getValue("table.header.descripcion"),
             ""
     };
 

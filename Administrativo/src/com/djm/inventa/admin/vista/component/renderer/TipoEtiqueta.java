@@ -1,4 +1,4 @@
-package com.djm.inventa.admin.vista.producto;
+package com.djm.inventa.admin.vista.component.renderer;
 
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.ui.component.ITipoEtiqueta;

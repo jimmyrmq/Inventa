@@ -12,6 +12,7 @@ import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.component.TextField;
 import com.djm.inventa.admin.vista.component.TextArea;
+import com.djm.inventa.admin.vista.principal.IData;
 import com.djm.inventa.admin.vista.principal.IPanel;
 import com.djm.ui.component.Button;
 import com.djm.ui.component.ColorFilter;
@@ -32,7 +33,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
@@ -49,7 +52,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class PanelProducto extends IPanel<Producto>{
+public class PanelProducto extends IData<Producto> implements IPanel{
     private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo, tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3, tStockCritico,
             tCantidadDisponible, tUtilidad;
     private Button bAddMarca, bAddCantidad, bAddProveedor, bBuscar;
@@ -73,9 +76,11 @@ public class PanelProducto extends IPanel<Producto>{
     private Color color3 = UIManager.getColor("TextField.foreground");
     private JPanel pDetalles, pPrecio, pStock;
     private ImageIcon iDel;//iok, icancel;
-
     private Producto producto = null;
     private JPanel panelPrincipal;
+    private JPopupMenu popupMenu;
+    private JMenuItem agragrStock, editarStock;
+
 
     public PanelProducto(){
         panelPrincipal = new JPanel(new GridBagLayout()) {
@@ -107,6 +112,12 @@ public class PanelProducto extends IPanel<Producto>{
                 if(bEliminar != null){
                     bEliminar.setIcon(iDel);
                     bEliminar.updateUI();
+                }
+
+                if(popupMenu != null) {
+                    popupMenu.updateUI();
+                    agragrStock.updateUI();
+                    editarStock.updateUI();
                 }
 
                 /*iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,colButton,false));
@@ -470,6 +481,8 @@ public class PanelProducto extends IPanel<Producto>{
         //panel.setBackground(Color.RED);
         panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.stock")));
 
+        menuIngreso();
+
         bAddCantidad = new Button(Image.getIcon("16/add.png"));
         bAddCantidad.setPaintBack(false);
         bAddCantidad.setColorFilter(greenButton);
@@ -480,6 +493,10 @@ public class PanelProducto extends IPanel<Producto>{
         bAddCantidad.setFocusable(false);
         bAddCantidad.setColorBackIn(color1);
         bAddCantidad.setColorBackSelected(color2);
+        bAddCantidad.addActionListener(ae->{
+
+            popupMenu.show(bAddCantidad, 0,bAddCantidad.getHeight());
+        });
 
         JLabel lAdvertencia = new JLabel(CONSTANTS.LANG.getValue("producto.label.adv_stockcritico"));
         JLabel lDisponible = new JLabel(CONSTANTS.LANG.getValue("producto.label.cantidad_disponible"));
@@ -502,6 +519,21 @@ public class PanelProducto extends IPanel<Producto>{
 
         return panel;
     }
+
+    private void menuIngreso(){
+        popupMenu = new JPopupMenu();
+        agragrStock = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.agregarstock"));
+        editarStock = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.editarstock"));
+
+        agragrStock.setActionCommand("AGREGAR_STOCK_RAPIDO");
+        editarStock.setActionCommand("EDITAR_STOCK_RAPIDO");
+
+        editarStock.setEnabled(false);
+
+        popupMenu.add(agragrStock);
+        popupMenu.add(editarStock);
+    }
+
    /* private JPanel pTitulo(){
         Color color = new Color(48, 103, 222);//UIManager.getColor("TextField.background");
         Font aux = UIManager.getFont("Label.font");
@@ -567,6 +599,8 @@ public class PanelProducto extends IPanel<Producto>{
         tPrecio1.setToolTipText(null);
         tPrecio2.setToolTipText(null);
         tPrecio3.setToolTipText(null);
+
+        editarStock.setEnabled(false);
 
         precioImpuesto.setSelected(true);
 
@@ -763,9 +797,13 @@ public class PanelProducto extends IPanel<Producto>{
 
         if (stock != null) {
             tCantidadDisponible.setText(String.valueOf(stock.getCantidad()));
+        }else {
+            tCantidadDisponible.setText(String.valueOf(producto.getCantidadDisponible()));
         }
 
+
         bEliminar.setEnabled(true);
+        editarStock.setEnabled(true);
 
         eText(true);
 
@@ -806,6 +844,21 @@ public class PanelProducto extends IPanel<Producto>{
         bAddCantidad.setEnabled(enabled);
     }
 
+    public void setCantidadDisponible(int cant, boolean agregar){
+        if(cant > 0){
+            String tcant = tCantidadDisponible.getText();
+            int c = cant;
+            if(agregar && tcant != null &&!tcant.trim().isEmpty()){
+                try {
+                    c += Integer.parseInt(tcant);
+                }catch (NumberFormatException exc){}
+            }
+            tCantidadDisponible.setText(String.valueOf(c));
+        }
+    }
+
+
+
     @Override
     public JPanel getPanel() {
         return panelPrincipal;
@@ -821,6 +874,8 @@ public class PanelProducto extends IPanel<Producto>{
         bGuardar.addActionListener(al);
         bCancelar.addActionListener(al);
         bEliminar.addActionListener(al);
+        agragrStock.addActionListener(al);
+        editarStock.addActionListener(al);
     }
 
     @Override
@@ -877,5 +932,4 @@ public class PanelProducto extends IPanel<Producto>{
         ActionMap actionMap = bGuardar.getActionMap();
         actionMap.put("GUARDAR_PRODUCTO", action);
     }
-
 }

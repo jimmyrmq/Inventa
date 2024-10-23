@@ -1,6 +1,8 @@
 package com.djm.inventa.admin.vista.principal;
 
 import com.djm.inventa.admin.modelo.Producto;
+import com.djm.inventa.admin.modelo.ProductoStock;
+import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.producto.PanelListaProducto;
 
 import javax.swing.JDesktopPane;
@@ -140,8 +142,17 @@ public class PanelDesktop extends JPanel {
     }
 
     public void setProductoList(Producto producto){
+        //Si el panel dela lista producto esta abierta
         if(pListaProducto != null)
             pListaProducto.setProductoList(producto);
+
+        //Si el StockEsta Abierto
+        IPanelDesktop panelDesktop = getIPanelDesktop(PropiedadesSistema.getString("Stock.ID"));
+
+        if(panelDesktop!= null)
+            panelDesktop.insertData(producto);
+
+
     }
 
     public void delProductoList(Producto producto){
