@@ -4,6 +4,7 @@ import com.djm.common.GlobalFrame;
 
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
+import com.djm.inventa.admin.vista.ingreso.archivo.ImportarInventarioGUI;
 import com.djm.inventa.admin.vista.producto.DesktopProducto;
 import com.djm.inventa.admin.vista.producto.ProductoListener;
 import com.djm.inventa.admin.vista.stock.DesktopStock;
@@ -65,6 +66,9 @@ public class ActionListenerMenu implements ActionListener {
             thread.start();
 
             Global.panelDesktop.mostrarPanelListaProducto(ver);
+        }
+        else if(action.equals("IMPORTAR_PRODUCTO")){
+            new ImportarInventarioGUI();
         }
     }
 }

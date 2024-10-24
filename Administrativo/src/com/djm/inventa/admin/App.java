@@ -37,6 +37,7 @@ public class App {
         }
 
         boolean ver = Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellista"));
+
         //Ver Lista Panel
         PropiedadesSistema.setPropiedad("PanelProducto.mostrar", ver);
         PropiedadesSistema.setPropiedad("PanelProducto.producto", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaproducto")));
@@ -44,6 +45,7 @@ public class App {
 
         PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
         PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
+        PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
 
         Image.init(App.class,"icon");
 

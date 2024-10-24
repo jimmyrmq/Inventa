@@ -26,11 +26,9 @@ public class Menu extends JMenuBar {
         // Crear un menú (JMenu)
         JMenu sistema = new JMenu(CONSTANTS.LANG.getValue("menu.sistema"));
         JMenu documento = new JMenu(CONSTANTS.LANG.getValue("menu.documento"));
-        JMenu cliente = new JMenu(CONSTANTS.LANG.getValue("menu.cliente"));
 
         sistema.setMnemonic('S');
         documento.setMnemonic('D');
-        cliente.setMnemonic('C');
 
         //Sistema
         JMenuItem configuracion = new JMenuItem(CONSTANTS.LANG.getValue("menu.sistema.configuracion"));
@@ -79,13 +77,16 @@ public class Menu extends JMenuBar {
         add(sistema);
         add(menuProducto());
         add(documento);
-        add(cliente);
+        add(menuCliente());
+        add(menuVentas());
         add(Box.createGlue());
         add(new UsuarioButton());
     }
 
     private JMenu menuProducto(){
         JMenu producto = new JMenu(CONSTANTS.LANG.getValue("menu.producto"));
+        JMenu importar = new JMenu(CONSTANTS.LANG.getValue("menu.producto.importar"));
+
         producto.setMnemonic('P');
 
         JMenuItem registroProducto = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.registro"));
@@ -96,8 +97,32 @@ public class Menu extends JMenuBar {
         stock.setActionCommand("STOCK");
         stock.addActionListener(actionListenerMenu);
 
-        JMenuItem importar = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.importarProduto"));
-        importar.setActionCommand("IMPORTAR_PRODUCTO");
+        JMenuItem importarArchivo = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.importarProduto"));
+        importarArchivo.setActionCommand("IMPORTAR_PRODUCTO");
+        importarArchivo.addActionListener(actionListenerMenu);
+
+        JMenuItem importarOC = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.importarProdutoOC"));
+        importarOC.setActionCommand("IMPORTAR_PRODUCTO_OC");
+        importarOC.addActionListener(actionListenerMenu);
+
+        JMenuItem defectuoso = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.defectuoso"));
+        defectuoso.setActionCommand("DEFECTUOSO");
+        defectuoso.addActionListener(actionListenerMenu);
+
+        JMenuItem cambioPrecio = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.modificarprecio"));
+        cambioPrecio.setActionCommand("CAMBIO_PRECIO");
+        cambioPrecio.addActionListener(actionListenerMenu);
+
+        JMenuItem bloqueo = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.bloqueodesb"));
+        bloqueo.setActionCommand("BLOQUEO_DESBLOQUEO");
+        bloqueo.addActionListener(actionListenerMenu);
+
+        JMenuItem promociones = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.promocion"));
+        promociones.setActionCommand("PROMOCIONES");
+        promociones.addActionListener(actionListenerMenu);
+
+        importar.add(importarArchivo);
+        importar.add(importarOC);
 
         JCheckBoxMenuItem verLista = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.producto.verlista"));
         verLista.setActionCommand("PANEL_PRODUCTO");
@@ -105,16 +130,65 @@ public class Menu extends JMenuBar {
         verLista.addActionListener(actionListenerMenu);
 
         producto.add(registroProducto);
+        producto.add(promociones);
         producto.addSeparator();
         producto.add(stock);
-        producto.addSeparator();
         producto.add(importar);
+        producto.addSeparator();
+        producto.add(cambioPrecio);
+        producto.add(bloqueo);
+        producto.addSeparator();
+        producto.add(defectuoso);
         producto.addSeparator();
         producto.add(verLista);
 
         return producto;
     }
 
+    private JMenu menuCliente() {
+        JMenu cliente = new JMenu(CONSTANTS.LANG.getValue("menu.cliente"));
+        cliente.setMnemonic('C');
+
+        JMenuItem registro = new JMenuItem(CONSTANTS.LANG.getValue("menu.cliente.registro"));
+        registro.setActionCommand("REGISTRO_CLIENTE");
+        registro.addActionListener(actionListenerMenu);
+
+        JMenuItem deuda = new JMenuItem(CONSTANTS.LANG.getValue("menu.cliente.deuda"));
+        deuda.setActionCommand("DEUDA_CLIENTE");
+        deuda.addActionListener(actionListenerMenu);
+
+        cliente.add(registro);
+        cliente.addSeparator();
+        cliente.add(deuda);
+
+        return cliente;
+    }
+
+    private JMenu menuVentas(){
+        JMenu ventas = new JMenu(CONSTANTS.LANG.getValue("menu.ventas"));
+        ventas.setMnemonic('V');
+
+        JMenuItem facturacion = new JMenuItem(CONSTANTS.LANG.getValue("menu.ventas.facturacion"));
+        facturacion.setActionCommand("FACTURACION");
+
+        JMenuItem detalleFactura = new JMenuItem(CONSTANTS.LANG.getValue("menu.ventas.detallefactura"));
+        detalleFactura.setActionCommand("DETALLES_FACTURA");;
+
+        JMenuItem cierreCaja = new JMenuItem(CONSTANTS.LANG.getValue("menu.ventas.cierrecaja"));
+        cierreCaja.setActionCommand("LISTA_FACTURA");
+
+        JMenuItem devolucion = new JMenuItem(CONSTANTS.LANG.getValue("menu.ventas.devolucion"));
+        devolucion.setActionCommand("LISTA_FACTURA");
+
+        ventas.add(facturacion);
+        ventas.add(detalleFactura);
+        ventas.addSeparator();
+        ventas.add(cierreCaja);
+        ventas.addSeparator();
+        ventas.add(devolucion);
+
+        return  ventas;
+    }
     @Override
     public void paintComponent(Graphics g) {
         g.setColor(new Color(0, 0, 0, 0)); // Color transparente
