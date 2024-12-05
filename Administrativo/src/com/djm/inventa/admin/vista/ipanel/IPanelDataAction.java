@@ -1,6 +1,6 @@
-package com.djm.inventa.admin.vista.principal;
+package com.djm.inventa.admin.vista.ipanel;
 
-public abstract class IData <E>{
+public abstract class IPanelDataAction<E> extends IPanelAction implements IPanel{
     private E e;
     public abstract E getData();
     public boolean isData(){

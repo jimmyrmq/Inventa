@@ -1,16 +1,18 @@
 package com.djm.inventa.admin.vista.producto;
 
+import com.djm.common.GlobalFrame;
 import com.djm.inventa.admin.modelo.Producto;
+import com.djm.inventa.admin.util.CheckDataException;
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.util.Utils;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.component.renderer.StatusIconProductRenderer;
 import com.djm.inventa.admin.vista.component.renderer.TipoEtiqueta;
 import com.djm.inventa.admin.vista.principal.Global;
-import com.djm.inventa.admin.vista.principal.IPanelDesktop;
+import com.djm.inventa.admin.vista.ipanel.IPanelDesktop;
 import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.EtiquetaComponent;
-import com.djm.ui.component.TextField;
+import com.djm.inventa.admin.vista.component.TextField;
 import com.djm.ui.component.table.ModeloTabla;
 
 import com.djm.inventa.admin.vista.component.Table;
@@ -18,12 +20,19 @@ import com.djm.util.FormatNumber;
 import com.djm.util.Image;
 import com.djm.util.LayoutPanel;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.UIManager;
@@ -41,10 +50,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.awt.event.KeyAdapter;
 
 public class PanelListaProducto extends JPanel implements ActionListener {
     private ModelTableProductoCustom mpc;
@@ -52,8 +61,9 @@ public class PanelListaProducto extends JPanel implements ActionListener {
     private TextField tBuscar;
     private final String carp = "16/";
     private ImageIcon lupaText;
-    private JButton bDetalle;
-    private JTextField tCodigo, tNombre, tNota, tPrecioVenta, tPrecioMayor, tPrecioEspecial, tCantDisponible, tStockCritico;
+    private JButton bDetalle, bLimpiar, bNuevo;
+    private TextField tCodigo;
+    private JTextField tNombre, tNota, tPrecioVenta, tPrecioMayor, tPrecioEspecial, tCantDisponible, tStockCritico;
     private Producto producto =null;
     private JCheckBox sproducto,servicio;
     public PanelListaProducto(){
@@ -62,16 +72,27 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         setBorder(new EmptyBorder(10, 10, 10, 10));
 
         bDetalle = new JButton(CONSTANTS.LANG.getValue("button.detalle"));
+        bNuevo = new JButton(CONSTANTS.LANG.getValue("button.nuevo"));
+        bLimpiar = new JButton(CONSTANTS.LANG.getValue("button.limpiar"));
+
+        limpiarEsc();
 
         bDetalle.addActionListener((e)->{
             if(producto != null) {
                 Producto producto1 = (Producto) producto.clone();
                 clearForm();
+
                 IPanelDesktop iPanelDesktop = new DesktopProducto();
                 Global.panelDesktop.addVentana(iPanelDesktop, producto1);
             }
         });
 
+        bNuevo.addActionListener((e)->{});
+        bLimpiar.addActionListener((e)->{
+            clearForm();
+        });
+
+        bLimpiar.setEnabled(false);
         bDetalle.setEnabled(false);
 
         tBuscar();
@@ -81,7 +102,8 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         add(pVista(), LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
         add(tabla.getPanel(), LayoutPanel.constantePane(0, 1, 2, 1, GridBagConstraints.VERTICAL, GridBagConstraints.CENTER, 5, 0, 0, 0, 0.0f, 1.0f));
         add(pDetalle(), LayoutPanel.constantePane(0, 3, 2, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 15, 0, 0, 0, 0.0f, 0.0f));
-        add(bDetalle, LayoutPanel.constantePane(0, 4, 2, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 15, 0, 0, 0, 0.0f, 0.0f));
+        add(bDetalle, LayoutPanel.constantePane(0, 4, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 15, 0, 0, 0, 0.0f, 0.0f));
+        add(bLimpiar, LayoutPanel.constantePane(1, 4, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 15, 0, 0, 5, 0.0f, 0.0f));
 
     }
     private void tBuscar(){
@@ -151,6 +173,25 @@ public class PanelListaProducto extends JPanel implements ActionListener {
                 }
             }
         });
+
+        tabla.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    int row = tabla.getSelectedRow();
+                    if(row != -1){
+                        Producto prod = tabla.getSelectedItem();
+
+                        if(prod!=null) {
+                            fillDataProduct(prod);
+                        }
+                    }
+                    //int col = tabla.getSelectedColumn();
+                    //System.out.println("Se presionó Enter en la celda (" + row + ", " + col + ")");
+                    // Puedes realizar otras acciones cuando se presiona Enter en una celda
+                }
+            }
+        });
     }
 
     private JPanel pVista() {
@@ -182,16 +223,16 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
-        JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("producto.label.codigo"));
-        JLabel lNombre = new JLabel(CONSTANTS.LANG.getValue("producto.label.nombre"));
+        JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("label.codigo"));
+        JLabel lNombre = new JLabel(CONSTANTS.LANG.getValue("label.nombre"));
         JLabel lNota = new JLabel(CONSTANTS.LANG.getValue("producto.label.nota"));
-        JLabel lPrecioVenta = new JLabel(CONSTANTS.LANG.getValue("producto.label.precioventa"));
+        JLabel lPrecioVenta = new JLabel(CONSTANTS.LANG.getValue("label.precioventa"));
         JLabel lPrecioMayor = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciomayor"));
         JLabel lPrecioEspecial = new JLabel(CONSTANTS.LANG.getValue("producto.label.precioespecial"));
         JLabel lCantDisponible = new JLabel(CONSTANTS.LANG.getValue("producto.label.cantidad_disponible"));
         JLabel lStockCritico = new JLabel(CONSTANTS.LANG.getValue("producto.label.adv_stockcritico"));
 
-        tCodigo = new JTextField(25);
+        tCodigo = new TextField(25);
         tNombre = new JTextField(25);
         tNota = new JTextField(25);
         tPrecioVenta = new JTextField(10);
@@ -200,7 +241,19 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         tCantDisponible = new JTextField(10);
         tStockCritico = new JTextField(10);
 
-        tCodigo.setEditable(false);
+        tCodigo.addActionListener((e)->{
+            try {
+                Producto  producto1 = buscarTabla(tCodigo.getText());
+                fillDataProduct(producto1);
+            }catch (CheckDataException exc){
+                JOptionPane.showMessageDialog(GlobalFrame.getInstance().getFrame(),exc.getMessage(),
+                        CONSTANTS.LANG.getValue("producto.label.titulo"), JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        tCodigo.setPlaceHolder(CONSTANTS.LANG.getValue("producto.inf.codigo"));
+
+        //tCodigo.setEditable(false);
         tNombre.setEditable(false);
         tNota.setEditable(false);
         tPrecioVenta.setEditable(false);
@@ -238,7 +291,12 @@ public class PanelListaProducto extends JPanel implements ActionListener {
 
     private void fillDataProduct(Producto producto){
         if(producto != null){
+            clearForm();
+
             this.producto = producto;
+
+            tCodigo.setEditable(false);
+
             tCodigo.setText(producto.getCodigo());
             tNombre.setText(producto.getNombre());
             tNota.setText(producto.getNota());
@@ -253,11 +311,14 @@ public class PanelListaProducto extends JPanel implements ActionListener {
                 tStockCritico.setText(String.valueOf(producto.getStockCritico()));
 
             bDetalle.setEnabled(true);
+            bLimpiar.setEnabled(true);
         }
     }
 
     private void clearForm(){
         this.producto = null;
+
+        tCodigo.setEditable(true);
 
         tCodigo.setText(null);
         tNombre.setText(null);
@@ -269,6 +330,7 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         tStockCritico.setText(null);
 
         bDetalle.setEnabled(false);
+        bLimpiar.setEnabled(false);
     }
 
     private void loadTable(){
@@ -277,7 +339,6 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         Thread thread = new Thread(()-> {
             tabla.setEnabled(false);
             //JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
 
             Random random = new Random();
             int randomNumber;
@@ -312,6 +373,36 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         });
 
         thread.start();
+    }
+
+    public Producto buscarTabla(String codigo) throws CheckDataException {
+        Producto p = null;
+
+        if(codigo == null || codigo.trim().isEmpty())
+            throw new CheckDataException(CONSTANTS.LANG.getValue("producto.error.codigo"));
+
+        List<Producto> productos = mpc.getListData();
+        cont:for(Producto pAux:productos){
+            if(codigo.equals(pAux.getCodigo()) || codigo.equals(pAux.getCodigoBarra())){
+                p = pAux;
+                break cont;
+            }
+
+        }
+        /*int size = tabla.getRowCount();
+
+        cont:for(int i = 0; i< size;i++){
+            Producto pAux = mpc.getValue(i);
+            if(codigo.equals(pAux.getCodigo())){
+                p = pAux;
+                break cont;
+            }
+        }*/
+
+        if(p == null)
+            throw new CheckDataException(CONSTANTS.LANG.getValue("producto.noencontrado"));
+
+        return p;
     }
 
     public void delProductoList(Producto producto){
@@ -367,9 +458,9 @@ public class PanelListaProducto extends JPanel implements ActionListener {
 
     @Override
     public void updateUI(){
-        Color bcol = new Color(190, 190, 190);
+        Color bcol = PropiedadesSistema.getColor("back.color.dark");//new Color(190, 190, 190);
         if(PropiedadesSistema.getPropiedad("Apariencia.lookandfeel").equals("LIGTH")){
-            bcol = new Color(90, 90, 90);
+            bcol =  PropiedadesSistema.getColor("back.color.light");//new Color(90, 90, 90);
         }
 
         if(tBuscar != null){
@@ -475,5 +566,20 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         } else {
             tabla.getSorter().setRowFilter(null); // Muestra todas las filas
         }*/
+    }
+
+
+    private void limpiarEsc(){
+        KeyStroke SR= KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0,false);
+        Action action =new AbstractAction(){
+            public void actionPerformed(ActionEvent e) {
+                clearForm();
+            }
+        };
+
+        InputMap inputMap = bLimpiar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(SR, "LIMPIAR_FORM");
+        ActionMap actionMap = bLimpiar.getActionMap();
+        actionMap.put("LIMPIAR_FORM", action);
     }
 }

@@ -3,7 +3,6 @@ package com.djm.inventa.admin.vista.producto;
 import com.djm.inventa.admin.modelo.Producto;
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.principal.Global;
-import com.djm.inventa.admin.vista.principal.IData;
 import com.djm.inventa.admin.vista.stock.StockRapidoGUI;
 
 import java.awt.event.ActionEvent;

@@ -4,7 +4,7 @@ import com.djm.inventa.admin.modelo.Producto;
 import com.djm.inventa.admin.util.CrearFrameInterno;
 import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.CONSTANTS;
-import com.djm.inventa.admin.vista.principal.IPanelDesktop;
+import com.djm.inventa.admin.vista.ipanel.IPanelDesktop;
 
 import javax.swing.JInternalFrame;
 import java.awt.Dimension;

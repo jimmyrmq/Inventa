@@ -118,7 +118,7 @@ public class Menu extends JMenuBar {
         bloqueo.addActionListener(actionListenerMenu);
 
         JMenuItem promociones = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.promocion"));
-        promociones.setActionCommand("PROMOCIONES");
+        promociones.setActionCommand("PROMOCION");
         promociones.addActionListener(actionListenerMenu);
 
         importar.add(importarArchivo);

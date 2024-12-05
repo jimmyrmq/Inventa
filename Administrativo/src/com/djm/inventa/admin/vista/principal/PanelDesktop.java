@@ -1,8 +1,8 @@
 package com.djm.inventa.admin.vista.principal;
 
 import com.djm.inventa.admin.modelo.Producto;
-import com.djm.inventa.admin.modelo.ProductoStock;
 import com.djm.inventa.admin.util.PropiedadesSistema;
+import com.djm.inventa.admin.vista.ipanel.IPanelDesktop;
 import com.djm.inventa.admin.vista.producto.PanelListaProducto;
 
 import javax.swing.JDesktopPane;

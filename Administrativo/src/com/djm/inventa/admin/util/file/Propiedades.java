@@ -28,10 +28,15 @@ public class Propiedades {
 
         return val;
     }
-    public String getValue(String value,String replacement){
+    public String getValue(String value,String keyReplacement){
         String result = null;
         
-        if(replacement != null && systemProperties != null) {
+        if(keyReplacement != null && systemProperties != null) {
+            String replacement = systemProperties.getValue(keyReplacement);
+
+            if(replacement == null)
+                replacement = keyReplacement;
+
             result = systemProperties.getValue(value , replacement);
         }
 

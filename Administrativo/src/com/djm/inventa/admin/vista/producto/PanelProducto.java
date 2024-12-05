@@ -9,11 +9,10 @@ import com.djm.inventa.admin.modelo.Stock;
 import com.djm.inventa.admin.util.BorderUtil;
 import com.djm.inventa.admin.util.LoggerApp;
 import com.djm.inventa.admin.util.PropiedadesSistema;
+import com.djm.inventa.admin.vista.ipanel.IPanelDataAction;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.component.TextField;
 import com.djm.inventa.admin.vista.component.TextArea;
-import com.djm.inventa.admin.vista.principal.IData;
-import com.djm.inventa.admin.vista.principal.IPanel;
 import com.djm.ui.component.Button;
 import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.ToggleButton;
@@ -52,7 +51,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class PanelProducto extends IData<Producto> implements IPanel{
+public class PanelProducto extends IPanelDataAction<Producto> {
     private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo, tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3, tStockCritico,
             tCantidadDisponible, tUtilidad;
     private Button bAddMarca, bAddCantidad, bAddProveedor, bBuscar;
@@ -158,7 +157,8 @@ public class PanelProducto extends IData<Producto> implements IPanel{
         panelPrincipal.add(getPanelButton(), LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 10, 0, 10, 1.0f, 1.0f));
         panelPrincipal.add(bEliminar, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 10, 10, 1.0f, 0.0f));
 
-        //add(panel, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
+        actionListener();
+
     }
 
 
@@ -180,7 +180,7 @@ public class PanelProducto extends IData<Producto> implements IPanel{
         lInfo.setIcon(Image.getIcon("info.png"));
         lInfo.setVisible(false);
 
-        cancelEsc();
+        cerrarEsc(bCancelar);
         guardarF5();
 
         bGuardar.setFocusable(true);
@@ -196,9 +196,9 @@ public class PanelProducto extends IData<Producto> implements IPanel{
         panel.setOpaque(false);
         panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.detalle")));
 
-        JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("producto.label.codigo"));
+        JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("label.codigo"));
         JLabel lCodigoBarra = new JLabel(CONSTANTS.LANG.getValue("producto.label.codigobarra"));
-        JLabel lNombre = new JLabel(CONSTANTS.LANG.getValue("producto.label.nombre"));
+        JLabel lNombre = new JLabel(CONSTANTS.LANG.getValue("label.nombre"));
         JLabel lUnidad= new JLabel(CONSTANTS.LANG.getValue("producto.label.unidad"));
         JLabel lModelo= new JLabel(CONSTANTS.LANG.getValue("producto.label.modelo"));
         JLabel lSerie= new JLabel(CONSTANTS.LANG.getValue("producto.label.serie"));
@@ -374,7 +374,7 @@ public class PanelProducto extends IData<Producto> implements IPanel{
 
         JLabel lPrecioCosto = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciocompra"));
         JLabel  lUtilidad= new JLabel(CONSTANTS.LANG.getValue("producto.label.utilidad"));
-        JLabel  lPrecio1= new JLabel(CONSTANTS.LANG.getValue("producto.label.precioventa"));
+        JLabel  lPrecio1= new JLabel(CONSTANTS.LANG.getValue("label.precioventa"));
         JLabel  lPrecio2= new JLabel(CONSTANTS.LANG.getValue("producto.label.preciomayor"));
         JLabel  lPrecio3= new JLabel(CONSTANTS.LANG.getValue("producto.label.precioespecial"));
 
@@ -869,8 +869,8 @@ public class PanelProducto extends IData<Producto> implements IPanel{
         return getProducto();
     }
 
-    @Override
-    public void actionListener(ActionListener al) {
+    private void actionListener(){
+        ActionListener al = new ProductoListener(this);
         bGuardar.addActionListener(al);
         bCancelar.addActionListener(al);
         bEliminar.addActionListener(al);
@@ -889,6 +889,15 @@ public class PanelProducto extends IData<Producto> implements IPanel{
         clear();
     }
 
+    @Override
+    public void actionEsc() {
+
+        ActionEvent eventoSimulado = new ActionEvent(bCancelar, ActionEvent.ACTION_PERFORMED, "BUTTON_CANCELAR");
+
+        if( bCancelar.getActionListeners().length == 1)
+            bCancelar.getActionListeners()[0].actionPerformed(eventoSimulado);
+    }
+
 
     private class LostFocusPrecio implements FocusListener{
         @Override
@@ -898,22 +907,6 @@ public class PanelProducto extends IData<Producto> implements IPanel{
         public void focusLost(FocusEvent e) {
             //procesadorProducto.validadPrecio(tCosto, tPrecio1, lPrecio1Adv, tPrecio2, lPrecio2Adv, tPrecio3, lPrecio3Adv);
         }
-    }
-    private void cancelEsc() {
-        KeyStroke SR= KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0,false);
-        Action action =new AbstractAction(){
-            public void actionPerformed(ActionEvent e) {
-                ActionEvent eventoSimulado = new ActionEvent(bCancelar, ActionEvent.ACTION_PERFORMED, "BUTTON_CANCELAR");
-
-                if( bCancelar.getActionListeners().length == 1);
-                    bCancelar.getActionListeners()[0].actionPerformed(eventoSimulado);
-
-            }
-        };
-        InputMap inputMap = bCancelar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        inputMap.put(SR, "CANCELAR_CLEAR");
-        ActionMap actionMap = bCancelar.getActionMap();
-        actionMap.put("CANCELAR_CLEAR", action);
     }
 
     private void guardarF5() {

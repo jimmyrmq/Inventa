@@ -10,7 +10,7 @@ import com.djm.inventa.admin.vista.component.Table;
 import com.djm.inventa.admin.vista.component.renderer.StatusIconProductRenderer;
 import com.djm.inventa.admin.vista.component.renderer.TipoEtiqueta;
 import com.djm.inventa.admin.vista.principal.Global;
-import com.djm.inventa.admin.vista.principal.IPanelDesktop;
+import com.djm.inventa.admin.vista.ipanel.IPanelDesktop;
 import com.djm.inventa.admin.vista.producto.DesktopProducto;
 import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.EtiquetaComponent;
@@ -293,13 +293,12 @@ public class PanelStock extends JPanel implements ActionListener {
                 int modeloFila = tabla.convertRowIndexToModel(row);
 
                 Producto prod = tabla.getSelectedItem();
-                int cant = 0;
+
                 boolean editar = "EDITAR_STOCK_RAPIDO".equals(action);
 
-                if(editar)
-                    cant = prod.getCantidadDisponible();
+                int cant = prod.getCantidadDisponible();
 
-                StockRapidoGUI stock = new StockRapidoGUI(cant);
+                StockRapidoGUI stock = new StockRapidoGUI(editar?cant:0);
                 if(stock.isAcept()){
 
                     if(editar){

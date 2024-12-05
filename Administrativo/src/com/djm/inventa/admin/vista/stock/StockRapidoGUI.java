@@ -89,7 +89,7 @@ public class StockRapidoGUI implements ActionListener {
             tCantidad.selectAll();
         }
 
-        JLabel lCantidad = new JLabel(CONSTANTS.LANG.getValue("stock.label.cantidad"));
+        JLabel lCantidad = new JLabel(CONSTANTS.LANG.getValue("label.cantidad"));
 
         panel.add(lCantidad, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCantidad, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));

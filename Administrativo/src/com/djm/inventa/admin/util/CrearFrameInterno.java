@@ -1,6 +1,5 @@
 package com.djm.inventa.admin.util;
 
-import com.djm.common.GlobalFrame;
 import com.djm.inventa.admin.vista.principal.Global;
 import com.djm.ui.component.ColorFilter;
 import com.djm.util.Image;
@@ -33,13 +32,7 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
 
         pack();
 
-        Dimension dim = getPreferredSize();
-        dim.width += 10;
-        dim.height += 10;
-
-        setPreferredSize(dim);
-        setSize(dim);
-        setMinimumSize(dim);
+        setDimension(10,10);
 
         setResizable(false);
         /*setClosable(false);
@@ -56,6 +49,33 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
         setDefaultCloseOperation(0);//Deshabilitar el botton  de cerrar
         addInternalFrameListener(this);
         setVisible(true);
+    }
+
+    public void setDimension(int witdh, int height){
+
+        Dimension dim = getPreferredSize();
+        dim.width += witdh;
+        dim.height += height;
+
+        setDimension(dim);
+    }
+    public void setDimX(int width){
+        Dimension dim = getPreferredSize();
+        dim.width += width;
+
+        setDimension(dim);
+    }
+    public void setDimY(int height){
+        Dimension dim = getPreferredSize();
+        dim.height += height;
+
+        setDimension(dim);
+    }
+
+    public void setDimension(Dimension dim){
+        setPreferredSize(dim);
+        setSize(dim);
+        setMinimumSize(dim);
     }
 
     public void setIcon(){

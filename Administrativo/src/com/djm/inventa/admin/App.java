@@ -46,6 +46,7 @@ public class App {
         PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
         PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
         PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
+        PropiedadesSistema.setPropiedad("Promocion.ID","PROMOCION_PRODUCTO");
 
         Image.init(App.class,"icon");
 
@@ -76,6 +77,8 @@ public class App {
                 UIManager.setLookAndFeel(new FlatLightLaf());
 
             PropiedadesSistema.setPropiedad("Button.color", new Color(77,77,77));
+            PropiedadesSistema.setPropiedad("back.color.dark",  new Color(190, 190, 190));
+            PropiedadesSistema.setPropiedad("back.color.light",  new Color(90, 90, 90));
             PropiedadesSistema.setPropiedad("Label.colorDarker", Color.ORANGE);
             PropiedadesSistema.setPropiedad("Panel.backgroundTitle", new Color(81, 99, 124));
             PropiedadesSistema.setPropiedad("TextField.backgroundError", new Color(238, 46, 46));
@@ -92,7 +95,7 @@ public class App {
                 Object key = keys.nextElement();
 
                 /*Object value = defaults.get(key);
-                if(String.valueOf(key).indexOf("Table")!=-1)
+                if(String.valueOf(key).indexOf("Table")!=-1 )//|| String.valueOf(key).indexOf("TextField")!=-1)
                     System.out.println(key+": "+value);*/
 
                 if(String.valueOf(key).indexOf("font")!=-1) {

@@ -1,11 +1,9 @@
-package com.djm.inventa.admin.vista.principal;
+package com.djm.inventa.admin.vista.ipanel;
 
 import javax.swing.JInternalFrame;
-import java.awt.event.ActionListener;
 
 public interface IPanelDesktop<E> {
         JInternalFrame getDesktopPane();
         String getID();
-
         void insertData(E e);
 }
