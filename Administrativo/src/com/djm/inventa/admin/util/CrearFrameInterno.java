@@ -21,20 +21,24 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
     private boolean filterIcon;
     private String ID;
     public CrearFrameInterno(JPanel panel,String titulo, String icon, boolean filterIcon, String id) {
-        super(titulo, false, true, false, false);
+        this(panel, titulo, icon, filterIcon, id, false);
+    }
+    public CrearFrameInterno(JPanel panel,String titulo, String icon, boolean filterIcon, String id, boolean resizable) {
+        super(titulo, resizable, true, false, false);
         this.ID = id;
 
         this.filterIcon = filterIcon;
         this.icon = icon;
         setIcon();
 
-        getContentPane().add(panel);
+        if(panel != null)
+            getContentPane().add(panel);
 
         pack();
 
         setDimension(10,10);
 
-        setResizable(false);
+        //setResizable(false);
         /*setClosable(false);
         setMaximizable(false);
         setIconifiable(false);*/

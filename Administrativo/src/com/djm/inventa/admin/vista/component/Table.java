@@ -15,11 +15,14 @@ import java.awt.Dimension;
 public class Table<E>  extends JTable {
     private TableRowSorter<TableModel> sorter;
     private ModeloTabla modeloTabla;
+    private CheckBoxHeader chkheader;
+    private Dimension dimension;
 
     public Table(ModeloTabla modelo, int height) {
         super(modelo);
 
         this.modeloTabla = modelo;
+
         this.setShowGrid(false);
         this.setFillsViewportHeight(false);
         this.setShowHorizontalLines(true);
@@ -45,7 +48,11 @@ public class Table<E>  extends JTable {
             dimX += anchoColum[i];
         }
 
-        this.setPreferredScrollableViewportSize(new Dimension(dimX, height));
+        dimension = new Dimension(dimX, height);
+
+        this.setPreferredScrollableViewportSize(dimension);
+        this.setPreferredSize(dimension);
+        this.setSize(dimension);
     }
 
 
@@ -144,5 +151,17 @@ public class Table<E>  extends JTable {
 
     public void removeRow(int row){
         modeloTabla.removeRow(row);
+    }
+    public void setCheckBox() {
+        columnEdit(0);
+        this.chkheader = new CheckBoxHeader(this);
+    }
+
+    public void columnEdit(int ... col){
+        //modeloTabla.
+    }
+
+    public Dimension getDimension(){
+        return dimension;
     }
 }

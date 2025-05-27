@@ -108,9 +108,9 @@ public class ImportarInventarioGUI implements ActionListener{
         JLabel lMarca = new JLabel(CONSTANTS.LANG.getValue("producto.label.marca"));
         JLabel lDisponible = new JLabel(CONSTANTS.LANG.getValue("producto.label.habilitado"));
         JLabel lCosto = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciocompra"));
-        JLabel lPrecio1 = new JLabel(CONSTANTS.LANG.getValue("label.precioventa"));
-        JLabel lPrecio2 = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciomayor"));
-        JLabel lPrecio3 = new JLabel(CONSTANTS.LANG.getValue("producto.label.precioespecial"));
+        JLabel lPrecio1 = new JLabel(CONSTANTS.LANG.getValue("producto.label.precio1"));
+        JLabel lPrecio2 = new JLabel(CONSTANTS.LANG.getValue("producto.label.precio2"));
+        JLabel lPrecio3 = new JLabel(CONSTANTS.LANG.getValue("producto.label.precio3"));
         JLabel lIncluyeImpuesto = new JLabel(CONSTANTS.LANG.getValue("producto.label.precioIncluyeImpuesto"));
         JLabel lStockCritico = new JLabel(CONSTANTS.LANG.getValue("producto.label.stockcritico"));
         JLabel lRequiereStock = new JLabel(CONSTANTS.LANG.getValue("producto.label.no_requiere_stock"));

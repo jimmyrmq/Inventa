@@ -13,7 +13,6 @@ import com.djm.ui.component.EtiquetaComponent;
 import com.djm.ui.component.ToggleButton;
 import com.djm.ui.component.border.CustomBorder;
 import com.djm.ui.component.table.ModeloTabla;
-import com.djm.ui.themes.global.GlobalUI;
 import com.djm.util.Image;
 import com.djm.util.LayoutPanel;
 
@@ -29,7 +28,6 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -113,7 +111,7 @@ public class PanelPaquetes extends JPanel {
         panel.add(tCategoria, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         */panel.add(new JLabel(CONSTANTS.LANG.getValue("producto.label.preciocompra")), LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCosto, LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(new JLabel(CONSTANTS.LANG.getValue("label.precioventa")), LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(new JLabel(CONSTANTS.LANG.getValue("producto.label.precio1")), LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tPrecioVenta, LayoutPanel.constantePane(1, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(new JLabel(CONSTANTS.LANG.getValue("label.cantidad")), LayoutPanel.constantePane(0, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCantidad, LayoutPanel.constantePane(1, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));

@@ -3,19 +3,14 @@ package com.djm.inventa.admin.vista.promociones;
 import com.djm.common.GlobalFrame;
 import com.djm.inventa.admin.modelo.Promocion;
 import com.djm.inventa.admin.util.CheckDataException;
-import com.djm.inventa.admin.util.LoggerApp;
 import com.djm.inventa.admin.vista.CONSTANTS;
-import com.djm.inventa.admin.vista.component.TextField;
-import com.djm.inventa.admin.vista.ipanel.IAction;
 import com.djm.inventa.admin.vista.ipanel.IDialog;
-import com.djm.inventa.admin.vista.ipanel.IPanelAction;
 import com.djm.util.Fecha;
 import com.djm.util.LayoutPanel;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -110,7 +105,7 @@ public class CrearPromocion extends IDialog<Promocion> implements ActionListener
         panel.add(new JLabel(CONSTANTS.LANG.getValue("label.nombre")), LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
         panel.add(tNombre, LayoutPanel.constantePane(1, 1, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
-        panel.add(new JLabel(CONSTANTS.LANG.getValue("label.precioventa")), LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(new JLabel(CONSTANTS.LANG.getValue("producto.label.precio1")), LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
         panel.add(tPrecio, LayoutPanel.constantePane(1, 2, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         panel.add(new JLabel(CONSTANTS.LANG.getValue("promocion.label.vigencia")), LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));

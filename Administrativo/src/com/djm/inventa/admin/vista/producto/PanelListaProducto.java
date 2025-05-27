@@ -226,9 +226,9 @@ public class PanelListaProducto extends JPanel implements ActionListener {
         JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("label.codigo"));
         JLabel lNombre = new JLabel(CONSTANTS.LANG.getValue("label.nombre"));
         JLabel lNota = new JLabel(CONSTANTS.LANG.getValue("producto.label.nota"));
-        JLabel lPrecioVenta = new JLabel(CONSTANTS.LANG.getValue("label.precioventa"));
-        JLabel lPrecioMayor = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciomayor"));
-        JLabel lPrecioEspecial = new JLabel(CONSTANTS.LANG.getValue("producto.label.precioespecial"));
+        JLabel lPrecioVenta = new JLabel(CONSTANTS.LANG.getValue("producto.label.precio1"));
+        JLabel lPrecioMayor = new JLabel(CONSTANTS.LANG.getValue("producto.label.precio2"));
+        JLabel lPrecioEspecial = new JLabel(CONSTANTS.LANG.getValue("producto.label.precio3"));
         JLabel lCantDisponible = new JLabel(CONSTANTS.LANG.getValue("producto.label.cantidad_disponible"));
         JLabel lStockCritico = new JLabel(CONSTANTS.LANG.getValue("producto.label.adv_stockcritico"));
 

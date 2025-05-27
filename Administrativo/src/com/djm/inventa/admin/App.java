@@ -21,9 +21,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.util.Currency;
 import java.util.Enumeration;
+import java.util.Locale;
 
 public class App {
+    private static boolean ver = true;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             run();
@@ -36,17 +39,9 @@ public class App {
             LoggerApp.info("Carpeta data del db creado: "+wasCreated+".");
         }
 
-        boolean ver = Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellista"));
+        ver = Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellista"));
 
-        //Ver Lista Panel
-        PropiedadesSistema.setPropiedad("PanelProducto.mostrar", ver);
-        PropiedadesSistema.setPropiedad("PanelProducto.producto", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaproducto")));
-        PropiedadesSistema.setPropiedad("PanelProducto.servicio", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaservicio")));
-
-        PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
-        PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
-        PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
-        PropiedadesSistema.setPropiedad("Promocion.ID","PROMOCION_PRODUCTO");
+        propiedadesSistema();
 
         Image.init(App.class,"icon");
 
@@ -59,6 +54,26 @@ public class App {
 
         frame.crearGUI();
         frame.setVisible(true);
+    }
+
+    private static void propiedadesSistema(){
+
+        //Ver Lista Panel
+        PropiedadesSistema.setPropiedad("PanelProducto.mostrar", ver);
+        PropiedadesSistema.setPropiedad("PanelProducto.producto", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaproducto")));
+        PropiedadesSistema.setPropiedad("PanelProducto.servicio", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaservicio")));
+
+        PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
+        PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
+        PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
+        PropiedadesSistema.setPropiedad("Promocion.ID","PROMOCION_PRODUCTO");
+        PropiedadesSistema.setPropiedad("ActualizarPrecio.ID","ACTUALIZAR_PRECIO");
+
+
+        Locale defaultLocale = Locale.getDefault();
+        Currency currency = Currency.getInstance(defaultLocale);
+        PropiedadesSistema.setPropiedad("Moneda.Simbolo", currency.getSymbol());
+
     }
 
     private static void lookAndFeel(){

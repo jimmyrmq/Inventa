@@ -41,7 +41,6 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -65,7 +64,6 @@ public class PanelProducto extends IPanelDataAction<Producto> {
     private DefaultComboBoxModel<Proveedor> dcbProveedor;
     private DefaultComboBoxModel<Categoria> dcbCategoria;
     private DefaultComboBoxModel<Marca> dcbMarca;
-    private final Dimension CDDIM = new Dimension(227,23);
     private JCheckBox disponible, noRequiereStock, precioImpuesto;
     private Color greenButton = new Color(77, 170, 71);
     private LostFocusPrecio lostFocusPrecio = new LostFocusPrecio();
@@ -310,17 +308,17 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         dcbProveedor = new DefaultComboBoxModel<Proveedor> ();
 
         cbProveedor = new JComboBox<>(dcbProveedor);
-        cbProveedor.setPreferredSize(CDDIM);
+        cbProveedor.setPreferredSize(CONSTANTS.CDDIM);
 
         dcbCategoria = new DefaultComboBoxModel<Categoria> ();
 
         cbCategoria = new JComboBox<>(dcbCategoria);
-        cbCategoria.setPreferredSize(CDDIM);
+        cbCategoria.setPreferredSize(CONSTANTS.CDDIM);
 
         dcbMarca = new DefaultComboBoxModel<Marca> ();
 
         cbMarca = new JComboBox<>(dcbMarca);
-        cbMarca.setPreferredSize(CDDIM);
+        cbMarca.setPreferredSize(CONSTANTS.CDDIM);
 
         disponible = new JCheckBox(CONSTANTS.LANG.getValue("producto.label.habilitado"));
         disponible.setOpaque(false);
@@ -374,9 +372,9 @@ public class PanelProducto extends IPanelDataAction<Producto> {
 
         JLabel lPrecioCosto = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciocompra"));
         JLabel  lUtilidad= new JLabel(CONSTANTS.LANG.getValue("producto.label.utilidad"));
-        JLabel  lPrecio1= new JLabel(CONSTANTS.LANG.getValue("label.precioventa"));
-        JLabel  lPrecio2= new JLabel(CONSTANTS.LANG.getValue("producto.label.preciomayor"));
-        JLabel  lPrecio3= new JLabel(CONSTANTS.LANG.getValue("producto.label.precioespecial"));
+        JLabel  lPrecio1= new JLabel(CONSTANTS.LANG.getValue("producto.label.precio1"));
+        JLabel  lPrecio2= new JLabel(CONSTANTS.LANG.getValue("producto.label.precio2"));
+        JLabel  lPrecio3= new JLabel(CONSTANTS.LANG.getValue("producto.label.precio3"));
 
         precioImpuesto = new JCheckBox(CONSTANTS.LANG.getValue("producto.label.precioIncluyeImpuesto"));
         precioImpuesto.setSelected(true);
