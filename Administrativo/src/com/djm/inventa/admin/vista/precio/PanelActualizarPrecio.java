@@ -30,6 +30,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -47,25 +49,29 @@ public class PanelActualizarPrecio extends IPanelDataAction<Object> {
     private TextField tValor;
     private JCheckBox precio1,precio2,precio3;
 
-    private JButton bSimular, bCancelar, bActualizar, bRestaurar;
+    private JButton bSimular, bCerrar, bActualizar, bRestaurar;
     private ImageIcon iRestaurar;
 
     public PanelActualizarPrecio(){
         pPrincipal = new JPanel(new GridBagLayout());
-        pPrincipal.setSize(new Dimension(1200,1200));
-        pPrincipal.setPreferredSize(new Dimension(1300,400));
+        pPrincipal.setSize(new Dimension(1200,350));
+        pPrincipal.setPreferredSize(new Dimension(1250,350));
         pPrincipal.setOpaque(false);
 
         bActualizar = new JButton(CONSTANTS.LANG.getValue("actualizar.button.actualizar"));
-        bCancelar = new JButton(CONSTANTS.LANG.getValue("button.cancelar"));
+        bCerrar = new JButton(CONSTANTS.LANG.getValue("button.cerrar"));
+        bCerrar.setActionCommand("BUTTON_CANCELAR");
+
         bActualizar.setEnabled(false);
         
         pPrincipal.add(pFiltro(), LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 0, 10, 0, 0, 0.0f, 0.0f));
         pPrincipal.add(pMonto(), LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
 
         pPrincipal.add(pTabla(), LayoutPanel.constantePane(1, 0, 2, 2, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 0, 10, 0, 10, 0.0f, 0.0f));
-        //pPrincipal.add(bActualizar,LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 5, 0, 0.0f, 0.0f));
-        //pPrincipal.add(bCancelar,LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 5, 10, 5, 10, 0.0f, 0.0f));
+        pPrincipal.add(bActualizar,LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 5, 0, 0.0f, 0.0f));
+        pPrincipal.add(bCerrar,LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 10, 10, 5, 10, 0.0f, 0.0f));
+
+        actionListener();
     }
 
     private JPanel pFiltro(){
@@ -178,7 +184,7 @@ public class PanelActualizarPrecio extends IPanelDataAction<Object> {
 
         ModeloTabla<ProductoActualizar> modelo = new ModeloTabla(mpc);
 
-        tabla = new Table(modelo, 190);
+        tabla = new Table(modelo, 280);
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         loadTable();
@@ -232,12 +238,17 @@ public class PanelActualizarPrecio extends IPanelDataAction<Object> {
         productoActualizar.setPrecio2Ant(4.0);
         productoActualizar.setPrecio3(5.0);
         productoActualizar.setPrecio3Ant(6.0);
-        System.out.println(productoActualizar);
+        //System.out.println(productoActualizar);
         tabla.addRow(productoActualizar);
     }
     @Override
     public void actionEsc() {
-        System.out.println("escape");
+        //cerrarEsc(bCerrar);
+        System.out.println("Entra aqui exc");
+        ActionEvent eventoSimulado = new ActionEvent(bCerrar, ActionEvent.ACTION_PERFORMED, "BUTTON_CANCELAR");
+
+        if( bCerrar.getActionListeners().length == 1)
+            bCerrar.getActionListeners()[0].actionPerformed(eventoSimulado);
     }
 
     @Override
@@ -248,6 +259,10 @@ public class PanelActualizarPrecio extends IPanelDataAction<Object> {
     @Override
     public void clearForm() {
 
+    }
+    private void actionListener(){
+        ActionListener precioListener = new PrecioListener(this);
+        bCerrar.addActionListener(precioListener);
     }
 
     @Override

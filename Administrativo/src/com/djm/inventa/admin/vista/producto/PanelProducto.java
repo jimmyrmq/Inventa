@@ -175,7 +175,7 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         bGuardar.setActionCommand("GUARDAR_PRODUCTO");
 
         lInfo = new JLabel();
-        lInfo.setIcon(Image.getIcon("info.png"));
+        lInfo.setIcon(Image.getIcon("16/info.png"));
         lInfo.setVisible(false);
 
         cerrarEsc(bCancelar);
@@ -388,10 +388,10 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         tPrecio2 = new TextField(10,10);
         tPrecio3 = new TextField(10,10);
 
-        lUtilidadAdv = new JLabel(Image.getIcon("warning22.png"));
-        lPrecio1Adv = new JLabel(Image.getIcon("warning22.png"));
-        lPrecio2Adv = new JLabel(Image.getIcon("warning22.png"));
-        lPrecio3Adv = new JLabel(Image.getIcon("warning22.png"));
+        lUtilidadAdv = new JLabel(Image.getIcon("16/warning.png"));
+        lPrecio1Adv = new JLabel(Image.getIcon("16/warning.png"));
+        lPrecio2Adv = new JLabel(Image.getIcon("16/warning.png"));
+        lPrecio3Adv = new JLabel(Image.getIcon("16/warning.png"));
 
         InfoListener infoListener = new InfoListener();
         lUtilidadAdv.addMouseListener(infoListener);

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 public class LoggerApp {
     //TRACE|DEBUG|INFO|WARN|ERROR|FATAL
     private static final Logger logger = LoggerFactory.getLogger(LoggerApp.class);
-    private static final Logger loggerFile = LoggerFactory.getLogger("LoogerFile");
+    private static final Logger loggerFile = LoggerFactory.getLogger("LoggerFile");
 
     public static void trace(String msg){
         logger.trace(msg);

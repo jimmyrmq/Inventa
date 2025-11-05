@@ -11,7 +11,6 @@ import com.djm.inventa.admin.vista.principal.VentanaPrincipal;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
@@ -32,7 +31,11 @@ public class App {
             run();
         });
     }
+
     private static void run(){
+        LoggerApp.trace("Iniciando Administracion de Ventas");
+        LoggerApp.error("Iniciando Administracion de Ventas");
+
         if(!CONSTANTS.READER_FILE_SYSTEM.isExistFileDB()){
             File directory = new File(CONSTANTS.READER_FILE_SYSTEM.getPathAppData()+"data");
             boolean wasCreated = directory.mkdirs(); // Usa mkdirs() para crear directorios intermedios
@@ -43,7 +46,7 @@ public class App {
 
         propiedadesSistema();
 
-        Image.init(App.class,"icon");
+        Image.init(App.class,"icon/");
 
         lookAndFeel();
 
@@ -68,7 +71,6 @@ public class App {
         PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
         PropiedadesSistema.setPropiedad("Promocion.ID","PROMOCION_PRODUCTO");
         PropiedadesSistema.setPropiedad("ActualizarPrecio.ID","ACTUALIZAR_PRECIO");
-
 
         Locale defaultLocale = Locale.getDefault();
         Currency currency = Currency.getInstance(defaultLocale);
