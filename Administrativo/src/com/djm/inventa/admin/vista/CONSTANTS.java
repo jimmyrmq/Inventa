@@ -13,17 +13,23 @@ public class CONSTANTS {
     public static final Propiedades CONFIG;
 
     static {
-            String pathConfig = System.getProperty("app.localdata") +"/config.ini";
+        //Comprobamos si la carpeta AppData Existe
+        File dirInventa = new File(System.getProperty("app.localdata"));
+        boolean wasCreated = dirInventa.exists();
+        if(!wasCreated)
+            wasCreated = dirInventa.mkdirs(); // Usa mkdirs() para crear directorios intermedios
 
-            CONFIG = new Propiedades(new File(pathConfig));
+            //
+        String pathConfig = System.getProperty("app.localdata") + "/config.ini";
 
-            if(CONFIG.isFileNew()){
-                CONFIG.setValue("lookandfeel","DARK");
-                CONFIG.setValue("panellista",false);
-                CONFIG.setValue("panellistaproducto",true);
-                CONFIG.setValue("panellistaservicio",false);
-            }
+        CONFIG = new Propiedades(new File(pathConfig));
 
+        if (CONFIG.isFileNew()) {
+            CONFIG.setValue("lookandfeel", "DARK");
+            CONFIG.setValue("panellista", false);
+            CONFIG.setValue("panellistaproducto", true);
+            CONFIG.setValue("panellistaservicio", false);
+        }
     }
 
     public static final Dimension CDDIM = new Dimension(227,23);
