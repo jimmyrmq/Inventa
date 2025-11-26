@@ -10,8 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dede8240-ca14-4589-a61a-d20d20edba4e" name="Changes" comment="Inventa">
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/defectuoso/DesktopDefectuoso.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/defectuoso/PanelDefectuoso.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ordencompra/DesktopOrdenCompra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ordencompra/PanelOrdenCompra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/CONSTANTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/CONSTANTS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/resources/lang/es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/resources/lang/es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/ActionListenerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/ActionListenerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/CrearPromocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/CrearPromocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/ModelTablePromocionCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/ModelTablePromocionCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPaquetes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPaquetes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPromocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPromocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/PanelStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/PanelStock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,5 +204,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inventa" />
     <option name="LAST_COMMIT_MESSAGE" value="Inventa" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

@@ -62,8 +62,9 @@ public class PanelStock extends JPanel implements ActionListener {
     private ImageIcon lupaText;
     private JCheckBox stockCritico;
     private JButton bCerrar, bVerDetalle, bImprimir, bStockRapido;
-    private JPopupMenu popupMenu;
+    private JPopupMenu pmStock;
     private JMenuItem agragrStock, editarStock;
+
     public PanelStock() {
         super(new GridBagLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // top, left, bottom, right
@@ -101,15 +102,17 @@ public class PanelStock extends JPanel implements ActionListener {
         bVerDetalle.addActionListener(this);
 
         bStockRapido.addActionListener(ae->{
-            popupMenu.show(bStockRapido, 0,bStockRapido.getHeight());
+            pmStock.show(bStockRapido, 0,bStockRapido.getHeight());
         });
+
 
         cancelEsc();
 
         panel.add(bVerDetalle, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
         panel.add(bImprimir, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(bStockRapido, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 15, 0, 0, 1.0f, 0.0f));
-        panel.add(bCerrar, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(bStockRapido, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 15, 0, 0, 0.0f, 0.0f));
+        //panel.add(, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 15, 0, 0, 0.0f, 0.0f));
+        panel.add(bCerrar, LayoutPanel.constantePane(4, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 0, 0, 0, 1.0f, 0.0f));
 
         return panel;
     }
@@ -198,7 +201,7 @@ public class PanelStock extends JPanel implements ActionListener {
     }
 
     private void menuIngreso(){
-        popupMenu = new JPopupMenu();
+        pmStock = new JPopupMenu();
         agragrStock = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.agregarstock"));
         editarStock = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.editarstock"));
 
@@ -208,8 +211,8 @@ public class PanelStock extends JPanel implements ActionListener {
         editarStock.addActionListener(this);
         agragrStock.addActionListener(this);
 
-        popupMenu.add(agragrStock);
-        popupMenu.add(editarStock);
+        pmStock.add(agragrStock);
+        pmStock.add(editarStock);
     }
 
     private void verDetalle(Producto producto){
@@ -227,8 +230,8 @@ public class PanelStock extends JPanel implements ActionListener {
 
         lupaText = new ImageIcon(ColorFilter.filterImage(Image.getIcon("16/buscar.png"),bcol, true));
 
-        if(popupMenu != null) {
-            popupMenu.updateUI();
+        if(pmStock != null) {
+            pmStock.updateUI();
             agragrStock.updateUI();
             editarStock.updateUI();
         }

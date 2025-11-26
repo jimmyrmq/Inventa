@@ -27,7 +27,8 @@ public class PanelPromocion extends IPanelAction implements ActionListener{
     private JPanel panelPrincipal;
     private ModelTablePromocionCustom mpc;
     private Table<Producto> tabla;
-    private JButton bCrear, bCerrar;
+    private JButton bCrearPaquete,bCrearDescuento, bCerrar;
+
     public PanelPromocion(){
         panelPrincipal = new JPanel(new GridBagLayout());
         panelPrincipal.setOpaque(false);
@@ -37,19 +38,24 @@ public class PanelPromocion extends IPanelAction implements ActionListener{
         bCerrar.setActionCommand("CERRAR");
         bCerrar.addActionListener(this);
 
-        bCrear = new JButton(CONSTANTS.LANG.getValue("promocion.button.crear"));
-        bCrear.setActionCommand("CREAR");
-        bCrear.addActionListener(this);
+        bCrearPaquete = new JButton(CONSTANTS.LANG.getValue("promocion.button.crearpaq"));
+        bCrearPaquete.setActionCommand("CREAR_PAQUETE");
+        bCrearPaquete.addActionListener(this);
+
+        bCrearDescuento = new JButton(CONSTANTS.LANG.getValue("promocion.button.creardesc"));
+        bCrearDescuento.setActionCommand("CREAR_DESCUENTO");
+        bCrearDescuento.addActionListener(this);
 
         cerrarEsc(bCerrar);
 
         pTable();
 
-        panelPrincipal.add(bCrear, LayoutPanel.constantePane(0, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
+        panelPrincipal.add(bCrearPaquete, LayoutPanel.constantePane(0, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
+        panelPrincipal.add(bCrearDescuento, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 10, 0, 0, 0.0f, 0.0f));
         panelPrincipal.add(tabla.getPanel(), LayoutPanel.constantePane(0, 1, 3, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 10, 0, 0, 0, 0.0f, 0.0f));
         panelPrincipal.add(new JButton(CONSTANTS.LANG.getValue("button.eliminar")), LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
-        panelPrincipal.add(new JButton(CONSTANTS.LANG.getValue("button.detener")), LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 1.0f, 0.0f));
-        panelPrincipal.add(bCerrar, LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 5, 0.0f, 0.0f));
+        panelPrincipal.add(new JButton(CONSTANTS.LANG.getValue("button.detener")), LayoutPanel.constantePane(1, 2, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
+        panelPrincipal.add(bCerrar, LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 10, 0, 0, 5, 1.0f, 0.0f));
 
     }
 
@@ -102,8 +108,14 @@ public class PanelPromocion extends IPanelAction implements ActionListener{
         if("CERRAR".equals(action)){
             Global.panelDesktop.cerrarVentana(PropiedadesSistema.getPropiedad("Promocion.ID"));
         }
-        else if("CREAR".equals(action)){
-            CrearPromocion crearPromocion = new CrearPromocion();
+        else if("CREAR_PAQUETE".equals(action)){
+            CrearPromocion crearPromocion = new CrearPromocion("PAQUETE");
+            if (crearPromocion.isAcept()){
+                System.out.println(crearPromocion.getData());
+            }
+        }
+        else if("CREAR_DESCUENTO".equals(action)){
+            CrearPromocion crearPromocion = new CrearPromocion("DESCUENTO");
             if (crearPromocion.isAcept()){
                 System.out.println(crearPromocion.getData());
             }

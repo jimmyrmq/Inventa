@@ -28,9 +28,12 @@ public class CrearPromocion extends IDialog<Promocion> implements ActionListener
     private String f1;
     private JFormattedTextField tFechaIni, tFechaFin;
     private JCheckBox existencia;
-    public CrearPromocion(){
-        super(CONSTANTS.LANG.getValue("promocion.button.crear"));
+    private String tipoPromocion;
 
+    public CrearPromocion(String tipoPromocion){
+        super("PAQUETE".equalsIgnoreCase(tipoPromocion)?CONSTANTS.LANG.getValue("promocion.label.titulo.crearpaq"):CONSTANTS.LANG.getValue("promocion.label.titulo.creardesc"));
+
+        this.tipoPromocion = tipoPromocion;
 
         f1= Fecha.getFechaActual();
 
@@ -50,23 +53,13 @@ public class CrearPromocion extends IDialog<Promocion> implements ActionListener
         bGuardar.addActionListener(this);
         bGuardar.setActionCommand("GUARDAR");
 
-        JRadioButton descuento = new JRadioButton(CONSTANTS.LANG.getValue("promocion.button.descuento"));
-        JRadioButton paquetes = new JRadioButton(CONSTANTS.LANG.getValue("promocion.button.paquete"));
-        paquetes.setSelected(true);
-
-        ButtonGroup bg = new ButtonGroup();
-        bg.add(descuento);
-        bg.add(paquetes);
-
-
         panel.add(getPanelData(), LayoutPanel.constantePane(0, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 15, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(paquetes, LayoutPanel.constantePane(0, 1, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 15, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(new PanelPaquetes(), LayoutPanel.constantePane(0, 2, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
-        panel.add(descuento, LayoutPanel.constantePane(0, 3, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        if("PAQUETE".equalsIgnoreCase(this.tipoPromocion))
+            panel.add(new PanelPaquetes(), LayoutPanel.constantePane(0, 1, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
-        panel.add(bGuardar, LayoutPanel.constantePane(1, 4, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 1.0f, 0.0f));
-        panel.add(bCerrar, LayoutPanel.constantePane(2, 4, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(bGuardar, LayoutPanel.constantePane(1, 2, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 1.0f, 0.0f));
+        panel.add(bCerrar, LayoutPanel.constantePane(2, 2, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         return panel;
     }
@@ -81,7 +74,6 @@ public class CrearPromocion extends IDialog<Promocion> implements ActionListener
 
         existencia = new JCheckBox(CONSTANTS.LANG.getValue("promocion.label.existencia"));
         existencia.addActionListener(e->fechaActive());
-
 
         MaskFormatter fmt1 = null, fmt2 = null;
 

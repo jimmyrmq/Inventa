@@ -16,6 +16,7 @@ public class ModelTablePromocionCustom implements IModelTableCustom<Producto> {
     private LinkedList<Producto> datos = new LinkedList();
     private List<ObjectModelTable> listObject;
     private String[] columnName = {CONSTANTS.LANG.getValue("table.header.codigo"),
+            CONSTANTS.LANG.getValue("table.header.tipo_promocion"),
             CONSTANTS.LANG.getValue("table.header.descripcion"),
             CONSTANTS.LANG.getValue("table.header.fechaini"),
             CONSTANTS.LANG.getValue("table.header.fechafin"),
@@ -124,7 +125,7 @@ public class ModelTablePromocionCustom implements IModelTableCustom<Producto> {
 
     @Override
     public int[] getWidthCell() {
-        int[] anchoColum = {120, 180, 110,110,100};
+        int[] anchoColum = {120, 150, 180, 110,110,100};
         return anchoColum;
     }
 }

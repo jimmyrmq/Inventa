@@ -6,6 +6,7 @@ import com.djm.inventa.admin.util.PropiedadesSistema;
 import com.djm.inventa.admin.vista.ipanel.IPanelDesktop;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.ingreso.archivo.ImportarInventarioGUI;
+import com.djm.inventa.admin.vista.ordencompra.DesktopOrdenCompra;
 import com.djm.inventa.admin.vista.precio.DesktopActualizar;
 import com.djm.inventa.admin.vista.producto.DesktopProducto;
 import com.djm.inventa.admin.vista.promociones.DesktopPromocion;
@@ -76,8 +77,12 @@ public class ActionListenerMenu implements ActionListener {
         else if(action.equals("IMPORTAR_PRODUCTO")){
             new ImportarInventarioGUI();
         }
-        if(action.equals("CAMBIO_PRECIO")){
+        else if(action.equals("CAMBIO_PRECIO")){
             IPanelDesktop iPanelDesktop = new DesktopActualizar();
+            Global.panelDesktop.addVentana(iPanelDesktop, null);
+        }
+        else if(action.equals("ORDEN_COMPRA")){
+            IPanelDesktop iPanelDesktop = new DesktopOrdenCompra();
             Global.panelDesktop.addVentana(iPanelDesktop, null);
         }
     }

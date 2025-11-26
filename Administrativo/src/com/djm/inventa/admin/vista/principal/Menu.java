@@ -72,7 +72,13 @@ public class Menu extends JMenuBar {
 
         JMenuItem ordenCompra = new JMenuItem(CONSTANTS.LANG.getValue("menu.documento.ordencompra"));
         ordenCompra.setActionCommand("ORDEN_COMPRA");
+        ordenCompra.addActionListener(actionListenerMenu);
+
+        JMenuItem notaCredito = new JMenuItem(CONSTANTS.LANG.getValue("menu.documento.notacredito"));
+        notaCredito.setActionCommand("NOTA_CREDITO");
+
         documento.add(ordenCompra);
+        documento.add(notaCredito);
 
         add(sistema);
         add(menuProducto());
@@ -86,6 +92,7 @@ public class Menu extends JMenuBar {
     private JMenu menuProducto(){
         JMenu producto = new JMenu(CONSTANTS.LANG.getValue("menu.producto"));
         JMenu importar = new JMenu(CONSTANTS.LANG.getValue("menu.producto.importar"));
+        JMenu defectuoso = new JMenu(CONSTANTS.LANG.getValue("menu.ventas.defectuoso"));
 
         producto.setMnemonic('P');
 
@@ -105,9 +112,24 @@ public class Menu extends JMenuBar {
         importarOC.setActionCommand("IMPORTAR_PRODUCTO_OC");
         importarOC.addActionListener(actionListenerMenu);
 
-        JMenuItem defectuoso = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.defectuoso"));
-        defectuoso.setActionCommand("DEFECTUOSO");
-        defectuoso.addActionListener(actionListenerMenu);
+        importar.add(importarArchivo);
+        importar.add(importarOC);
+
+        JMenuItem devolucionCliente = new JMenuItem(CONSTANTS.LANG.getValue("defectuoso.menu.cliente"));
+        devolucionCliente.setActionCommand("DEFECTUOSO_CLIENTE");
+        devolucionCliente.addActionListener(actionListenerMenu);
+
+        JMenuItem interno = new JMenuItem(CONSTANTS.LANG.getValue("defectuoso.menu.interno"));
+        interno.setActionCommand("DEFECTUOSO_INTERNO");
+        interno.addActionListener(actionListenerMenu);
+
+        JMenuItem defProveedor = new JMenuItem(CONSTANTS.LANG.getValue("defectuoso.menu.proveedor"));
+        defProveedor.setActionCommand("DEFECTUOSO_PROVEEDOR");
+        defProveedor.addActionListener(actionListenerMenu);
+
+        defectuoso.add(devolucionCliente);
+        defectuoso.add(interno);
+        defectuoso.add(defProveedor);
 
         JMenuItem cambioPrecio = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.modificarprecio"));
         cambioPrecio.setActionCommand("CAMBIO_PRECIO");
@@ -121,24 +143,21 @@ public class Menu extends JMenuBar {
         promociones.setActionCommand("PROMOCION");
         promociones.addActionListener(actionListenerMenu);
 
-        importar.add(importarArchivo);
-        importar.add(importarOC);
-
         JCheckBoxMenuItem verLista = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.producto.verlista"));
         verLista.setActionCommand("PANEL_PRODUCTO");
         verLista.setSelected(PropiedadesSistema.getBoolean("PanelProducto.mostrar"));
         verLista.addActionListener(actionListenerMenu);
 
         producto.add(registroProducto);
-        producto.add(promociones);
         producto.addSeparator();
         producto.add(stock);
         producto.add(importar);
+        producto.add(defectuoso);
+        producto.addSeparator();
+        producto.add(promociones);
         producto.addSeparator();
         producto.add(cambioPrecio);
         producto.add(bloqueo);
-        producto.addSeparator();
-        producto.add(defectuoso);
         producto.addSeparator();
         producto.add(verLista);
 
@@ -177,15 +196,10 @@ public class Menu extends JMenuBar {
         JMenuItem cierreCaja = new JMenuItem(CONSTANTS.LANG.getValue("menu.ventas.cierrecaja"));
         cierreCaja.setActionCommand("LISTA_FACTURA");
 
-        JMenuItem devolucion = new JMenuItem(CONSTANTS.LANG.getValue("menu.ventas.devolucion"));
-        devolucion.setActionCommand("LISTA_FACTURA");
-
         ventas.add(facturacion);
         ventas.add(detalleFactura);
         ventas.addSeparator();
         ventas.add(cierreCaja);
-        ventas.addSeparator();
-        ventas.add(devolucion);
 
         return  ventas;
     }

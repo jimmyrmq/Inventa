@@ -14,8 +14,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -67,9 +66,11 @@ public class App {
         PropiedadesSistema.setPropiedad("PanelProducto.servicio", Boolean.parseBoolean(CONSTANTS.CONFIG.getValue("panellistaservicio")));
 
         PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
+        PropiedadesSistema.setPropiedad("OrdenCompra.ID","ORDEN_COMPRA");
         PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
         PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
         PropiedadesSistema.setPropiedad("Promocion.ID","PROMOCION_PRODUCTO");
+        PropiedadesSistema.setPropiedad("Defectuoso.ID","DEFECTUOSO_PRODUCTO");
         PropiedadesSistema.setPropiedad("ActualizarPrecio.ID","ACTUALIZAR_PRECIO");
 
         Locale defaultLocale = Locale.getDefault();
