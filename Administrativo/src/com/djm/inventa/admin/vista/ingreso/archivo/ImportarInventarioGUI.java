@@ -371,7 +371,7 @@ public class ImportarInventarioGUI implements ActionListener{
                         lFile.setIcon(Image.getIcon("error_file.png"));
                     }
                     else {
-                        lFile.setIcon(Image.getIcon("ok.png"));
+                        lFile.setIcon(Image.getIcon("20/ok.png"));
 
                         for (int i = 0;i<listCols.length;i++) {
                             ColumnSelected cl = new ColumnSelected(listCols[i], i );

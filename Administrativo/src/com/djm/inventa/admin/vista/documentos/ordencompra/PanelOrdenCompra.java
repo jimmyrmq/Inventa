@@ -1,4 +1,4 @@
-package com.djm.inventa.admin.vista.ordencompra;
+package com.djm.inventa.admin.vista.documentos.ordencompra;
 
 import com.djm.inventa.admin.modelo.OrdenCompra;
 import com.djm.inventa.admin.vista.ipanel.IPanelDataAction;
@@ -24,7 +24,7 @@ public class PanelOrdenCompra extends IPanelDataAction<OrdenCompra> {
     }
 
     @Override
-    public OrdenCompra getData() {
+    public OrdenCompra getDataForm() {
         return null;
     }
 

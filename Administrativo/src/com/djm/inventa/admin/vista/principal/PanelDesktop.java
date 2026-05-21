@@ -8,7 +8,7 @@ import com.djm.inventa.admin.vista.producto.PanelListaProducto;
 import javax.swing.JDesktopPane;
 import javax.swing.JPanel;
 import javax.swing.JInternalFrame;
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class PanelDesktop extends JPanel {
     //private JPanel desktop;
     private List<IPanelDesktop> listIDPane;
     private PanelListaProducto pListaProducto;
+
     public PanelDesktop(){
         listIDPane = new ArrayList<>();
 
@@ -49,6 +50,7 @@ public class PanelDesktop extends JPanel {
 
             desktopPanel.setLocation(x, y);
 
+
             desktop.add(desktopPanel);
             listIDPane.add(panelDesktop);
         }
@@ -64,6 +66,8 @@ public class PanelDesktop extends JPanel {
         } catch (java.beans.PropertyVetoException exc){
             System.err.println(exc);
         }
+
+
     }
 
     public void cerrarVentana(String idPanelDesktop){

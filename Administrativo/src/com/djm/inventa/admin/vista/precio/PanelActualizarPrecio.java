@@ -266,7 +266,7 @@ public class PanelActualizarPrecio extends IPanelDataAction<Object> {
     }
 
     @Override
-    public Object getData() {
+    public Object getDataForm() {
         return null;
     }
 }

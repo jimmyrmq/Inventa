@@ -1,15 +1,13 @@
 package com.djm.inventa.admin.vista.ipanel;
 
 import com.djm.common.GlobalFrame;
-import com.djm.inventa.admin.vista.CONSTANTS;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 
-public abstract class IDialog<E> extends IAction{
+public abstract class IDialog<E> extends IAction {
     private E e;
     private boolean acept = false;
     private JDialog dialog;

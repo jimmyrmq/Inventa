@@ -81,7 +81,6 @@ public class PanelStock extends JPanel implements ActionListener {
         add(tabla.getPanel(), LayoutPanel.constantePane(0, 1, 2, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 5, 0, 0, 0, 0.0f, 1.0f));
         add(pButton(), LayoutPanel.constantePane(0, 2, 2, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.LINE_START, 5, 5, 0, 5, 1.0f, 0.0f));
 
-        loadTable();
     }
 
     private JPanel pButton(){
@@ -126,8 +125,6 @@ public class PanelStock extends JPanel implements ActionListener {
         tabla = new Table(modelo, 400);
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        //loadTable();
-
         tabla.setDefaultRenderer(EtiquetaComponent.class, new StatusIconProductRenderer(TipoEtiqueta.NONE, 7));
 
         tabla.addMouseListener(new MouseAdapter() {
@@ -155,6 +152,9 @@ public class PanelStock extends JPanel implements ActionListener {
             }
         }
         });
+
+
+        loadTable();
     }
 
     private void tBuscar(){

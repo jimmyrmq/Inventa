@@ -106,6 +106,7 @@ public class Proveedor {
                 ", fechaRegistro=" + fechaRegistro +
                 '}';
     }
+
     @Override
     public String toString() {
         String str = codigo + " - " + razonSocial;

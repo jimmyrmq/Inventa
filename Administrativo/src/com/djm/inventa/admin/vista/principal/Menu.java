@@ -25,10 +25,8 @@ public class Menu extends JMenuBar {
 
         // Crear un menú (JMenu)
         JMenu sistema = new JMenu(CONSTANTS.LANG.getValue("menu.sistema"));
-        JMenu documento = new JMenu(CONSTANTS.LANG.getValue("menu.documento"));
 
         sistema.setMnemonic('S');
-        documento.setMnemonic('D');
 
         //Sistema
         JMenuItem configuracion = new JMenuItem(CONSTANTS.LANG.getValue("menu.sistema.configuracion"));
@@ -70,6 +68,19 @@ public class Menu extends JMenuBar {
         sistema.add(salir);
         salir.addActionListener(actionListenerMenu);
 
+        add(sistema);
+        add(menuProducto());
+        add(menuDocumento());
+        add(menuCliente());
+        add(menuVentas());
+        add(Box.createGlue());
+        add(new UsuarioButton());
+    }
+
+    private JMenu menuDocumento() {
+        JMenu documento = new JMenu(CONSTANTS.LANG.getValue("menu.documento"));
+        documento.setMnemonic('D');
+
         JMenuItem ordenCompra = new JMenuItem(CONSTANTS.LANG.getValue("menu.documento.ordencompra"));
         ordenCompra.setActionCommand("ORDEN_COMPRA");
         ordenCompra.addActionListener(actionListenerMenu);
@@ -77,16 +88,16 @@ public class Menu extends JMenuBar {
         JMenuItem notaCredito = new JMenuItem(CONSTANTS.LANG.getValue("menu.documento.notacredito"));
         notaCredito.setActionCommand("NOTA_CREDITO");
 
+        JMenuItem proveedor = new JMenuItem(CONSTANTS.LANG.getValue("menu.documento.proveedor"));
+        proveedor.setActionCommand("REGISTRO_PROVEEDOR");
+        proveedor.addActionListener(actionListenerMenu);
+
         documento.add(ordenCompra);
         documento.add(notaCredito);
+        documento.addSeparator();
+        documento.add(proveedor);
 
-        add(sistema);
-        add(menuProducto());
-        add(documento);
-        add(menuCliente());
-        add(menuVentas());
-        add(Box.createGlue());
-        add(new UsuarioButton());
+        return documento;
     }
 
     private JMenu menuProducto(){
@@ -115,10 +126,6 @@ public class Menu extends JMenuBar {
         importar.add(importarArchivo);
         importar.add(importarOC);
 
-        JMenuItem devolucionCliente = new JMenuItem(CONSTANTS.LANG.getValue("defectuoso.menu.cliente"));
-        devolucionCliente.setActionCommand("DEFECTUOSO_CLIENTE");
-        devolucionCliente.addActionListener(actionListenerMenu);
-
         JMenuItem interno = new JMenuItem(CONSTANTS.LANG.getValue("defectuoso.menu.interno"));
         interno.setActionCommand("DEFECTUOSO_INTERNO");
         interno.addActionListener(actionListenerMenu);
@@ -127,17 +134,12 @@ public class Menu extends JMenuBar {
         defProveedor.setActionCommand("DEFECTUOSO_PROVEEDOR");
         defProveedor.addActionListener(actionListenerMenu);
 
-        defectuoso.add(devolucionCliente);
         defectuoso.add(interno);
         defectuoso.add(defProveedor);
 
         JMenuItem cambioPrecio = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.modificarprecio"));
         cambioPrecio.setActionCommand("CAMBIO_PRECIO");
         cambioPrecio.addActionListener(actionListenerMenu);
-
-        JMenuItem bloqueo = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.bloqueodesb"));
-        bloqueo.setActionCommand("BLOQUEO_DESBLOQUEO");
-        bloqueo.addActionListener(actionListenerMenu);
 
         JMenuItem promociones = new JMenuItem(CONSTANTS.LANG.getValue("menu.producto.promocion"));
         promociones.setActionCommand("PROMOCION");
@@ -157,7 +159,6 @@ public class Menu extends JMenuBar {
         producto.add(promociones);
         producto.addSeparator();
         producto.add(cambioPrecio);
-        producto.add(bloqueo);
         producto.addSeparator();
         producto.add(verLista);
 

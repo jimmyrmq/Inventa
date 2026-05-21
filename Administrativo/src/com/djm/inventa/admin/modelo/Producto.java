@@ -15,11 +15,13 @@ public class Producto implements Cloneable{
     private Double precio1;
     private Double precio2;
     private Double precio3;
+    private Integer cantMayor;//Cantidad para aplicar precio mayorista
     private Boolean precioIncluyeImpuesto;
     private Boolean disponible = true;
     private Integer cantidadDisponible;//Cantidad de stock
     private Integer stockCritico;
     private Boolean noRequiereStock = true;//Es un servicio
+    private Boolean reqAprobPrecioEspecial = true;//Requiere aprobacion para precio especial
     private Categoria categoria;
     private Marca marca;
     private Proveedor proveedor;
@@ -29,6 +31,7 @@ public class Producto implements Cloneable{
     private String nota;
 
     public Producto() {
+
     }
 
     public Integer getID() {
@@ -127,6 +130,14 @@ public class Producto implements Cloneable{
         this.precio3 = precio3;
     }
 
+    public Integer getCantMayor() {
+        return cantMayor;
+    }
+
+    public void setCantMayor(Integer cantMayor) {
+        this.cantMayor = cantMayor;
+    }
+
     public Boolean isPrecioIncluyeImpuesto() {
         return precioIncluyeImpuesto;
     }
@@ -222,31 +233,42 @@ public class Producto implements Cloneable{
         this.nota = nota;
     }
 
+    public Boolean isReqAprobnPrecioEspecial() {
+        return reqAprobPrecioEspecial;
+    }
+
+    public void setReqAprobPrecioEspecial(Boolean reqAprobPrecioEspecial) {
+        this.reqAprobPrecioEspecial = reqAprobPrecioEspecial;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
                 "ID=" + ID +
                 ", codigo='" + codigo + '\'' +
+                ", codigoBarra='" + codigoBarra + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", unidadMedida='" + unidadMedida + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", serie='" + serie + '\'' +
-                ", precioCosto=" + precioCosto +
                 ", utilidad=" + utilidad +
+                ", precioCosto=" + precioCosto +
                 ", precio1=" + precio1 +
                 ", precio2=" + precio2 +
                 ", precio3=" + precio3 +
-                ", excento=" + precioIncluyeImpuesto +
+                ", cantMayor=" + cantMayor +
+                ", precioIncluyeImpuesto=" + precioIncluyeImpuesto +
                 ", disponible=" + disponible +
                 ", cantidadDisponible=" + cantidadDisponible +
-                //", stock=" + stock +
                 ", stockCritico=" + stockCritico +
                 ", noRequiereStock=" + noRequiereStock +
+                ", reqAprobPrecioEspecial=" + reqAprobPrecioEspecial +
                 ", categoria=" + categoria +
                 ", marca=" + marca +
+                ", proveedor=" + proveedor +
                 ", fechaActualizacion=" + fechaActualizacion +
                 ", fechaCreado=" + fechaCreado +
-                ", nota=" + nota +
+                ", nota='" + nota + '\'' +
                 '}';
     }
 

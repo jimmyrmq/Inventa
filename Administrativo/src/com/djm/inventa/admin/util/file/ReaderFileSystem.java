@@ -22,7 +22,7 @@ public class ReaderFileSystem {
     public boolean isExistFileDB(){
 
         File file = new File(pathDataBase);
-        //System.out.println(pathDataBase+": "+file.exists());
+
         boolean isExistFileDB = file.exists();
 
         return isExistFileDB;

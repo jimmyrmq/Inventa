@@ -3,10 +3,11 @@ package com.djm.inventa.admin.vista.principal;
 import com.djm.common.GlobalFrame;
 
 import com.djm.inventa.admin.util.PropiedadesSistema;
+import com.djm.inventa.admin.vista.documentos.proveedor.DesktopProveedor;
 import com.djm.inventa.admin.vista.ipanel.IPanelDesktop;
 import com.djm.inventa.admin.vista.CONSTANTS;
 import com.djm.inventa.admin.vista.ingreso.archivo.ImportarInventarioGUI;
-import com.djm.inventa.admin.vista.ordencompra.DesktopOrdenCompra;
+import com.djm.inventa.admin.vista.documentos.ordencompra.DesktopOrdenCompra;
 import com.djm.inventa.admin.vista.precio.DesktopActualizar;
 import com.djm.inventa.admin.vista.producto.DesktopProducto;
 import com.djm.inventa.admin.vista.promociones.DesktopPromocion;
@@ -83,6 +84,10 @@ public class ActionListenerMenu implements ActionListener {
         }
         else if(action.equals("ORDEN_COMPRA")){
             IPanelDesktop iPanelDesktop = new DesktopOrdenCompra();
+            Global.panelDesktop.addVentana(iPanelDesktop, null);
+        }
+        else if(action.equals("REGISTRO_PROVEEDOR")){
+            IPanelDesktop iPanelDesktop = new DesktopProveedor();
             Global.panelDesktop.addVentana(iPanelDesktop, null);
         }
     }

@@ -1,4 +1,4 @@
-package com.djm.inventa.admin.vista.ordencompra;
+package com.djm.inventa.admin.vista.documentos.ordencompra;
 
 import com.djm.inventa.admin.modelo.OrdenCompra;
 import com.djm.inventa.admin.util.CrearFrameInterno;
@@ -13,12 +13,14 @@ public class DesktopOrdenCompra implements IPanelDesktop<OrdenCompra> {
     private PanelOrdenCompra panelOrdenProducto;
     private final String ID = PropiedadesSistema.getString("OrdenCompra.ID");
 
-    @Override
-    public JInternalFrame getDesktopPane() {
+    public DesktopOrdenCompra(){
         panelOrdenProducto = new PanelOrdenCompra();
 
         this.internalFrame = new CrearFrameInterno(panelOrdenProducto.getPanel(), CONSTANTS.LANG.getValue("ordencompra.label.titulo"), "16/product.png",false, ID);
+    }
 
+    @Override
+    public JInternalFrame getDesktopPane() {
         return this.internalFrame;
     }
 

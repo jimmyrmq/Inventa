@@ -13,6 +13,7 @@ public class DesktopStock implements IPanelDesktop<Producto> {
     private final String ID =  PropiedadesSistema.getString("Stock.ID");
     private JInternalFrame internalFrame;
     private PanelStock panelStock;
+
     public DesktopStock(){
         panelStock = new PanelStock();
 
@@ -21,12 +22,14 @@ public class DesktopStock implements IPanelDesktop<Producto> {
 
         Dimension dim = this.internalFrame.getPreferredSize();
         dim.height += 20;
+        dim.width += 10;
 
         this.internalFrame.setPreferredSize(dim);
         this.internalFrame.setSize(dim);
         this.internalFrame.setMinimumSize(dim);
 
     }
+
     @Override
     public JInternalFrame getDesktopPane() {
         return this.internalFrame;

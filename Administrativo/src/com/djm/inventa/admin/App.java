@@ -33,7 +33,6 @@ public class App {
 
     private static void run(){
         LoggerApp.trace("Iniciando Administracion de Ventas");
-        LoggerApp.error("Iniciando Administracion de Ventas");
 
         if(!CONSTANTS.READER_FILE_SYSTEM.isExistFileDB()){
             File directory = new File(CONSTANTS.READER_FILE_SYSTEM.getPathAppData()+"data");
@@ -67,6 +66,7 @@ public class App {
 
         PropiedadesSistema.setPropiedad("Producto.ID","PRODUCTO");
         PropiedadesSistema.setPropiedad("OrdenCompra.ID","ORDEN_COMPRA");
+        PropiedadesSistema.setPropiedad("Proveedor.ID","REGISTRO_PROVEEDOR");
         PropiedadesSistema.setPropiedad("Stock.ID","STOCK");
         PropiedadesSistema.setPropiedad("ImportarInventarioArchivo.ID","INVENTARIO_ARCHIVO");
         PropiedadesSistema.setPropiedad("Promocion.ID","PROMOCION_PRODUCTO");

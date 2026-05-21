@@ -66,6 +66,7 @@ public class PanelListaProducto extends JPanel implements ActionListener {
     private JTextField tNombre, tNota, tPrecioVenta, tPrecioMayor, tPrecioEspecial, tCantDisponible, tStockCritico;
     private Producto producto =null;
     private JCheckBox sproducto,servicio;
+
     public PanelListaProducto(){
         setLayout(new GridBagLayout());
         setOpaque(false);
@@ -343,7 +344,7 @@ public class PanelListaProducto extends JPanel implements ActionListener {
             Random random = new Random();
             int randomNumber;
             boolean serv;
-            for (int i = 1; i <= 10 ; i++) {
+            for (int i = 1; i < 100 ; i++) {
                 Producto p1 = new Producto();
                 p1.setID(i);
                 serv = random.nextBoolean();
@@ -366,10 +367,13 @@ public class PanelListaProducto extends JPanel implements ActionListener {
                 tabla.addRow(p1);
             }
 
-            aplicarFiltro();
-
-            tabla.setEnabled(true);
-            tabla.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            // Actualizar la UI desde el Event Dispatch Thread
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                tabla.refreshUI();
+                aplicarFiltro();
+                tabla.setEnabled(true);
+                tabla.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            });
         });
 
         thread.start();

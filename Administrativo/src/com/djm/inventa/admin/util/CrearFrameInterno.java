@@ -20,9 +20,11 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
     private String icon;
     private boolean filterIcon;
     private String ID;
+
     public CrearFrameInterno(JPanel panel,String titulo, String icon, boolean filterIcon, String id) {
         this(panel, titulo, icon, filterIcon, id, false);
     }
+
     public CrearFrameInterno(JPanel panel,String titulo, String icon, boolean filterIcon, String id, boolean resizable) {
         super(titulo, resizable, true, false, false);
         this.ID = id;
@@ -31,12 +33,16 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
         this.icon = icon;
         setIcon();
 
-        if(panel != null)
+        if(panel != null) {
             getContentPane().add(panel);
 
-        pack();
+        }
 
         setDimension(10,10);
+
+        //Reajustar el tamaño del panel para que se muestre correctamente
+        pack();
+
 
         //setResizable(false);
         /*setClosable(false);

@@ -11,11 +11,13 @@ import javax.swing.JInternalFrame;
 public class DesktopProducto implements IPanelDesktop<Producto> {
     private JInternalFrame internalFrame;
     private PanelProducto pProducto;
+    private final String ID = PropiedadesSistema.getString("Producto.ID");
+
     public DesktopProducto(){
 
         pProducto = new PanelProducto();
 
-        this.internalFrame = new CrearFrameInterno(pProducto.getPanel(), CONSTANTS.LANG.getValue("producto.label.titulo"), "16/product.png",false, PropiedadesSistema.getString("Producto.ID"));
+        this.internalFrame = new CrearFrameInterno(pProducto.getPanel(), CONSTANTS.LANG.getValue("producto.label.titulo"), "16/product.png",false, ID);
 
     }
 
@@ -24,9 +26,8 @@ public class DesktopProducto implements IPanelDesktop<Producto> {
 
     @Override
     public String getID() {
-        return PropiedadesSistema.getString("Producto.ID");
+        return ID;
     }
-
 
     @Override
     public void insertData(Producto producto) {

@@ -10,12 +10,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dede8240-ca14-4589-a61a-d20d20edba4e" name="Changes" comment="Inventa">
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/DesktopProveedor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/ModelTableProveedorCustom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/PanelProveedor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/PanelTableProveedor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/ProveedorListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/ProveedorSelectionListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/resources/lang/es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/resources/lang/es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Proveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Proveedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/CrearFrameInterno.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/CrearFrameInterno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/file/Propiedades.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/file/Propiedades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/file/ReaderFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/file/ReaderFileSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/ImportarInventarioGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/ImportarInventarioGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IPanelDataAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IPanelDataAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ordencompra/DesktopOrdenCompra.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/ordencompra/DesktopOrdenCompra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ordencompra/PanelOrdenCompra.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/ordencompra/PanelOrdenCompra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/PanelActualizarPrecio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/PanelActualizarPrecio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/ActionListenerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/ActionListenerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/PanelDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/PanelDesktop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/DesktopProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/DesktopProducto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/PanelListaProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/PanelListaProducto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/PanelProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/PanelProducto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/ProductoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/ProductoListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/CrearPromocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/CrearPromocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPaquetes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPaquetes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/DesktopStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/DesktopStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/PanelStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/PanelStock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/Exiuser/Documents/workspace java/Inventa 2.0" value="2mtGpN87ZJkU7W2OFlxLwzzX6TR" />
+    </persistenceIdMap>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,7 +78,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/jimmyrmq/Inventa.git&quot;,
-    &quot;accountId&quot;: &quot;14092f9e-8a67-47d8-874b-fa7996ef712c&quot;
+    &quot;accountId&quot;: &quot;dcb447df-6540-4dae-8371-3d4b47c1ed80&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -54,6 +94,7 @@
     "Application.App.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -193,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764166540840</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Inventa">
+      <option name="closed" value="true" />
+      <created>1764167668731</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1764167668731</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

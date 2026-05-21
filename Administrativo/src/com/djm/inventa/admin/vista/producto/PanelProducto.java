@@ -51,7 +51,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class PanelProducto extends IPanelDataAction<Producto> {
-    private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo, tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3, tStockCritico,
+    private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo, tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3,tCantMayor, tStockCritico,
             tCantidadDisponible, tUtilidad;
     private Button bAddMarca, bAddCantidad, bAddProveedor, bBuscar;
     private JButton bGuardar, bCancelar, bEliminar;
@@ -64,7 +64,7 @@ public class PanelProducto extends IPanelDataAction<Producto> {
     private DefaultComboBoxModel<Proveedor> dcbProveedor;
     private DefaultComboBoxModel<Categoria> dcbCategoria;
     private DefaultComboBoxModel<Marca> dcbMarca;
-    private JCheckBox disponible, noRequiereStock, precioImpuesto;
+    private JCheckBox disponible, noRequiereStock, precioImpuesto, requiereAprob;
     private Color greenButton = new Color(77, 170, 71);
     private LostFocusPrecio lostFocusPrecio = new LostFocusPrecio();
     private ProcesadorProducto procesadorProducto = new ProcesadorProducto();
@@ -73,7 +73,7 @@ public class PanelProducto extends IPanelDataAction<Producto> {
     private Color color3 = UIManager.getColor("TextField.foreground");
     private JPanel pDetalles, pPrecio, pStock;
     private ImageIcon iDel;//iok, icancel;
-    private Producto producto = null;
+    //private Producto producto = null;
     private JPanel panelPrincipal;
     private JPopupMenu popupMenu;
     private JMenuItem agragrStock, editarStock;
@@ -152,13 +152,12 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         panelPrincipal.add(pDetalles, LayoutPanel.constantePane(0, 1, 1, 3, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
         panelPrincipal.add(pPrecio, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
         panelPrincipal.add(pStock, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
-        panelPrincipal.add(getPanelButton(), LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 0, 10, 0, 10, 1.0f, 1.0f));
-        panelPrincipal.add(bEliminar, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 10, 10, 1.0f, 0.0f));
+        panelPrincipal.add(bEliminar, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 10, 5, 0, 1.0f, 0.0f));
+        panelPrincipal.add(getPanelButton(), LayoutPanel.constantePane(1, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 5, 0, 5, 10, 1.0f, 0.0f));
 
         actionListener();
 
     }
-
 
     public JPanel getPanelButton(){
         JPanel panel = new JPanel(new GridBagLayout());
@@ -194,16 +193,16 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         panel.setOpaque(false);
         panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.detalle")));
 
-        JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValue("label.codigo"));
-        JLabel lCodigoBarra = new JLabel(CONSTANTS.LANG.getValue("producto.label.codigobarra"));
-        JLabel lNombre = new JLabel(CONSTANTS.LANG.getValue("label.nombre"));
-        JLabel lUnidad= new JLabel(CONSTANTS.LANG.getValue("producto.label.unidad"));
-        JLabel lModelo= new JLabel(CONSTANTS.LANG.getValue("producto.label.modelo"));
-        JLabel lSerie= new JLabel(CONSTANTS.LANG.getValue("producto.label.serie"));
-        JLabel lMarca = new JLabel(CONSTANTS.LANG.getValue("producto.label.marca"));
-        JLabel lCategoria = new JLabel(CONSTANTS.LANG.getValue("producto.label.categoria"));
-        JLabel lProveedor = new JLabel(CONSTANTS.LANG.getValue("producto.label.proveedor"));
-        JLabel lNota= new JLabel(CONSTANTS.LANG.getValue("producto.label.nota"));
+        JLabel lCodigo = new JLabel(CONSTANTS.LANG.getValueLabel("label.codigo"));
+        JLabel lCodigoBarra = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.codigobarra"));
+        JLabel lNombre = new JLabel(CONSTANTS.LANG.getValueLabel("label.nombre"));
+        JLabel lUnidad= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.unidad"));
+        JLabel lModelo= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.modelo"));
+        JLabel lSerie= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.serie"));
+        JLabel lMarca = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.marca"));
+        JLabel lCategoria = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.categoria"));
+        JLabel lProveedor = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.proveedor"));
+        JLabel lNota= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.nota"));
 
         bBuscar = new Button(Image.getIcon("20/ok.png"),true);
         bBuscar.setPaintBack(false);
@@ -370,23 +369,31 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         panel.setOpaque(false);
         panel.setBorder(new BorderUtil(CONSTANTS.LANG.getValue("producto.border.title.precio")));
 
-        JLabel lPrecioCosto = new JLabel(CONSTANTS.LANG.getValue("producto.label.preciocompra"));
-        JLabel  lUtilidad= new JLabel(CONSTANTS.LANG.getValue("producto.label.utilidad"));
-        JLabel  lPrecio1= new JLabel(CONSTANTS.LANG.getValue("producto.label.precio1"));
-        JLabel  lPrecio2= new JLabel(CONSTANTS.LANG.getValue("producto.label.precio2"));
-        JLabel  lPrecio3= new JLabel(CONSTANTS.LANG.getValue("producto.label.precio3"));
+        JLabel lPrecioCosto = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.preciocompra"));
+        JLabel  lUtilidad= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.utilidad"));
+        JLabel  lPrecio1= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.precio1"));
+        JLabel  lPrecio2= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.precio2"));
+        JLabel  lPrecio3= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.precio3"));
+        JLabel  lCantMayor= new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.cantmayor"));
 
         precioImpuesto = new JCheckBox(CONSTANTS.LANG.getValue("producto.label.precioIncluyeImpuesto"));
         precioImpuesto.setSelected(true);
         precioImpuesto.setOpaque(false);
         //precioImpuesto.addActionListener(this);
-        precioImpuesto.setActionCommand("PRECIO_IMPUESTO");
+        //precioImpuesto.setActionCommand("PRECIO_IMPUESTO");
+
+        requiereAprob = new JCheckBox(CONSTANTS.LANG.getValue("producto.label.reqAprobPrecioEspecial"));
+        requiereAprob.setSelected(true);
+        requiereAprob.setOpaque(false);
+        //requiereAprob.addActionListener(this);
+        //requiereAprob.setActionCommand("REQUIERE_APROBACION");
 
         tCosto = new TextField(10,10);
         tUtilidad=new TextField(10,3,true);
         tPrecio1 = new TextField(10,10);
         tPrecio2 = new TextField(10,10);
         tPrecio3 = new TextField(10,10);
+        tCantMayor = new TextField(10,10);
 
         lUtilidadAdv = new JLabel(Image.getIcon("16/warning.png"));
         lPrecio1Adv = new JLabel(Image.getIcon("16/warning.png"));
@@ -423,6 +430,7 @@ public class PanelProducto extends IPanelDataAction<Producto> {
 
         tCosto.setText("0,00");
         tUtilidad.setText("0");
+        tCantMayor.setText("0");
         tPrecio1.setText("0,00");
         tPrecio2.setText("0,00");
         tPrecio3.setText("0,00");
@@ -463,13 +471,19 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         panel.add(lPrecio1, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tPrecio1, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
         panel.add(lPrecio1Adv, LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lPrecio2, LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tPrecio2, LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+
+        panel.add(lPrecio2, LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tPrecio2, LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
         panel.add(lPrecio2Adv, LayoutPanel.constantePane(2, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lPrecio3, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tPrecio3, LayoutPanel.constantePane(1, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lPrecio3Adv, LayoutPanel.constantePane(2, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(precioImpuesto, LayoutPanel.constantePane(1, 5, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 1.0f, 0.0f));
+        panel.add(lCantMayor, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tCantMayor, LayoutPanel.constantePane(1, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+
+        panel.add(lPrecio3, LayoutPanel.constantePane(0, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tPrecio3, LayoutPanel.constantePane(1, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(lPrecio3Adv, LayoutPanel.constantePane(2, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(requiereAprob, LayoutPanel.constantePane(1, 6, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 1.0f, 0.0f));
+
+        panel.add(precioImpuesto, LayoutPanel.constantePane(1, 7, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 1.0f, 0.0f));
 
         return panel;
     }
@@ -496,8 +510,8 @@ public class PanelProducto extends IPanelDataAction<Producto> {
             popupMenu.show(bAddCantidad, 0,bAddCantidad.getHeight());
         });
 
-        JLabel lAdvertencia = new JLabel(CONSTANTS.LANG.getValue("producto.label.adv_stockcritico"));
-        JLabel lDisponible = new JLabel(CONSTANTS.LANG.getValue("producto.label.cantidad_disponible"));
+        JLabel lAdvertencia = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.adv_stockcritico"));
+        JLabel lDisponible = new JLabel(CONSTANTS.LANG.getValueLabel("producto.label.cantidad_disponible"));
 
         tStockCritico = new TextField(7,10,true);
         tStockCritico.setText("0");
@@ -552,8 +566,7 @@ public class PanelProducto extends IPanelDataAction<Producto> {
     protected void clear(){
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
-        this.producto = null;
-        super.insertData(null);
+        super.init();
 
         tPrecio1.borderNoError();
         tPrecio2.borderNoError();
@@ -622,9 +635,9 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
-    public Producto getProducto(){
-        if(this.producto == null)
-            this.producto = new Producto();
+    @Override
+    public Producto getDataForm(){
+        Producto producto = super.isData()?super.getValue():new Producto();
 
         String cod = tCodigo.getText();
         String codBarra = tCodigoBarra.getText();
@@ -640,6 +653,8 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         String precio1 = tPrecio1.getText();
         String precio2 = tPrecio2.getText();
         String precio3 = tPrecio3.getText();
+        boolean reqAprob = requiereAprob.isSelected();
+        String cantMayor = tCantMayor.getText();
         boolean isImpuesto = precioImpuesto.isSelected();
 
         if((cod == null || cod.trim().isEmpty()) && (codBarra != null &&!codBarra.trim().isEmpty())){
@@ -688,6 +703,11 @@ public class PanelProducto extends IPanelDataAction<Producto> {
             }
         }
 
+        Integer cantMayorInt = 0;
+        if(cantMayor != null && !cantMayor.trim().isEmpty()) {
+            cantMayorInt = Integer.parseInt(cantMayor);
+        }
+
         producto.setCodigo(cod);
         producto.setCodigoBarra(codBarra);
         producto.setNombre(nombre);
@@ -704,6 +724,8 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         producto.setPrecio1(p1);
         producto.setPrecio2(p2);
         producto.setPrecio3(p3);
+        producto.setCantMayor(cantMayorInt);
+        producto.setReqAprobPrecioEspecial(reqAprob);
         producto.setPrecioIncluyeImpuesto(isImpuesto);
         producto.setStockCritico(scritico);
         producto.setProveedor(proveedor);
@@ -711,7 +733,7 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         String cantDisponible = tCantidadDisponible.getText();
         producto.setCantidadDisponible(Integer.parseInt(cantDisponible));
 
-        return this.producto;
+        return producto;
     }
 
     public void insertProducto(Producto producto, Stock stock){
@@ -719,8 +741,6 @@ public class PanelProducto extends IPanelDataAction<Producto> {
 
         eText(false);
         clear();
-
-        this.producto = producto;
 
         tCodigo.setText(producto.getCodigo());
         tCodigoBarra.setText(producto.getCodigoBarra());
@@ -795,10 +815,10 @@ public class PanelProducto extends IPanelDataAction<Producto> {
 
         if (stock != null) {
             tCantidadDisponible.setText(String.valueOf(stock.getCantidad()));
-        }else {
+        }
+        else {
             tCantidadDisponible.setText(String.valueOf(producto.getCantidadDisponible()));
         }
-
 
         bEliminar.setEnabled(true);
         editarStock.setEnabled(true);
@@ -807,8 +827,9 @@ public class PanelProducto extends IPanelDataAction<Producto> {
 
         tNombre.requestFocus();
 
-        GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        super.insertData(producto);
 
+        GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
     public void eText(boolean enabled){
@@ -855,17 +876,15 @@ public class PanelProducto extends IPanelDataAction<Producto> {
         }
     }
 
-
-
     @Override
     public JPanel getPanel() {
         return panelPrincipal;
     }
 
-    @Override
+  /*  @Override
     public Producto getData() {
         return getProducto();
-    }
+    }*/
 
     private void actionListener(){
         ActionListener al = new ProductoListener(this);
@@ -880,6 +899,18 @@ public class PanelProducto extends IPanelDataAction<Producto> {
     public void insertData(Producto producto) {
         insertProducto(producto, null);
         super.insertData(producto);
+    }
+
+    @Override
+    public boolean isData() {
+        boolean e = super.isData();
+        if(!e){
+
+            e = !tCodigo.getText().trim().isEmpty()
+                    || !tCodigoBarra.getText().trim().isEmpty()
+                    || !tNombre.getText().trim().isEmpty();
+        }
+        return e;
     }
 
     @Override
@@ -914,8 +945,8 @@ public class PanelProducto extends IPanelDataAction<Producto> {
                 //guardarProducto();
                 ActionEvent eventoSimulado = new ActionEvent(bGuardar, ActionEvent.ACTION_PERFORMED, "GUARDAR_PRODUCTO");
 
-                if( bGuardar.getActionListeners().length == 1);
-                bGuardar.getActionListeners()[0].actionPerformed(eventoSimulado);
+                if( bGuardar.getActionListeners().length == 1)
+                    bGuardar.getActionListeners()[0].actionPerformed(eventoSimulado);
             }
         };
         InputMap inputMap = bGuardar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);

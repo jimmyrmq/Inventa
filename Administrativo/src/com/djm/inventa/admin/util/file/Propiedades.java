@@ -53,25 +53,41 @@ public class Propiedades {
         return val;
     }
 
+
     public String getValue(String key, Integer value){
         String val = getValue(key, String.valueOf(value));
 
         return val;
     }
-    public String getValue(String value,String keyReplacement){
+
+    public String getValue(String value,String defaultValue){
         String result = null;
         
-        if(keyReplacement != null && systemProperties != null) {
-            String replacement = systemProperties.getProperty(keyReplacement);
-
-            if(replacement == null)
-                replacement = keyReplacement;
-
-            result = systemProperties.getProperty(value , replacement);
+        if(systemProperties != null) {
+            result = systemProperties.getProperty(value, defaultValue);
         }
 
         return result;
     }
+
+    public String getValueLabel(String value){
+        return getValueLabel(value, null);
+    }
+
+    public String getValueLabel(String value,String defaultValue){
+        String result = null;
+
+        if(systemProperties != null) {
+            result = systemProperties.getProperty(value, defaultValue);
+        }
+
+        if(result != null){
+            result = result+":";
+        }
+
+        return result;
+    }
+
     public void setValue(String key,Object value){
         systemProperties.setProperty(key, String.valueOf(value));
         if(configFile != null)

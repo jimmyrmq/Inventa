@@ -12,7 +12,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.Dimension;
 
-public class Table<E>  extends JTable {
+public class Table<E> extends JTable {
     private TableRowSorter<TableModel> sorter;
     private ModeloTabla modeloTabla;
     private CheckBoxHeader chkheader;
@@ -30,7 +30,7 @@ public class Table<E>  extends JTable {
         //this.setBackground(this.tableUI.getBackground());
         this.setRowSelectionAllowed(true);
         this.setOpaque(true);
-        this.setAutoResizeMode(0);
+        //this.setAutoResizeMode(0);
         //this.setGridColor(this.tableUI.getGridColor());
         this.setSelectionMode(0);
         this.setRowHeight(25);
@@ -50,9 +50,15 @@ public class Table<E>  extends JTable {
 
         dimension = new Dimension(dimX, height);
 
+        // Solo establecer el tamaño del viewport, no el tamaño de la tabla
         this.setPreferredScrollableViewportSize(dimension);
-        this.setPreferredSize(dimension);
+        this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         this.setSize(dimension);
+        // NO usar setPreferredSize() ni setSize() para permitir que la tabla crezca con los datos
+        // El JScrollPane manejará el tamaño visible
+        //this.setPreferredSize(dimension);
+
+
     }
 
 
@@ -62,19 +68,16 @@ public class Table<E>  extends JTable {
 
     public JScrollPane getPanel(Border border) {
         //border = new CustomBorder(1,Color.BLUE,2,Color.BLUE,3,Color.BLUE,4,Color.BLUE);//new LineBorder(Color.BLUE, 3);//
-        JScrollPane jsp = new JScrollPane(this, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        // Usar ALWAYS para políticas de scroll para permitir desplazamiento cuando sea necesario
+        JScrollPane jsp = new JScrollPane(this,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jsp.setViewportBorder(null);//BorderFactory.createLineBorder(GlobalUI.getInstance().getTheme().getColorBorderField()));
         jsp.getViewport().setOpaque(true);
         jsp.setOpaque(false);
 
         jsp.setBorder(border);
         jsp.getViewport().setBackground(UIManager.getColor("Table.background"));
-        /*jsp.updateUI();
-        jsp.repaint();
-        jsp.revalidate();
-        jsp.getViewport().updateUI();
-        jsp.getViewport().repaint();
-        jsp.getViewport().revalidate();*/
 
         return jsp;
     }
@@ -159,6 +162,11 @@ public class Table<E>  extends JTable {
 
     public void columnEdit(int ... col){
         //modeloTabla.
+    }
+
+    public void refreshUI(){
+        this.revalidate();
+        this.repaint();
     }
 
     public Dimension getDimension(){

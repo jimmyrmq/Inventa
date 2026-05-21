@@ -11,6 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public abstract class IAction {
+    //Para que funcione el evento de cerrar con ESC, se debe llamar al metodo cerrarEsc() y
+    // pasarle el boton que se desea que ejecute la accion, generalmente el boton cancelar o cerrar.
+    //Y tiene que estar la accion en Listner del boton, es decir, el boton debe tener un actionCommand y
+    // el listener debe tener la accion correspondiente a ese actionCommand.
     public abstract void actionEsc();
 
     public void cerrarEsc(JButton button){
