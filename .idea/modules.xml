@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Administrativo/Administrativo.iml" filepath="$PROJECT_DIR$/Administrativo/Administrativo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Inventa 2.0.iml" filepath="$PROJECT_DIR$/Inventa 2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inventa.iml" filepath="$PROJECT_DIR$/inventa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AppShell/inventa.appshell.iml" filepath="$PROJECT_DIR$/AppShell/inventa.appshell.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common-Core/inventa.common-core.iml" filepath="$PROJECT_DIR$/Common-Core/inventa.common-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" filepath="$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common-Util/inventa.common-util.iml" filepath="$PROJECT_DIR$/Common-Util/inventa.common-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Orden-Compra/inventa.orden-compra.iml" filepath="$PROJECT_DIR$/Orden-Compra/inventa.orden-compra.iml" />
     </modules>
   </component>
 </project>

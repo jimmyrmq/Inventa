@@ -1,0 +1,20 @@
+package com.djm.inventa.ui;
+
+public enum AparienciaLookFeel {
+    Dark("DARK"),
+    Light("LIGTH");
+    private String descripcion;
+
+    AparienciaLookFeel(String descripcion){
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    @Override
+    public String toString(){
+        return getDescripcion();
+    }
+}
