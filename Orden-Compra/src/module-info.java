@@ -7,6 +7,7 @@ module com.djm.inventa.ordencompra {
     requires djm.api;
     requires com.djm.inventa.ui;
     requires com.djm.inventa.core;
+    requires java.sql;
 
     provides IPluginInfo
             with InfoPluginOC;

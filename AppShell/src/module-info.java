@@ -9,6 +9,7 @@ module com.djm.inventa.appshell {
     requires djm.api;
     requires com.formdev.flatlaf;
     requires com.djm.inventa.util;
+    requires java.sql;
 
     uses IPluginInfo;
 

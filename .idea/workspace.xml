@@ -13,216 +13,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dede8240-ca14-4589-a61a-d20d20edba4e" name="Changes" comment="Inventa 2.0 en Desarrollo">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/inv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ordencompra.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/inventa.appshell.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/resources/lang/global_es.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ApplicationBootstrap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/Global.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ApplicationInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/CONSTANTS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/DataSoftware.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ModuleLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/PanelDesktop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/ActionListenerMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/MenuBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/UsuarioButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppShell/src/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/inventa.common-core.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/AppContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/AppFileSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/DataSoft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/PropiedadesSistema.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/i18n/I18nManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Core/src/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/IconManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/PropiedadesLookAndFeel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/renderer/EtiquetaValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/renderer/TipoEtiqueta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IMenuContribution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDataAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPluginInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IUIManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/TipoVista.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-UI/src/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/exception/PropertiesException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Util/src/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/inventa.orden-compra.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/resources/META-INF/services/com.djm.inventa.ui.ipanel.IPluginInfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/OrdenCompraApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/core/CONSTANTS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/core/InfoPluginOC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/CondicionesComercialesOC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/EstadoOC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/InformacionEntregaOC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/OrdenCompra.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/Proveedor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/RecepcionOrdenCompra.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/FrameRunDev.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Orden-Compra/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/admin_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/admin_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/DatabaseServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/DatabaseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mysql.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/Administrativo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/inventa.common-util.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/config.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/lib/djm-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/djm-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/lib/flatlaf-3.6.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flatlaf-3.6.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/lib/logback-classic-1.5.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/logback-classic-1.5.6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/lib/logback-core-1.5.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/logback-core-1.5.6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/lib/slf4j-api-2.0.16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/slf4j-api-2.0.16.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/lib/sqlite-jdbc-3.46.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sqlite-jdbc-3.46.0.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/add.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/add.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/back.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/barcode.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/barcode.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/buscar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/buscar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/change.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/change.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/close.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/close.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/computer.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/computer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/delete2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/delete2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/excel.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/excel.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/exit.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/exit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/import.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/import.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/import16.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/import16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/info.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/info.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/muser.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/muser.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/ok16.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/ok16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/product.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/product.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/prom.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/prom.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/tproduct.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/tproduct.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/16/warning.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/16/warning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/20/buscar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/20/buscar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/20/change.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/20/change.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/20/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/20/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/20/import.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/20/import.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/20/ok.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/20/ok.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/24/buscar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/24/buscar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/24/change.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/24/change.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/24/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/24/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/24/import.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/24/import.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/24/product.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/24/product.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/32/ico.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/32/ico.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/32/product.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/32/product.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/barcode.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/barcode.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/icon/lupa_text.png" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/resources/icon/lupa_text.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/lang/es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/resources/lang/ocompra_es.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/almacen.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/almacen.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/categoria.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/categoria.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/categoriadocumento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/categoriadocumento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/cliente.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/cliente.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/cmd.bat" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/cmd.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/documento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/documento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/documentoitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/documentoitem.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/marca.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/marca.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/producto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/proveedor.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/proveedor.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/stock.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/stock.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/tipodocumento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/tipodocumento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/resources/scripts/usuario.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/usuario.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Almacen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Almacen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/CategoriaDocumento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/CategoriaDocumento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Documento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/DocumentoOC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/DocumentoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/modelo/ProductoItemOC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Factura.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Factura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/FacturaItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/FacturaItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Marca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/OrdenCompra.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Producto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/ProductoStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/ProductoStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Promocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Promocion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Proveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Proveedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/RegistroSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/RegistroSimple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/SimpleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/SimpleData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/TipoDocumento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/TipoDocumento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/modelo/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/BorderUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/CheckDataException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/CrearFrameInterno.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/CrearFrameInterno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/DataSoftware.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/LoggerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/util/LoggerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/ObtenerDatosPC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/PropiedadesSistema.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/file/Propiedades.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/util/Propiedades.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/util/file/ReaderFileSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/CONSTANTS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/CheckBoxHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/CheckBoxHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/EtiquetaComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/EtiquetaComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/TextArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/TextArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/TextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/TextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/renderer/StatusIconProductRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/renderer/StatusIconProductRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/component/renderer/TipoEtiqueta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/defectuoso/DesktopDefectuoso.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/defectuoso/PanelDefectuoso.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/ordencompra/DesktopOrdenCompra.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/ordencompra/PanelOrdenCompra.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/DesktopProveedor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/ModelTableProveedorCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/ModelTableProveedorCustom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/PanelProveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelProveedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/PanelTableProveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelTableProveedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/ProveedorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/ProveedorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/documentos/proveedor/ProveedorSelectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/ProveedorSelectionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/ColumnSelected.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/ImportActionListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/ImportarInventarioGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/OpenFileFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ingreso/archivo/ReadFileCVS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IPanelAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IPanelDataAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/ipanel/IPanelDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDesktop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/DesktopActualizar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/ModelTablePrecioCuston.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/PanelActualizarPrecio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/PrecioListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/precio/modelo/ProductoActualizar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/ActionListenerMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/AparienciaLookFeel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/AparienciaLookFeel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Global.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/PanelDesktop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/PanelInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/Salir.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/Salir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/UsuarioButton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/principal/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/VentanaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/DesktopProducto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/InfoListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/ListenerMoneda.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/ModelTableProductoCustom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/PanelListaProducto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/PanelProducto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/ProcesadorProducto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/producto/ProductoListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/CheckPromocion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/CrearPromocion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/DesktopPromocion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/ModelTableProdPaqueteCustom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/ModelTablePromocionCustom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelDescuento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPaquetes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/promociones/PanelPromocion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/DesktopStock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/ModelTableStockCustom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/PanelStock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administrativo/src/com/djm/inventa/admin/vista/stock/StockRapidoGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inventa 2.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/inventa.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ApplicationInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/VentanaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/PanelDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/PanelDesktop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppShell/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/AppContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/AppContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/PropiedadesSistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/PropiedadesSistema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-Core/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/CrearFrameInterno.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/CrearFrameInterno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDataAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDataAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDesktop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/core/InfoPluginOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/core/InfoPluginOC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelProveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelProveedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Orden-Compra/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Orden-Compra/src/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +94,7 @@
           <model>
             <option name="modelProviderName" value="Anthropic" />
             <option name="modelType" value="byok_family" />
-            <option name="modelValue" value="claude-sonnet-4-6" />
+            <option name="modelValue" value="claude-haiku-4-5-20251001" />
           </model>
         </option>
         <option name="targetType" value="LOCAL" />
@@ -294,35 +104,35 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Administrativo.executor&quot;: &quot;Run&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ApplicationBootstrap.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.OrdenCompra.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-22&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/lib&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/Bootstrap/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Administrativo.executor": "Run",
+    "Application.App.executor": "Run",
+    "Application.ApplicationBootstrap.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MainTest.executor": "Run",
+    "Application.OrdenCompra.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "openjdk-22",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/lib",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/Bootstrap/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode.JAVA",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\lib" />
@@ -404,6 +214,8 @@
       <workItem from="1782221327319" duration="3318000" />
       <workItem from="1782259111025" duration="839000" />
       <workItem from="1782311640870" duration="28110000" />
+      <workItem from="1782341725318" duration="279000" />
+      <workItem from="1782393933328" duration="12483000" />
     </task>
     <task id="LOCAL-00001" summary="Inventa">
       <option name="closed" value="true" />
@@ -501,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779379909927</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Inventa 2.0 en Desarrollo">
+      <option name="closed" value="true" />
+      <created>1782341956657</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1782341956657</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

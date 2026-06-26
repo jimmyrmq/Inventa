@@ -70,8 +70,7 @@ public class InfoPluginOC implements IPluginInfo {
                     public int getMenuOrden() { return 1; }
                     public ImageIcon getMenuIcono() { return null; }
                     public void onClick(IUIManager uiManager) {
-                        IPanelDataAction panelProveedor = new PanelProveedor();
-                        uiManager.showView(panelProveedor,InfoPluginOC.this);
+                        uiManager.showView(new PanelProveedor(),InfoPluginOC.this);
                     }
                 },
 
@@ -83,8 +82,7 @@ public class InfoPluginOC implements IPluginInfo {
                     public ImageIcon getMenuIcono() { return null; }
 
                     public void onClick(IUIManager uiManager) {
-                        IPanelDataAction panelProveedor = new PanelProveedor();
-                        uiManager.showView(panelProveedor,InfoPluginOC.this);
+                        uiManager.showView(new PanelProveedor(),InfoPluginOC.this);
                     }
                 }
         );

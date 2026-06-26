@@ -13,10 +13,6 @@ public abstract class IPanelDataAction<E> extends IPanelAction{
         return e != null;
     }
 
-    public void init(){
-        e = null;
-    }
-
     public void insertData(E e){
         this.e = e;
     }

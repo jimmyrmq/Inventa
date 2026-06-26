@@ -53,6 +53,10 @@ public class AppContext {
         return PropiedadesSistema.getString(clave, defecto);
     }
 
+    public DatabaseService getDatabaseService(String clave) {
+        return PropiedadesSistema.getDatabaseService(clave);
+    }
+
     public String getString(String clave) {
         return PropiedadesSistema.getString(clave);
     }

@@ -62,7 +62,7 @@ public class UIManagerDesktopImpl implements IUIManager {
 
             internalFrame.toFront();
 
-            // ✅ 🔥 AHORA sí el panel puede pedir foco
+            //AHORA sí el panel puede pedir foco
             view.onViewShown();
         });
 
@@ -84,10 +84,9 @@ public class UIManagerDesktopImpl implements IUIManager {
         if(internalFrame != null) {
             internalFrame.setVisible(false);
             internalFrame.dispose();
-        }
 
-        //eliminar del map
-        ventanas.remove(viewId);
+            ventanas.remove(viewId);
+        }
     }
 
     /*JInternalFrame internalFrame = new CrearFrameInterno(null, plugin.getTitulo(), null,false, plugin.getId());

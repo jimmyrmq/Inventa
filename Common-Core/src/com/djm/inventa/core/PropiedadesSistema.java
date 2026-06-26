@@ -60,6 +60,11 @@ public class PropiedadesSistema {
         return (value instanceof String s) ? s : valorDefecto;
     }
 
+    public static DatabaseService getDatabaseService(String clave) {
+        DatabaseService value = (DatabaseService) propiedades.get(clave);
+        return (value instanceof DatabaseService s) ? s : null;
+    }
+
     public static String getString(String clave) {
         return getString(clave, null);
     }

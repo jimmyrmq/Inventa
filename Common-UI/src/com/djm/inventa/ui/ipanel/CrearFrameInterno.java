@@ -16,22 +16,14 @@ import java.awt.event.ComponentEvent;
 
 public class CrearFrameInterno extends JInternalFrame implements InternalFrameListener{
     private boolean filterIcon;
-    private String ID;
     private Rectangle bounds ;
     private ImageIcon icon;
 
     public CrearFrameInterno(IPanelDataAction view, boolean filterIcon, Rectangle bounds) {
+        super(view.getTitle(), false, true, false, false);
         this.bounds = bounds;
-        this(view.getPanel(), view.getTitle(), view.getIcon(),filterIcon, view.getId(), false);
-    }
 
-    public CrearFrameInterno(JPanel panel,String titulo, ImageIcon icon, boolean filterIcon, String id) {
-        this(panel, titulo, icon, filterIcon, id, false);
-    }
-
-    public CrearFrameInterno(JPanel panel,String titulo, ImageIcon icon, boolean filterIcon, String id, boolean resizable) {
-        super(titulo, resizable, true, false, false);
-        this.ID = id;
+        ImageIcon icon = view.getIcon();
 
         if(icon != null) {
             this.icon = icon;
@@ -39,16 +31,15 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
             setIcon();
         }
 
+        JPanel panel = view.getPanel();
         if(panel != null) {
             getContentPane().add(panel);
-
         }
 
         setDimension(10,10);
 
         //Reajustar el tamaño del panel para que se muestre correctamente
         pack();
-
 
         //setResizable(false);
         /*setClosable(false);
@@ -60,19 +51,12 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
             limite();
         }
 
-
         setDefaultCloseOperation(0);//Deshabilitar el botton  de cerrar
         addInternalFrameListener(this);
         setVisible(true);
-
-    }
-
-    public void setRectangle(Rectangle bounds) {
-        this.bounds = bounds;
     }
 
     public void center(){
-
         int width = this.bounds.width;
         int height = this.bounds.height;
         Dimension dim = getSize();
@@ -80,7 +64,6 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
     }
 
     public void setDimension(int witdh, int height){
-
         Dimension dim = getPreferredSize();
         dim.width += witdh;
         dim.height += height;
@@ -188,9 +171,5 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
     public void updateUI(){
         super.updateUI();
         setIcon();
-    }
-
-    public String getID(){
-        return ID;
     }
 }

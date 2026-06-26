@@ -13,20 +13,18 @@ import java.awt.event.WindowListener;
 
 public class VentanaPrincipal extends JFrame  implements WindowListener {
     private JMenuBar menuBar;
-    private PanelDesktop panelDesktop;
 
     public VentanaPrincipal(JMenuBar menuBar) {
         this.menuBar = menuBar;
-        this.panelDesktop = new PanelDesktop();
 
-        Global.panelDesktop = this.panelDesktop;
+        Global.panelDesktop = new PanelDesktop();
 
         init();
 
         Container content= getContentPane();
         content.setLayout(new GridBagLayout());
 
-        content.add(this.panelDesktop, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
+        content.add(Global.panelDesktop, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
 
     }
 

@@ -12,7 +12,9 @@ public interface IPanel{
 
     JPanel getPanel();
 
-    ImageIcon getIcon();
+    default ImageIcon getIcon(){
+        return null;
+    }
 
     void clearForm();
 

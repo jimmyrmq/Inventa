@@ -25,6 +25,9 @@ public class ApplicationInitializer {
         // 1. Global del AppShell (este sí puede ir primero)
         I18nManager.getInstance().registerGlobal(ApplicationInitializer.class.getClassLoader());
 
+        //Registro conexion a l DB
+        AppContext.getInstance().setPropiedad("db.service", new DatabaseServiceImpl());
+
         // 2. Carpetas y contexto
         fileSystem = new AppFileSystem(new DataSoftware());
         AppContext.getInstance().setFileSystem(fileSystem);

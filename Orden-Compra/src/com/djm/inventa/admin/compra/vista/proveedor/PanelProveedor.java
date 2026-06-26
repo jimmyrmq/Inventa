@@ -2,6 +2,8 @@ package com.djm.inventa.admin.compra.vista.proveedor;
 
 import com.djm.inventa.admin.compra.core.CONSTANTS;
 import com.djm.inventa.admin.compra.modelo.Proveedor;
+import com.djm.inventa.core.AppContext;
+import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.inventa.ui.ipanel.IUIManager;
 import com.djm.inventa.ui.ipanel.TipoVista;
@@ -11,6 +13,10 @@ import com.djm.util.LayoutPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PanelProveedor extends IPanelDataAction<Proveedor> {
     private static final String ID = "view.proveedor";
@@ -19,7 +25,8 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
     private JTextArea tNota;
     private JButton bEliminar, bGuardar, bCancelar;
     private PanelTableProveedor panelTableProveedor;
-
+    private IUIManager iuiManager;
+    private boolean listenersRegistrados = false;
 
     public PanelProveedor() {
         panelPrincipal = new JPanel();
@@ -154,8 +161,6 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         return p;
     }
 
-    private IUIManager iuiManager;
-    private boolean listenersRegistrados = false;
 
     @Override
     public void actionEsc() {
@@ -182,10 +187,6 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         return panelPrincipal;
     }
 
-    @Override
-    public ImageIcon getIcon() {
-        return null;
-    }
 
     @Override
     public void clearForm() {
@@ -224,11 +225,48 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
     @Override
     public void onViewShown() {
         SwingUtilities.invokeLater(() -> {
+            conexionBD();
+
             if (tCodigo != null) {
                 tCodigo.requestFocusInWindow();
                 tCodigo.selectAll();
             }
         });
+    }
+
+    private void conexionBD(){
+
+        DatabaseService db = AppContext.getInstance().getDatabaseService("db.service");
+        System.out.println("Estableciendo conexion: ");
+        Connection conn = db.getConnection();
+
+        try {
+            if (conn.isValid(5)) {
+                System.out.println("Conexión válida");
+            } else {
+                System.out.println("Conexión inválida");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String sql = "SELECT * FROM usuario";//" WHERE usuario = ? AND password = ?";
+
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            /*ps.setString(1, user);
+            ps.setString(2, password);*/
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("Usuario válido: " + rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     /**
