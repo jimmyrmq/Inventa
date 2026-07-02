@@ -6,7 +6,9 @@ import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.inventa.ui.ipanel.IUIManager;
 import com.djm.inventa.ui.ipanel.CrearFrameInterno;
 
-import javax.swing.*;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.SwingUtilities;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,7 +90,4 @@ public class UIManagerDesktopImpl implements IUIManager {
             ventanas.remove(viewId);
         }
     }
-
-    /*JInternalFrame internalFrame = new CrearFrameInterno(null, plugin.getTitulo(), null,false, plugin.getId());
-            Global.panelDesktop.addVentana(internalFrame, null);*/
 }

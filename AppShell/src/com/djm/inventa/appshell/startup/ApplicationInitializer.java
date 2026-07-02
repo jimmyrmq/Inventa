@@ -69,10 +69,11 @@ public class ApplicationInitializer {
         AppContext.getInstance().setPropiedad("Label.colorDarker", Color.ORANGE);
         AppContext.getInstance().setPropiedad("Panel.backgroundTitle", new Color(81, 99, 124));
         AppContext.getInstance().setPropiedad("TextField.backgroundError", new Color(238, 46, 46));
+
+        //Este es un nombre de ejemplo pero cuando se carge el usuario se debe cargar el nombre quien se este autenticando
         AppContext.getInstance().setPropiedad("Usuario.Nombre","Jimmy Morales");
 
         PropiedadesLookAndFeel.setPropiedades(AppContext.getInstance().getPropiedades());
-
     }
 
     private static void lookAndFeel(){

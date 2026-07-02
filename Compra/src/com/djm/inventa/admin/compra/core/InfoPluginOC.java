@@ -38,7 +38,7 @@ public class InfoPluginOC implements IPluginInfo {
 
     @Override
     public String getIdDundle() {
-        return "ocompra";
+        return "compra";
     }
 
 

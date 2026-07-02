@@ -20,7 +20,7 @@ public class CONSTANTS {
     }
 
     private static void propertiesLang(){
-        String pathLang = "/lang/ocompra_es.properties";
+        String pathLang = "/lang/compra_es.properties";
         URL url =CONSTANTS.class.getResource(pathLang);
 
         if(url != null) {

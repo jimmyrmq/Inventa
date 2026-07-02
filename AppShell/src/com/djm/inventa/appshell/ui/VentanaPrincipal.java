@@ -17,8 +17,6 @@ public class VentanaPrincipal extends JFrame  implements WindowListener {
     public VentanaPrincipal(JMenuBar menuBar) {
         this.menuBar = menuBar;
 
-        Global.panelDesktop = new PanelDesktop();
-
         init();
 
         Container content= getContentPane();
@@ -50,6 +48,8 @@ public class VentanaPrincipal extends JFrame  implements WindowListener {
         setExtendedState(6);//Expandir la ventana
 
         setJMenuBar(this.menuBar);
+
+        Global.panelDesktop = new PanelDesktop();
     }
 
 

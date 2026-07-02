@@ -2,8 +2,8 @@
   <artifact type="jar" name="ordencompra">
     <output-path>$PROJECT_DIR$/ext</output-path>
     <root id="archive" name="ordencompra.jar">
-      <element id="module-output" name="inventa.orden-compra" />
-      <element id="dir-copy" path="$PROJECT_DIR$/Orden-Compra/resources/META-INF" />
+      <element id="module-output" name="inventa.compra" />
+      <element id="dir-copy" path="$PROJECT_DIR$/Compra/resources/META-INF" />
     </root>
   </artifact>
 </component>
