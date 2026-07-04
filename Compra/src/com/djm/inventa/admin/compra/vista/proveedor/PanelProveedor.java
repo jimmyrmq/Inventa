@@ -239,32 +239,35 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         DatabaseService db = AppContext.getInstance().getDatabaseService("db.service");
         System.out.println("Estableciendo conexion: ");
         Connection conn = db.getConnection();
-
-        try {
-            if (conn.isValid(5)) {
-                System.out.println("Conexión válida");
-            } else {
-                System.out.println("Conexión inválida");
+        if(conn != null) {
+            try {
+                if (conn.isValid(5)) {
+                    System.out.println("Conexión válida");
+                } else {
+                    System.out.println("Conexión inválida");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-        String sql = "SELECT * FROM usuario";//" WHERE usuario = ? AND password = ?";
+            String sql = "SELECT * FROM usuario";//" WHERE usuario = ? AND password = ?";
 
-        PreparedStatement ps = null;
-        try {
-            ps = conn.prepareStatement(sql);
-            /*ps.setString(1, user);
-            ps.setString(2, password);*/
+            PreparedStatement ps = null;
+            try {
+                ps = conn.prepareStatement(sql);
+                /*ps.setString(1, user);
+                ps.setString(2, password);*/
 
-            ResultSet rs = ps.executeQuery();
+                ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                System.out.println("Usuario válido: " + rs.getString("nombre"));
+                if (rs.next()) {
+                    System.out.println("Usuario válido: " + rs.getString("nombre"));
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        }else{
+            System.out.println("No se pudo establecer conexion con la BD");
         }
 
     }

@@ -3,10 +3,11 @@ package com.djm.inventa.admin.compra.core;
 import com.djm.inventa.admin.compra.vista.proveedor.PanelProveedor;
 import com.djm.inventa.ui.ipanel.IMenuContribution;
 import com.djm.inventa.ui.ipanel.IPluginInfo;
-import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.inventa.ui.ipanel.IUIManager;
 
 import javax.swing.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class InfoPluginOC implements IPluginInfo {
@@ -41,6 +42,11 @@ public class InfoPluginOC implements IPluginInfo {
         return "compra";
     }
 
+    @Override
+    public Integer getMenuOrden() {
+        return 2;
+    }
+
 
     @Override
     public void init() {
@@ -65,10 +71,16 @@ public class InfoPluginOC implements IPluginInfo {
 
                 //Orden de Compra
                 new IMenuContribution() {
+                    @Override
+                    public JMenuItem getMenu() {
+                        JMenuItem menuItem = new JMenuItem("Orden Compra");
+                        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_DOWN_MASK));
+                        return menuItem;
+                    }
                     public String getMenuGrupo() { return "Documentos"; }
-                    public String getMenuLabel() { return "Orden Compra"; }
+
+
                     public int getMenuOrden() { return 1; }
-                    public ImageIcon getMenuIcono() { return null; }
                     public void onClick(IUIManager uiManager) {
                         uiManager.showView(new PanelProveedor(),InfoPluginOC.this);
                     }
@@ -76,10 +88,19 @@ public class InfoPluginOC implements IPluginInfo {
 
                 //Proveedor
                 new IMenuContribution() {
+                    @Override
+                    public JMenuItem getMenu() {
+                        JMenuItem menuItem = new JMenuItem("Proveedor");
+                        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
+                        return menuItem;
+                    }
                     public String getMenuGrupo() { return "Documentos"; }
-                    public String getMenuLabel() { return "Proveedor"; }
                     public int getMenuOrden() { return 2; }
-                    public ImageIcon getMenuIcono() { return null; }
+
+                    @Override
+                    public boolean getNuevoGrupo() {
+                        return true;
+                    }
 
                     public void onClick(IUIManager uiManager) {
                         uiManager.showView(new PanelProveedor(),InfoPluginOC.this);

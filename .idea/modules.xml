@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/inventa.iml" filepath="$PROJECT_DIR$/inventa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Producto/inventa.Producto.iml" filepath="$PROJECT_DIR$/Producto/inventa.Producto.iml" />
       <module fileurl="file://$PROJECT_DIR$/AppShell/inventa.appshell.iml" filepath="$PROJECT_DIR$/AppShell/inventa.appshell.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common-Core/inventa.common-core.iml" filepath="$PROJECT_DIR$/Common-Core/inventa.common-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" filepath="$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" />

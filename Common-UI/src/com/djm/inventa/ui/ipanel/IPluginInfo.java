@@ -1,5 +1,6 @@
 package com.djm.inventa.ui.ipanel;
 
+import javax.swing.ImageIcon;
 import java.util.List;
 
 public interface IPluginInfo {
@@ -8,7 +9,13 @@ public interface IPluginInfo {
     String getDescripcion();
     String getVersion();
     String getAutor();
-    String getIdDundle();
+    String getIdDundle();//El prefijo que tiene el archivo lang
+    Integer getMenuOrden();//Orden en lo que aparece el menu
+
+    default ImageIcon getIcono() {
+        return null;
+    }
+
 
     void init();    // se llama al cargar el plugin
     void start();   // se llama al activar el plugin

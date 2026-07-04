@@ -12,6 +12,7 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ServiceLoader;
 
@@ -20,6 +21,7 @@ public class ModuleLoader {
     private static IUIManager uiManager;
     private static MenuBuilder menuBuilder;
     private static List<IPluginInfo> plugins = new ArrayList<>();
+    private static List<MenuItem> menuContributions = new ArrayList<>();
 
     // -------------------------------------------------------
     // Entrada principal
@@ -35,6 +37,7 @@ public class ModuleLoader {
             return;
         }
 
+        //Obtenemos la lista de los jar que se encuentra en extension
         File[] jars = directorio.listFiles((dir, name) ->
                 name.toLowerCase().endsWith(".jar"));
 
@@ -50,7 +53,13 @@ public class ModuleLoader {
             cargarJar(jar);
         }
 
+        //Cargar el menu
+        menuContributions.stream().sorted(Comparator.comparing(MenuItem::orden)).
+                forEach(m -> registrarEnMenu(m.menuContribution()));
+
+
         menuBuilder.buildMenus();
+
     }
 
     // -------------------------------------------------------
@@ -71,7 +80,6 @@ public class ModuleLoader {
             ServiceLoader<IPluginInfo> loader = ServiceLoader.load(IPluginInfo.class, classLoader);
 
             for (IPluginInfo plugin : loader) {
-
                 //guardar plugin
                 plugins.add(plugin);
 
@@ -84,15 +92,13 @@ public class ModuleLoader {
 
                 // 3. Agregar al menú
                 for (IMenuContribution menu : plugin.getMenus()) {
-                    registrarEnMenu(menu);
+                    menuContributions.add(new MenuItem(menu, plugin.getMenuOrden()));
                 }
 
-                //System.out.println("[PluginLoader] Plugin cargado: "+ plugin.getNombre() + " v" + plugin.getVersion());
             }
 
         } catch (Exception e) {
-            System.err.println("[PluginLoader] Error cargando "
-                    + jar.getName() + ": " + e.getMessage());
+            System.err.println("[PluginLoader] Error cargando "+ jar.getName() + ": " + e.getMessage());
         }
     }
 
@@ -101,18 +107,14 @@ public class ModuleLoader {
     // -------------------------------------------------------
     private static void registrarEnMenu(IMenuContribution menuContribution) {
 
-        JMenuItem menuItem = new JMenuItem(menuContribution.getMenuLabel());
-
-        if (menuContribution.getMenuIcono() != null) {
-            menuItem.setIcon(menuContribution.getMenuIcono());
-        }
+        JMenuItem menuItem = menuContribution.getMenu();
 
         // Delegar al plugin (forma PRO)
         menuItem.addActionListener(e -> {
             menuContribution.onClick(uiManager);
         });
 
-        menuBuilder.addMenu(menuContribution.getMenuGrupo(), menuItem, menuContribution.getMenuOrden());
+        menuBuilder.addMenu(menuContribution.getMenuGrupo(), menuItem, menuContribution.getMenuOrden(), menuContribution.getNuevoGrupo());
     }
 
     /*// Mostrar panel del plugin en la ventana principal

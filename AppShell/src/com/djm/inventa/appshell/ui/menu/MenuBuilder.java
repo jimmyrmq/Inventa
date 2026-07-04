@@ -32,14 +32,14 @@ public class MenuBuilder {
         menuBar.add(new UsuarioButton());
     }
 
-    public void addMenu(String grupo, JMenuItem menuItem, int orden) {
+    public void addMenu(String grupo, JMenuItem menuItem, int orden, boolean nuevoGrupo) {
 
         if (grupo == null || grupo.isEmpty()) {
             grupo = "Otros";
         }
 
         grupos.computeIfAbsent(grupo, g -> new ArrayList<>())
-                .add(new MenuEntry(menuItem, orden));
+                .add(new MenuEntry(menuItem, orden, nuevoGrupo));
     }
 
 
@@ -53,7 +53,11 @@ public class MenuBuilder {
 
             entry.getValue().stream()
                     .sorted(Comparator.comparingInt(m -> m.orden))
-                    .forEach(m -> menu.add(m.item));
+                    .forEach(m -> {
+                        if(m.nuevoGrupo)
+                            menu.addSeparator();
+
+                        menu.add(m.item);});
 
             menuBar.add(menu);
         }
@@ -118,14 +122,10 @@ public class MenuBuilder {
         return menuBar;
     }
 
-    private static class MenuEntry {
-
-        JMenuItem item;
-        int orden;
-
-        MenuEntry(JMenuItem item, int orden) {
-            this.item = item;
-            this.orden = orden;
-        }
+    private record MenuEntry(
+        JMenuItem item,
+        int orden,
+        boolean nuevoGrupo
+    ) {
     }
 }

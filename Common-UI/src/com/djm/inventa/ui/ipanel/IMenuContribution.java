@@ -1,13 +1,15 @@
 package com.djm.inventa.ui.ipanel;
 
-import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
 
 public interface IMenuContribution {
-
+    JMenuItem getMenu();
     String getMenuGrupo();
-    String getMenuLabel();
     int getMenuOrden();
-    ImageIcon getMenuIcono();
+
+    default boolean getNuevoGrupo() {
+        return false;
+    }
 
     void onClick(IUIManager uiManager);
 }
