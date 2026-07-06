@@ -3,18 +3,17 @@ package com.djm.inventa.ui;
 import com.djm.inventa.core.PropiedadesSistema;
 import com.djm.ui.component.ColorFilter;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.net.URL;
 import java.util.Objects;
 
 public class IconManager {
 
-    private IconManager() {
-    }
+    private IconManager() { }
 
     public static ImageIcon get16(String name) {
-        return get("/icon/16/"+name+".png");
+        return get("/icon/16/" +name+".png");
     }
 
     public static ImageIcon get20(String name) {
@@ -42,13 +41,15 @@ public class IconManager {
             return null;
 
         Color colButton = PropiedadesSistema.getColor("Label.colorDarker");
-        if(PropiedadesLookAndFeel.getPropiedad("Apariencia.lookandfeel").equals("LIGTH")){
+        if("LIGTH".equals(PropiedadesLookAndFeel.getPropiedad("Apariencia.lookandfeel"))){
             colButton = PropiedadesSistema.getColor("Button.color");// UIManager.getColor("TextField.foreground").brighter();;
         }
 
-        ImageIcon ii = new ImageIcon(path);
-        ImageIcon icon = new ImageIcon(ColorFilter.filterImage(ii, colButton, true));
+        if(colButton == null)
+            colButton = Color.BLACK;
 
-        return icon;
+        ImageIcon ii = new ImageIcon(ColorFilter.filterImage(new ImageIcon(path), colButton, true));
+
+        return ii;
     }
 }

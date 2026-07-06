@@ -25,8 +25,6 @@ public class ApplicationInitializer {
         // 1. Global del AppShell (este sí puede ir primero)
         I18nManager.getInstance().registerGlobal(ApplicationInitializer.class.getClassLoader());
 
-        //Registro conexion a l DB
-        AppContext.getInstance().setPropiedad("db.service", new DatabaseServiceImpl());
 
         // 2. Carpetas y contexto
         fileSystem = new AppFileSystem(new DataSoftware());
@@ -144,7 +142,15 @@ public class ApplicationInitializer {
 
 
     private void initializeDatabase() {
-        System.out.println("[Bootstrap] Primera ejecución, inicializando BD...");
-        // lógica de creación de BD
+        System.out.println("[Bootstrap] Inicializando BD...");
+
+        //Establecer conxion con la BD
+        DatabaseServiceImpl db = new DatabaseServiceImpl();
+        //Establer correcion
+        db.connect();
+        if(db.isConnected()) {
+            AppContext.getInstance().setPropiedad("db.service", db);
+        }else
+            System.exit(1);
     }
 }

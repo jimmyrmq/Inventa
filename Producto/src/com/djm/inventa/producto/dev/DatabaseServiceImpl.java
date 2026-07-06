@@ -1,6 +1,7 @@
-package com.djm.inventa.appshell.startup;
+package com.djm.inventa.producto.dev;
 
 import com.djm.inventa.core.DatabaseService;
+import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.ui.component.OptionPane;
 
 import java.sql.Connection;
@@ -28,11 +29,9 @@ public class DatabaseServiceImpl implements DatabaseService {
                     "root"
             );
 
-            System.out.println("Conexión exitosa");
-
         } catch (SQLException e) {
             System.out.println("Error al conectar: " + e.getMessage());
-            OptionPane.error(CONSTANTS.LANG.getValue("mensaje.error.conexionbd"));
+            OptionPane.error(CONSTANTS.i18n.get("mensaje.error.conexionbd"));
         }
     }
 
@@ -61,5 +60,4 @@ public class DatabaseServiceImpl implements DatabaseService {
             }
         }
     }
-
 }

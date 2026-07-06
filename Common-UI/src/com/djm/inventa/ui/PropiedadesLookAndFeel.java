@@ -15,6 +15,10 @@ public class PropiedadesLookAndFeel {
     }
 
     public static String getPropiedad(String clave){
+        if(clave == null){
+            return null;
+        }
+
         String value = null;
         if(propiedades != null) {
             Object obj = propiedades.get(clave);

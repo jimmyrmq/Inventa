@@ -77,10 +77,14 @@ public class InfoPluginOC implements IPluginInfo {
                         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_DOWN_MASK));
                         return menuItem;
                     }
+
+                    @Override
                     public String getMenuGrupo() { return "Documentos"; }
 
-
+                    @Override
                     public int getMenuOrden() { return 1; }
+
+                    @Override
                     public void onClick(IUIManager uiManager) {
                         uiManager.showView(new PanelProveedor(),InfoPluginOC.this);
                     }
@@ -91,10 +95,12 @@ public class InfoPluginOC implements IPluginInfo {
                     @Override
                     public JMenuItem getMenu() {
                         JMenuItem menuItem = new JMenuItem("Proveedor");
-                        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
                         return menuItem;
                     }
+                    @Override
                     public String getMenuGrupo() { return "Documentos"; }
+
+                    @Override
                     public int getMenuOrden() { return 2; }
 
                     @Override
@@ -102,6 +108,7 @@ public class InfoPluginOC implements IPluginInfo {
                         return true;
                     }
 
+                    @Override
                     public void onClick(IUIManager uiManager) {
                         uiManager.showView(new PanelProveedor(),InfoPluginOC.this);
                     }

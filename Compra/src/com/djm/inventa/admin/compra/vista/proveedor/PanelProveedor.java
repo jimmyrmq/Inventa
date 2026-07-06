@@ -317,8 +317,6 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         if (iuiManager != null) {
             iuiManager.closeView(getId());
         }
-
-
     }
 
     public void onGuardar() {

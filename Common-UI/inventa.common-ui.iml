@@ -8,20 +8,15 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="inventa.common-core" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../lib/djm-api.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lib/flatlaf-3.6.2.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lib/slf4j-api-2.0.16.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lib/logback-core-1.5.6.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lib/sqlite-jdbc-3.46.0.1.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lib/logback-classic-1.5.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="inventa.common-core" />
   </component>
 </module>

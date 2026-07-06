@@ -1,4 +1,7 @@
-package com.djm.inventa.modelo;
+package com.djm.inventa.producto.modelo;
+
+import com.djm.inventa.modelo.Categoria;
+import com.djm.inventa.modelo.Marca;
 
 import java.util.Date;
 
