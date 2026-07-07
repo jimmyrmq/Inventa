@@ -1,9 +1,12 @@
 package com.djm.inventa.producto.dev;
 
+import com.djm.common.GlobalFrame;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.i18n.I18nManager;
-import com.djm.inventa.util.TableSQL;
+import com.djm.inventa.producto.core.ConexionDB;
+import com.djm.inventa.producto.modelo.Producto;
 import com.djm.inventa.producto.vista.producto.PanelManagerProducto;
+import com.djm.inventa.producto.vista.producto.ProductoListener;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.util.LayoutPanel;
 
@@ -15,11 +18,17 @@ import java.awt.GridBagLayout;
 
 public class FrameRunDev {
     public FrameRunDev(){
-
-        IPanelDataAction managerProducto = new PanelManagerProducto();
-        conexionDB();
-
+        AppContext.getInstance().setPropiedad("database.type", "sqlite");
         I18nManager.initForDev("producto", "producto");
+
+        PanelManagerProducto managerProducto = new PanelManagerProducto();
+
+        ProductoListener productoListener = new ProductoListener( managerProducto);
+        managerProducto.setActionListener(productoListener);
+
+        //Conexion con la BD
+        ConexionDB.establecerConexion();
+        ConexionDB.initDBDev();
 
         JFrame frame = new JFrame(managerProducto.getTitle());
 
@@ -33,24 +42,11 @@ public class FrameRunDev {
         //frame.setPreferredSize(dimension);
         //frame.setSize(dimension);
         frame.pack();
-        frame.setDefaultLookAndFeelDecorated(true);
         //frame.setBackground(new Color(158,162,144));
         frame.setLocationRelativeTo(null);
+
+        GlobalFrame.getInstance().setFrame(frame);
+
         frame.setVisible(true);
-    }
-
-    private void conexionDB() {
-        //Establecer conxion con la BD
-        DatabaseServiceImpl db = new DatabaseServiceImpl();
-        //Establer correcion
-        db.connect();
-        if(db.isConnected()) {
-            AppContext.getInstance().setPropiedad("db.service", db);
-            TableSQL tableSQL = new TableSQL("inventa","mysql");
-            String[] tables = {"Categoria","Marca","Proveedor","Producto"};
-            tableSQL.checkTable(tables);
-        }else
-            System.exit(1);
-
     }
 }

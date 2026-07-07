@@ -13,5 +13,4 @@ module com.djm.inventa.appshell {
 
     uses IPluginInfo;
 
-    opens lang;
 }

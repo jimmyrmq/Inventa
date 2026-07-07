@@ -1,6 +1,7 @@
 package com.djm.inventa.admin.compra.core;
 
 import com.djm.inventa.admin.compra.vista.proveedor.PanelProveedor;
+import com.djm.inventa.admin.compra.vista.proveedor.ProveedorListener;
 import com.djm.inventa.ui.ipanel.IMenuContribution;
 import com.djm.inventa.ui.ipanel.IPluginInfo;
 import com.djm.inventa.ui.ipanel.IUIManager;
@@ -47,15 +48,9 @@ public class InfoPluginOC implements IPluginInfo {
         return 2;
     }
 
-
-    @Override
-    public void init() {
-        System.out.println("Al cargar el plugin OC");
-    }
-
     @Override
     public void start() {
-        System.out.println("Al iniciar el plugin OC");
+        System.out.println("Al cargar el plugin OC");
     }
 
     @Override
@@ -110,7 +105,12 @@ public class InfoPluginOC implements IPluginInfo {
 
                     @Override
                     public void onClick(IUIManager uiManager) {
-                        uiManager.showView(new PanelProveedor(),InfoPluginOC.this);
+                        PanelProveedor panelProveedor = new PanelProveedor();
+
+                        ProveedorListener listener = new ProveedorListener(panelProveedor);
+                        panelProveedor.setActionListener(listener);
+
+                        uiManager.showView(panelProveedor,InfoPluginOC.this);
                     }
                 }
         );

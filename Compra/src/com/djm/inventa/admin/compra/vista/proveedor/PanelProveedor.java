@@ -5,7 +5,6 @@ import com.djm.inventa.admin.compra.modelo.Proveedor;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
-import com.djm.inventa.ui.ipanel.IUIManager;
 import com.djm.inventa.ui.ipanel.TipoVista;
 import com.djm.ui.component.OptionPane;
 import com.djm.util.LayoutPanel;
@@ -25,7 +24,6 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
     private JTextArea tNota;
     private JButton bEliminar, bGuardar, bCancelar;
     private PanelTableProveedor panelTableProveedor;
-    private IUIManager iuiManager;
     private boolean listenersRegistrados = false;
 
     public PanelProveedor() {
@@ -55,15 +53,15 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
-        JLabel lCodigo = new JLabel(CONSTANTS.i18n.get("label.codigo", "Codigo"));
-        JLabel lNombre = new JLabel(CONSTANTS.i18n.get("proveedor.label.razon_social", "Razón Social"));
-        JLabel lContacto = new JLabel(CONSTANTS.i18n.get("proveedor.label.contacto", "Nombre de Contacto"));
-        JLabel lDireccion = new JLabel(CONSTANTS.i18n.get("label.direccion", "Dirección"));
-        JLabel lTelefono1 = new JLabel(CONSTANTS.i18n.get("proveedor.label.telefono1", "Teléfono 1"));
-        JLabel lTelefono2 = new JLabel(CONSTANTS.i18n.get("proveedor.label.telefono2", "Teléfono 2"));
-        JLabel lCorreo = new JLabel(CONSTANTS.i18n.get("label.correo", "Correo"));
-        JLabel lFecha = new JLabel(CONSTANTS.i18n.get("label.fecha", "Fecha"));
-        JLabel lNota = new JLabel(CONSTANTS.i18n.get("label.nota", "Nota"));
+        JLabel lCodigo = new JLabel(CONSTANTS.i18n.getValue("label.codigo", "Codigo"));
+        JLabel lNombre = new JLabel(CONSTANTS.i18n.getValue("proveedor.label.razon_social", "Razón Social"));
+        JLabel lContacto = new JLabel(CONSTANTS.i18n.getValue("proveedor.label.contacto", "Nombre de Contacto"));
+        JLabel lDireccion = new JLabel(CONSTANTS.i18n.getValue("label.direccion", "Dirección"));
+        JLabel lTelefono1 = new JLabel(CONSTANTS.i18n.getValue("proveedor.label.telefono1", "Teléfono 1"));
+        JLabel lTelefono2 = new JLabel(CONSTANTS.i18n.getValue("proveedor.label.telefono2", "Teléfono 2"));
+        JLabel lCorreo = new JLabel(CONSTANTS.i18n.getValue("label.correo", "Correo"));
+        JLabel lFecha = new JLabel(CONSTANTS.i18n.getValue("label.fecha", "Fecha"));
+        JLabel lNota = new JLabel(CONSTANTS.i18n.getValue("label.nota", "Nota"));
 
         tCodigo = new JTextField(18);
         tNombre = new JTextField(25);
@@ -123,9 +121,9 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         //iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,color3,false));
         //icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,color3,false));
 
-        bEliminar = new JButton(CONSTANTS.i18n.get("button.eliminar"));//, iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
-        bGuardar = new JButton(CONSTANTS.i18n.get("button.guardar"));//, iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
-        bCancelar = new JButton(CONSTANTS.i18n.get("button.cancelar"));//, icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
+        bEliminar = new JButton(CONSTANTS.i18n.getValue("button.eliminar"));//, iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
+        bGuardar = new JButton(CONSTANTS.i18n.getValue("button.guardar"));//, iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
+        bCancelar = new JButton(CONSTANTS.i18n.getValue("button.cancelar"));//, icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
         //bGuardar.setForeground(new Color(66, 89, 147));
 
         bEliminar.setActionCommand("BUTTON_ELIMINAR");
@@ -163,7 +161,7 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
 
 
     @Override
-    public void actionEsc() {
+    public void addButtonEsc() {
         onCancelar();
     }
 
@@ -205,18 +203,12 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         super.insertData(null);
     }
 
-
     @Override
-    public void setUIManager(IUIManager uiManager) {
-
-        this.iuiManager = uiManager;
-
+    public void setActionListener(ActionListener actionListener) {
         if (listenersRegistrados) return;
 
-        ActionListener al = new ProveedorListener(this);
-
-        bCancelar.addActionListener(al);
-        bGuardar.addActionListener(al);
+        bCancelar.addActionListener(actionListener);
+        bGuardar.addActionListener(actionListener);
 
         listenersRegistrados = true;
 
@@ -307,16 +299,16 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
     public void onCancelar() {
 
         if (isData()) {
-            int n0 = OptionPane.questionYesOrKey( CONSTANTS.i18n.get("proveedor.mensaje.confirmar_cancelar"));
+            int n0 = OptionPane.questionYesOrKey( CONSTANTS.i18n.getValue("proveedor.mensaje.confirmar_cancelar"));
             if (n0 == OptionPane.OK) {
                 clearForm();
             }
             return;
         }
 
-        if (iuiManager != null) {
+        /*if (iuiManager != null) {
             iuiManager.closeView(getId());
-        }
+        }*/
     }
 
     public void onGuardar() {

@@ -1,6 +1,7 @@
 package com.djm.inventa.producto.vista.producto;
 
 import com.djm.inventa.core.AppContext;
+import com.djm.inventa.core.PropiedadesSistema;
 import com.djm.inventa.producto.modelo.Producto;
 import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.inventa.producto.vista.stock.StockRapidoGUI;
@@ -16,25 +17,28 @@ public class ProductoListener implements ActionListener {
     private PanelManagerProducto panelProducto;
     private IUIManager iuiManager;
 
-    public ProductoListener(IUIManager iuiManager,
-            PanelManagerProducto iPanel){
-        this.iuiManager = iuiManager;
-        panelProducto = iPanel;////Global.panelDesktop.getIPanel(ID);
+    public ProductoListener(PanelManagerProducto iPanel){
+        IUIManager value = (IUIManager) PropiedadesSistema.getValue("iuimagener");
+        this.iuiManager =  (value instanceof IUIManager s) ? s : null;
+
+        panelProducto = iPanel;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
         if("BUTTON_CANCELAR".equals(action)){
-                System.out.println(ID);
             if(panelProducto != null) {
-                if (panelProducto.isData()) {
-                    int n0 = OptionPane.questionYesOrKey( CONSTANTS.i18n.get("producto.mensaje.confirmar_cancelar"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
+                panelProducto.onCancelar();
+                if (panelProducto.hasFormData()) {
+                    int n0 = OptionPane.questionYesOrKey( CONSTANTS.i18n.getValue("producto.mensaje.confirmar_cancelar"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
                     if(n0 == OptionPane.OK) {
                         panelProducto.clearForm();
                     }
-                } else
+                }
+                else if (iuiManager != null) {
                     iuiManager.closeView(ID);
+                }
             }
         }
         else if("GUARDAR_PRODUCTO".equals(action)){
@@ -54,7 +58,7 @@ public class ProductoListener implements ActionListener {
                 panelProducto.clearForm();
             }
             else {
-                OptionPane.information( CONSTANTS.i18n.get("producto.mensaje.campos_incompletos"));
+                OptionPane.information( CONSTANTS.i18n.getValue("producto.mensaje.campos_incompletos"));
             }
         }
         else if("BUTTON_ELIMINAR".equals(action)){

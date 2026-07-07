@@ -12,6 +12,6 @@ module com.djm.inventa.ordencompra {
     provides IPluginInfo
             with InfoPluginOC;
 
-    opens lang; // abre el paquete de resources al module system
+    opens lang_dev; // abre el paquete de resources al module system
 
 }

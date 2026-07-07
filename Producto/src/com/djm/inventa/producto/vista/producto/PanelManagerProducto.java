@@ -4,14 +4,13 @@ import com.djm.inventa.core.AppContext;
 import com.djm.inventa.producto.modelo.Producto;
 import com.djm.inventa.ui.IconManager;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
-import com.djm.inventa.ui.ipanel.IUIManager;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import java.awt.event.ActionListener;
 
 public class PanelManagerProducto extends IPanelDataAction<Producto> {
     private PanelProducto  panelProducto;
-    private IUIManager iuiManager;
 
     public PanelManagerProducto() {
         this.panelProducto = new PanelProducto();
@@ -27,8 +26,8 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
     }
 
     @Override
-    public void actionEsc() {
-        panelProducto.actionEsc();
+    public void addButtonEsc() {
+        panelProducto.addButtonEsc();
     }
 
     @Override
@@ -38,7 +37,7 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
 
     @Override
     public String getId() {
-        final String id = "Producto_V1";
+        final String id = "ID.Producto.Registrar";
         AppContext.getInstance().setPropiedad("Producto.ID", id);
         return id;
     }
@@ -76,16 +75,13 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
     /**
      * Verifica si hay datos en el panel de la UI
      */
-    public boolean hayDatosEnFormulario() {
+    public boolean hasFormData() {
         return super.isData() || panelProducto.isData();
     }
 
     @Override
-    public void setUIManager(IUIManager uiManager) {
-        this.iuiManager = uiManager;
-        //Crear la accion aqui
-        ProductoListener productoListener = new ProductoListener(iuiManager, this);
-        panelProducto.setActionListener(productoListener);
+    public void setActionListener(ActionListener actionListener) {
+        panelProducto.setActionListener(actionListener);
     }
 
     public void setCantidadDisponible(int cantidadDisponible, boolean agregar) {

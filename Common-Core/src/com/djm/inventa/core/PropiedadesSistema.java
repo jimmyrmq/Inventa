@@ -49,6 +49,11 @@ public class PropiedadesSistema {
         return Optional.ofNullable(propiedades.get(clave));
     }
 
+    // Devuelve Optional para que el caller decida qué hacer si no existe
+    public static Object getValue(String clave) {
+        return propiedades.get(clave);
+    }
+
 
     /*public static AparienciaLookFeel getAparienciaLookFeel(Object key) {
         Object value = propiedades.get(key);

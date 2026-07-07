@@ -17,14 +17,14 @@ public abstract class IAction {
      * Y tiene que estar la accion en Listner del boton, es decir, el boton debe tener un actionCommand y
      * el listener debe tener la accion correspondiente a ese actionCommand.
      */
-    public abstract void actionEsc();
+    public abstract void addButtonEsc();
 
     public void cerrarEsc(JButton button){
 
         KeyStroke SR= KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0,false);
         Action action =new AbstractAction(){
             public void actionPerformed(ActionEvent e) {
-                actionEsc();
+                addButtonEsc();
             }
         };
         InputMap inputMap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);

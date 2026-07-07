@@ -28,6 +28,35 @@ public final class I18nManager {
         }
         return INSTANCE;
     }
+    // En I18nManager.java
+    public static void initForDev(String moduleId, String idBundle) {
+        ClassLoader classLoader = I18nManager.class.getClassLoader();
+
+        try {
+            // Global
+            URL globalRes = classLoader.getResource("lang/global_es.properties");
+            if (globalRes != null) {
+                URLClassLoader globalLoader = new URLClassLoader(
+                        new URL[]{ resolveJarUrl(globalRes, "lang/global_es.properties") }, classLoader
+                );
+                getInstance().registerGlobal(globalLoader);
+            }
+
+            // Módulo actual
+            URL moduleRes = classLoader.getResource("lang_dev/" + idBundle + "_es.properties");
+            if (moduleRes != null) {
+                URLClassLoader moduleLoader = new URLClassLoader(
+                        new URL[]{ resolveJarUrl(moduleRes, "lang_dev/" + idBundle + "_es.properties") }, classLoader
+                );
+                getInstance().registerModuleDev(moduleId, idBundle, moduleLoader);
+            }
+
+            System.out.println("[I18n-DEV] Inicializado para módulo: " + moduleId);
+
+        } catch (Exception e) {
+            System.err.println("[I18n-DEV] Error: " + e.getMessage());
+        }
+    }
 
     // registerModule carga en messages
     public void registerModule(String moduleId, String idBundle, ClassLoader classLoader) {
@@ -62,8 +91,7 @@ public final class I18nManager {
         }
     }
 
-    // Busca en módulo → si no está, busca en global
-    public String get(String key) {
+    private String get(String key){
         String value = messages.get(key);
         if (value != null) return value;
 
@@ -71,42 +99,58 @@ public final class I18nManager {
         if (value != null) return value;
 
         System.err.printf("[I18n] ⚠ Clave no encontrada: '%s'%n", key);
+        return null;
+    }
+
+    // Busca en módulo → si no está, busca en global
+    public String getValue(String key) {
+        String value = get(key);
+
+        if(value != null)
+            return value;
+
         return "[ null: " + key + "]";
     }
 
-    public String get(String key, Object... args) {
-        return MessageFormat.format(get(key), args);
+    public String getValue(String key, String valueDefault) {
+        String value = get(key);
+
+        if(value != null)
+            return value;
+
+        return valueDefault;
     }
 
-    // En I18nManager.java
-    public static void initForDev(String moduleId, String bundleId) {
-        try {
-            ClassLoader cl = I18nManager.class.getClassLoader();
+    public String getLabel(String key) {
+        String value = get(key);
 
-            // Global
-            URL globalRes = cl.getResource("lang/global_es.properties");
-            if (globalRes != null) {
-                URLClassLoader globalLoader = new URLClassLoader(
-                        new URL[]{ resolveJarUrl(globalRes, "lang/global_es.properties") }, cl
-                );
-                getInstance().registerGlobal(globalLoader);
-            }
+        if(value != null)
+            return value+":";
 
-            // Módulo actual
-            URL moduleRes = cl.getResource("lang_dev/" + bundleId + "_es.properties");
-            if (moduleRes != null) {
-                URLClassLoader moduleLoader = new URLClassLoader(
-                        new URL[]{ resolveJarUrl(moduleRes, "lang_dev/" + bundleId + "_es.properties") }, cl
-                );
-                getInstance().registerModuleDev(moduleId, bundleId, moduleLoader);
-            }
-
-            System.out.println("[I18n-DEV] Inicializado para módulo: " + moduleId);
-
-        } catch (Exception e) {
-            System.err.println("[I18n-DEV] Error: " + e.getMessage());
-        }
+        return "[ null: " + key + "]";
     }
+
+    public String getLabel(String key, String valueDefault) {
+        String value = get(key);
+
+        if(value != null)
+            return value+":";
+
+        return valueDefault+":";
+    }
+
+    /**
+     *Uso ejemplo de getValueMsgFormat
+     *String resultado = MessageFormat.format( "Hola {0}, tienes {1} mensajes","Juan",5);
+     *System.out.println(resultado)
+
+     *Resultado:
+     *Hola Juan, tienes 5 mensajes
+    **/
+    public String getValueMsgFormat(String key, Object... args) {
+        return MessageFormat.format(getValue(key), args);
+    }
+
 
     private static URL resolveJarUrl(URL resource, String path) throws Exception {
         String full = resource.toString();

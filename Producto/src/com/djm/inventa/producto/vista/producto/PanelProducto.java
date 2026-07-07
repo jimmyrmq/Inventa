@@ -4,6 +4,7 @@ package com.djm.inventa.producto.vista.producto;
 import com.djm.common.GlobalFrame;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.producto.core.CONSTANTS;
+import com.djm.inventa.producto.persistence.ProductoDB;
 import com.djm.inventa.ui.IconManager;
 import com.djm.inventa.ui.util.BorderUtil;
 import com.djm.inventa.ui.PropiedadesLookAndFeel;
@@ -17,6 +18,7 @@ import com.djm.inventa.ui.util.InfoListener;
 import com.djm.inventa.util.ListenerMoneda;
 import com.djm.inventa.util.LoggerApp;
 import com.djm.ui.component.Button;
+import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.OptionPane;
 import com.djm.ui.component.ToggleButton;
 import com.djm.util.FormatNumber;
@@ -48,6 +50,7 @@ import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
@@ -76,7 +79,7 @@ public class PanelProducto{
     private Color color2 = UIManager.getColor("TextField.background");
     private Color color3 = UIManager.getColor("TextField.foreground");
     private JPanel pDetalles, pPrecio, pStock;
-    private ImageIcon iDel;//iok, icancel;
+    private ImageIcon iDel, iok, icancel;;//
     //private Producto producto = null;
     private JPopupMenu popupMenu;
     private JMenuItem agragrStock, editarStock;
@@ -91,23 +94,26 @@ public class PanelProducto{
                 color3 = UIManager.getColor("TextField.foreground");
 
                 if(pDetalles != null)
-                    pDetalles.setBorder(new BorderUtil(CONSTANTS.i18n.get("producto.border.title.detalle")));
+                    pDetalles.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.detalle")));
 
                 if(pStock != null)
-                    pStock.setBorder(new BorderUtil(CONSTANTS.i18n.get("producto.border.title.stock")));
+                    pStock.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.stock")));
 
                 if(pPrecio != null)
-                    pPrecio.setBorder(new BorderUtil(CONSTANTS.i18n.get("producto.border.title.precio")));
+                    pPrecio.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.precio")));
 
                 Color colButton = AppContext.getInstance().getColor("Label.colorDarker");
-                if("LIGTH".equals(PropiedadesLookAndFeel.getPropiedad("Apariencia.lookandfeel"))){
+
+                if(colButton == null || "LIGTH".equals(PropiedadesLookAndFeel.getPropiedad("Apariencia.lookandfeel"))){
                     colButton = color3;
                 }
+
 
                 if(bCodigoBarra != null)
                     bCodigoBarra.setColorFilter(colButton);
 
-                iDel = IconManager.getIcon(getClass().getResource("/icon/16/delete2.png"));//new ImageIcon(ColorFilter.filterImage( IconManager.get("16/delete2.png") ,colButton,false));
+                //iDel = IconManager.getIcon(getClass().getResource("/icon/16/delete2.png"));//new ImageIcon(ColorFilter.filterImage( IconManager.get("16/delete2.png") ,colButton,false));
+                iDel = new ImageIcon(ColorFilter.filterImage( IconManager.get16("delete2") ,colButton,false));
                 if(bEliminar != null){
                     bEliminar.setIcon(iDel);
                     bEliminar.updateUI();
@@ -119,8 +125,8 @@ public class PanelProducto{
                     editarStock.updateUI();
                 }
 
-                /*iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,colButton,false));
-                icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,colButton,false));
+                iok =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("ok16"),colButton,false));
+                icancel =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("closed"),colButton,false));
 
                 if(bCancelar != null) {
                     bCancelar.setIcon(icancel);
@@ -130,7 +136,7 @@ public class PanelProducto{
                 if(bGuardar != null) {
                     bGuardar.setIcon(iok);
                     bGuardar.updateUI();
-                }*/
+                }
 
                 revalidate();
                 repaint();
@@ -147,7 +153,7 @@ public class PanelProducto{
 
         //JPanel panel = new JPanel(new GridBagLayout());
         //panel.setOpaque(false);
-        bEliminar = new JButton(CONSTANTS.i18n.get("button.eliminar"),iDel);
+        bEliminar = new JButton(CONSTANTS.i18n.getValue("button.eliminar"),iDel);
         bEliminar.setEnabled(false);
         bEliminar.setActionCommand("BUTTON_ELIMINAR");
 
@@ -162,11 +168,14 @@ public class PanelProducto{
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
+        iok =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("ok16"),color3,false));
+        icancel =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("closed"),color3,false));
+
         //iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,color3,false));
         //icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,color3,false));
 
-        bGuardar = new JButton(CONSTANTS.i18n.get("button.guardar"));//, iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
-        bCancelar = new JButton(CONSTANTS.i18n.get("button.cancelar"));//, icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
+        bGuardar = new JButton(CONSTANTS.i18n.getValue("button.guardar"), iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
+        bCancelar = new JButton(CONSTANTS.i18n.getValue("button.cancelar"), icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
         //bGuardar.setForeground(new Color(66, 89, 147));
 
         bCancelar.setActionCommand("BUTTON_CANCELAR");
@@ -189,41 +198,35 @@ public class PanelProducto{
     private JPanel panelDatelle() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
-        panel.setBorder(new BorderUtil(CONSTANTS.i18n.get("producto.border.title.detalle")));
+        panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.detalle")));
 
-        JLabel lCodigo = new JLabel(CONSTANTS.i18n.get("label.codigo"));
-        JLabel lCodigoBarra = new JLabel(CONSTANTS.i18n.get("producto.label.codigobarra"));
-        JLabel lNombre = new JLabel(CONSTANTS.i18n.get("label.nombre"));
-        JLabel lUnidad= new JLabel(CONSTANTS.i18n.get("producto.label.unidad"));
-        JLabel lModelo= new JLabel(CONSTANTS.i18n.get("producto.label.modelo"));
-        JLabel lSerie= new JLabel(CONSTANTS.i18n.get("producto.label.serie"));
-        JLabel lMarca = new JLabel(CONSTANTS.i18n.get("producto.label.marca"));
-        JLabel lCategoria = new JLabel(CONSTANTS.i18n.get("producto.label.categoria"));
-        JLabel lNota= new JLabel(CONSTANTS.i18n.get("producto.label.nota"));
+        JLabel lCodigo = new JLabel(CONSTANTS.i18n.getLabel("label.codigo"));
+        JLabel lCodigoBarra = new JLabel(CONSTANTS.i18n.getLabel("producto.label.codigobarra"));
+        JLabel lNombre = new JLabel(CONSTANTS.i18n.getLabel("label.nombre"));
+        JLabel lUnidad= new JLabel(CONSTANTS.i18n.getLabel("producto.label.unidad"));
+        JLabel lModelo= new JLabel(CONSTANTS.i18n.getLabel("producto.label.modelo"));
+        JLabel lSerie= new JLabel(CONSTANTS.i18n.getLabel("producto.label.serie"));
+        JLabel lMarca = new JLabel(CONSTANTS.i18n.getLabel("producto.label.marca"));
+        JLabel lCategoria = new JLabel(CONSTANTS.i18n.getLabel("producto.label.categoria"));
+        JLabel lNota= new JLabel(CONSTANTS.i18n.getLabel("producto.label.nota"));
 
-        bBuscar = new Button(IconManager.getIcon(getClass().getResource("/icon/20/ok.png")),true);
+        bBuscar = new Button(IconManager.get20("ok"),true);
+
         bBuscar.setPaintBack(false);
         bBuscar.setColorFilter(greenButton);
         bBuscar.setActionCommand("BUSCAR_PRODUCTO");
         //bBuscar.addActionListener(this);
         bBuscar.setButtonIcon(true);
-        bBuscar.setToolTipText(CONSTANTS.i18n.get("producto.button.buscar"));
+        bBuscar.setToolTipText(CONSTANTS.i18n.getValue("producto.button.buscar"));
         bBuscar.setFocusable(false);
         bBuscar.setColorBackIn(color1);
         bBuscar.setColorBackSelected(color2);
 
         bCodigoBarra = new ToggleButton(IconManager.getIcon(getClass().getResource("/icons/barcode.png")));
-        bCodigoBarra.setToolTipText(CONSTANTS.i18n.get("producto.inf.buscarporcodbarra"));
+        bCodigoBarra.setToolTipText(CONSTANTS.i18n.getValue("producto.inf.buscarporcodbarra"));
         bCodigoBarra.setColorIn(color2);
         bCodigoBarra.setColorFilter(color3);
         bCodigoBarra.setFocusable(false);
-
-        bCodigoBarra.addActionListener((e)->{
-            boolean edo = bCodigoBarra.isSelected();
-            String value = edo?"producto.inf.buscarporcodbarra":"producto.inf.buscarcodigo";
-            tCodigo.setPlaceHolder(CONSTANTS.i18n.get(value));
-            tCodigo.requestFocus();
-        });
 
         bAddMarca = new Button(IconManager.getIcon(getClass().getResource("/icon/16/add.png")),true);
         bAddMarca.setPaintBack(false);
@@ -232,7 +235,7 @@ public class PanelProducto{
         bAddMarca.setActionCommand("ADD_MARCA_PRODUCTO");
         //bAddMarca.addActionListener(this);
         bAddMarca.setButtonIcon(true);
-        bAddMarca.setToolTipText(CONSTANTS.i18n.get("marca.add"));
+        bAddMarca.setToolTipText(CONSTANTS.i18n.getValue("marca.add"));
         bAddMarca.setFocusable(false);
         bAddMarca.setColorBackIn(color1);
         bAddMarca.setColorBackSelected(color2);
@@ -240,12 +243,13 @@ public class PanelProducto{
         tCodigo = new TextField(20,20);
         tCodigoBarra = new TextField(27,40,true);
         tNombre = new TextField(27,50);
+
         tUnidadMedida = new TextField(5,10);
         tModelo = new TextField(27,20);
         tSerie = new TextField(27,20);
 
-        tCodigo.setToolTipText(CONSTANTS.i18n.get("producto.inf.buscarcodigo"));
-        tCodigo.setPlaceHolder(CONSTANTS.i18n.get("producto.inf.buscarcodigo"));
+        tCodigo.setToolTipText(CONSTANTS.i18n.getValue("producto.inf.buscarcodigo"));
+        tCodigo.setPlaceHolder(CONSTANTS.i18n.getValue("producto.inf.buscarcodigo"));
 
         tCodigo.setInputVerifier(new InputVerifier() {
 
@@ -255,10 +259,6 @@ public class PanelProducto{
                 JTextField txt = (JTextField) input;
 
                 String codigo = txt.getText().trim();
-
-                /*if (codigo.isEmpty()) {
-                    return false;
-                }*/
 
                 if (!codigo.isEmpty())
                     validarDatos(codigo.trim());
@@ -320,11 +320,11 @@ public class PanelProducto{
         cbMarca = new JComboBox<>(dcbMarca);
         cbMarca.setPreferredSize(CONSTANTS.CDDIM);
 
-        disponible = new JCheckBox(CONSTANTS.i18n.get("producto.label.habilitado"));
+        disponible = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.habilitado"));
         disponible.setOpaque(false);
         disponible.setSelected(true);
 
-        noRequiereStock = new JCheckBox(CONSTANTS.i18n.get("producto.label.no_requiere_stock"));
+        noRequiereStock = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.no_requiere_stock"));
         noRequiereStock.setOpaque(false);
         noRequiereStock.setActionCommand("NO_REQUERE_STOCK");
         //noRequiereStock.addActionListener(this);
@@ -361,58 +361,32 @@ public class PanelProducto{
         return panel;
     }
 
-    private void validarDatos(String codigo) {
+    private void actionCodigo() {
+        String codigo = tCodigo.getText().trim();
 
-        if(isDataDB(codigo)){
-            return;
-        }
-
-        if(bCodigoBarra.isSelected()){
-            if(tCodigoBarra.getText().trim().isEmpty()){
-                tCodigoBarra.setText(codigo);
-            }
-            else {
-                if(!codigo.equalsIgnoreCase(tCodigoBarra.getText())){
-                    int n0 = OptionPane.questionYesOrKey(CONSTANTS.i18n.get("producto.mensaje.difcodigo"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
-                    if (n0 == OptionPane.OK) {
-                        tCodigoBarra.setText(codigo);
-                    }
-                }
-            }
-        }
-    }
-
-    private boolean isDataDB(String codigo) {
-
-        ProductoDB productoDB = new ProductoDB();
-
-        if(productoDB.isDataProducto(codigo)){
-            //Cargar los datos
-            return true;
-        }
-
-        return false;
+        if (!codigo.isEmpty())
+            validarDatos(codigo.trim());
     }
 
     private JPanel panelPrecio() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
-        panel.setBorder(new BorderUtil(CONSTANTS.i18n.get("producto.border.title.precio")));
+        panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.precio")));
 
-        JLabel lPrecioCosto = new JLabel(CONSTANTS.i18n.get("producto.label.preciocompra"));
-        JLabel  lUtilidad= new JLabel(CONSTANTS.i18n.get("producto.label.utilidad"));
-        JLabel  lPrecio1= new JLabel(CONSTANTS.i18n.get("producto.label.precio1"));
-        JLabel  lPrecio2= new JLabel(CONSTANTS.i18n.get("producto.label.precio2"));
-        JLabel  lPrecio3= new JLabel(CONSTANTS.i18n.get("producto.label.precio3"));
-        JLabel  lCantMayor= new JLabel(CONSTANTS.i18n.get("producto.label.cantmayor"));
+        JLabel lPrecioCosto = new JLabel(CONSTANTS.i18n.getLabel("producto.label.preciocompra"));
+        JLabel  lUtilidad= new JLabel(CONSTANTS.i18n.getLabel("producto.label.utilidad"));
+        JLabel  lPrecio1= new JLabel(CONSTANTS.i18n.getLabel("producto.label.precio1"));
+        JLabel  lPrecio2= new JLabel(CONSTANTS.i18n.getLabel("producto.label.precio2"));
+        JLabel  lPrecio3= new JLabel(CONSTANTS.i18n.getLabel("producto.label.precio3"));
+        JLabel  lCantMayor= new JLabel(CONSTANTS.i18n.getLabel("producto.label.cantmayor"));
 
-        precioImpuesto = new JCheckBox(CONSTANTS.i18n.get("producto.label.precioIncluyeImpuesto"));
+        precioImpuesto = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.precioIncluyeImpuesto"));
         precioImpuesto.setSelected(true);
         precioImpuesto.setOpaque(false);
         //precioImpuesto.addActionListener(this);
         //precioImpuesto.setActionCommand("PRECIO_IMPUESTO");
 
-        requiereAprob = new JCheckBox(CONSTANTS.i18n.get("producto.label.reqAprobPrecioEspecial"));
+        requiereAprob = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.reqAprobPrecioEspecial"));
         requiereAprob.setSelected(true);
         requiereAprob.setOpaque(false);
         //requiereAprob.addActionListener(this);
@@ -425,7 +399,7 @@ public class PanelProducto{
         tPrecio3 = new TextField(10,10);
         tCantMayor = new TextField(10,10);
 
-        ImageIcon warning = IconManager.getIcon(getClass().getResource("/icon/16/warning.png"));
+        ImageIcon warning = IconManager.get16("warning");
 
         lUtilidadAdv = new JLabel(warning);
         lPrecio1Adv = new JLabel(warning);
@@ -443,10 +417,10 @@ public class PanelProducto{
         lPrecio2Adv.setVisible(false);
         lPrecio3Adv.setVisible(false);
 
-        lUtilidadAdv.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_utildadexcesiva"));
-        lPrecio1Adv.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_precio_menor_costo"));
-        lPrecio2Adv.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_precio_menor_costo"));
-        lPrecio3Adv.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_precio_menor_costo"));
+        lUtilidadAdv.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_utildadexcesiva"));
+        lPrecio1Adv.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_precio_menor_costo"));
+        lPrecio2Adv.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_precio_menor_costo"));
+        lPrecio3Adv.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_precio_menor_costo"));
 
         tPrecio1.addFocusListener(lostFocusPrecio);
         tPrecio2.addFocusListener(lostFocusPrecio);
@@ -523,7 +497,7 @@ public class PanelProducto{
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
         //panel.setBackground(Color.RED);
-        panel.setBorder(new BorderUtil(CONSTANTS.i18n.get("producto.border.title.stock")));
+        panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.stock")));
 
         menuIngreso();
 
@@ -533,7 +507,7 @@ public class PanelProducto{
         bAddCantidad.setActionCommand("ADD_CANTIDAD_PRODUCTO");
         //bAddCantidad.addActionListener(this);
         bAddCantidad.setButtonIcon(true);
-        bAddCantidad.setToolTipText(CONSTANTS.i18n.get("stock.add"));
+        bAddCantidad.setToolTipText(CONSTANTS.i18n.getValue("stock.add"));
         bAddCantidad.setFocusable(false);
         bAddCantidad.setColorBackIn(color1);
         bAddCantidad.setColorBackSelected(color2);
@@ -542,8 +516,8 @@ public class PanelProducto{
             popupMenu.show(bAddCantidad, 0,bAddCantidad.getHeight());
         });
 
-        JLabel lAdvertencia = new JLabel(CONSTANTS.i18n.get("producto.label.adv_stockcritico"));
-        JLabel lDisponible = new JLabel(CONSTANTS.i18n.get("producto.label.cantidad_disponible"));
+        JLabel lAdvertencia = new JLabel(CONSTANTS.i18n.getLabel("producto.label.adv_stockcritico"));
+        JLabel lDisponible = new JLabel(CONSTANTS.i18n.getLabel("producto.label.cantidad_disponible"));
 
         tStockCritico = new TextField(7,10,true);
         tStockCritico.setText("0");
@@ -566,8 +540,8 @@ public class PanelProducto{
 
     private void menuIngreso(){
         popupMenu = new JPopupMenu();
-        agragrStock = new JMenuItem(CONSTANTS.i18n.get("menu.producto.agregarstock"));
-        editarStock = new JMenuItem(CONSTANTS.i18n.get("menu.producto.editarstock"));
+        agragrStock = new JMenuItem(CONSTANTS.i18n.getValue("menu.producto.agregarstock"));
+        editarStock = new JMenuItem(CONSTANTS.i18n.getValue("menu.producto.editarstock"));
 
         agragrStock.setActionCommand("AGREGAR_STOCK_RAPIDO");
         editarStock.setActionCommand("EDITAR_STOCK_RAPIDO");
@@ -576,6 +550,45 @@ public class PanelProducto{
 
         popupMenu.add(agragrStock);
         popupMenu.add(editarStock);
+    }
+
+    private void validarDatos(String codigo) {
+
+        tCodigoBarra.requestFocus();
+
+        if(isDataDB(codigo)){
+            return;
+        }
+
+        if(bCodigoBarra.isSelected()){
+            if(tCodigoBarra.getText().trim().isEmpty()){
+                tCodigoBarra.setText(codigo);
+            }
+            else {
+
+                if(!codigo.equalsIgnoreCase(tCodigoBarra.getText())){
+                    int n0 = OptionPane.questionYesOrKey(CONSTANTS.i18n.getValue("producto.mensaje.difcodigo"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
+                    if (n0 == OptionPane.OK) {
+                        tCodigoBarra.setText(codigo);
+
+                    }
+                }
+
+                tNombre.requestFocus();
+            }
+        }
+    }
+
+    private boolean isDataDB(String codigo) {
+
+        ProductoDB productoDB = new ProductoDB();
+
+        if(productoDB.isDataProducto(codigo)){
+            //Cargar los datos
+            return true;
+        }
+
+        return false;
     }
 
     protected void clearForm(){
@@ -871,12 +884,29 @@ public class PanelProducto{
         return panelPrincipal;
     }
 
-    public void setActionListener(ProductoListener productoListener){
+    public void setActionListener(ActionListener productoListener){
+
         bGuardar.addActionListener(productoListener);
         bCancelar.addActionListener(productoListener);
         bEliminar.addActionListener(productoListener);
         agragrStock.addActionListener(productoListener);
         editarStock.addActionListener(productoListener);
+
+        // Al presionar Enter en tCodigo, pasar el foco a tNombre
+        tCodigo.addActionListener(ae -> {
+            actionCodigo();
+        });
+
+        bBuscar.addActionListener(ae->{
+            actionCodigo();
+        });
+
+        bCodigoBarra.addActionListener((e)->{
+            boolean edo = bCodigoBarra.isSelected();
+            String value = edo?"producto.inf.buscarporcodbarra":"producto.inf.buscarcodigo";
+            tCodigo.setPlaceHolder(CONSTANTS.i18n.getValue(value));
+            tCodigo.requestFocus();
+        });
     }
 
     /**
@@ -896,7 +926,7 @@ public class PanelProducto{
     }
 
 
-    public void actionEsc() {
+    public void addButtonEsc() {
 
         ActionEvent eventoSimulado = new ActionEvent(bCancelar, ActionEvent.ACTION_PERFORMED, "BUTTON_CANCELAR");
 

@@ -68,20 +68,20 @@ public class MenuBuilder {
 
     private JMenu menuSistema() {
 
-        JMenu sistema = new JMenu(CONSTANTS.LANG.getValue("menu.sistema"));
+        JMenu sistema = new JMenu(CONSTANTS.I8N.getValue("menu.sistema"));
         sistema.setMnemonic('S');
 
-        JMenuItem configuracion = new JMenuItem(CONSTANTS.LANG.getValue("menu.sistema.configuracion"));
+        JMenuItem configuracion = new JMenuItem(CONSTANTS.I8N.getValue("menu.sistema.configuracion"));
         configuracion.setActionCommand("CONFIGURACION");
         configuracion.addActionListener(actionListenerMenu);
 
-        JMenu apariencia = new JMenu(CONSTANTS.LANG.getValue("menu.apariencia"));
+        JMenu apariencia = new JMenu(CONSTANTS.I8N.getValue("menu.apariencia"));
 
-        JCheckBoxMenuItem dark = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.apariencia.dark"));
+        JCheckBoxMenuItem dark = new JCheckBoxMenuItem(CONSTANTS.I8N.getValue("menu.apariencia.dark"));
         dark.setActionCommand("DARK");
         dark.addActionListener(actionListenerMenu);
 
-        JCheckBoxMenuItem light = new JCheckBoxMenuItem(CONSTANTS.LANG.getValue("menu.apariencia.light"));
+        JCheckBoxMenuItem light = new JCheckBoxMenuItem(CONSTANTS.I8N.getValue("menu.apariencia.light"));
         light.setActionCommand("LIGHT");
         light.addActionListener(actionListenerMenu);
 
@@ -100,7 +100,7 @@ public class MenuBuilder {
         bg.add(dark);
         bg.add(light);
 
-        JMenuItem salir = new JMenuItem(CONSTANTS.LANG.getValue("menu.sistema.salir"));
+        JMenuItem salir = new JMenuItem(CONSTANTS.I8N.getValue("menu.sistema.salir"));
         salir.setIcon(new ImageIcon(ColorFilter.filterImage(
                 IconManager.get16("exit"), java.awt.Color.RED, true)));
 

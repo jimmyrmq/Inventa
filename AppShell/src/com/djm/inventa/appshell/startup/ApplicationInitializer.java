@@ -5,6 +5,7 @@ import com.djm.inventa.appshell.ui.menu.MenuBuilder;
 import com.djm.inventa.appshell.ui.VentanaPrincipal;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.AppFileSystem;
+import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.core.i18n.I18nManager;
 import com.djm.inventa.ui.AparienciaLookFeel;
 import com.djm.inventa.ui.PropiedadesLookAndFeel;
@@ -25,12 +26,14 @@ public class ApplicationInitializer {
         // 1. Global del AppShell (este sí puede ir primero)
         I18nManager.getInstance().registerGlobal(ApplicationInitializer.class.getClassLoader());
 
-
         // 2. Carpetas y contexto
         fileSystem = new AppFileSystem(new DataSoftware());
         AppContext.getInstance().setFileSystem(fileSystem);
+
         if (!fileSystem.existsDatabase()) {
-            initializeDatabase();
+            String dbType = CONSTANTS.CONFIG.getValue("database.type");
+
+            initializeDatabase(dbType);
         }
 
         // 3. Propiedades de UI (colores, fuentes) — SIN etiquetas todavía
@@ -136,16 +139,16 @@ public class ApplicationInitializer {
     }
 
     private void setConfig(String value){
-        CONSTANTS.etiquetaValue.set(value, CONSTANTS.LANG.getValue(value));
+        CONSTANTS.etiquetaValue.set(value, CONSTANTS.I8N.getValue(value));
         //CONSTANTS.i18n.t(value);
     }
 
-
-    private void initializeDatabase() {
-        System.out.println("[Bootstrap] Inicializando BD...");
+    private void initializeDatabase(String type) {
+        System.out.println("[Bootstrap] Inicializando BD ["+type+"]...");
 
         //Establecer conxion con la BD
-        DatabaseServiceImpl db = new DatabaseServiceImpl();
+        DatabaseService db = "mysql".equals(type) ? new DatabaseServiceImplMysql() : new DatabaseServiceImplSqLite();
+
         //Establer correcion
         db.connect();
         if(db.isConnected()) {

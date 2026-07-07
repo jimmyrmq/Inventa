@@ -135,21 +135,21 @@ public class ProcesadorProducto {
         if(epc1){
             //tPrecio1.setForeground(Color.red);
             //lPrecio1Adv.setText("");//CONSTANTS.LANG.getValue("productos.message.warning_precio_menor_costo"));
-            tPrecio1.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_precio_menor_costo"));
+            tPrecio1.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_precio_menor_costo"));
             //tPrecio1.onError();
         }
 
         if(epc2){
             //tPrecio2.setForeground(Color.red);
             //lPrecio2Adv.setText("");//CONSTANTS.LANG.getValue("productos.message.warning_precio_menor_costo"));
-            tPrecio2.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_precio_menor_costo"));
+            tPrecio2.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_precio_menor_costo"));
             //tPrecio2.onError();
         }
 
         if(epc3){
             //tPrecio3.setForeground(Color.red);
             //lPrecio3Adv.setText("");//CONSTANTS.LANG.getValue("productos.message.warning_precio_menor_costo"));
-            tPrecio3.setToolTipText(CONSTANTS.i18n.get("producto.message.warning_precio_menor_costo"));
+            tPrecio3.setToolTipText(CONSTANTS.i18n.getValue("producto.message.warning_precio_menor_costo"));
             //tPrecio3.onError();
         }
     }

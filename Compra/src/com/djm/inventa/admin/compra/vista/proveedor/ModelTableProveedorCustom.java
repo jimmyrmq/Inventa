@@ -21,10 +21,10 @@ public class ModelTableProveedorCustom implements IModelTableCustom<Proveedor> {
 
     public ModelTableProveedorCustom(){
         this.columnName = new String[] {
-                CONSTANTS.i18n.get("label.codigo"),
-                CONSTANTS.i18n.get("label.nombre"),
-                CONSTANTS.i18n.get("proveedor.label.contacto"),
-                CONSTANTS.i18n.get("label.telefono")
+                CONSTANTS.i18n.getValue("label.codigo"),
+                CONSTANTS.i18n.getValue("label.nombre"),
+                CONSTANTS.i18n.getValue("proveedor.label.contacto"),
+                CONSTANTS.i18n.getValue("label.telefono")
         };
     }
 

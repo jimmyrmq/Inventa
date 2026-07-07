@@ -1,6 +1,8 @@
 package com.djm.inventa.ui.ipanel;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import java.awt.event.ActionListener;
 
 public interface IPanel{
     String getId();     // único por vista
@@ -18,8 +20,12 @@ public interface IPanel{
 
     void clearForm();
 
-    void setUIManager(IUIManager uiManager);
-
+    void setActionListener(ActionListener actionListener);
 
     default void onViewShown() {}
+
+    default void onGuardar() {}
+
+    default void onCancelar() {}
+
 }

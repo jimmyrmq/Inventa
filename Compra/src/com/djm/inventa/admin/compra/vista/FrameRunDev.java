@@ -9,15 +9,13 @@ import java.awt.*;
 
 public class FrameRunDev {
     public FrameRunDev(){
-
-        I18nManager.initForDev("orden_compra", "ocompra");
+        I18nManager.initForDev("orden_compra", "compra");
 
         JFrame frame = new JFrame("Orden de Compra");
 
         Container content= frame.getContentPane();
         content.setLayout(new GridBagLayout());
         content.add(new PanelProveedor().getPanel(), LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 0, 0, 1.0f, 1.0f));
-
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dimension = new Dimension(600, 500);

@@ -15,7 +15,7 @@ public class Salir {
     }
 
     public void exitSystem(){
-        int n0 = OptionPane.questionYesOrKey( CONSTANTS.LANG.getValue("sistema.mensaje.salir"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
+        int n0 = OptionPane.questionYesOrKey( CONSTANTS.I8N.getValue("sistema.mensaje.salir"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
         if(n0 == OptionPane.OK){
             /*try {
                 DBConnection.getInstance().close();

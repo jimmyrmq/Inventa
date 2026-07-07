@@ -21,13 +21,14 @@ public class TableSQL {
     private String database;
     private String carpeta;
 
-    public TableSQL(String database, String motor) {
+    public TableSQL(String database) {
+        String motor = AppContext.getInstance().getString("database.type");
+
         this.database = database;
         this.carpeta = "my"; // Valor por defecto, puede ser modificado según el motor
 
         switch (motor.toLowerCase()) {
             case "sqlite":
-            case "sqllite":
                 this.carpeta = "lite";
                 break;
             case "mysql":
@@ -45,11 +46,17 @@ public class TableSQL {
         if(db.isConnected()) {
             Connection conn = db.getConnection();
 
-            String sql = queryMySQL();// querySqllite();"SELECT name FROM sqlite_master WHERE type='table';";
+            String dbType = AppContext.getInstance().getString("database.type");
+            boolean isLite = dbType.equals("sqlite");
+
+            String sql = isLite ? querySqllite() : queryMySQL();
+
             List<String> listTable = null;
             try {
                  PreparedStatement pstmt = conn.prepareStatement(sql);
-                 pstmt.setString(1, this.database);
+
+                 if(!isLite)
+                    pstmt.setString(1, this.database);
 
                 try (ResultSet resultSet = pstmt.executeQuery()) {
                     // Comprobar si la tabla existe
@@ -122,7 +129,11 @@ public class TableSQL {
                 """;
     }
 
-    public boolean ejecutar(Connection conn, String sql) {
+    private String querySqllite() {
+        return "SELECT name FROM sqlite_master WHERE type='table';";
+    }
+
+    private boolean ejecutar(Connection conn, String sql) {
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(sql);
             return true;

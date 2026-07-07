@@ -87,7 +87,7 @@ public class ModuleLoader {
                 I18nManager.getInstance().registerModule(plugin.getId(), plugin.getIdDundle(), classLoader);
 
                 // 2. Ciclo de vida
-                plugin.init();
+                plugin.start();
                 plugin.start();
 
                 // 3. Agregar al menú

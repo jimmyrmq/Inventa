@@ -58,8 +58,8 @@ public class StockRapidoGUI implements ActionListener {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setOpaque(false);
 
-        bAceptar = new JButton(CONSTANTS.i18n.get("button.aceptar"));
-        bCancelar = new JButton(CONSTANTS.i18n.get("button.cancelar"));
+        bAceptar = new JButton(CONSTANTS.i18n.getValue("button.aceptar"));
+        bCancelar = new JButton(CONSTANTS.i18n.getValue("button.cancelar"));
 
         bAceptar.setActionCommand("ACEPT");
         bCancelar.setActionCommand("CANCEL");
@@ -89,7 +89,7 @@ public class StockRapidoGUI implements ActionListener {
             tCantidad.selectAll();
         }
 
-        JLabel lCantidad = new JLabel(CONSTANTS.i18n.get("label.cantidad"));
+        JLabel lCantidad = new JLabel(CONSTANTS.i18n.getValue("label.cantidad"));
 
         panel.add(lCantidad, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCantidad, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));
@@ -112,7 +112,7 @@ public class StockRapidoGUI implements ActionListener {
 
             }
             else{
-                OptionPane.error(CONSTANTS.i18n.get("stock.error.cantidad"));
+                OptionPane.error(CONSTANTS.i18n.getValue("stock.error.cantidad"));
             }
         }
         else if(action.equals("CANCEL")) {
@@ -165,7 +165,7 @@ public class StockRapidoGUI implements ActionListener {
 
         dialog.setResizable(false);
         dialog.setLocationRelativeTo(null);
-        String titulo = this.cantidadEntrante!= null && this.cantidadEntrante > 0 ?CONSTANTS.i18n.get("stock.label.titulorapido_edit"):CONSTANTS.i18n.get("stock.label.titulorapido");
+        String titulo = this.cantidadEntrante!= null && this.cantidadEntrante > 0 ?CONSTANTS.i18n.getValue("stock.label.titulorapido_edit"):CONSTANTS.i18n.getValue("stock.label.titulorapido");
         dialog.setTitle(titulo);
     }
 

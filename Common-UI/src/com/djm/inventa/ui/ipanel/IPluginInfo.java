@@ -16,9 +16,7 @@ public interface IPluginInfo {
         return null;
     }
 
-
-    void init();    // se llama al cargar el plugin
-    void start();   // se llama al activar el plugin
+    void start();    // se llama al cargar el plugin
     void stop();    // se llama al desactivar o cerrar el sistema
 
     List<IMenuContribution> getMenus();

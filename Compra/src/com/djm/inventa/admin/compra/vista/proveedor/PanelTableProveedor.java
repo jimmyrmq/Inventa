@@ -45,7 +45,7 @@ public class PanelTableProveedor  extends JPanel {
 
         tBuscar = new TextField(23);
 
-        tBuscar.putClientProperty("JTextField.placeholderText", CONSTANTS.i18n.get("proveedor.label.buscar_producto"));// CONSTANTS.LANG.getValue("proveedor.label.buscar_producto"));
+        tBuscar.putClientProperty("JTextField.placeholderText", CONSTANTS.i18n.getValue("proveedor.label.buscar_producto"));// CONSTANTS.LANG.getValue("proveedor.label.buscar_producto"));
         tBuscar.putClientProperty("JTextField.leadingIcon", lupaText);
         Dimension dim = new Dimension(210, 23);
 
