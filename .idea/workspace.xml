@@ -14,12 +14,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dede8240-ca14-4589-a61a-d20d20edba4e" name="Changes" comment="Inventa 2.0 en Desarrollo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ModuleLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ModuleLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/AppContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/AppContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/resources/lang/producto_es.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/InfoPluginProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/InfoPluginProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/dev/FrameRunDev.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/dev/FrameRunDev.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/resources/lang/producto_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/modelo/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/modelo/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/PanelProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/PanelProducto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/ProductoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/ProductoListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +94,7 @@
   "keyToString": {
     "Application.Administrativo.executor": "Run",
     "Application.App.executor": "Run",
-    "Application.ApplicationBootstrap.executor": "Debug",
+    "Application.ApplicationBootstrap.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainTest.executor": "Run",
     "Application.OrdenCompra.executor": "Run",
@@ -145,7 +143,7 @@
       <recent name="com.djm.inventa.producto.dev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationBootstrap">
+  <component name="RunManager" selected="Application.ProductoApplication">
     <configuration name="ApplicationBootstrap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.djm.inventa.appshell.ApplicationBootstrap" />
       <module name="inventa.appshell" />
@@ -181,8 +179,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApplicationBootstrap" />
         <item itemvalue="Application.ProductoApplication" />
+        <item itemvalue="Application.ApplicationBootstrap" />
         <item itemvalue="Application.OrdenCompra" />
       </list>
     </recent_temporary>
@@ -221,7 +219,7 @@
       <workItem from="1783173680797" duration="20466000" />
       <workItem from="1783303138981" duration="12056000" />
       <workItem from="1783345253286" duration="11176000" />
-      <workItem from="1783378388463" duration="15079000" />
+      <workItem from="1783378388463" duration="16156000" />
     </task>
     <task id="LOCAL-00001" summary="Inventa">
       <option name="closed" value="true" />
@@ -367,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783392167117</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Inventa 2.0 en Desarrollo">
+      <option name="closed" value="true" />
+      <created>1783395601071</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1783395601071</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,11 +406,6 @@
           <url>file://$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ApplicationBootstrap.java</url>
           <line>7</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/ProductoListener.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

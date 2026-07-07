@@ -582,8 +582,58 @@ public class PanelProducto{
     private boolean isDataDB(String codigo) {
 
         ProductoDB productoDB = new ProductoDB();
+        Producto producto = productoDB.buscarProducto(codigo);
+        if(producto != null){
 
-        if(productoDB.isDataProducto(codigo)){
+            tCodigo.setText(producto.getCodigo());
+            tCodigoBarra.setText(producto.getCodigoBarra());
+            tNombre.setText(producto.getNombre());
+            tUnidadMedida.setText(producto.getUnidadMedida());
+            tModelo.setText(producto.getModelo());
+            tSerie.setText(producto.getSerie());
+
+            tUtilidad.setText(producto.getUtilidad() != null
+                    ? producto.getUtilidad().toString()
+                    : "");
+
+            tCosto.setText(producto.getPrecioCosto() != null
+                    ? producto.getPrecioCosto().toString()
+                    : "");
+
+            tPrecio1.setText(producto.getPrecio1() != null
+                    ? producto.getPrecio1().toString()
+                    : "");
+
+            tPrecio2.setText(producto.getPrecio2() != null
+                    ? producto.getPrecio2().toString()
+                    : "");
+
+            tPrecio3.setText(producto.getPrecio3() != null
+                    ? producto.getPrecio3().toString()
+                    : "");
+
+            tCantMayor.setText(producto.getCantMayor() != null
+                    ? producto.getCantMayor().toString()
+                    : "");
+
+            tCantidadDisponible.setText(producto.getCantidadDisponible() != null
+                    ? producto.getCantidadDisponible().toString()
+                    : "");
+
+            tStockCritico.setText(producto.getStockCritico() != null
+                    ? producto.getStockCritico().toString()
+                    : "");
+
+            tNota.setText(producto.getNota());
+
+            disponible.setSelected(Boolean.TRUE.equals(producto.isDisponible()));
+            noRequiereStock.setSelected(Boolean.TRUE.equals(producto.isNoRequiereStock()));
+            precioImpuesto.setSelected(Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
+            requiereAprob.setSelected(Boolean.TRUE.equals(producto.isReqAprobnPrecioEspecial()));
+
+            cbCategoria.setSelectedItem(producto.getCategoria());
+            cbMarca.setSelectedItem(producto.getMarca());
+
             //Cargar los datos
             return true;
         }

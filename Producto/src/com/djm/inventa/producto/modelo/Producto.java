@@ -6,7 +6,7 @@ import com.djm.inventa.modelo.Marca;
 import java.util.Date;
 
 public class Producto implements Cloneable{
-    private Long ID;
+    private Integer ID;
     private String codigo;
     private String codigoBarra;
     private String nombre;
@@ -36,11 +36,11 @@ public class Producto implements Cloneable{
 
     }
 
-    public Long getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(Long ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 

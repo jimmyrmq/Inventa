@@ -4,6 +4,7 @@ import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.PropiedadesSistema;
 import com.djm.inventa.producto.modelo.Producto;
 import com.djm.inventa.producto.core.CONSTANTS;
+import com.djm.inventa.producto.persistence.ProductoDB;
 import com.djm.inventa.producto.vista.stock.StockRapidoGUI;
 import com.djm.inventa.ui.ipanel.IUIManager;
 import com.djm.ui.component.OptionPane;
@@ -43,17 +44,23 @@ public class ProductoListener implements ActionListener {
             }
         }
         else if("GUARDAR_PRODUCTO".equals(action)){
-            if(panelProducto != null && panelProducto.isData()) {
+            if(panelProducto != null && panelProducto.hasFormData()) {
+
+                ProductoDB productoDB = new ProductoDB();
+
+
                 //panelProducto.getValue();
 
                 Producto producto = panelProducto.getDataForm();
 
-                if(producto.getID() == null){
+                productoDB.guardarProducto(producto);
+
+                /*if(producto.getID() == null){
 
                     Random random = new Random();
-                    long randomNumber = random.nextInt(1000) + 1; // Gernera un número ente 1 y 1000
+                    Integer randomNumber = random.nextInt(1000) + 1; // Gernera un número ente 1 y 1000
                     producto.setID(randomNumber);
-                }
+                }*/
 
                 //Global.panelDesktop.setProductoList(producto);
                 panelProducto.clearForm();
