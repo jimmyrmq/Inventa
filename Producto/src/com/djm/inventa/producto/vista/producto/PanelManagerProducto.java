@@ -37,8 +37,10 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
 
     @Override
     public String getId() {
+        //Creamos el ID que identifica en todo el sistema la ventana
         final String id = "ID.Producto.Registrar";
         AppContext.getInstance().setPropiedad("Producto.ID", id);
+
         return id;
     }
 
@@ -49,7 +51,6 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
 
     @Override
     public JPanel getPanel() {
-        cerrarEsc(panelProducto.getButtonCancelar());
 
         return panelProducto.getPanel();
     }
@@ -81,6 +82,7 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
 
     @Override
     public void setActionListener(ActionListener actionListener) {
+        cerrarEsc(panelProducto.getButtonCancelar());
         panelProducto.setActionListener(actionListener);
     }
 

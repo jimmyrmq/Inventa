@@ -1,6 +1,7 @@
 package com.djm.inventa.appshell.ui.desktop;
 
 import com.djm.inventa.appshell.Global;
+import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.PropiedadesSistema;
 import com.djm.inventa.ui.ipanel.IPluginInfo;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
@@ -24,8 +25,6 @@ public class UIManagerDesktopImpl implements IUIManager {
 
         String viewId = view.getId();
         System.out.println("[PluginLoader] Cargando panel ID: " + viewId);
-
-        PropiedadesSistema.set("iuimagener", this);
 
         JInternalFrame existente = ventanas.get(viewId);
 

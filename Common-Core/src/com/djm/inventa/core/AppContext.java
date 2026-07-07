@@ -57,6 +57,10 @@ public class AppContext {
         return PropiedadesSistema.getDatabaseService(clave);
     }
 
+    public Object get(String clave) {
+        return PropiedadesSistema.getValue(clave);
+    }
+
     public String getString(String clave) {
         return PropiedadesSistema.getString(clave);
     }

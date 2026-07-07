@@ -13,12 +13,11 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class ProductoListener implements ActionListener {
-    private final String ID = AppContext.getInstance().getString("Producto.ID");
     private PanelManagerProducto panelProducto;
     private IUIManager iuiManager;
 
     public ProductoListener(PanelManagerProducto iPanel){
-        IUIManager value = (IUIManager) PropiedadesSistema.getValue("iuimagener");
+        IUIManager value = (IUIManager) AppContext.getInstance().get("iuimagener");
         this.iuiManager =  (value instanceof IUIManager s) ? s : null;
 
         panelProducto = iPanel;
@@ -29,7 +28,9 @@ public class ProductoListener implements ActionListener {
         String action = e.getActionCommand();
         if("BUTTON_CANCELAR".equals(action)){
             if(panelProducto != null) {
-                panelProducto.onCancelar();
+                String ID = AppContext.getInstance().getString("Producto.ID");
+                //panelProducto.onCancelar();
+                System.out.println(ID);
                 if (panelProducto.hasFormData()) {
                     int n0 = OptionPane.questionYesOrKey( CONSTANTS.i18n.getValue("producto.mensaje.confirmar_cancelar"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
                     if(n0 == OptionPane.OK) {

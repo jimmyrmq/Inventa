@@ -2,6 +2,7 @@ package com.djm.inventa.appshell.startup;
 
 import com.djm.inventa.appshell.ui.desktop.UIManagerDesktopImpl;
 import com.djm.inventa.appshell.ui.menu.MenuBuilder;
+import com.djm.inventa.core.AppContext;
 import com.djm.inventa.ui.ipanel.IMenuContribution;
 import com.djm.inventa.ui.ipanel.IPluginInfo;
 import com.djm.inventa.ui.ipanel.IUIManager;
@@ -71,6 +72,8 @@ public class ModuleLoader {
 
             //Crear UIManager con tu JDesktopPane global
             uiManager = new UIManagerDesktopImpl();
+
+            AppContext.getInstance().setPropiedad("iuimagener", uiManager);
 
             URLClassLoader classLoader = new URLClassLoader(
                     new URL[]{ jar.toURI().toURL() },

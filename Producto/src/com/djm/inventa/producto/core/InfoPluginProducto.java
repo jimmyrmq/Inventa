@@ -1,5 +1,6 @@
 package com.djm.inventa.producto.core;
 
+import com.djm.inventa.core.AppContext;
 import com.djm.inventa.producto.vista.producto.PanelManagerProducto;
 import com.djm.inventa.producto.vista.producto.ProductoListener;
 import com.djm.inventa.ui.IconManager;
@@ -14,7 +15,7 @@ public class InfoPluginProducto implements IPluginInfo {
 
     @Override
     public String getId() {
-        return "producto_registro";
+        return "ext_productos";
     }
 
     @Override
@@ -69,7 +70,6 @@ public class InfoPluginProducto implements IPluginInfo {
                 public JMenuItem getMenu() {
                     JMenuItem menuItem = new JMenuItem(CONSTANTS.i18n.getValue("menu.producto.registro"));
                     menuItem.setIcon(IconManager.getIcon(getClass().getResource("/icons/product.png")));
-
                     return menuItem;
                 }
                 public String getMenuGrupo() { return CONSTANTS.i18n.getValue("menu.producto"); }
@@ -78,7 +78,7 @@ public class InfoPluginProducto implements IPluginInfo {
                     PanelManagerProducto panelManagerProducto = new PanelManagerProducto();
 
                     //Crear la accion aqui
-                    ProductoListener productoListener = new ProductoListener( panelManagerProducto);
+                    ProductoListener productoListener = new ProductoListener(panelManagerProducto);
                     panelManagerProducto.setActionListener(productoListener);
 
                     uiManager.showView(panelManagerProducto, InfoPluginProducto.this);

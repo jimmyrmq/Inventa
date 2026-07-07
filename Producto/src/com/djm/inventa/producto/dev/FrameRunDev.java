@@ -18,7 +18,10 @@ import java.awt.GridBagLayout;
 
 public class FrameRunDev {
     public FrameRunDev(){
+        //Tipo de Base de Datos
         AppContext.getInstance().setPropiedad("database.type", "sqlite");
+
+        //Lang
         I18nManager.initForDev("producto", "producto");
 
         PanelManagerProducto managerProducto = new PanelManagerProducto();
