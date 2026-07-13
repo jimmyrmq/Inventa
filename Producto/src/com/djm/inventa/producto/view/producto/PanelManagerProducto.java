@@ -8,6 +8,7 @@ import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 public class PanelManagerProducto extends IPanelDataAction<Producto> {
     private PanelProducto  panelProducto;
@@ -79,7 +80,7 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
         panelProducto.loadData();
     }
 
-    public void setCantidadDisponible(int cantidadDisponible, boolean agregar) {
+    public void setCantidadDisponible(BigDecimal cantidadDisponible, boolean agregar) {
         panelProducto.setCantidadDisponible(cantidadDisponible, agregar);
     }
 }

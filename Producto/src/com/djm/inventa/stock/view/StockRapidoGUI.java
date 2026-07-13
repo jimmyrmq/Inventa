@@ -26,19 +26,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.math.BigDecimal;
 
 public class StockRapidoGUI implements ActionListener {
     private JDialog dialog;
     private boolean acept = false;
     private JButton bAceptar, bCancelar;
-    private TextField tCantidad;
-    private Integer cantidadEntrante;
+    private TextField tNuevaCantidad;
+    private TextField tCantidadActual;
+    private BigDecimal cantidadEntrante;
 
     public StockRapidoGUI(){
         this(null);
     }
-    public StockRapidoGUI(Integer cantidadEntrante){
-        if(cantidadEntrante > 0)
+
+    public StockRapidoGUI(BigDecimal cantidadEntrante){
+        if(cantidadEntrante.compareTo(BigDecimal.ZERO) > 0)
             this.cantidadEntrante = cantidadEntrante;
 
         createGUI();
@@ -78,21 +81,27 @@ public class StockRapidoGUI implements ActionListener {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
-        tCantidad = new TextField(7,10,true);
+        tCantidadActual = new TextField(7,10,true);
+        tNuevaCantidad = new TextField(7,10,true);
 
-        tCantidad.addActionListener(this);
-        tCantidad.setActionCommand("ACEPT");
+        tCantidadActual.setEnabled(false);
 
-        if(cantidadEntrante != null && cantidadEntrante > 0) {
-            tCantidad.setText(String.valueOf(cantidadEntrante));
-            tCantidad.requestFocus();
-            tCantidad.selectAll();
+        tNuevaCantidad.addActionListener(this);
+        tNuevaCantidad.setActionCommand("ACEPT");
+
+        if(cantidadEntrante != null && cantidadEntrante.compareTo(BigDecimal.ZERO) > 0) {
+            tNuevaCantidad.setText(String.valueOf(cantidadEntrante));
+            tNuevaCantidad.requestFocus();
+            tNuevaCantidad.selectAll();
         }
 
-        JLabel lCantidad = new JLabel(CONSTANTS.i18n.getValue("label.cantidad"));
+        JLabel lCantidadActual = new JLabel(CONSTANTS.i18n.getValue("movimientoStock.label.cantidadactual"));
+        JLabel lCantidadNueva = new JLabel(CONSTANTS.i18n.getValue("movimientoStock.label.cantidadnueva"));
 
-        panel.add(lCantidad, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tCantidad, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));
+        panel.add(lCantidadActual, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tCantidadActual, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));
+        panel.add(lCantidadNueva, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tNuevaCantidad, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));
 
         return panel;
     }
@@ -102,9 +111,9 @@ public class StockRapidoGUI implements ActionListener {
 
         if(action.equals("ACEPT")){
 
-            String cantidadText = tCantidad.getText();
+            String cantidadText = tNuevaCantidad.getText();
             if(cantidadText != null && !cantidadText.trim().isEmpty() && Integer.parseInt(cantidadText) >= 0) {
-                cantidadEntrante = Integer.parseInt(cantidadText);
+                cantidadEntrante = new BigDecimal(cantidadText);
 
                 acept = true;
                 dialog.setVisible(false);
@@ -125,7 +134,7 @@ public class StockRapidoGUI implements ActionListener {
         return acept;
     }
 
-    public Integer getCantidadEntrante(){
+    public BigDecimal getCantidadEntrante(){
         return cantidadEntrante;
     }
 
@@ -165,7 +174,7 @@ public class StockRapidoGUI implements ActionListener {
 
         dialog.setResizable(false);
         dialog.setLocationRelativeTo(null);
-        String titulo = this.cantidadEntrante!= null && this.cantidadEntrante > 0 ?CONSTANTS.i18n.getValue("stock.label.titulorapido_edit"):CONSTANTS.i18n.getValue("stock.label.titulorapido");
+        String titulo = this.cantidadEntrante!= null && this.cantidadEntrante.compareTo(BigDecimal.ZERO) > 0 ?CONSTANTS.i18n.getValue("stock.label.titulorapido_edit"):CONSTANTS.i18n.getValue("stock.label.titulorapido");
         dialog.setTitle(titulo);
     }
 

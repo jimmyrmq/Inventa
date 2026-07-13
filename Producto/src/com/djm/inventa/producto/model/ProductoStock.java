@@ -1,16 +1,16 @@
 package com.djm.inventa.producto.model;
 
-import com.djm.inventa.stock.model.Stock;
+import com.djm.inventa.stock.model.MovimientoStock;
 
 public class ProductoStock {
     private Producto producto;
-    private Stock stock;
+    private MovimientoStock movimientoStock;
 
     public ProductoStock(){}
 
-    public ProductoStock(Producto producto, Stock stock) {
+    public ProductoStock(Producto producto, MovimientoStock movimientoStock) {
         this.producto = producto;
-        this.stock = stock;
+        this.movimientoStock = movimientoStock;
     }
 
     public Producto getProducto() {
@@ -21,11 +21,11 @@ public class ProductoStock {
         this.producto = producto;
     }
 
-    public Stock getStock() {
-        return stock;
+    public MovimientoStock getStock() {
+        return movimientoStock;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setStock(MovimientoStock movimientoStock) {
+        this.movimientoStock = movimientoStock;
     }
 }

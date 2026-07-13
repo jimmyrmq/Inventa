@@ -10,493 +10,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8676725b-e613-4ac5-9a4a-045aa23279b0" name="Changes" comment="Inventa 2.0 - Desarrollo">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/resources/lang2/basic_es.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/core/ApplicationInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/core/CONSTANTS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/core/SerialDSK.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/util/BorderUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/util/CheckDataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/util/LoggerApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/util/ObtenerDatosPC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/util/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/defectuoso/DesktopDefectuoso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/defectuoso/PanelDefectuoso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/documentos/proveedor/DesktopProveedor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/documentos/proveedor/ModelTableProveedorCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/documentos/proveedor/PanelProveedor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/documentos/proveedor/PanelTableProveedor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/documentos/proveedor/ProveedorListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/documentos/proveedor/ProveedorSelectionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/ingreso/archivo/ColumnSelected.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/ingreso/archivo/ImportActionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/ingreso/archivo/ImportarInventarioGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/ingreso/archivo/OpenFileFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/ingreso/archivo/ReadFileCVS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/precio/DesktopActualizar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/precio/ModelTablePrecioCuston.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/precio/PanelActualizarPrecio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/precio/PrecioListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/precio/modelo/ProductoActualizar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/principal/ActionListenerMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/principal/Global.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/principal/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/principal/PanelInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/principal/UsuarioButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/DesktopProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/InfoListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/ListenerMoneda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/ModelTableProductoCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/PanelListaProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/PanelProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/ProcesadorProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/CheckPromocion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/CrearPromocion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/DesktopPromocion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/ModelTableProdPaqueteCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/ModelTablePromocionCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/PanelDescuento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/PanelPaquetes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/promociones/PanelPromocion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/stock/DesktopStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/stock/ModelTableStockCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/stock/PanelStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/stock/StockRapidoGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Base-Deprecated/src/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/util/FechaUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Inventa-Model/inventa.common-model.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Producto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Inventa-Model/src/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/inventa.producto.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/CategoriaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/MarcaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProductoListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/OperacionStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/TipoMovimiento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/StockDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/view/StockService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/inventa.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext/ordencompra.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext/producto.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext_del/ordencompra.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext_del/producto.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ext_del/producto2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/djm-api-ui.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/djm-api-util.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/Inventa.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/Inventa.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/admin.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/.jpackage.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/flatlaf-3.6.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/inv.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/logback-classic-1.5.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/logback-core-1.5.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/slf4j-api-2.0.16.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/sqlite-jdbc-3.46.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-console-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-console-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-datetime-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-debug-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-errorhandling-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-fibers-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-file-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-file-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-file-l2-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-handle-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-heap-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-interlocked-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-libraryloader-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-localization-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-memory-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-namedpipe-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-processenvironment-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-processthreads-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-processthreads-l1-1-1.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-profile-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-rtlsupport-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-string-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-synch-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-synch-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-sysinfo-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-timezone-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-core-util-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-conio-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-convert-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-environment-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-filesystem-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-heap-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-locale-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-math-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-multibyte-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-private-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-process-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-runtime-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-stdio-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-string-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-time-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/api-ms-win-crt-utility-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/attach.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/awt.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/dt_shmem.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/dt_socket.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/extnet.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/fontmanager.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/freetype.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/instrument.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/j2gss.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/j2pcsc.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/j2pkcs11.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jaas.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/java.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/javaaccessbridge.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/javajpeg.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jawt.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jdwp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jimage.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jli.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jpackage.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jsound.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/jsvml.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/lcms.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/management.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/management_agent.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/management_ext.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/mlib_image.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/msvcp140.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/net.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/nio.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/prefs.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/rmi.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/server/jvm.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/splashscreen.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/sspi_bridge.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/sunmscapi.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/syslookup.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/ucrtbase.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/vcruntime140.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/vcruntime140_1.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/verify.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/w2k_lsa_auth.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/windowsaccessbridge-64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/bin/zip.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/jaxp-strict.properties.template" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/jaxp.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/logging.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/management/jmxremote.access" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/management/jmxremote.password.template" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/management/management.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/net.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/java.security" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/policy/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/policy/limited/default_US_export.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/policy/limited/default_local.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/policy/limited/exempt_local.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/policy/unlimited/default_US_export.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/security/policy/unlimited/default_local.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/conf/sound.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/aes.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/asm.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/c-libutl.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/cldr.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/icu.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/public_suffix.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/siphash.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/unicode.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/wepoll.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.base/zlib.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.compiler/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.compiler/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.datatransfer/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.datatransfer/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/colorimaging.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/freetype.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/giflib.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/harfbuzz.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/jpeg.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/lcms.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/libpng.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.desktop/mesa3d.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.instrument/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.instrument/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.logging/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.logging/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.management.rmi/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.management.rmi/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.management/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.management/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.naming/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.naming/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.net.http/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.net.http/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.prefs/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.prefs/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.rmi/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.rmi/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.scripting/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.scripting/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.security.jgss/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.security.jgss/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.security.sasl/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.security.sasl/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.smartcardio/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.smartcardio/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.sql.rowset/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.sql.rowset/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.sql/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.sql/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.transaction.xa/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.transaction.xa/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml.crypto/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml.crypto/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml.crypto/santuario.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/bcel.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/dom.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/jcup.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/schema10part1.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/schema10part2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xalan.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xerces.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xhtml10.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xhtml10schema.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xhtml11.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xhtml11schema.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xmlspec.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/java.xml/xmlxsd.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.accessibility/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.accessibility/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.attach/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.attach/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.charsets/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.charsets/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.compiler/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.compiler/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.crypto.cryptoki/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.crypto.cryptoki/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.crypto.cryptoki/pkcs11wrapper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.crypto.mscapi/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.crypto.mscapi/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.dynalink/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.dynalink/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.dynalink/dynalink.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.editpad/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.editpad/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.httpserver/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.httpserver/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.incubator.vector/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.incubator.vector/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.ed/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.ed/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.jvmstat/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.jvmstat/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.le/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.le/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.le/jline.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.md/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.md/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.md/commonmark.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.opt/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.opt/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.internal.opt/jopt-simple.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jartool/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jartool/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.javadoc/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.javadoc/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.javadoc/dejavufonts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.javadoc/jquery.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.javadoc/jqueryUI.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jconsole/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jconsole/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jdeps/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jdeps/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jdi/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jdi/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jdwp.agent/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jdwp.agent/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jfr/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jfr/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jlink/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jlink/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jpackage/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jpackage/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jshell/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jshell/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jsobject/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jsobject/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jstatd/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.jstatd/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.localedata/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.localedata/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.localedata/cldr.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.localedata/thaidict.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.management.agent/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.management.agent/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.management.jfr/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.management.jfr/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.management/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.management/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.naming.dns/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.naming.dns/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.naming.rmi/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.naming.rmi/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.net/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.net/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.nio.mapmode/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.nio.mapmode/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.sctp/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.sctp/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.security.auth/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.security.auth/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.security.jgss/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.security.jgss/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.unsupported.desktop/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.unsupported.desktop/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.unsupported/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.unsupported/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.xml.dom/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.xml.dom/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.zipfs/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/legal/jdk.zipfs/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/classlist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/ct.sym" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/fontconfig.bfc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/fontconfig.properties.src" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/jawt.lib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/jfr/default.jfc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/jfr/profile.jfc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/jrt-fs.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/jvm.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/jvm.lib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/modules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/psfont.properties.ja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/psfontj2d.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/security/blocked.certs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/security/cacerts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/security/public_suffix_list.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/tzdb.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/lib/tzmappings" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/Inventa/runtime/release" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/app.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/create_package_install.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/install/Inventa-1.0.0.msi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/produccion.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/admin.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/djm-api.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/flatlaf-3.6.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/logback-classic-1.5.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/logback-core-1.5.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/slf4j-api-2.0.16.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/produccion/release/sqlite-jdbc-3.46.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/movimiento_stock.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/stock_producto.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/almacen.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/categoria.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/categoriadocumento.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/cliente.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/documento.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/documentoitem.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/marca.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/movimiento_stock.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/proveedor.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/stock_producto.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/tipodocumento.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/usuario.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/admin_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/inv.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/producto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/producto.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/exception/BaseDatosException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/util/SQLUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/MovimientoStock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/MovimientoStockDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/inventa.appshell.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/inventa.appshell.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/ApplicationInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/CONSTANTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/startup/CONSTANTS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/VentanaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/desktop/UIManagerDesktopImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/ActionListenerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/ActionListenerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/Salir.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/com/djm/inventa/appshell/ui/menu/Salir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/i18n/I18nManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/src/com/djm/inventa/core/i18n/I18nManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/component/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/CrearFrameInterno.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/CrearFrameInterno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDataAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/com/djm/inventa/ui/ipanel/IPanelDataAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-UI/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-UI/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/inventa.common-util.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/inventa.common-util.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Almacen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Almacen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/CategoriaDocumento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/CategoriaDocumento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Factura.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Factura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/FacturaItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/FacturaItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Marca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Producto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/ProductoStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/ProductoStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Promocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Promocion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Proveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Proveedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/RegistroSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/RegistroSimple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/SimpleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/SimpleData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/TipoDocumento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/TipoDocumento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/modelo/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventa-Model/src/com/djm/inventa/modelo/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/util/Propiedades.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/com/djm/inventa/util/Propiedades.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Util/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Util/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compra/inventa.compra.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/inventa.compra.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/core/CONSTANTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/core/CONSTANTS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/vista/FrameRunDev.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/vista/FrameRunDev.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelProveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelProveedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelTableProveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/src/com/djm/inventa/admin/compra/vista/proveedor/PanelTableProveedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compra/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/inventa.Producto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Base-Deprecated/inventa.basic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base-Deprecated/resources/lang2/basic_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Base-Deprecated/resources/lang2/basic_es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common-Core/resources/lang/global_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/resources/lang/global_es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compra/resources/lang_dev/compra_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Compra/resources/lang_dev/compra_es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/inventa.producto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/inventa.producto.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/ProductoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/ProductoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/InfoPluginProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/InfoPluginProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/dev/FrameRunDev.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/dev/FrameRunDev.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/modelo/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/Producto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/PanelManagerProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelManagerProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/PanelProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/ProcesadorProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProcesadorProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/producto/ProductoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Base-Deprecated/src/com/djm/inventa/admin/vista/producto/ProductoListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/vista/stock/StockRapidoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/view/StockRapidoGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/inventa.Inventa 2.0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/djm-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/produccion/Inventa/app/lib/djm-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/almacen.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/almacen.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/categoria.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/categoria.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/categoriadocumento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/categoriadocumento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/cliente.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/cliente.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/documento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/documento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/documentoitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/documentoitem.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/marca.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/marca.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/producto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/proveedor.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/proveedor.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/stock.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/tipodocumento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/tipodocumento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/usuario.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/usuario.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/producto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/ProductoStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/ProductoStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/CategoriaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/CategoriaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/MarcaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/MarcaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelManagerProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelManagerProducto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProductoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProductoListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/Stock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/view/StockRapidoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/view/StockRapidoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inventa.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/inventa.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/djm-api-util.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/djm-api-util.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -511,8 +47,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -540,35 +76,41 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ApplicationBootstrap.executor&quot;: &quot;Run&quot;,
-    &quot;Application.OrdenCompraApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ProductoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/Compra/src&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ApplicationBootstrap.executor": "Run",
+    "Application.OrdenCompraApplication.executor": "Run",
+    "Application.ProductoApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/stock/src",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/stock/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\stock\src" />
+      <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\stock" />
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\Compra\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\ext_del" />
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\lib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.djm.inventa.stock" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ProductoApplication">
@@ -651,7 +193,7 @@
       <workItem from="1783713659041" duration="7958000" />
       <workItem from="1783790476223" duration="8470000" />
       <workItem from="1783903242157" duration="1327000" />
-      <workItem from="1783904586466" duration="554000" />
+      <workItem from="1783904586466" duration="10462000" />
     </task>
     <task id="LOCAL-00001" summary="Inventa 2.0 - Desarrollo">
       <option name="closed" value="true" />
@@ -669,7 +211,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783903650758</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Inventa 2.0 - Desarrollo">
+      <option name="closed" value="true" />
+      <created>1783905344839</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1783905344839</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Inventa 2.0 - Desarrollo">
+      <option name="closed" value="true" />
+      <created>1783905378942</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1783905378942</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,5 +247,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inventa 2.0 - Desarrollo" />
     <option name="LAST_COMMIT_MESSAGE" value="Inventa 2.0 - Desarrollo" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

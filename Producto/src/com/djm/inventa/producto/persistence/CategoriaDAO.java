@@ -18,15 +18,15 @@ public class CategoriaDAO{
 
     public List<Categoria> listarCategorias() throws ProductoException {
         List<Categoria> categorias = new ArrayList<>();
-        String sql = "SELECT ID, Nombre FROM Categoria";
+        String sql = "SELECT id, nombre FROM categoria";
 
         try (PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Categoria categoria = new Categoria();
-                categoria.setID(rs.getInt("ID"));
-                categoria.setNombre(rs.getString("Nombre"));
+                categoria.setID(rs.getInt("id"));
+                categoria.setNombre(rs.getString("nombre"));
                 categorias.add(categoria);
             }
         }

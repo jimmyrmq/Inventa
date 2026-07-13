@@ -19,15 +19,15 @@ public class MarcaDAO {
 
     public List<Marca> listarMarca() throws ProductoException {
         List<Marca> marcas = new ArrayList<>();
-        String sql = "SELECT ID, Nombre FROM Marca";
+        String sql = "SELECT id, nombre FROM marca";
 
         try (PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Marca marca = new Marca();
-                marca.setID(rs.getInt("ID"));
-                marca.setNombre(rs.getString("Nombre"));
+                marca.setID(rs.getInt("id"));
+                marca.setNombre(rs.getString("nombre"));
                 marcas.add(marca);
             }
         }

@@ -1,16 +1,20 @@
 package com.djm.inventa.producto.view.producto;
 
 import com.djm.inventa.core.AppContext;
+import com.djm.inventa.exception.BaseDatosException;
 import com.djm.inventa.producto.exception.ProductoException;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.inventa.producto.persistence.ProductoDAO;
+import com.djm.inventa.stock.model.MovimientoStock;
+import com.djm.inventa.stock.persistence.MovimientoStockDAO;
 import com.djm.inventa.stock.view.StockRapidoGUI;
 import com.djm.inventa.ui.ipanel.IUIManager;
 import com.djm.ui.component.OptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 public class ProductoListener implements ActionListener {
     private PanelManagerProducto panelManagerProducto;
@@ -67,14 +71,28 @@ public class ProductoListener implements ActionListener {
             }
         }
         else if("AGREGAR_STOCK_RAPIDO".equals(action) || "EDITAR_STOCK_RAPIDO".equals(action) ){
-            int cant = 0;
+            BigDecimal cant = BigDecimal.ZERO;
             boolean editar = "EDITAR_STOCK_RAPIDO".equals(action);
             boolean agragar = "AGREGAR_STOCK_RAPIDO".equals(action);
+
             if (editar && this.panelManagerProducto.isData()){
                 cant = panelManagerProducto.getValue().getCantidadDisponible();
             }
             StockRapidoGUI stock = new StockRapidoGUI(cant);
             if(stock.isAcept()){
+
+                if(editar){}
+                else if(agragar){
+                    MovimientoStockDAO movimientoStockDAO = new MovimientoStockDAO();
+                    MovimientoStock movimientoStock = new MovimientoStock();
+                    movimientoStock.addCantidad(stock.getCantidadEntrante());
+                    try {
+                        movimientoStockDAO.agregarStock(movimientoStock);
+                    } catch (BaseDatosException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+
                 panelManagerProducto.setCantidadDisponible(stock.getCantidadEntrante(), agragar);
             }
         }

@@ -6,6 +6,7 @@ import com.djm.inventa.producto.exception.ProductoException;
 import com.djm.inventa.producto.persistence.CategoriaDAO;
 import com.djm.inventa.producto.persistence.MarcaDAO;
 import com.djm.inventa.producto.persistence.ProductoDAO;
+import com.djm.inventa.stock.model.MovimientoStock;
 import com.djm.inventa.ui.IconManager;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.inventa.ui.util.BorderUtil;
@@ -13,7 +14,6 @@ import com.djm.inventa.ui.PropiedadesLookAndFeel;
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
 import com.djm.inventa.producto.model.Producto;
-import com.djm.inventa.stock.model.Stock;
 import com.djm.inventa.ui.component.TextField;
 import com.djm.inventa.ui.component.TextArea;
 import com.djm.inventa.ui.util.InfoListener;
@@ -59,6 +59,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -642,7 +643,7 @@ public class PanelProducto{
         fillerFormProducto(producto, null);
     }
 
-    public void fillerFormProducto(Producto producto, Stock stock){
+    public void fillerFormProducto(Producto producto, MovimientoStock movimientoStock){
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
         eText(false);
@@ -656,14 +657,14 @@ public class PanelProducto{
         tModelo.setText(producto.getModelo());
         tSerie.setText(producto.getSerie());
 
-        tCosto.setText(FormatNumber.doubleToString(producto.getPrecioCosto()));
+        tCosto.setText(FormatNumber.bigDecimalToString(producto.getPrecioCosto()));
 
         if(producto.getUtilidad()!= null)
             tUtilidad.setText(String.valueOf(producto.getUtilidad()));
 
-        tPrecio1.setText(FormatNumber.doubleToString(producto.getPrecio1()));
-        tPrecio2.setText(FormatNumber.doubleToString(producto.getPrecio2()));
-        tPrecio3.setText(FormatNumber.doubleToString(producto.getPrecio3()));
+        tPrecio1.setText(FormatNumber.bigDecimalToString(producto.getPrecio1()));
+        tPrecio2.setText(FormatNumber.bigDecimalToString(producto.getPrecio2()));
+        tPrecio3.setText(FormatNumber.bigDecimalToString(producto.getPrecio3()));
 
         tUtilidad.setText(producto.getUtilidad() != null
                 ? producto.getUtilidad().toString()
@@ -704,7 +705,7 @@ public class PanelProducto{
         disponible.setSelected(Boolean.TRUE.equals(producto.isDisponible()));
         noRequiereStock.setSelected(Boolean.TRUE.equals(producto.isNoRequiereStock()));
         precioImpuesto.setSelected(Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
-        requiereAprob.setSelected(Boolean.TRUE.equals(producto.isReqAprobnPrecioEspecial()));
+        requiereAprob.setSelected(Boolean.TRUE.equals(producto.isReqAprobPrecioEspecial()));
 
         tNota.setText(producto.getNota());
 
@@ -746,8 +747,8 @@ public class PanelProducto{
 
         procesadorProducto.validadPrecio(tCosto, tPrecio1, lPrecio1Adv, tPrecio2, lPrecio2Adv, tPrecio3, lPrecio3Adv);
 
-        if (stock != null) {
-            tCantidadDisponible.setText(String.valueOf(stock.getCantidad()));
+        if (movimientoStock != null) {
+            tCantidadDisponible.setText(String.valueOf(movimientoStock.getCantidad()));
         }
         else {
             tCantidadDisponible.setText(String.valueOf(producto.getCantidadDisponible()));
@@ -865,24 +866,24 @@ public class PanelProducto{
 
         String stockCrititco = tStockCritico.getText();
 
-        Double c = 0.0;
+        BigDecimal c = BigDecimal.ZERO;
         if(costo!=null && !costo.trim().isEmpty()) {
-            c = FormatNumber.stringToDouble(costo);
+            c = FormatNumber.stringToBigDecimal(costo);
         }
 
-        Double p1 = 0.0;
+        BigDecimal p1 = BigDecimal.ZERO;
         if(precio1!= null && !precio1.trim().isEmpty()) {
-            p1 = FormatNumber.stringToDouble(precio1);
+            p1 = FormatNumber.stringToBigDecimal(precio1);
         }
 
-        Double p2 = 0.0;
+        BigDecimal p2 = BigDecimal.ZERO;
         if(precio2!= null && !precio2.trim().isEmpty()){
-            p2 = FormatNumber.stringToDouble(precio2);
+            p2 = FormatNumber.stringToBigDecimal(precio2);
         }
 
-        Double p3 = 0.0;
+        BigDecimal p3 = BigDecimal.ZERO;
         if(precio3!= null && !precio3.trim().isEmpty()) {
-            p3 = FormatNumber.stringToDouble(precio3);
+            p3 = FormatNumber.stringToBigDecimal(precio3);
         }
 
         Integer scritico = 0;
@@ -930,7 +931,7 @@ public class PanelProducto{
         producto.setFechaActualizacion(FechaUtil.parseFecha(tFechaActualizacion.getText()));
 
         String cantDisponible = tCantidadDisponible.getText();
-        producto.setCantidadDisponible(Integer.parseInt(cantDisponible));
+        producto.setCantidadDisponible(new BigDecimal(cantDisponible));
 
         return producto;
     }
@@ -969,13 +970,13 @@ public class PanelProducto{
         bAddCantidad.setEnabled(enabled);
     }
 
-    public void setCantidadDisponible(int cant, boolean agregar){
-        if(cant > 0){
+    public void setCantidadDisponible(BigDecimal cant, boolean agregar){
+        if(cant.compareTo(BigDecimal.ZERO) > 0){
             String tcant = tCantidadDisponible.getText();
-            int c = cant;
+            BigDecimal c = cant;
             if(agregar && tcant != null &&!tcant.trim().isEmpty()){
                 try {
-                    c += Integer.parseInt(tcant);
+                    c = c.add(new BigDecimal(tcant));
                 }catch (NumberFormatException exc){}
             }
             tCantidadDisponible.setText(String.valueOf(c));

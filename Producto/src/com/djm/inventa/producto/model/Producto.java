@@ -2,8 +2,9 @@ package com.djm.inventa.producto.model;
 
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
-import com.djm.inventa.stock.model.Stock;
+import com.djm.inventa.stock.model.MovimientoStock;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Producto implements Cloneable{
@@ -15,14 +16,14 @@ public class Producto implements Cloneable{
     private String modelo;
     private String serie;
     private Integer utilidad;
-    private Double precioCosto;
-    private Double precio1;
-    private Double precio2;
-    private Double precio3;
+    private BigDecimal precioCosto;
+    private BigDecimal precio1;
+    private BigDecimal precio2;
+    private BigDecimal precio3;
     private Integer cantMayor;//Cantidad para aplicar precio mayorista
     private Boolean precioIncluyeImpuesto;
     private Boolean disponible = true;
-    private Integer cantidadDisponible;//Cantidad de stock
+    private BigDecimal cantidadDisponible;//Cantidad de stock
     private Integer stockCritico;
     private Boolean noRequiereStock = true;//Es un servicio
     private Boolean reqAprobPrecioEspecial = true;//Requiere aprobacion para precio especial
@@ -30,7 +31,7 @@ public class Producto implements Cloneable{
     private Marca marca;
     private LocalDateTime fechaActualizacion;
     private LocalDateTime  fechaCreacion;
-    private Stock stock;
+    private MovimientoStock movimientoStock;
     private String nota;
 
     public Producto() { }
@@ -99,35 +100,35 @@ public class Producto implements Cloneable{
         this.utilidad = utilidad;
     }
 
-    public Double getPrecioCosto() {
+    public BigDecimal getPrecioCosto() {
         return precioCosto;
     }
 
-    public void setPrecioCosto(Double precioCosto) {
+    public void setPrecioCosto(BigDecimal precioCosto) {
         this.precioCosto = precioCosto;
     }
 
-    public Double getPrecio1() {
+    public BigDecimal getPrecio1() {
         return precio1;
     }
 
-    public void setPrecio1(Double precio1) {
+    public void setPrecio1(BigDecimal precio1) {
         this.precio1 = precio1;
     }
 
-    public Double getPrecio2() {
+    public BigDecimal getPrecio2() {
         return precio2;
     }
 
-    public void setPrecio2(Double precio2) {
+    public void setPrecio2(BigDecimal precio2) {
         this.precio2 = precio2;
     }
 
-    public Double getPrecio3() {
+    public BigDecimal getPrecio3() {
         return precio3;
     }
 
-    public void setPrecio3(Double precio3) {
+    public void setPrecio3(BigDecimal precio3) {
         this.precio3 = precio3;
     }
 
@@ -151,22 +152,22 @@ public class Producto implements Cloneable{
         return disponible;
     }
 
-    public Stock getStock(){
-        return this.stock;
+    public MovimientoStock getStock(){
+        return this.movimientoStock;
     }
-    public void setStock(Stock stock){
-        this.stock = stock;
+    public void setStock(MovimientoStock movimientoStock){
+        this.movimientoStock = movimientoStock;
     }
 
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
     }
 
-    public Integer getCantidadDisponible() {
+    public BigDecimal getCantidadDisponible() {
         return cantidadDisponible;
     }
 
-    public void setCantidadDisponible(Integer cantidadStock) {
+    public void setCantidadDisponible(BigDecimal cantidadStock) {
         this.cantidadDisponible = cantidadStock;
     }
 
@@ -227,7 +228,7 @@ public class Producto implements Cloneable{
         this.nota = nota;
     }
 
-    public Boolean isReqAprobnPrecioEspecial() {
+    public Boolean isReqAprobPrecioEspecial() {
         return reqAprobPrecioEspecial;
     }
 
