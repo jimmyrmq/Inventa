@@ -16,5 +16,4 @@ public abstract class IPanelDataAction<E> extends IPanelAction{
     public void insertData(E e){
         this.e = e;
     }
-
 }

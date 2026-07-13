@@ -8,19 +8,11 @@
       <excludeFolder url="file://$MODULE_DIR$/resources/lang" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../lib" recursive="false" />
-      </library>
-    </orderEntry>
+    <orderEntry type="module" module-name="inventa.common-core" />
+    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="inventa.common-core" exported="" />
     <orderEntry type="module" module-name="inventa.common-util" exported="" />
+    <orderEntry type="module" module-name="inventa.inventa-model" exported="" />
     <orderEntry type="module" module-name="inventa.common-ui" exported="" />
   </component>
 </module>

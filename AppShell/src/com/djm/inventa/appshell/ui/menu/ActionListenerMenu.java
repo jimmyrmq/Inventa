@@ -1,9 +1,9 @@
 package com.djm.inventa.appshell.ui.menu;
 
-import com.djm.common.GlobalFrame;
 import com.djm.inventa.appshell.startup.CONSTANTS;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.ui.AparienciaLookFeel;
+import com.djm.ui.GlobalFrame;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;

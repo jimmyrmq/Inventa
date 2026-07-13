@@ -32,4 +32,22 @@ public abstract class IAction {
         ActionMap actionMap = button.getActionMap();
         actionMap.put("CERRAR", action);
     }
+
+    /**
+     * Asocia la tecla F5 para disparar la misma acción que el botón pasado.
+     * Uso: llamar guardarF5(bGuardar) después de crear el botón y asignar su ActionListener.
+     */
+    public void guardarF5(JButton button){
+        KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_F5,0,false);
+        Action action = new AbstractAction(){
+            public void actionPerformed(ActionEvent e) {
+                // Simular click en el botón (dispara su ActionListeners)
+                button.doClick();
+            }
+        };
+        InputMap inputMap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(ks, "GUARDAR_F5");
+        ActionMap actionMap = button.getActionMap();
+        actionMap.put("GUARDAR_F5", action);
+    }
 }

@@ -2,7 +2,7 @@ package com.djm.inventa.admin.compra.vista;
 
 import com.djm.inventa.admin.compra.vista.proveedor.PanelProveedor;
 import com.djm.inventa.core.i18n.I18nManager;
-import com.djm.util.LayoutPanel;
+import com.djm.ui.LayoutPanel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS Usuario (
-	ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
-	Nombre TEXT NOT NULL,
-	Email TEXT,
-	NivelAcceso INTEGER NOT NULL,
-	Clave TEXT NOT NULL,
-	Habilitado INT(1) NOT NULL
+CREATE TABLE IF NOT EXISTS usuario (
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+	nombre TEXT NOT NULL,
+	email TEXT,
+	nivel_acceso INTEGER NOT NULL,
+	clave TEXT NOT NULL,
+	habilitado INT(1) NOT NULL
 );
 
-insert into Usuario (Nombre,NivelAcceso,Clave,Habilitado) values ('Principal',0,'',1);
+insert into usuario (nombre,nivel_acceso,clave,habilitado) values ('Principal',0,'',1);

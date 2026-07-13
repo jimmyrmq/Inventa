@@ -1,15 +1,15 @@
-CREATE TABLE IF NOT EXISTS TipoDocumento (
-	ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
-	Nombre TEXT NOT NULL,
-	Codigo TEXT,
-	CategoriaDocumentoID INTEGER NOT NULL,
-	AlmacenID INTEGER NOT NULL,
-	LenguageKey TEXT,
-	FOREIGN KEY (CategoriaDocumentoID) REFERENCES CategoriaDocumento (ID)  ON DELETE CASCADE,
-	FOREIGN KEY (AlmacenID) REFERENCES Almacen (ID)  ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS tipo_documento (
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+	nombre TEXT NOT NULL,
+	codigo TEXT,
+	categoria_documento_id INTEGER NOT NULL,
+	almacen_id INTEGER NOT NULL,
+	lenguage_key TEXT,
+	FOREIGN KEY (categoria_documento_id) REFERENCES categoria_documento (id)  ON DELETE CASCADE,
+	FOREIGN KEY (almacen_id) REFERENCES almacen (id)  ON DELETE CASCADE
 );
 
-INSERT INTO TipoDocumento (Nombre,Codigo,CategoriaDocumentoID,AlmacenID,LenguageKey)  VALUES
+INSERT INTO tipo_documento (nombre,codigo,categoria_documento_id,almacen_id,lenguage_key)  VALUES
     ('Ventas','100',2,1,'documento.ventas'),
     ('Gastos','200',1,1,'documento.gasto'),
     ('Orden de Compra','220',1,1,'documento.ordencompra'),

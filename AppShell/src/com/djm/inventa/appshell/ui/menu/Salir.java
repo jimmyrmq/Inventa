@@ -1,7 +1,7 @@
 package com.djm.inventa.appshell.ui.menu;
 
-import com.djm.common.GlobalFrame;
 import com.djm.inventa.appshell.startup.CONSTANTS;
+import com.djm.ui.GlobalFrame;
 import com.djm.ui.component.OptionPane;
 
 public class Salir {

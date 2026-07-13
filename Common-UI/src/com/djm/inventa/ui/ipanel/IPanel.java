@@ -28,4 +28,6 @@ public interface IPanel{
 
     default void onCancelar() {}
 
+    void init();
+
 }

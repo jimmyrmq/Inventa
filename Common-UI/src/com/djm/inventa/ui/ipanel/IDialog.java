@@ -1,6 +1,6 @@
 package com.djm.inventa.ui.ipanel;
 
-import com.djm.common.GlobalFrame;
+import com.djm.ui.GlobalFrame;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;

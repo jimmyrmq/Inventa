@@ -1,6 +1,7 @@
 package com.djm.inventa.util;
 
-import com.djm.util.exception.PropertiesException;
+import com.djm.inventa.exception.PropertiesException;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -29,7 +30,7 @@ public class Propiedades {
         }
     }*/
 
-    public Propiedades(File configFile) throws PropertiesException{
+    public Propiedades(File configFile) throws PropertiesException {
         this(configFile, true);
     }
 

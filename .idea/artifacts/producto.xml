@@ -2,8 +2,8 @@
   <artifact type="jar" name="producto">
     <output-path>$PROJECT_DIR$/ext</output-path>
     <root id="archive" name="producto.jar">
-      <element id="module-output" name="inventa.Producto" />
-      <element id="dir-copy" path="$PROJECT_DIR$/Producto/resources/META-INF" />
+      <element id="module-output" name="inventa.producto" />
+      <element id="dir-copy" path="$PROJECT_DIR$/Producto/resources/META-INF/services" />
     </root>
   </artifact>
 </component>

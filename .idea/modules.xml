@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/inventa.iml" filepath="$PROJECT_DIR$/inventa.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Producto/inventa.Producto.iml" filepath="$PROJECT_DIR$/Producto/inventa.Producto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inventa.Inventa 2.0.iml" filepath="$PROJECT_DIR$/inventa.Inventa 2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/AppShell/inventa.appshell.iml" filepath="$PROJECT_DIR$/AppShell/inventa.appshell.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common-Core/inventa.common-core.iml" filepath="$PROJECT_DIR$/Common-Core/inventa.common-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Inventa-Model/inventa.common-model.iml" filepath="$PROJECT_DIR$/Inventa-Model/inventa.common-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" filepath="$PROJECT_DIR$/Common-UI/inventa.common-ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common-Util/inventa.common-util.iml" filepath="$PROJECT_DIR$/Common-Util/inventa.common-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/Compra/inventa.compra.iml" filepath="$PROJECT_DIR$/Compra/inventa.compra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Producto/inventa.producto.iml" filepath="$PROJECT_DIR$/Producto/inventa.producto.iml" />
     </modules>
   </component>
 </project>

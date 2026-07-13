@@ -1,6 +1,5 @@
 package com.djm.inventa.appshell.startup;
 
-import com.djm.common.GlobalFrame;
 import com.djm.inventa.appshell.ui.menu.MenuBuilder;
 import com.djm.inventa.appshell.ui.VentanaPrincipal;
 import com.djm.inventa.core.AppContext;
@@ -9,6 +8,7 @@ import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.core.i18n.I18nManager;
 import com.djm.inventa.ui.AparienciaLookFeel;
 import com.djm.inventa.ui.PropiedadesLookAndFeel;
+import com.djm.ui.GlobalFrame;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 

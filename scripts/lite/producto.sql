@@ -1,42 +1,40 @@
-CREATE TABLE IF NOT EXISTS Producto (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE IF NOT EXISTS producto (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
-    Codigo TEXT NOT NULL UNIQUE,
-    CodigoBarra TEXT DEFAULT NULL,
-    Nombre TEXT NOT NULL,
+    codigo TEXT NOT NULL UNIQUE,
+    codigo_barra TEXT DEFAULT NULL,
+    nombre TEXT NOT NULL,
 
-    UnidadMedida TEXT DEFAULT NULL,
-    Modelo TEXT DEFAULT NULL,
-    Serie TEXT DEFAULT NULL,
+    unidad_medida TEXT DEFAULT NULL,
+    modelo TEXT DEFAULT NULL,
+    serie TEXT DEFAULT NULL,
 
-    MarcaID INTEGER DEFAULT NULL,
-    CategoriaID INTEGER DEFAULT NULL,
-    ProveedorID INTEGER DEFAULT NULL,
+    marca_id INTEGER DEFAULT NULL,
+    categoria_id INTEGER DEFAULT NULL,
 
-    PrecioCosto REAL NOT NULL,
-    Utilidad INTEGER DEFAULT 0,
+    precio_costo REAL NOT NULL,
+    utilidad INTEGER DEFAULT 0,
 
-    Precio1 REAL NOT NULL,
-    Precio2 REAL NOT NULL,
-    Precio3 REAL NOT NULL,
+    precio1 REAL NOT NULL,
+    precio2 REAL NOT NULL,
+    precio3 REAL NOT NULL,
 
-    CantMayor INTEGER DEFAULT NULL,
+    cant_mayor INTEGER DEFAULT NULL,
 
-    PrecioIncluyeImpuesto INTEGER NOT NULL DEFAULT 1,
-    Disponible INTEGER NOT NULL DEFAULT 1,
+    precio_incluye_impuesto INTEGER NOT NULL DEFAULT 1,
+    disponible INTEGER NOT NULL DEFAULT 1,
 
-    CantidadDisponible INTEGER DEFAULT NULL,
-    StockCritico INTEGER DEFAULT NULL,
+    cantidad_disponible INTEGER DEFAULT NULL,
+    stock_critico INTEGER DEFAULT NULL,
 
-    NoRequiereStock INTEGER NOT NULL DEFAULT 0,
-    ReqAprobPrecioEspecial INTEGER NOT NULL DEFAULT 1,
+    no_requiere_stock INTEGER NOT NULL DEFAULT 0,
+    req_aprobacion_precio_especial INTEGER NOT NULL DEFAULT 1,
 
-    FechaActualizacion TEXT DEFAULT NULL,
-    FechaCreado TEXT DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TEXT  DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP,
 
-    Nota TEXT DEFAULT NULL,
+    nota TEXT DEFAULT NULL,
 
-    FOREIGN KEY (CategoriaID) REFERENCES Categoria (ID) ON DELETE CASCADE,
-    FOREIGN KEY (MarcaID) REFERENCES Marca (ID) ON DELETE CASCADE,
-    FOREIGN KEY (ProveedorID) REFERENCES Proveedor (ID) ON DELETE CASCADE
+    FOREIGN KEY (categoria_id) REFERENCES categoria (id) ON DELETE CASCADE,
+    FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE
 );

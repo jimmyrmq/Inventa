@@ -6,7 +6,8 @@ module com.djm.inventa.appshell {
 
     requires com.djm.inventa.core;
     requires java.desktop;
-    requires djm.api;
+    requires com.djm.api.ui;
+    requires com.djm.api.util;
     requires com.formdev.flatlaf;
     requires com.djm.inventa.util;
     requires java.sql;

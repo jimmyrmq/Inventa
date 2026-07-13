@@ -2,8 +2,6 @@ package com.djm.inventa.ui.ipanel;
 
 import com.djm.inventa.ui.PropiedadesLookAndFeel;
 import com.djm.ui.component.ColorFilter;
-import com.djm.ui.themes.global.GlobalUI;
-import com.djm.util.Image;
 
 import javax.swing.*;
 import javax.swing.event.InternalFrameEvent;

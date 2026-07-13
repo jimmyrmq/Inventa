@@ -1,12 +1,12 @@
-CREATE TABLE IF NOT EXISTS Proveedor (
-  ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
-  Codigo varchar(20) UNIQUE NOT NULL,
-  Nombre TEXT  NOT NULL,
-  Direccion TEXT DEFAULT NULL,
-  Telefono1 varchar(20) DEFAULT NULL,
-  Telefono2 varchar(20) DEFAULT NULL,
-  Correo varchar(150) DEFAULT NULL,
-  NombreContacto TEXT DEFAULT NULL,
-  Nota TEXT NOT NULL,
-  FechaRegistro DATE NOT NULL
+CREATE TABLE IF NOT EXISTS proveedor (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+  codigo varchar(20) UNIQUE NOT NULL,
+  nombre TEXT  NOT NULL,
+  direccion TEXT DEFAULT NULL,
+  telefono1 varchar(20) DEFAULT NULL,
+  telefono2 varchar(20) DEFAULT NULL,
+  correo varchar(150) DEFAULT NULL,
+  nombre_contacto TEXT DEFAULT NULL,
+  nota TEXT NOT NULL,
+  fecha_registro DATE NOT NULL
 );

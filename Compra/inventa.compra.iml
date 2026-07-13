@@ -7,10 +7,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="inventa.common-model" />
+    <orderEntry type="module" module-name="inventa.common-core" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module" module-name="inventa.common-ui" />
+    <orderEntry type="module" module-name="inventa.common-util" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="lib" level="project" />
-    <orderEntry type="module" module-name="inventa.common-util" exported="" />
-    <orderEntry type="module" module-name="inventa.common-core" exported="" />
-    <orderEntry type="module" module-name="inventa.common-ui" exported="" />
   </component>
 </module>

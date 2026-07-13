@@ -1,44 +1,32 @@
-CREATE TABLE IF NOT EXISTS Producto (
-                                        ID BIGINT NOT NULL AUTO_INCREMENT,
-                                        Codigo VARCHAR(20) NOT NULL UNIQUE,
-    CodigoBarra VARCHAR(50) DEFAULT NULL,
-    Nombre VARCHAR(50) NOT NULL,
-    UnidadMedida VARCHAR(10) DEFAULT NULL,
-    Modelo VARCHAR(20) DEFAULT NULL,
-    Serie VARCHAR(20) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS producto (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    codigo VARCHAR(20) NOT NULL UNIQUE,
+    codigo_barra VARCHAR(50) DEFAULT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    unidad_medida VARCHAR(10) DEFAULT NULL,
+    modelo VARCHAR(20) DEFAULT NULL,
+    serie VARCHAR(20) DEFAULT NULL,
+    marca_id INT DEFAULT NULL,
+    categoria_id INT DEFAULT NULL,
+    precio_costo DOUBLE NOT NULL,
+    utilidad INT DEFAULT 0,
+    precio1 DOUBLE NOT NULL,
+    precio2 DOUBLE NOT NULL,
+    precio3 DOUBLE NOT NULL,
+    cant_mayor INT DEFAULT NULL,
+    precio_incluye_impuesto TINYINT(1) NOT NULL DEFAULT 1,
+    disponible TINYINT(1) NOT NULL DEFAULT 1,
+    cantidad_disponible INT DEFAULT NULL,
+    stock_critico INT DEFAULT NULL,
+    no_requiere_stock TINYINT(1) NOT NULL DEFAULT 0,
+    req_aprobacion_precio_especial TINYINT(1) NOT NULL DEFAULT 1,
+    fecha_actualizacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    nota TEXT DEFAULT NULL,
 
-    MarcaID INT DEFAULT NULL,
-    CategoriaID INT DEFAULT NULL,
+    PRIMARY KEY (id),
 
-    PrecioCosto DOUBLE NOT NULL,
-    Utilidad INT DEFAULT 0,
-
-    Precio1 DOUBLE NOT NULL,
-    Precio2 DOUBLE NOT NULL,
-    Precio3 DOUBLE NOT NULL,
-
-    CantMayor INT DEFAULT NULL,
-
-    PrecioIncluyeImpuesto TINYINT(1) NOT NULL DEFAULT 1,
-    Disponible TINYINT(1) NOT NULL DEFAULT 1,
-
-    CantidadDisponible INT DEFAULT NULL,
-    StockCritico INT DEFAULT NULL,
-
-    NoRequiereStock TINYINT(1) NOT NULL DEFAULT 0,
-    ReqAprobPrecioEspecial TINYINT(1) NOT NULL DEFAULT 1,
-
-    ProveedorID INT DEFAULT NULL,
-
-    FechaActualizacion DATETIME DEFAULT NULL,
-    FechaCreado DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    Nota TEXT DEFAULT NULL,
-
-    PRIMARY KEY (ID),
-
-    FOREIGN KEY (CategoriaID) REFERENCES Categoria(ID) ON DELETE CASCADE,
-    FOREIGN KEY (MarcaID) REFERENCES Marca(ID) ON DELETE CASCADE,
-    FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ID) ON DELETE CASCADE
+    FOREIGN KEY (categoria_id) REFERENCES categoria(id) ON DELETE CASCADE,
+    FOREIGN KEY (marca_id) REFERENCES marca(id) ON DELETE CASCADE
 
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -4,7 +4,7 @@ import com.djm.inventa.core.i18n.I18nManager;
 import com.djm.inventa.util.Propiedades;
 import com.djm.inventa.util.LoggerApp;
 import com.djm.ui.component.OptionPane;
-import com.djm.util.exception.PropertiesException;
+//import com.djm.util.exception.PropertiesException;
 
 import java.io.File;
 import java.net.URISyntaxException;

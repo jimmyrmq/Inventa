@@ -1,6 +1,7 @@
 module com.djm.inventa.ui {
     requires java.desktop;
-    requires djm.api;
+    requires com.djm.api.util;
+    requires com.djm.api.ui;
     requires com.djm.inventa.core;
 
     exports com.djm.inventa.ui;

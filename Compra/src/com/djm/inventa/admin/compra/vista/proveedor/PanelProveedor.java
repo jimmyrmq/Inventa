@@ -7,7 +7,7 @@ import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.inventa.ui.ipanel.TipoVista;
 import com.djm.ui.component.OptionPane;
-import com.djm.util.LayoutPanel;
+import com.djm.ui.LayoutPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -132,6 +132,9 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
 
         cerrarEsc(bCancelar);
 
+        // Asociar F5 para que ejecute la misma acción que el botón Guardar
+        guardarF5(bGuardar);
+
         bGuardar.setFocusable(true);
 
         panel.add(bEliminar, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 1.0f, 0.0f));
@@ -183,6 +186,11 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
     @Override
     public JPanel getPanel() {
         return panelPrincipal;
+    }
+
+    @Override
+    public ImageIcon getIcon() {
+        return super.getIcon();
     }
 
 
@@ -309,6 +317,11 @@ public class PanelProveedor extends IPanelDataAction<Proveedor> {
         /*if (iuiManager != null) {
             iuiManager.closeView(getId());
         }*/
+    }
+
+    @Override
+    public void init() {
+
     }
 
     public void onGuardar() {

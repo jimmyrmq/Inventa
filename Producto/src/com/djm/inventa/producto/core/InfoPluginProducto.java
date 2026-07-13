@@ -1,8 +1,7 @@
 package com.djm.inventa.producto.core;
 
-import com.djm.inventa.core.AppContext;
-import com.djm.inventa.producto.vista.producto.PanelManagerProducto;
-import com.djm.inventa.producto.vista.producto.ProductoListener;
+import com.djm.inventa.producto.view.producto.PanelManagerProducto;
+import com.djm.inventa.producto.view.producto.ProductoListener;
 import com.djm.inventa.ui.IconManager;
 import com.djm.inventa.ui.ipanel.IMenuContribution;
 import com.djm.inventa.ui.ipanel.IPluginInfo;

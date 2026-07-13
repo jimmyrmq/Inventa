@@ -1,14 +1,12 @@
 package com.djm.inventa.producto.dev;
 
-import com.djm.common.GlobalFrame;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.i18n.I18nManager;
 import com.djm.inventa.producto.core.ConexionDB;
-import com.djm.inventa.producto.modelo.Producto;
-import com.djm.inventa.producto.vista.producto.PanelManagerProducto;
-import com.djm.inventa.producto.vista.producto.ProductoListener;
-import com.djm.inventa.ui.ipanel.IPanelDataAction;
-import com.djm.util.LayoutPanel;
+import com.djm.inventa.producto.view.producto.PanelManagerProducto;
+import com.djm.inventa.producto.view.producto.ProductoListener;
+import com.djm.ui.GlobalFrame;
+import com.djm.ui.LayoutPanel;
 
 import javax.swing.JFrame;
 import java.awt.Container;
@@ -25,13 +23,14 @@ public class FrameRunDev {
         I18nManager.initForDev("producto", "producto");
 
         PanelManagerProducto managerProducto = new PanelManagerProducto();
-
-        ProductoListener productoListener = new ProductoListener( managerProducto);
-        managerProducto.setActionListener(productoListener);
-
         //Conexion con la BD
         ConexionDB.establecerConexion();
         ConexionDB.initDBDev();
+
+        managerProducto.init();
+
+        ProductoListener productoListener = new ProductoListener( managerProducto);
+        managerProducto.setActionListener(productoListener);
 
         JFrame frame = new JFrame(managerProducto.getTitle());
 

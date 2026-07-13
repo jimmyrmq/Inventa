@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS DocumentoItem (
-	ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
-    DocumentoID INTEGER NOT NULL,
-    ProductoID INTEGER NOT NULL,
-    Cantidad NUMERIC NOT NULL DEFAULT(0),
-    PrecioUnitario NUMERIC,
-    PrecioNeto NUMERIC,
-    PrecioTotal NUMERIC NULL DEFAULT(0),
-    FOREIGN KEY (DocumentoID) REFERENCES Documento (ID)  ON DELETE CASCADE,
-    FOREIGN KEY (ProductoID) REFERENCES Producto (ID)  ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS documento_item (
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+    documento_id INTEGER NOT NULL,
+    producto_id INTEGER NOT NULL,
+    cantidad NUMERIC NOT NULL DEFAULT(0),
+    precio_unitario NUMERIC,
+    precio_neto NUMERIC,
+    precio_total NUMERIC NULL DEFAULT(0),
+    FOREIGN KEY (documento_id) REFERENCES documento (id)  ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES producto (id)  ON DELETE CASCADE
 );

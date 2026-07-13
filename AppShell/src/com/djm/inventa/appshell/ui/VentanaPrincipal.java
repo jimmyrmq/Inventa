@@ -4,7 +4,7 @@ import com.djm.inventa.appshell.Global;
 import com.djm.inventa.appshell.ui.desktop.PanelDesktop;
 import com.djm.inventa.appshell.ui.menu.Salir;
 import com.djm.inventa.ui.IconManager;
-import com.djm.util.LayoutPanel;
+import com.djm.ui.LayoutPanel;
 
 import javax.swing.*;
 import java.awt.*;

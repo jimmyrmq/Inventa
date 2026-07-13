@@ -1,6 +1,6 @@
 package com.djm.inventa.ui.component;
 
-import com.djm.util.LayoutPanel;
+import com.djm.ui.LayoutPanel;
 
 import javax.swing.JPanel;
 import javax.swing.UIManager;

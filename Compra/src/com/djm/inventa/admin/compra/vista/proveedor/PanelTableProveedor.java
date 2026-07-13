@@ -10,9 +10,9 @@ import com.djm.inventa.ui.component.EtiquetaComponent;
 import com.djm.inventa.ui.component.Table;
 import com.djm.inventa.ui.component.renderer.StatusIconProductRenderer;
 import com.djm.inventa.ui.component.renderer.TipoEtiqueta;
+import com.djm.ui.LayoutPanel;
 import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.table.ModeloTabla;
-import com.djm.util.LayoutPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
