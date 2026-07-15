@@ -61,6 +61,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -70,7 +71,7 @@ public class PanelProducto{
     private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo,
             tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3,tCantMayor, tStockCritico,
             tCantidadDisponible, tUtilidad, tFechaActualizacion, tFechaCreacion;
-    private Button bAddMarca, bAddCantidad, bBuscar;
+    private Button bAddMarca, bAddCantidad, bEnter, bBuscar;
     private JButton bGuardar, bCancelar, bEliminar;
     private JLabel lUtilidadAdv, lPrecio1Adv, lPrecio2Adv, lPrecio3Adv,lInfo;
     private ToggleButton bCodigoBarra;
@@ -79,7 +80,7 @@ public class PanelProducto{
     private JComboBox<Marca> cbMarca;
     private DefaultComboBoxModel<Categoria> dcbCategoria;
     private DefaultComboBoxModel<Marca> dcbMarca;
-    private JCheckBox disponible, noRequiereStock, precioImpuesto, requiereAprob;
+    private JCheckBox disponible, noRequiereStock, precioImpuesto, requiereAprob, movimientoNegativo;
     private Color greenButton = new Color(77, 170, 71);
     private LostFocusPrecio lostFocusPrecio = new LostFocusPrecio();
     private ProcesadorProducto procesadorProducto = new ProcesadorProducto();
@@ -223,12 +224,19 @@ public class PanelProducto{
         JLabel lFechaActualizacion = new JLabel(CONSTANTS.i18n.getLabel("producto.label.fechaactualizacion"));
         JLabel lFechaCreacion = new JLabel(CONSTANTS.i18n.getLabel("producto.label.fechacreacion"));
 
-        bBuscar = new Button(IconManager.get20("ok"),true);
-
-        bBuscar.setPaintBack(false);
-        bBuscar.setColorFilter(greenButton);
-        bBuscar.setActionCommand("BUSCAR_PRODUCTO");
+        bEnter = new Button(IconManager.get20("ok"),true);
+        bEnter.setPaintBack(false);
+        bEnter.setColorFilter(greenButton);
+        //bEnter.setActionCommand("BUSCAR_PRODUCTO");
         //bBuscar.addActionListener(this);
+        bEnter.setButtonIcon(true);
+        bEnter.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar_producto"));
+        bEnter.setFocusable(false);
+        bEnter.setColorBackIn(color1);
+        bEnter.setColorBackSelected(color2);
+
+        bBuscar = new Button(IconManager.get20("buscar"),true);
+        bBuscar.setPaintBack(false);
         bBuscar.setButtonIcon(true);
         bBuscar.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar_producto"));
         bBuscar.setFocusable(false);
@@ -253,20 +261,22 @@ public class PanelProducto{
         bAddMarca.setColorBackIn(color1);
         bAddMarca.setColorBackSelected(color2);
 
+        int dimColumText = 31;//27;
+
         tCodigo = new TextField(20,20);
-        tCodigoBarra = new TextField(27,40,true);
-        tNombre = new TextField(27,50);
+        tCodigoBarra = new TextField(dimColumText,40,true);
+        tNombre = new TextField(dimColumText,50);
         tUnidadMedida = new TextField(5,10);
-        tModelo = new TextField(27,20);
-        tSerie = new TextField(27,20);
-        tFechaActualizacion = new TextField(27,20);
-        tFechaCreacion = new TextField(27,20);
+        tModelo = new TextField(dimColumText,20);
+        tSerie = new TextField(dimColumText,20);
+        tFechaActualizacion = new TextField(dimColumText,20);
+        tFechaCreacion = new TextField(dimColumText,20);
 
         tFechaActualizacion.setEditable(false);
         tFechaCreacion.setEditable(false);
 
-        tFechaActualizacion.setText("---");
-        tFechaCreacion.setText("---");
+        tFechaActualizacion.setText("-");
+        tFechaCreacion.setText("-");
 
          tCodigo.setToolTipText(CONSTANTS.i18n.getValue("producto.inf.buscarcodigo"));
          tCodigo.setPlaceHolder(CONSTANTS.i18n.getValue("producto.inf.buscarcodigo"));
@@ -298,7 +308,7 @@ public class PanelProducto{
         Color color = tCodigo.getSelectionColor();
         Color colBack = tCodigo.getBackground();
 
-        tNota = new TextArea(2,27);
+        tNota = new TextArea(2,dimColumText);
         tNota.setBackground(colBack);
         tNota.setLimitText(512);
         tNota.addKeyListener(new KeyAdapter() {
@@ -354,12 +364,15 @@ public class PanelProducto{
         noRequiereStock = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.no_requiere_stock"));
         noRequiereStock.setOpaque(false);
         noRequiereStock.setActionCommand("NO_REQUERE_STOCK");
-        //noRequiereStock.addActionListener(this);
+        noRequiereStock.addActionListener((ae)->{
+            bloquearFormStock();
+        });
 
         panel.add(lCodigo, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCodigo, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(bBuscar, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 4, 0, 0, 0.0f, 0.0f));
+        panel.add(bEnter, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 4, 0, 0, 0.0f, 0.0f));
         panel.add(bCodigoBarra, LayoutPanel.constantePane(3, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 3, 0, 0, 0.0f, 0.0f));
+        panel.add(bBuscar, LayoutPanel.constantePane(4, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 3, 0, 0, 0.0f, 0.0f));
 
         panel.add(lCodigoBarra, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCodigoBarra, LayoutPanel.constantePane(1, 1, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
@@ -373,11 +386,11 @@ public class PanelProducto{
         panel.add(tSerie, LayoutPanel.constantePane(1, 5, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         panel.add(lMarca, LayoutPanel.constantePane(0, 6, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(cbMarca, LayoutPanel.constantePane(1, 6, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(cbMarca, LayoutPanel.constantePane(1, 6, 3, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.LINE_START, 5, 5, 0, 0, 1.0f, 0.0f));
         panel.add(bAddMarca, LayoutPanel.constantePane(4, 6, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 3, 0, 0, 0.0f, 0.0f));
 
         panel.add(lCategoria, LayoutPanel.constantePane(0, 7, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(cbCategoria, LayoutPanel.constantePane(1, 7, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(cbCategoria, LayoutPanel.constantePane(1, 7, 3, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.LINE_START, 5, 5, 0, 0, 1.0f, 0.0f));
 
         panel.add(disponible, LayoutPanel.constantePane(1, 8, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
         panel.add(noRequiereStock, LayoutPanel.constantePane(1, 9, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
@@ -393,6 +406,7 @@ public class PanelProducto{
 
         return panel;
     }
+
 
     private JPanel panelPrecio() {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -526,6 +540,10 @@ public class PanelProducto{
         //panel.setBackground(Color.RED);
         panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.stock")));
 
+        movimientoNegativo = new JCheckBox(CONSTANTS.i18n.getValue("producto.stock.nonegativo"));
+        movimientoNegativo.setOpaque(false);
+        movimientoNegativo.setSelected(true);
+
         menuIngreso();
 
         bAddCantidad = new Button(IconManager.get16("add"),true);
@@ -556,11 +574,12 @@ public class PanelProducto{
         //tCantidadDisponible.addActionListener(this);
         tCantidadDisponible.setActionCommand("STOCK_ENTER");
 
-        panel.add(lDisponible, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tCantidadDisponible, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(bAddCantidad, LayoutPanel.constantePane(2, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 1.0f, 0.0f));
-        panel.add(lAdvertencia, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tStockCritico, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(movimientoNegativo, LayoutPanel.constantePane(0, 0, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 10, 0, 0, 0.0f, 0.0f));
+        panel.add(lAdvertencia, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
+        panel.add(tStockCritico, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(lDisponible, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
+        panel.add(tCantidadDisponible, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(bAddCantidad, LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 1.0f, 0.0f));
 
         return panel;
     }
@@ -577,6 +596,13 @@ public class PanelProducto{
 
         popupMenu.add(agragrStock);
         popupMenu.add(editarStock);
+    }
+    private void bloquearFormStock() {
+        boolean e = !noRequiereStock.isSelected();
+        tCantidadDisponible.setEnabled(e);
+        bAddCantidad.setEnabled(e);
+        movimientoNegativo.setEnabled(e);
+        tStockCritico.setEnabled(e);
     }
 
     private boolean actionCodigo() {
@@ -690,6 +716,7 @@ public class PanelProducto{
 
         disponible.setSelected(Boolean.TRUE.equals(producto.isDisponible()));
         noRequiereStock.setSelected(Boolean.TRUE.equals(producto.isNoRequiereStock()));
+        movimientoNegativo.setSelected(Boolean.TRUE.equals(producto.isMovimientoNegativo()));
         precioImpuesto.setSelected(Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
         requiereAprob.setSelected(Boolean.TRUE.equals(producto.isReqAprobPrecioEspecial()));
 
@@ -753,6 +780,8 @@ public class PanelProducto{
 
         eText(true);
 
+        bloquearFormStock();
+
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
@@ -774,6 +803,7 @@ public class PanelProducto{
 
         disponible.setSelected(true);
         noRequiereStock.setSelected(false);
+        movimientoNegativo.setSelected(true);
 
         tStockCritico.setEditable(true);
         bAddCantidad.setEnabled(true);
@@ -832,6 +862,7 @@ public class PanelProducto{
         String serie = tSerie.getText();
         boolean disp = disponible.isSelected();
         boolean noReqStock = noRequiereStock.isSelected();
+        boolean movNegativo = movimientoNegativo.isSelected();
         String nota = tNota.getText();
         String costo = tCosto.getText();
         String utilidad = tUtilidad.getText();
@@ -902,6 +933,7 @@ public class PanelProducto{
         producto.setCategoria(categoria);
         producto.setDisponible(disp);
         producto.setNoRequiereStock(noReqStock);
+        producto.setMovimientoNegativo(movNegativo);
         producto.setNota(nota);
         producto.setUtilidad(util);
         producto.setPrecioCosto(c);
@@ -928,7 +960,7 @@ public class PanelProducto{
 
     public void eText(boolean enabled){
         tCodigo.setEnabled(enabled);
-        bBuscar.setEnabled(enabled);
+        bEnter.setEnabled(enabled);
 
         tCodigoBarra.setEnabled(enabled);
         tNombre.setEnabled(enabled);
@@ -991,8 +1023,29 @@ public class PanelProducto{
             actionCodigo2();
         });
 
-        bBuscar.addActionListener(ae->{
+        bEnter.addActionListener(ae->{
             actionCodigo2();
+        });
+
+        bBuscar.addActionListener(ae -> {
+            // Construir listas de marcas y categorias desde los modelos actuales
+            List<Marca> marcas = new ArrayList<>();
+            for (int i = 0; i < dcbMarca.getSize(); i++) {
+                marcas.add(dcbMarca.getElementAt(i));
+            }
+
+            List<Categoria> categorias = new ArrayList<>();
+            for (int i = 0; i < dcbCategoria.getSize(); i++) {
+                categorias.add(dcbCategoria.getElementAt(i));
+            }
+
+            DialogBuscarProducto dialog = new DialogBuscarProducto(GlobalFrame.getInstance().getFrame(), marcas, categorias);
+            dialog.setLocationRelativeTo(GlobalFrame.getInstance().getFrame());
+            dialog.setVisible(true);
+            Producto p = dialog.getSelectedProducto();
+            if (p != null) {
+                insertData(p);
+            }
         });
 
         bCodigoBarra.addActionListener((e)->{

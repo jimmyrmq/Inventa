@@ -27,6 +27,7 @@ public class Producto implements Cloneable{
     private BigDecimal stockCritico;
     private Boolean noRequiereStock = true;//Es un servicio
     private Boolean reqAprobPrecioEspecial = true;//Requiere aprobacion para precio especial
+    private Boolean movimientoNegativo = true;//Requiere aprobacion para precio especial
     private Categoria categoria;
     private Marca marca;
     private LocalDateTime fechaActualizacion;
@@ -185,6 +186,14 @@ public class Producto implements Cloneable{
 
     public void setNoRequiereStock(Boolean noRequiereStock) {
         this.noRequiereStock = noRequiereStock;
+    }
+
+    public Boolean isMovimientoNegativo() {
+        return movimientoNegativo;
+    }
+
+    public void setMovimientoNegativo(Boolean movimientoNegativo) {
+        this.movimientoNegativo = movimientoNegativo;
     }
 
     public Categoria getCategoria() {

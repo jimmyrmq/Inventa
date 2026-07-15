@@ -9,6 +9,7 @@ import com.djm.ui.GlobalFrame;
 import com.djm.ui.LayoutPanel;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS producto (
     cantidad_disponible INTEGER DEFAULT NULL,
     stock_critico INTEGER DEFAULT NULL,
 
+    movimiento_negativo INTEGER NOT NULL DEFAULT 0,
     no_requiere_stock INTEGER NOT NULL DEFAULT 0,
     req_aprobacion_precio_especial INTEGER NOT NULL DEFAULT 1,
 

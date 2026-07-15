@@ -17,6 +17,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.logging.Logger;
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.ResultSetMetaData;
 
 public class ProductoDAO {
     private Logger logger = Logger.getLogger(ProductoDAO.class.getName());
@@ -66,6 +69,20 @@ public class ProductoDAO {
         if (marcaId != null) {
             Marca marca = new Marca();
             marca.setID(marcaId);
+            try {
+                ResultSetMetaData md = rs.getMetaData();
+                boolean hasMarcaNombre = false;
+                for (int i = 1; i <= md.getColumnCount(); i++) {
+                    String label = md.getColumnLabel(i);
+                    if (label != null && label.equalsIgnoreCase("marca_nombre")) {
+                        hasMarcaNombre = true;
+                        break;
+                    }
+                }
+                if (hasMarcaNombre) {
+                    marca.setNombre(rs.getString("marca_nombre"));
+                }
+            } catch (SQLException ignore) {}
             producto.setMarca(marca);
         }
 
@@ -73,6 +90,20 @@ public class ProductoDAO {
         if (categoriaId != null) {
             Categoria categoria = new Categoria();
             categoria.setID(categoriaId);
+            try {
+                ResultSetMetaData md = rs.getMetaData();
+                boolean hasCategoriaNombre = false;
+                for (int i = 1; i <= md.getColumnCount(); i++) {
+                    String label = md.getColumnLabel(i);
+                    if (label != null && label.equalsIgnoreCase("categoria_nombre")) {
+                        hasCategoriaNombre = true;
+                        break;
+                    }
+                }
+                if (hasCategoriaNombre) {
+                    categoria.setNombre(rs.getString("categoria_nombre"));
+                }
+            } catch (SQLException ignore) {}
             producto.setCategoria(categoria);
         }
 
@@ -96,6 +127,7 @@ public class ProductoDAO {
 
         producto.setNoRequiereStock(rs.getBoolean("no_requiere_stock"));
         producto.setReqAprobPrecioEspecial(rs.getBoolean("req_aprobacion_precio_especial"));
+        producto.setMovimientoNegativo(rs.getBoolean("movimiento_negativo"));
 
         Timestamp ts = new Timestamp(rs.getLong("fecha_actualizacion"));
         producto.setFechaActualizacion(ts.toLocalDateTime());
@@ -110,6 +142,34 @@ public class ProductoDAO {
         return producto;
     }
 
+    public List<Producto> listarProductos() throws ProductoException {
+        List<Producto> productos = new ArrayList<>();
+
+        String sql = """
+                SELECT p.*
+                    , COALESCE(sp.cantidad, 0) AS cantidad_stock
+                    , m.nombre AS marca_nombre
+                    , c.nombre AS categoria_nombre
+                FROM producto p
+                LEFT JOIN stock_producto sp ON sp.producto_id = p.id
+                LEFT JOIN marca m ON m.id = p.marca_id
+                LEFT JOIN categoria c ON c.id = p.categoria_id
+                ORDER BY p.nombre
+            """;
+
+        try (PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                productos.add(mapProducto(rs));
+            }
+        } catch (SQLException exc) {
+            throw new ProductoException(exc.getMessage());
+        }
+
+        return productos;
+    }
+
     public boolean guardarProducto(Producto producto)throws ProductoException {
 
         boolean nuevoProducto = producto.getID() == null;
@@ -119,7 +179,7 @@ public class ProductoDAO {
                 "precio1", "precio2", "precio3", "cant_mayor",
                 "precio_incluye_impuesto", "disponible",
                  "stock_critico",
-                "no_requiere_stock", "req_aprobacion_precio_especial",
+                "no_requiere_stock", "req_aprobacion_precio_especial","movimiento_negativo",
                 "nota", "fecha_creacion", "fecha_actualizacion"};
 
         try {
@@ -157,13 +217,14 @@ public class ProductoDAO {
             ps.setBoolean(18, producto.isNoRequiereStock());
             ps.setBoolean(19, producto.isReqAprobPrecioEspecial());
 
-            ps.setString(20, producto.getNota());
+            ps.setBoolean(20, producto.isMovimientoNegativo());
+            ps.setString(21, producto.getNota());
 
-            ps.setTimestamp(21, Timestamp.valueOf(producto.getFechaCreacion()));
-            ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaActualizacion()));
+            ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaCreacion()));
+            ps.setTimestamp(23, Timestamp.valueOf(producto.getFechaActualizacion()));
 
             if(!nuevoProducto)
-                ps.setLong(23, producto.getID());
+                ps.setLong(24, producto.getID());
 
             int filas = ps.executeUpdate();
 
