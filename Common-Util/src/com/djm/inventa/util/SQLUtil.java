@@ -21,9 +21,10 @@ public class SQLUtil {
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO ");
         sql.append(table);
-        sql.append(" ");
+        sql.append(" (");
         String cols = String.join(", ", columns);
         sql.append(cols);
+        sql.append(") ");
         sql.append(" VALUES (");
 
         String placeholders = String.join(", ", Collections.nCopies(columns.length, "?"));

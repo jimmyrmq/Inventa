@@ -2,15 +2,17 @@ package com.djm.inventa.stock.model;
 
 public enum TipoMovimiento {
 
-    COMPRA((byte)1, "Compra", "Compra mercadería a un proveedor.", OperacionStock.SUMA),
-    VENTA((byte)2, "Venta", "Venta de un producto a un cliente", OperacionStock.RESTA),
-    DEVOLUCION_CLIENTE((byte)3, "Devolución de cliente", "El cliente devuelve un producto vendido.", OperacionStock.SUMA),
-    DEVOLUCION_PROVEEDOR((byte)4, "Devolución de proveedor", "Devolucion de mercadería al proveedor.", OperacionStock.RESTA),
-    AJUSTE_POSITIVO((byte)5, "Ajuste positivo", "Se encontro más stock del que decía el sistema.", OperacionStock.SUMA),
-    AJUSTE_NEGATIVO((byte)6, "Ajuste negativo", "Se encontro menos stock del que decía el sistema.", OperacionStock.RESTA),
-    //INVENTARIO((byte)7, "Inventario","Recuento físico para dejar el stock igual al contado.", OperacionStock.AJUSTE),
-    TRANSFERENCIA_ENTRADA((byte)8, "Transferencia Entrada","Se recibe stock desde otra sucursal o depósito.", OperacionStock.SUMA),
-    TRANSFERENCIA_SALIDA((byte)9, "Transferencia Salida","Se envía stock a otra sucursal o depósito.", OperacionStock.RESTA);
+    AGREGADO_RAPIDO((byte)1, "Agregado Rapido", "Se agrego un nuevo producto al stock de forma rapida.", OperacionStock.SUMA),
+    COMPRA((byte)2, "Compra", "Compra mercadería a un proveedor.", OperacionStock.SUMA),
+    VENTA((byte)3, "Venta", "Venta de un producto a un cliente", OperacionStock.RESTA),
+    DEVOLUCION_CLIENTE((byte)4, "Devolución de cliente", "El cliente devuelve un producto vendido.", OperacionStock.SUMA),
+    DEVOLUCION_PROVEEDOR((byte)5, "Devolución de proveedor", "Devolucion de mercadería al proveedor.", OperacionStock.RESTA),
+    AJUSTE((byte)6, "Ajuste", "Se ajusta el valor de la cantidad.", OperacionStock.AJUSTE),
+    AJUSTE_POSITIVO((byte)7, "Ajuste positivo", "Se encontro más stock del que decía el sistema.", OperacionStock.SUMA),
+    AJUSTE_NEGATIVO((byte)8, "Ajuste negativo", "Se encontro menos stock del que decía el sistema.", OperacionStock.RESTA),
+    //INVENTARIO((byte)9, "Inventario","Recuento físico para dejar el stock igual al contado.", OperacionStock.AJUSTE),
+    TRANSFERENCIA_ENTRADA((byte)10, "Transferencia Entrada","Se recibe stock desde otra sucursal o depósito.", OperacionStock.SUMA),
+    TRANSFERENCIA_SALIDA((byte)11, "Transferencia Salida","Se envía stock a otra sucursal o depósito.", OperacionStock.RESTA);
 
     private final byte codigo;
     private final String nombre;

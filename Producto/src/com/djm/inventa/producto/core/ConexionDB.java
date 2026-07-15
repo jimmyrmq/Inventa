@@ -20,7 +20,7 @@ public class ConexionDB {
         DatabaseService db = AppContext.getInstance().getDatabaseService("db.service");
         if(db.isConnected()) {
             TableSQL tableSQL = new TableSQL("inventa");
-            String[] tables = {"almacen","categoria","marca","producto","movimiento_stock","stock_producto"};
+            String[] tables = {"almacen","categoria","marca","producto","movimiento_stock","stock_producto","usuario"};
             tableSQL.checkTable(tables);
         }else
             System.exit(1);

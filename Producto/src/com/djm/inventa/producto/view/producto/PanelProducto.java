@@ -18,7 +18,8 @@ import com.djm.inventa.ui.component.TextField;
 import com.djm.inventa.ui.component.TextArea;
 import com.djm.inventa.ui.util.InfoListener;
 import com.djm.inventa.util.FechaUtil;
-import com.djm.inventa.util.ListenerMoneda;
+import com.djm.inventa.util.NumberUtils;
+import com.djm.inventa.util.MonedaDocument;
 import com.djm.inventa.util.LoggerApp;
 import com.djm.ui.GlobalFrame;
 import com.djm.ui.LayoutPanel;
@@ -26,7 +27,7 @@ import com.djm.ui.component.Button;
 import com.djm.ui.component.ColorFilter;
 import com.djm.ui.component.OptionPane;
 import com.djm.ui.component.ToggleButton;
-import com.djm.util.FormatNumber;
+import com.djm.util.NumberConverter;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -451,10 +452,10 @@ public class PanelProducto{
         tPrecio2.addFocusListener(lostFocusPrecio);
         tPrecio3.addFocusListener(lostFocusPrecio);
 
-        new ListenerMoneda(tCosto,10);
-        new ListenerMoneda(tPrecio1,10);
-        new ListenerMoneda(tPrecio2,10);
-        new ListenerMoneda(tPrecio3,10);
+        new MonedaDocument(tCosto);
+        new MonedaDocument(tPrecio1);
+        new MonedaDocument(tPrecio2);
+        new MonedaDocument(tPrecio3);
 
         tUtilidad.setActionCommand("UTILIDAD");
         //tUtilidad.addActionListener(this);
@@ -657,34 +658,20 @@ public class PanelProducto{
         tModelo.setText(producto.getModelo());
         tSerie.setText(producto.getSerie());
 
-        tCosto.setText(FormatNumber.bigDecimalToString(producto.getPrecioCosto()));
+        tCosto.setText(NumberConverter.bigDecimalToString(producto.getPrecioCosto()));
 
         if(producto.getUtilidad()!= null)
             tUtilidad.setText(String.valueOf(producto.getUtilidad()));
 
-        tPrecio1.setText(FormatNumber.bigDecimalToString(producto.getPrecio1()));
-        tPrecio2.setText(FormatNumber.bigDecimalToString(producto.getPrecio2()));
-        tPrecio3.setText(FormatNumber.bigDecimalToString(producto.getPrecio3()));
 
         tUtilidad.setText(producto.getUtilidad() != null
                 ? producto.getUtilidad().toString()
                 : "");
 
-        tCosto.setText(producto.getPrecioCosto() != null
-                ? producto.getPrecioCosto().toString()
-                : "");
-
-        tPrecio1.setText(producto.getPrecio1() != null
-                ? producto.getPrecio1().toString()
-                : "");
-
-        tPrecio2.setText(producto.getPrecio2() != null
-                ? producto.getPrecio2().toString()
-                : "");
-
-        tPrecio3.setText(producto.getPrecio3() != null
-                ? producto.getPrecio3().toString()
-                : "");
+        tCosto.setText(NumberUtils.format(producto.getPrecioCosto()));
+        tPrecio1.setText(NumberUtils.format(producto.getPrecio1()));
+        tPrecio2.setText(NumberUtils.format(producto.getPrecio2()));
+        tPrecio3.setText(NumberUtils.format(producto.getPrecio3()));
 
         tCantMayor.setText(producto.getCantMayor() != null
                 ? producto.getCantMayor().toString()
@@ -697,7 +684,6 @@ public class PanelProducto{
         tStockCritico.setText(producto.getStockCritico() != null
                 ? producto.getStockCritico().toString()
                 : "");
-
 
         if(producto.getStockCritico() != null)
             tStockCritico.setText(String.valueOf(producto.getStockCritico()));
@@ -868,28 +854,28 @@ public class PanelProducto{
 
         BigDecimal c = BigDecimal.ZERO;
         if(costo!=null && !costo.trim().isEmpty()) {
-            c = FormatNumber.stringToBigDecimal(costo);
+            c = NumberConverter.stringToBigDecimal(costo);
         }
 
         BigDecimal p1 = BigDecimal.ZERO;
         if(precio1!= null && !precio1.trim().isEmpty()) {
-            p1 = FormatNumber.stringToBigDecimal(precio1);
+            p1 = NumberConverter.stringToBigDecimal(precio1);
         }
 
         BigDecimal p2 = BigDecimal.ZERO;
         if(precio2!= null && !precio2.trim().isEmpty()){
-            p2 = FormatNumber.stringToBigDecimal(precio2);
+            p2 = NumberConverter.stringToBigDecimal(precio2);
         }
 
         BigDecimal p3 = BigDecimal.ZERO;
         if(precio3!= null && !precio3.trim().isEmpty()) {
-            p3 = FormatNumber.stringToBigDecimal(precio3);
+            p3 = NumberConverter.stringToBigDecimal(precio3);
         }
 
-        Integer scritico = 0;
+        BigDecimal scritico = BigDecimal.ZERO;
 
         if(stockCrititco !=null && !stockCrititco.trim().isEmpty()) {
-            scritico = Integer.parseInt(stockCrititco);
+            scritico = new BigDecimal(stockCrititco);
         }
 
         int util = 0;
@@ -970,17 +956,22 @@ public class PanelProducto{
         bAddCantidad.setEnabled(enabled);
     }
 
-    public void setCantidadDisponible(BigDecimal cant, boolean agregar){
+    public void setCantidadDisponible(BigDecimal cant){//, boolean agregar){
+        tCantidadDisponible.setText(String.valueOf(cant));
+
+        /*BigDecimal cantidad = BigDecimal.ZERO;
         if(cant.compareTo(BigDecimal.ZERO) > 0){
             String tcant = tCantidadDisponible.getText();
-            BigDecimal c = cant;
-            if(agregar && tcant != null &&!tcant.trim().isEmpty()){
+            cantidad = cant;
+            if(agregar && tcant != null && !tcant.isBlank()){
                 try {
-                    c = c.add(new BigDecimal(tcant));
+                    cantidad = cantidad.add(new BigDecimal(tcant));
                 }catch (NumberFormatException exc){}
             }
-            tCantidadDisponible.setText(String.valueOf(c));
+            tCantidadDisponible.setText(String.valueOf(cantidad));
         }
+
+        return cantidad;*/
     }
 
     public JPanel getPanel() {

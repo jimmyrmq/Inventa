@@ -2,7 +2,7 @@ package com.djm.inventa.producto.view.producto;
 
 import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.inventa.ui.component.TextField;
-import com.djm.util.FormatNumber;
+import com.djm.util.NumberConverter;
 
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -19,7 +19,7 @@ public class ProcesadorProducto {
 
             String val = tCosto.getText().trim();
 
-            double costo = FormatNumber.stringToDouble(val);
+            double costo = NumberConverter.stringToDouble(val);
 
             boolean excesivo = util > 100;
 
@@ -30,7 +30,7 @@ public class ProcesadorProducto {
             tUtilidad.setForeground(excesivo ? Color.RED : UIManager.getColor("Textfield.foreground"));
             lUtilidadAdv.setVisible(excesivo);
 
-            tPrecio1.setText(FormatNumber.doubleToString(p));
+            tPrecio1.setText(NumberConverter.doubleToString(p));
             calculo = true;
         }
 
@@ -45,13 +45,13 @@ public class ProcesadorProducto {
 
             double utilidad = -1;
             if((util != null && !util.isEmpty())){
-                utilidad = FormatNumber.stringToDouble(util);
+                utilidad = NumberConverter.stringToDouble(util);
                 if(utilidad == 0)
                     utilidad = -1;
             }
 
-            double costo = FormatNumber.stringToDouble(str_costo);
-            double precio = FormatNumber.stringToDouble(str_precio);
+            double costo = NumberConverter.stringToDouble(str_costo);
+            double precio = NumberConverter.stringToDouble(str_precio);
 
             if(utilidad == 0 && precio > 0 && costo > 0) {
                 calculoUtilidadPrecio(tUtilidad, lUtilidadAdv, tCosto, tPrecio);
@@ -96,20 +96,20 @@ public class ProcesadorProducto {
         boolean pc = costo!=null && !pcosto.trim().isEmpty();
 
         if(pc){
-            costo = FormatNumber.stringToDouble(pcosto);
+            costo = NumberConverter.stringToDouble(pcosto);
             pc = costo > 0;
         }
 
         if(precio1!=null && !precio1.trim().isEmpty()) {
-            p1 = FormatNumber.stringToDouble(precio1);
+            p1 = NumberConverter.stringToDouble(precio1);
         }
 
         if(precio2!=null && !precio2.trim().isEmpty()) {
-            p2 = FormatNumber.stringToDouble(precio2);
+            p2 = NumberConverter.stringToDouble(precio2);
         }
 
         if(precio3!=null && !precio3.trim().isEmpty()) {
-            p3 = FormatNumber.stringToDouble(precio3);
+            p3 = NumberConverter.stringToDouble(precio3);
         }
 
         boolean epc1 = pc && p1 <= costo ;

@@ -69,6 +69,10 @@ public class AppContext {
         return PropiedadesSistema.getInt(clave, defecto);
     }
 
+    public int getInt(String clave) {
+        return PropiedadesSistema.getInt(clave, -1);
+    }
+
     public double getDouble(String clave, double defecto) {
         return PropiedadesSistema.getDouble(clave, defecto);
     }

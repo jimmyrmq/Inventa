@@ -24,7 +24,7 @@ public class Producto implements Cloneable{
     private Boolean precioIncluyeImpuesto;
     private Boolean disponible = true;
     private BigDecimal cantidadDisponible;//Cantidad de stock
-    private Integer stockCritico;
+    private BigDecimal stockCritico;
     private Boolean noRequiereStock = true;//Es un servicio
     private Boolean reqAprobPrecioEspecial = true;//Requiere aprobacion para precio especial
     private Categoria categoria;
@@ -171,11 +171,11 @@ public class Producto implements Cloneable{
         this.cantidadDisponible = cantidadStock;
     }
 
-    public Integer getStockCritico() {
+    public BigDecimal getStockCritico() {
         return stockCritico;
     }
 
-    public void setStockCritico(Integer stockCritico) {
+    public void setStockCritico(BigDecimal stockCritico) {
         this.stockCritico = stockCritico;
     }
 

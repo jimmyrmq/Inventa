@@ -27,12 +27,7 @@ public class ProductoDAO {
     public Producto obtenerProducto(String codigo)throws ProductoException {
 
         String sql = """            
-                SELECT p.id, codigo, codigo_barra, nombre, unidad_medida,
-                   modelo, serie, marca_id, categoria_id, precio_costo,
-                   utilidad, precio1, precio2, precio3, cant_mayor,
-                   precio_incluye_impuesto, disponible,
-                   stock_critico, no_requiere_stock, req_aprobacion_precio_especial,
-                   fecha_actualizacion, fecha_creacion, nota
+                SELECT p.*
                     , COALESCE(sp.cantidad, 0) AS cantidad_stock
                 FROM producto p LEFT JOIN stock_producto sp 
                     ON sp.producto_id = p.id
@@ -96,7 +91,7 @@ public class ProductoDAO {
         producto.setPrecioIncluyeImpuesto(rs.getBoolean("precio_incluye_impuesto"));
         producto.setDisponible(rs.getBoolean("disponible"));
 
-        Integer stockCritico = (Integer) rs.getObject("stock_critico");
+        BigDecimal stockCritico = rs.getBigDecimal("stock_critico");
         producto.setStockCritico(stockCritico);
 
         producto.setNoRequiereStock(rs.getBoolean("no_requiere_stock"));

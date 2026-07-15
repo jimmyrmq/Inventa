@@ -41,8 +41,7 @@ public class StockRapidoGUI implements ActionListener {
     }
 
     public StockRapidoGUI(BigDecimal cantidadEntrante){
-        if(cantidadEntrante.compareTo(BigDecimal.ZERO) > 0)
-            this.cantidadEntrante = cantidadEntrante;
+        this.cantidadEntrante = cantidadEntrante;
 
         createGUI();
 
@@ -89,19 +88,21 @@ public class StockRapidoGUI implements ActionListener {
         tNuevaCantidad.addActionListener(this);
         tNuevaCantidad.setActionCommand("ACEPT");
 
+        tCantidadActual.setText(String.valueOf(cantidadEntrante));
+
         if(cantidadEntrante != null && cantidadEntrante.compareTo(BigDecimal.ZERO) > 0) {
             tNuevaCantidad.setText(String.valueOf(cantidadEntrante));
             tNuevaCantidad.requestFocus();
             tNuevaCantidad.selectAll();
         }
 
-        JLabel lCantidadActual = new JLabel(CONSTANTS.i18n.getValue("movimientoStock.label.cantidadactual"));
-        JLabel lCantidadNueva = new JLabel(CONSTANTS.i18n.getValue("movimientoStock.label.cantidadnueva"));
+        JLabel lCantidadActual = new JLabel(CONSTANTS.i18n.getValue("stock.label.cantidadactual"));
+        JLabel lCantidadNueva = new JLabel(CONSTANTS.i18n.getValue("stock.label.cantidadnueva"));
 
         panel.add(lCantidadActual, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
         panel.add(tCantidadActual, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));
-        panel.add(lCantidadNueva, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tNuevaCantidad, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1.0f, 0.0f));
+        panel.add(lCantidadNueva, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tNuevaCantidad, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 8, 0, 0, 1.0f, 0.0f));
 
         return panel;
     }
@@ -167,7 +168,7 @@ public class StockRapidoGUI implements ActionListener {
 
         dialog.pack();
 
-        Dimension dim = new Dimension(300,130);
+        Dimension dim = new Dimension(300,180);
 
         dialog.setSize(dim);
         dialog.setPreferredSize(dim);

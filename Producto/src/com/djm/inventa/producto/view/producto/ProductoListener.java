@@ -1,13 +1,14 @@
 package com.djm.inventa.producto.view.producto;
 
 import com.djm.inventa.core.AppContext;
-import com.djm.inventa.exception.BaseDatosException;
 import com.djm.inventa.producto.exception.ProductoException;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.inventa.producto.persistence.ProductoDAO;
 import com.djm.inventa.stock.model.MovimientoStock;
-import com.djm.inventa.stock.persistence.MovimientoStockDAO;
+import com.djm.inventa.stock.model.StockProducto;
+import com.djm.inventa.stock.persistence.StockProductoDAO;
+import com.djm.inventa.stock.service.StockManager;
 import com.djm.inventa.stock.view.StockRapidoGUI;
 import com.djm.inventa.ui.ipanel.IUIManager;
 import com.djm.ui.component.OptionPane;
@@ -53,7 +54,30 @@ public class ProductoListener implements ActionListener {
 
                 Producto producto = panelManagerProducto.getDataForm();
                 try {
+
                     productoDB.guardarProducto(producto);
+
+                    if(!producto.isNoRequiereStock()) {
+                        if(producto.getID() != null) {
+                            StockProducto stockProducto = new StockProducto();
+
+                            StockProductoDAO stockProductoDAO = new StockProductoDAO();
+                            stockProducto.setProductoId(producto.getID());
+                            stockProducto.setAlmacenId(1);
+                            stockProducto.setCantidad(producto.getCantidadDisponible());
+                            stockProducto.setStockMinimo(producto.getStockCritico());
+
+                            boolean isNuevo = !stockProductoDAO.existeProducto(producto.getID());
+
+                            if (isNuevo) {
+                                stockProductoDAO.nuevoRegistro(stockProducto);
+                            } else {
+                                stockProductoDAO.actualizarCantidad(producto.getID(), producto.getCantidadDisponible());
+                            }
+                        }else
+                            OptionPane.information( CONSTANTS.i18n.getValue("producto.mensaje.idnoencontrado"));
+                    }
+
                 } catch (ProductoException exc) {
                     OptionPane.error(exc);
                 }
@@ -71,29 +95,43 @@ public class ProductoListener implements ActionListener {
             }
         }
         else if("AGREGAR_STOCK_RAPIDO".equals(action) || "EDITAR_STOCK_RAPIDO".equals(action) ){
-            BigDecimal cant = BigDecimal.ZERO;
             boolean editar = "EDITAR_STOCK_RAPIDO".equals(action);
-            boolean agragar = "AGREGAR_STOCK_RAPIDO".equals(action);
+            boolean agregar = "AGREGAR_STOCK_RAPIDO".equals(action);
+
+            BigDecimal cantActual;
 
             if (editar && this.panelManagerProducto.isData()){
-                cant = panelManagerProducto.getValue().getCantidadDisponible();
+                cantActual = panelManagerProducto.getValue().getCantidadDisponible();
             }
-            StockRapidoGUI stock = new StockRapidoGUI(cant);
-            if(stock.isAcept()){
+            else
+                cantActual = panelManagerProducto.getDataForm().getCantidadDisponible();
 
-                if(editar){}
-                else if(agragar){
-                    MovimientoStockDAO movimientoStockDAO = new MovimientoStockDAO();
-                    MovimientoStock movimientoStock = new MovimientoStock();
-                    movimientoStock.addCantidad(stock.getCantidadEntrante());
-                    try {
-                        movimientoStockDAO.agregarStock(movimientoStock);
-                    } catch (BaseDatosException ex) {
-                        System.out.println(ex.getMessage());
-                    }
+            StockRapidoGUI stock = new StockRapidoGUI(cantActual);
+            if(stock.isAcept()){
+                Integer productoId = null;
+
+                if (this.panelManagerProducto.isData()) {
+                    productoId = panelManagerProducto.getValue().getID();
                 }
 
-                panelManagerProducto.setCantidadDisponible(stock.getCantidadEntrante(), agragar);
+                if(productoId == null){
+                    OptionPane.information( CONSTANTS.i18n.getValue("producto.mensaje.idnoencontrado"));
+                    return;
+                }
+
+                StockManager stockManager = new StockManager();
+
+                MovimientoStock movimientoStock = stockManager.registroStock(stock.getCantidadEntrante(), cantActual,
+                        productoId, editar, agregar);
+                BigDecimal stockNuevo = movimientoStock.getStockNuevo();
+
+                panelManagerProducto.setCantidadDisponible(stockNuevo);//, agregar);
+
+                try {
+                    stockManager.registrarMovimientoStock(movimientoStock);
+                }catch (ProductoException exc){
+                    OptionPane.error(CONSTANTS.i18n.getValue("stock.error.registro")+"\n"+ exc.getMessage());
+                }
             }
         }
     }

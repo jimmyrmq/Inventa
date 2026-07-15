@@ -18,6 +18,7 @@ public class FrameRunDev {
     public FrameRunDev(){
         //Tipo de Base de Datos
         AppContext.getInstance().setPropiedad("database.type", "sqlite");
+        AppContext.getInstance().setPropiedad("usuario.id", 1);
 
         //Lang
         I18nManager.initForDev("producto", "producto");

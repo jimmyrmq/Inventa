@@ -10,7 +10,7 @@ public class MovimientoStock {
     private Integer productoId;
     private Integer almacenId;
     private BigDecimal cantidad;
-    private Integer tipo;
+    private byte tipo;
     private LocalDateTime fecha;
     private String observacion;
     private BigDecimal stockAnterior;
@@ -56,12 +56,16 @@ public class MovimientoStock {
         this.cantidad = cantidad;
     }
 
-    public Integer getTipo() {
+    public byte getTipo() {
         return tipo;
     }
 
-    public void setTipo(Integer tipo) {
+    public void setTipo(byte tipo) {
         this.tipo = tipo;
+    }
+
+    public void setTipo(TipoMovimiento tipo) {
+        this.tipo = tipo.getCodigo();
     }
 
     public String getObservacion() {
