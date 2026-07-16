@@ -31,9 +31,10 @@ public class ProductoDAO {
 
         String sql = """            
                 SELECT p.*
-                    , COALESCE(sp.cantidad, 0) AS cantidad_stock
-                FROM producto p LEFT JOIN stock_producto sp 
+                    , COALESCE(sp.cantidad, 0) AS cantidad_stock, cat.nombre  AS categoria_nombre, m.nombre AS marca_nombre 
+                 FROM (producto p inner join categoria cat on p.categoria_id = cat.id) LEFT JOIN stock_producto sp 
                     ON sp.producto_id = p.id
+                     LEFT JOIN marca m ON p.marca_id = m.id
                 WHERE codigo = ?
             """;
 
@@ -65,47 +66,15 @@ public class ProductoDAO {
         producto.setModelo(rs.getString("modelo"));
         producto.setSerie(rs.getString("serie"));
 
-        Integer marcaId = (Integer) rs.getObject("marca_id");
-        if (marcaId != null) {
-            Marca marca = new Marca();
-            marca.setID(marcaId);
-            try {
-                ResultSetMetaData md = rs.getMetaData();
-                boolean hasMarcaNombre = false;
-                for (int i = 1; i <= md.getColumnCount(); i++) {
-                    String label = md.getColumnLabel(i);
-                    if (label != null && label.equalsIgnoreCase("marca_nombre")) {
-                        hasMarcaNombre = true;
-                        break;
-                    }
-                }
-                if (hasMarcaNombre) {
-                    marca.setNombre(rs.getString("marca_nombre"));
-                }
-            } catch (SQLException ignore) {}
-            producto.setMarca(marca);
-        }
+        Marca marca = new Marca();
+        marca.setID(rs.getInt("marca_id"));
+        marca.setNombre(rs.getString("marca_nombre"));
+        producto.setMarca(marca);
 
-        Integer categoriaId = (Integer) rs.getObject("categoria_id");
-        if (categoriaId != null) {
-            Categoria categoria = new Categoria();
-            categoria.setID(categoriaId);
-            try {
-                ResultSetMetaData md = rs.getMetaData();
-                boolean hasCategoriaNombre = false;
-                for (int i = 1; i <= md.getColumnCount(); i++) {
-                    String label = md.getColumnLabel(i);
-                    if (label != null && label.equalsIgnoreCase("categoria_nombre")) {
-                        hasCategoriaNombre = true;
-                        break;
-                    }
-                }
-                if (hasCategoriaNombre) {
-                    categoria.setNombre(rs.getString("categoria_nombre"));
-                }
-            } catch (SQLException ignore) {}
-            producto.setCategoria(categoria);
-        }
+        Categoria categoria = new Categoria();
+        categoria.setID(rs.getInt("categoria_id"));
+        categoria.setNombre(rs.getString("categoria_nombre"));
+        producto.setCategoria(categoria);
 
         producto.setPrecioCosto(rs.getBigDecimal("precio_costo"));
 
@@ -188,7 +157,8 @@ public class ProductoDAO {
                     ? SQLUtil.createInsert("producto",cols )//"INSERT INTO producto (codigo, codigo_barra, nombre, unidad_medida, modelo, serie, marca_id, categoria_id, precio_costo, utilidad, precio1, precio2, precio3, cant_mayor, precio_incluye_impuesto, disponible, cantidad_disponible, stock_critico, no_requiere_stock, req_aprobacion_precio_especial, nota, fecha_creacion, fecha_actualizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
                 : SQLUtil.createUpdate("producto","id = ?",cols );//"UPDATE producto SET codigo = ?, codigo_barra = ?, nombre = ?, unidad_medida = ?, modelo = ?, serie = ?, marca_id = ?, categoria_id = ?, precio_costo = ?, utilidad = ?, precio1 = ?, precio2 = ?, precio3 = ?, cant_mayor = ?, precio_incluye_impuesto = ?, disponible = ?, cantidad_disponible = ?, stock_critico = ?, no_requiere_stock = ?, req_aprobacion_precio_especial = ?, nota = ?, fecha_creacion = ?, fecha_actualizacion = ? WHERE id = ?;";
 
-            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps =nuevoProducto? conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS):
+                    conn.prepareStatement(sql);
 
             ps.setString(1, producto.getCodigo());
             ps.setString(2, producto.getCodigoBarra());

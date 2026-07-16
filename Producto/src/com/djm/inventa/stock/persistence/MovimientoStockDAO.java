@@ -4,7 +4,6 @@ import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.exception.BaseDatosException;
 import com.djm.inventa.producto.exception.ProductoException;
-import com.djm.inventa.producto.persistence.ProductoDAO;
 import com.djm.inventa.stock.model.MovimientoStock;
 import com.djm.inventa.util.SQLUtil;
 
@@ -60,6 +59,50 @@ public class MovimientoStockDAO {
             logger.info(exc.getMessage());
             throw new ProductoException(exc.getMessage());
         }
+    }
+
+    public void updateStockProducto(MovimientoStock stock)throws ProductoException{
+        String sql = """
+                update stock_producto set cantidad = ?
+                where producto_id = ? and almacen_id = ?;
+                """;
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setBigDecimal(1, stock.getCantidad());
+            ps.setInt(2, stock.getProductoId());
+            ps.setInt(3, stock.getAlmacenId());
+
+            ps.executeUpdate();
+
+        } catch (Exception exc) {
+            logger.info(exc.getMessage());
+            throw new ProductoException(exc.getMessage());
+        }
+
+    }
+
+    public BigDecimal getStockProducto(Integer producto_id, Integer almacen_id) throws ProductoException{
+        BigDecimal stock = null;
+        String sql = """
+                select cantidad from stock_producto
+                where producto_id = ? and almacen_id = ?;
+                """;
+        try (PreparedStatement ps = conn.prepareStatement(sql)){
+
+            ps.setInt(1, producto_id);
+            ps.setInt(2, almacen_id);
+
+             try (ResultSet rs = ps.executeQuery()) {
+                 if (rs.next()) {
+                     stock = rs.getBigDecimal("cantidad");
+                 }
+             }
+        } catch (SQLException exc) {
+            throw new ProductoException(exc.getMessage());
+        }
+
+        return stock;
     }
 
 }

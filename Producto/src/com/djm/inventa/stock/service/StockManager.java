@@ -12,24 +12,28 @@ import java.time.LocalDateTime;
 
 public class StockManager {
 
+    private MovimientoStockDAO movimientoStockDAO;
+
     public StockManager(){
+        movimientoStockDAO = new MovimientoStockDAO();
     }
 
-    public MovimientoStock registroStock(BigDecimal cantNueva, BigDecimal cantActual,
-                                         Integer productoID, boolean editar, boolean agregar){
-         BigDecimal stockNuevo= BigDecimal.ZERO;
+    public MovimientoStock obtenerMovimientoStock(BigDecimal cantNueva, BigDecimal cantActual,
+                                                  Integer productoID, Integer almacen_id, boolean editar, boolean agregar) throws ProductoException{
+
+        BigDecimal stockNuevo= BigDecimal.ZERO;
 
         MovimientoStock movimientoStock = new MovimientoStock();
         movimientoStock.setStockAnterior(cantActual);
 
         //Cambiar mas adelente
         movimientoStock.setUsuarioId(AppContext.getInstance().getInt("usuario.id"));
-        movimientoStock.setAlmacenId(1);
+        movimientoStock.setAlmacenId(almacen_id);
 
         movimientoStock.setProductoId(productoID);
 
         if(editar){
-            int resultado = cantActual.compareTo(cantNueva);
+            int resultado = cantNueva.compareTo(cantActual);
             TipoMovimiento tipoMovimiento = resultado > 0 ? TipoMovimiento.AJUSTE_POSITIVO: TipoMovimiento.AJUSTE_NEGATIVO;
             movimientoStock.setTipo(tipoMovimiento);
 
@@ -56,11 +60,18 @@ public class StockManager {
 
     public void registrarMovimientoStock(MovimientoStock movimientoStock) throws ProductoException{
         try {
-            MovimientoStockDAO movimientoStockDAO = new MovimientoStockDAO();
             movimientoStockDAO.agregarStock(movimientoStock);
+            movimientoStockDAO.updateStockProducto(movimientoStock);
         }
         catch (ProductoException ex) {
             throw new ProductoException(ex.getMessage());
         }
     }
+
+    public BigDecimal obtenerStockActual(Integer productoID, Integer almacen_id) throws ProductoException{
+        BigDecimal stockBD = movimientoStockDAO.getStockProducto(productoID, almacen_id);
+
+        return stockBD;
+    }
+
 }

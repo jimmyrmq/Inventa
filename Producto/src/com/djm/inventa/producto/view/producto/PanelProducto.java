@@ -61,9 +61,9 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class PanelProducto{
     private JPanel panelPrincipal;
@@ -71,6 +71,7 @@ public class PanelProducto{
     private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo,
             tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3,tCantMayor, tStockCritico,
             tCantidadDisponible, tUtilidad, tFechaActualizacion, tFechaCreacion;
+
     private Button bAddMarca, bAddCantidad, bEnter, bBuscar;
     private JButton bGuardar, bCancelar, bEliminar;
     private JLabel lUtilidadAdv, lPrecio1Adv, lPrecio2Adv, lPrecio3Adv,lInfo;
@@ -88,7 +89,7 @@ public class PanelProducto{
     private Color color2 = UIManager.getColor("TextField.background");
     private Color color3 = UIManager.getColor("TextField.foreground");
     private JPanel pDetalles, pPrecio, pStock;
-    private ImageIcon iDel, iok, icancel;;//
+    private ImageIcon iDel, iok, ibuscar, icancel;;//
     private JPopupMenu popupMenu;
     private JMenuItem agragrStock, editarStock;
 
@@ -100,7 +101,7 @@ public class PanelProducto{
         panelPrincipal = new JPanel(new GridBagLayout()) {
             @Override
             public void updateUI(){
-
+                System.out.println("Emtra aquii");
                 color1 = UIManager.getColor("Panel.background");
                 color2 = UIManager.getColor("TextField.background");
                 color3 = UIManager.getColor("TextField.foreground");
@@ -120,9 +121,13 @@ public class PanelProducto{
                     colButton = color3;
                 }
 
-
                 if(bCodigoBarra != null)
                     bCodigoBarra.setColorFilter(colButton);
+
+
+                if(bBuscar != null){
+                    bBuscar.setColorFilter(colButton);
+                }
 
                 //iDel = IconManager.getIcon(getClass().getResource("/icon/16/delete2.png"));//new ImageIcon(ColorFilter.filterImage( IconManager.get("16/delete2.png") ,colButton,false));
                 iDel = new ImageIcon(ColorFilter.filterImage( IconManager.get16("delete2") ,colButton,false));
@@ -137,6 +142,7 @@ public class PanelProducto{
                     editarStock.updateUI();
                 }
 
+
                 iok =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("ok16"),colButton,false));
                 icancel =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("closed"),colButton,false));
 
@@ -149,6 +155,7 @@ public class PanelProducto{
                     bGuardar.setIcon(iok);
                     bGuardar.updateUI();
                 }
+
 
                 revalidate();
                 repaint();
@@ -230,18 +237,20 @@ public class PanelProducto{
         //bEnter.setActionCommand("BUSCAR_PRODUCTO");
         //bBuscar.addActionListener(this);
         bEnter.setButtonIcon(true);
-        bEnter.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar_producto"));
+        bEnter.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar"));
         bEnter.setFocusable(false);
         bEnter.setColorBackIn(color1);
         bEnter.setColorBackSelected(color2);
 
-        bBuscar = new Button(IconManager.get20("buscar"),true);
+        ibuscar =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("buscar"),color3,false));
+        bBuscar = new Button(ibuscar,true);
         bBuscar.setPaintBack(false);
         bBuscar.setButtonIcon(true);
-        bBuscar.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar_producto"));
+        bBuscar.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar"));
         bBuscar.setFocusable(false);
         bBuscar.setColorBackIn(color1);
         bBuscar.setColorBackSelected(color2);
+        bBuscar.setColorFilter(color3);
 
         bCodigoBarra = new ToggleButton(IconManager.getIcon(getClass().getResource("/icons/barcode.png")));
         bCodigoBarra.setToolTipText(CONSTANTS.i18n.getValue("producto.inf.buscarporcodbarra"));
@@ -353,6 +362,10 @@ public class PanelProducto{
         cbCategoria.setPreferredSize(CONSTANTS.CDDIM);
 
         dcbMarca = new DefaultComboBoxModel<Marca> ();
+
+        Marca marca = new Marca();
+        marca.setNombre(CONSTANTS.i18n.getValue("label.ninguno"));
+        dcbMarca.addElement(marca);
 
         cbMarca = new JComboBox<>(dcbMarca);
         cbMarca.setPreferredSize(CONSTANTS.CDDIM);
@@ -722,7 +735,6 @@ public class PanelProducto{
 
         tNota.setText(producto.getNota());
 
-        /*Marca marca = producto.getMarca();
         Categoria categoria = producto.getCategoria();
 
         int sizeList;
@@ -737,8 +749,10 @@ public class PanelProducto{
                     break cont;
                 }
             }
+            //cbCategoria.setSelectedItem(producto.getCategoria());
         }
-
+/*
+        Marca marca = producto.getMarca();
         if(marca != null) {
             sizeList = dcbMarca.getSize();
             cont:
@@ -751,7 +765,6 @@ public class PanelProducto{
             }
         }*/
 
-        cbCategoria.setSelectedItem(producto.getCategoria());
         cbMarca.setSelectedItem(producto.getMarca());
 
         boolean excesivo = producto.getUtilidad() > 100;
@@ -771,11 +784,11 @@ public class PanelProducto{
         editarStock.setEnabled(true);
 
         tFechaCreacion.setText(producto.getFechaCreacion() != null
-                ? producto.getFechaCreacion().toString()
+                ? FechaUtil.parseFecha(producto.getFechaCreacion())
                 : "");
 
         tFechaActualizacion.setText(producto.getFechaActualizacion() != null
-                ? producto.getFechaActualizacion().toString()
+                ? FechaUtil.parseFecha(producto.getFechaActualizacion())
                 : "");
 
         eText(true);
@@ -803,7 +816,7 @@ public class PanelProducto{
 
         disponible.setSelected(true);
         noRequiereStock.setSelected(false);
-        movimientoNegativo.setSelected(true);
+
 
         tStockCritico.setEditable(true);
         bAddCantidad.setEnabled(true);
@@ -841,6 +854,11 @@ public class PanelProducto{
         if(cbMarca.getItemCount() > 0)
             cbMarca.setSelectedIndex(0);
 
+        movimientoNegativo.setSelected(true);
+        movimientoNegativo.setEnabled(true);
+        tStockCritico.setEnabled(true);
+        bAddCantidad.setEnabled(true);
+
         tStockCritico.setText("0");
         tCantidadDisponible.setText("0");
 
@@ -854,6 +872,7 @@ public class PanelProducto{
 
 
     public Producto getDataForm(Producto producto){
+
         String cod = tCodigo.getText();
         String codBarra = tCodigoBarra.getText();
         String nombre = tNombre.getText();
@@ -918,7 +937,7 @@ public class PanelProducto{
             }
         }
 
-        Integer cantMayorInt = 0;
+        int cantMayorInt = 0;
         if(cantMayor != null && !cantMayor.trim().isEmpty()) {
             cantMayorInt = Integer.parseInt(cantMayor);
         }
@@ -945,8 +964,10 @@ public class PanelProducto{
         producto.setPrecioIncluyeImpuesto(isImpuesto);
         producto.setStockCritico(scritico);
 
-        producto.setFechaCreacion(FechaUtil.parseFecha(tFechaCreacion.getText()));
-        producto.setFechaActualizacion(FechaUtil.parseFecha(tFechaActualizacion.getText()));
+        if(producto.getID() == null)
+            producto.setFechaCreacion(FechaUtil.parseFecha(tFechaCreacion.getText()));
+
+        producto.setFechaActualizacion(LocalDateTime.now());//FechaUtil.parseFecha(tFechaActualizacion.getText()));
 
         String cantDisponible = tCantidadDisponible.getText();
         producto.setCantidadDisponible(new BigDecimal(cantDisponible));
@@ -974,6 +995,8 @@ public class PanelProducto{
 
         disponible.setEnabled(enabled);
         noRequiereStock.setEnabled(enabled);
+        movimientoNegativo.setEnabled(enabled);
+
         tNota.setEnabled(enabled);
 
         tCosto.setEnabled(enabled);
@@ -1039,10 +1062,12 @@ public class PanelProducto{
                 categorias.add(dcbCategoria.getElementAt(i));
             }
 
-            DialogBuscarProducto dialog = new DialogBuscarProducto(GlobalFrame.getInstance().getFrame(), marcas, categorias);
+            DialogBuscarProducto dialog = new DialogBuscarProducto(GlobalFrame.getInstance().getFrame(), categorias);
             dialog.setLocationRelativeTo(GlobalFrame.getInstance().getFrame());
             dialog.setVisible(true);
+
             Producto p = dialog.getSelectedProducto();
+
             if (p != null) {
                 insertData(p);
             }

@@ -119,18 +119,38 @@ public class ProductoListener implements ActionListener {
                     return;
                 }
 
+                BigDecimal stockNuevo = BigDecimal.ZERO;
+
                 StockManager stockManager = new StockManager();
-
-                MovimientoStock movimientoStock = stockManager.registroStock(stock.getCantidadEntrante(), cantActual,
-                        productoId, editar, agregar);
-                BigDecimal stockNuevo = movimientoStock.getStockNuevo();
-
-                panelManagerProducto.setCantidadDisponible(stockNuevo);//, agregar);
-
                 try {
-                    stockManager.registrarMovimientoStock(movimientoStock);
-                }catch (ProductoException exc){
-                    OptionPane.error(CONSTANTS.i18n.getValue("stock.error.registro")+"\n"+ exc.getMessage());
+                    Integer almacen_id = 1;
+                    BigDecimal cantNueva = stock.getCantidadEntrante();
+
+                    BigDecimal stockBD = stockManager.obtenerStockActual(productoId, almacen_id);
+
+                    if (stockBD != null ){
+                        if (stockBD.compareTo(cantNueva) == 0) {
+                            stockNuevo = stockBD;
+                        }
+                        else if (cantActual.compareTo(stockBD) != 0) {
+                            stockNuevo = stockBD;
+                            throw new ProductoException(CONSTANTS.i18n.getValue("producto.stock.mensaje.err.stock_dif"));
+                        }
+                        else{
+                            MovimientoStock movimientoStock = stockManager.obtenerMovimientoStock(cantNueva, cantActual,
+                                    productoId, almacen_id, editar, agregar);
+
+                            stockNuevo = movimientoStock.getStockNuevo();
+
+                            //Registramos el movimiento
+                            stockManager.registrarMovimientoStock(movimientoStock);
+                        }
+                    }
+                }catch (ProductoException exc) {
+                    OptionPane.error(CONSTANTS.i18n.getValue("stock.error.registro") + "\n" + exc.getMessage());
+                }
+                finally {
+                    panelManagerProducto.setCantidadDisponible(stockNuevo);//, agregar);
                 }
             }
         }

@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS producto (
 
     nota TEXT DEFAULT NULL,
 
+    UNIQUE(codigo, codigo_barra), --El UNIQUE automáticamente crea un índice interno.
+
     FOREIGN KEY (categoria_id) REFERENCES categoria (id) ON DELETE CASCADE,
     FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE
 );

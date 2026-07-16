@@ -112,7 +112,7 @@ public class PanelListaProducto extends JPanel implements ActionListener {
 
         tBuscar = new TextField(23);
 
-        tBuscar.putClientProperty("JTextField.placeholderText", CONSTANTS.LANG.getValue("producto.label.buscar_producto"));
+        tBuscar.putClientProperty("JTextField.placeholderText", CONSTANTS.LANG.getValue("producto.label.buscar"));
         tBuscar.putClientProperty("JTextField.leadingIcon", lupaText);
         Dimension dim = new Dimension(280, 23);
 

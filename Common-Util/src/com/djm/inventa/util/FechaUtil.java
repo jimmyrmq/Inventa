@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class FechaUtil {
 
@@ -23,5 +25,19 @@ public class FechaUtil {
         }
 
         return fecha;
+    }
+
+    public static String parseFecha(LocalDateTime fecha){
+
+        //String fechaFormateada = fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+
+        DateTimeFormatter formato = DateTimeFormatter
+                .ofLocalizedDateTime(FormatStyle.MEDIUM)
+                .withLocale(Locale.getDefault());
+
+        String fechaFormateada = fecha.format(formato);
+
+
+        return fechaFormateada;
     }
 }

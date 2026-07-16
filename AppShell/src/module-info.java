@@ -4,6 +4,7 @@ module com.djm.inventa.appshell {
     exports com.djm.inventa.appshell.startup;
     requires com.djm.inventa.ui;
 
+    requires com.djm.inventa.common.model;
     requires com.djm.inventa.core;
     requires java.desktop;
     requires com.djm.api.ui;

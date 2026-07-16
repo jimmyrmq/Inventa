@@ -12,7 +12,7 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="inventa.common-util" exported="" />
-    <orderEntry type="module" module-name="inventa.inventa-model" exported="" />
     <orderEntry type="module" module-name="inventa.common-ui" exported="" />
+    <orderEntry type="module" module-name="inventa.common-model" exported="" />
   </component>
 </module>
