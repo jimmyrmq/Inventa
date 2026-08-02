@@ -69,7 +69,7 @@ public class PanelProducto{
     private JPanel panelPrincipal;
 
     private TextField tCodigo,tCodigoBarra, tNombre,tUnidadMedida, tModelo,
-            tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3,tCantMayor, tStockCritico,
+            tSerie, tCosto,tPrecio1,tPrecio2,tPrecio3,tCantMayor, tStockCritico,tStockMaximo,
             tCantidadDisponible, tUtilidad, tFechaActualizacion, tFechaCreacion;
 
     private Button bAddMarca, bAddCantidad, bEnter, bBuscar;
@@ -93,6 +93,9 @@ public class PanelProducto{
     private JPopupMenu popupMenu;
     private JMenuItem agragrStock, editarStock;
 
+    private Producto producto = null;
+    private boolean skipInputVerifier = true;
+
     private final IPanelDataAction iPanelDataAction;
 
     public PanelProducto(IPanelDataAction iPanelDataAction){
@@ -101,7 +104,6 @@ public class PanelProducto{
         panelPrincipal = new JPanel(new GridBagLayout()) {
             @Override
             public void updateUI(){
-                System.out.println("Emtra aquii");
                 color1 = UIManager.getColor("Panel.background");
                 color2 = UIManager.getColor("TextField.background");
                 color3 = UIManager.getColor("TextField.foreground");
@@ -175,6 +177,7 @@ public class PanelProducto{
         bEliminar = new JButton(CONSTANTS.i18n.getValue("button.eliminar"),iDel);
         bEliminar.setEnabled(false);
         bEliminar.setActionCommand("BUTTON_ELIMINAR");
+        bEliminar.setToolTipText(CONSTANTS.i18n.getValue("button.eliminar.producto.tooltip"));
 
         panelPrincipal.add(pDetalles, LayoutPanel.constantePane(0, 1, 1, 3, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
         panelPrincipal.add(pPrecio, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
@@ -303,19 +306,19 @@ public class PanelProducto{
              }
          });*/
 
-         tCodigo.setInputVerifier(new InputVerifier() {
+        tCodigo.setInputVerifier(new InputVerifier() {
             @Override
             public boolean verify(JComponent input) {
-                actionCodigo();
-
+                if(skipInputVerifier)
+                    actionCodigo();
                 //True para que cambie el focus
                 return true;
             }
         });
 
          Border border = tCodigo.getBorder();
-        Color color = tCodigo.getSelectionColor();
-        Color colBack = tCodigo.getBackground();
+         Color color = tCodigo.getSelectionColor();
+         Color colBack = tCodigo.getBackground();
 
         tNota = new TextArea(2,dimColumText);
         tNota.setBackground(colBack);
@@ -374,11 +377,19 @@ public class PanelProducto{
         disponible.setOpaque(false);
         disponible.setSelected(true);
 
+        disponible.addActionListener((ae)->{
+            if(producto != null && !producto.isEliminado()) {
+                bEliminar.setEnabled( !disponible.isSelected());
+            }
+        });
+
         noRequiereStock = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.no_requiere_stock"));
         noRequiereStock.setOpaque(false);
         noRequiereStock.setActionCommand("NO_REQUERE_STOCK");
         noRequiereStock.addActionListener((ae)->{
-            bloquearFormStock();
+            if (producto == null || !producto.isEliminado()) {
+                bloquearFormStock(!noRequiereStock.isSelected());
+            }
         });
 
         panel.add(lCodigo, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
@@ -411,11 +422,11 @@ public class PanelProducto{
         panel.add(lNota, LayoutPanel.constantePane(0, 10, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(jsp, LayoutPanel.constantePane(1, 10, 4, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
-        panel.add(lFechaActualizacion, LayoutPanel.constantePane(0, 11, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tFechaActualizacion, LayoutPanel.constantePane(1, 11, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(lFechaCreacion, LayoutPanel.constantePane(0, 11, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 1.0f));
+        panel.add(tFechaCreacion, LayoutPanel.constantePane(1, 11, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 1.0f));
 
-        panel.add(lFechaCreacion, LayoutPanel.constantePane(0, 12, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 1.0f));
-        panel.add(tFechaCreacion, LayoutPanel.constantePane(1, 12, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 1.0f));
+        panel.add(lFechaActualizacion, LayoutPanel.constantePane(0, 12, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tFechaActualizacion, LayoutPanel.constantePane(1, 12, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         return panel;
     }
@@ -569,6 +580,7 @@ public class PanelProducto{
         bAddCantidad.setFocusable(false);
         bAddCantidad.setColorBackIn(color1);
         bAddCantidad.setColorBackSelected(color2);
+        bAddCantidad.setEnabled(false);
 
         bAddCantidad.addActionListener(ae->{
             popupMenu.show(bAddCantidad, 0,bAddCantidad.getHeight());
@@ -576,23 +588,30 @@ public class PanelProducto{
 
         JLabel lAdvertencia = new JLabel(CONSTANTS.i18n.getLabel("producto.label.adv_stockcritico"));
         JLabel lDisponible = new JLabel(CONSTANTS.i18n.getLabel("producto.label.cantidad_disponible"));
+        JLabel lStockMaximo = new JLabel(CONSTANTS.i18n.getLabel("producto.label.stock_maximo"));
 
         tStockCritico = new TextField(7,10,true);
         tStockCritico.setText("0");
         tStockCritico.setName("STOCK_ENTER");
 
+        tStockMaximo = new TextField(7,10,true);
+        tStockMaximo.setText("0");
+        tStockMaximo.setName("STOCK_MAX");
+
         tCantidadDisponible = new TextField(7);
-        tCantidadDisponible.setEditable(false);
+        //tCantidadDisponible.setEditable(false);
         tCantidadDisponible.setText("0");
         //tCantidadDisponible.addActionListener(this);
         tCantidadDisponible.setActionCommand("STOCK_ENTER");
 
         panel.add(movimientoNegativo, LayoutPanel.constantePane(0, 0, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(lAdvertencia, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tStockCritico, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lDisponible, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tCantidadDisponible, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(bAddCantidad, LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 5, 0, 0, 1.0f, 0.0f));
+        panel.add(lAdvertencia, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
+        panel.add(tStockCritico, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(lStockMaximo, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
+        panel.add(tStockMaximo, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(lDisponible, LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
+        panel.add(tCantidadDisponible, LayoutPanel.constantePane(1, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(bAddCantidad, LayoutPanel.constantePane(2, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 1.0f, 0.0f));
 
         return panel;
     }
@@ -610,12 +629,16 @@ public class PanelProducto{
         popupMenu.add(agragrStock);
         popupMenu.add(editarStock);
     }
-    private void bloquearFormStock() {
-        boolean e = !noRequiereStock.isSelected();
-        tCantidadDisponible.setEnabled(e);
-        bAddCantidad.setEnabled(e);
-        movimientoNegativo.setEnabled(e);
-        tStockCritico.setEnabled(e);
+
+    private void bloquearFormStock(boolean enabled) {
+        tCantidadDisponible.setEnabled(enabled);
+
+        bAddCantidad.setEnabled(enabled);
+        tCantidadDisponible.setEditable(producto == null);
+
+        movimientoNegativo.setEnabled(enabled);
+        tStockCritico.setEnabled(enabled);
+        tStockMaximo.setEnabled(enabled);
     }
 
     private boolean actionCodigo() {
@@ -637,7 +660,7 @@ public class PanelProducto{
         if(bCodigoBarra.isSelected()){
             // Solicitar foco de forma diferida solo si está activada la búsqueda por código de barra
             SwingUtilities.invokeLater(() -> tCodigoBarra.requestFocusInWindow());
-            if(tCodigoBarra.getText().trim().isEmpty()){
+            if(tCodigoBarra.getText().isBlank()){
                 tCodigoBarra.setText(codigo);
             }
             else {
@@ -646,7 +669,6 @@ public class PanelProducto{
                     int n0 = OptionPane.questionYesOrKey(CONSTANTS.i18n.getValue("producto.mensaje.difcodigo"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
                     if (n0 == OptionPane.OK) {
                         tCodigoBarra.setText(codigo);
-
                     }
                 }
             }
@@ -667,7 +689,10 @@ public class PanelProducto{
 
         if(producto != null){
             insertData(producto);
+            if(producto.isEliminado()){
+                OptionPane.information(CONSTANTS.i18n.getValue("producto.mensaje.eliminado"));//JOptionPane.showConfirmDialog(GlobalFrame.getInstance().getFrame(), CONSTANT.LANG.getValue("sistema.mensaje.salir"), CONSTANT.TITULO,JOptionPane.YES_NO_OPTION);//
 
+            }
             //Cargar los datos
             return true;
         }
@@ -689,6 +714,8 @@ public class PanelProducto{
         eText(false);
 
         clearForm();
+
+        this.producto = producto;
 
         tCodigo.setText(producto.getCodigo());
         tCodigoBarra.setText(producto.getCodigoBarra());
@@ -720,14 +747,17 @@ public class PanelProducto{
                 ? producto.getCantidadDisponible().toString()
                 : "");
 
-        tStockCritico.setText(producto.getStockCritico() != null
-                ? producto.getStockCritico().toString()
+        tStockCritico.setText(producto.getStockMinimo() != null
+                ? producto.getStockMinimo().toString()
                 : "");
 
-        if(producto.getStockCritico() != null)
-            tStockCritico.setText(String.valueOf(producto.getStockCritico()));
+        tStockMaximo.setText(producto.getStockMaximo() != null
+                ? producto.getStockMaximo().toString()
+                : "");
 
-        disponible.setSelected(Boolean.TRUE.equals(producto.isDisponible()));
+        boolean dispon = Boolean.TRUE.equals(producto.isDisponible());
+
+        disponible.setSelected(dispon);
         noRequiereStock.setSelected(Boolean.TRUE.equals(producto.isNoRequiereStock()));
         movimientoNegativo.setSelected(Boolean.TRUE.equals(producto.isMovimientoNegativo()));
         precioImpuesto.setSelected(Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
@@ -780,7 +810,12 @@ public class PanelProducto{
             tCantidadDisponible.setText(String.valueOf(producto.getCantidadDisponible()));
         }
 
-        bEliminar.setEnabled(true);
+        //FALSE SI NO ESTA ELIMINADO
+        boolean elim = Boolean.FALSE.equals(producto.isEliminado());
+
+        bEliminar.setEnabled(elim && !dispon);
+        bAddCantidad.setEnabled(false);
+
         editarStock.setEnabled(true);
 
         tFechaCreacion.setText(producto.getFechaCreacion() != null
@@ -793,7 +828,7 @@ public class PanelProducto{
 
         eText(true);
 
-        bloquearFormStock();
+        bloquearFormStock(elim);
 
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
@@ -817,8 +852,8 @@ public class PanelProducto{
         disponible.setSelected(true);
         noRequiereStock.setSelected(false);
 
-
         tStockCritico.setEditable(true);
+        tStockMaximo.setEditable(true);
         bAddCantidad.setEnabled(true);
 
         tNota.setText(null);
@@ -857,21 +892,30 @@ public class PanelProducto{
         movimientoNegativo.setSelected(true);
         movimientoNegativo.setEnabled(true);
         tStockCritico.setEnabled(true);
-        bAddCantidad.setEnabled(true);
+        tStockMaximo.setEnabled(true);
+
+        bAddCantidad.setEnabled(false);
 
         tStockCritico.setText("0");
+        tStockMaximo.setText("0");
         tCantidadDisponible.setText("0");
+        tCantidadDisponible.setEditable(true);
 
         tFechaActualizacion.setText("-");
         tFechaCreacion.setText("-");
 
         tCodigo.requestFocus();
 
+        this.producto = null;
+
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
 
-    public Producto getDataForm(Producto producto){
+    public Producto getDataForm(){
+
+        if(producto == null)
+            producto = new Producto();
 
         String cod = tCodigo.getText();
         String codBarra = tCodigoBarra.getText();
@@ -892,7 +936,7 @@ public class PanelProducto{
         String cantMayor = tCantMayor.getText();
         boolean isImpuesto = precioImpuesto.isSelected();
 
-        if((cod == null || cod.trim().isEmpty()) && (codBarra != null &&!codBarra.trim().isEmpty())){
+        if((cod == null || cod.isBlank()) && (codBarra != null &&!codBarra.isBlank())){
             cod = codBarra;
             tCodigo.setText(cod);
         }
@@ -901,35 +945,42 @@ public class PanelProducto{
         Categoria categoria = (Categoria) dcbCategoria.getSelectedItem();
 
         String stockCrititco = tStockCritico.getText();
+        String stockMaximo = tStockMaximo.getText();
 
         BigDecimal c = BigDecimal.ZERO;
-        if(costo!=null && !costo.trim().isEmpty()) {
+        if(costo!=null && !costo.isBlank()) {
             c = NumberConverter.stringToBigDecimal(costo);
         }
 
         BigDecimal p1 = BigDecimal.ZERO;
-        if(precio1!= null && !precio1.trim().isEmpty()) {
+        if(precio1!= null && !precio1.isBlank()) {
             p1 = NumberConverter.stringToBigDecimal(precio1);
         }
 
         BigDecimal p2 = BigDecimal.ZERO;
-        if(precio2!= null && !precio2.trim().isEmpty()){
+        if(precio2!= null && !precio2.isBlank()){
             p2 = NumberConverter.stringToBigDecimal(precio2);
         }
 
         BigDecimal p3 = BigDecimal.ZERO;
-        if(precio3!= null && !precio3.trim().isEmpty()) {
+        if(precio3!= null && !precio3.isBlank()) {
             p3 = NumberConverter.stringToBigDecimal(precio3);
         }
 
         BigDecimal scritico = BigDecimal.ZERO;
 
-        if(stockCrititco !=null && !stockCrititco.trim().isEmpty()) {
+        if(stockCrititco !=null && !stockCrititco.isBlank()) {
             scritico = new BigDecimal(stockCrititco);
         }
 
+        BigDecimal smaximo = BigDecimal.ZERO;
+
+        if(stockMaximo != null && !stockMaximo.isBlank()) {
+            smaximo = new BigDecimal(stockMaximo);
+        }
+
         int util = 0;
-        if(utilidad != null && !utilidad.trim().isEmpty()) {
+        if(utilidad != null && !utilidad.isBlank()) {
             try {
                 util = Integer.parseInt(utilidad);
             }catch (NumberFormatException exc){
@@ -938,8 +989,14 @@ public class PanelProducto{
         }
 
         int cantMayorInt = 0;
-        if(cantMayor != null && !cantMayor.trim().isEmpty()) {
+        if(cantMayor != null && !cantMayor.isBlank()) {
             cantMayorInt = Integer.parseInt(cantMayor);
+        }
+
+        boolean elim = true;
+
+        if(producto.getID() != null){
+            elim = !disp;
         }
 
         producto.setCodigo(cod);
@@ -951,6 +1008,7 @@ public class PanelProducto{
         producto.setMarca(marca);
         producto.setCategoria(categoria);
         producto.setDisponible(disp);
+        producto.setEliminado(elim);
         producto.setNoRequiereStock(noReqStock);
         producto.setMovimientoNegativo(movNegativo);
         producto.setNota(nota);
@@ -962,7 +1020,8 @@ public class PanelProducto{
         producto.setCantMayor(cantMayorInt);
         producto.setReqAprobPrecioEspecial(reqAprob);
         producto.setPrecioIncluyeImpuesto(isImpuesto);
-        producto.setStockCritico(scritico);
+        producto.setStockMinimo(scritico);
+        producto.setStockMaximo(smaximo);
 
         if(producto.getID() == null)
             producto.setFechaCreacion(FechaUtil.parseFecha(tFechaCreacion.getText()));
@@ -1008,6 +1067,7 @@ public class PanelProducto{
 
         tCantidadDisponible.setEnabled(enabled);
         tStockCritico.setEnabled(enabled);
+        tStockMaximo.setEnabled(enabled);
         bAddCantidad.setEnabled(enabled);
     }
 
@@ -1051,11 +1111,6 @@ public class PanelProducto{
         });
 
         bBuscar.addActionListener(ae -> {
-            // Construir listas de marcas y categorias desde los modelos actuales
-            List<Marca> marcas = new ArrayList<>();
-            for (int i = 0; i < dcbMarca.getSize(); i++) {
-                marcas.add(dcbMarca.getElementAt(i));
-            }
 
             List<Categoria> categorias = new ArrayList<>();
             for (int i = 0; i < dcbCategoria.getSize(); i++) {
@@ -1063,13 +1118,14 @@ public class PanelProducto{
             }
 
             DialogBuscarProducto dialog = new DialogBuscarProducto(GlobalFrame.getInstance().getFrame(), categorias);
-            dialog.setLocationRelativeTo(GlobalFrame.getInstance().getFrame());
-            dialog.setVisible(true);
 
             Producto p = dialog.getSelectedProducto();
 
             if (p != null) {
+                skipInputVerifier = false;
                 insertData(p);
+                tNombre.requestFocus();
+                skipInputVerifier = true;
             }
         });
 
@@ -1094,11 +1150,10 @@ public class PanelProducto{
      * Verifica si hay datos en el formulario
      */
     public boolean hasFormData() {
-        return !tCodigo.getText().trim().isEmpty()
-                || !tCodigoBarra.getText().trim().isEmpty()
-                || !tNombre.getText().trim().isEmpty();
+        return !tCodigo.getText().isBlank()
+                || !tCodigoBarra.getText().isBlank()
+                || !tNombre.getText().isBlank();
     }
-
 
     public void addButtonEsc() {
 
@@ -1107,7 +1162,6 @@ public class PanelProducto{
         if( bCancelar.getActionListeners().length == 1)
             bCancelar.getActionListeners()[0].actionPerformed(eventoSimulado);
     }
-
 
     private class LostFocusPrecio implements FocusListener{
         @Override
@@ -1136,7 +1190,7 @@ public class PanelProducto{
         actionMap.put("GUARDAR_PRODUCTO", action);
     }
 
-    public void loadData(){
+    public void loadData() {
         try {
 
             CategoriaDAO categoriaDAO = new CategoriaDAO();
@@ -1152,8 +1206,7 @@ public class PanelProducto{
             for (Marca marca : marcaList) {
                 dcbMarca.addElement(marca);
             }
-        }
-        catch (ProductoException exc) {
+        } catch (ProductoException exc) {
             OptionPane.error(exc);
         }
     }

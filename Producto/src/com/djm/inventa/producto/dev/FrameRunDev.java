@@ -9,7 +9,6 @@ import com.djm.ui.GlobalFrame;
 import com.djm.ui.LayoutPanel;
 
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -31,8 +30,8 @@ public class FrameRunDev {
 
         managerProducto.init();
 
-        ProductoListener productoListener = new ProductoListener( managerProducto);
-        managerProducto.setActionListener(productoListener);
+        ProductoListener productoManager = new ProductoListener( managerProducto);
+        managerProducto.setActionListener(productoManager);
 
         JFrame frame = new JFrame(managerProducto.getTitle());
 

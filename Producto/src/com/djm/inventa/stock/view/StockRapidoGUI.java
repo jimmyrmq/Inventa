@@ -1,16 +1,18 @@
 package com.djm.inventa.stock.view;
 
 import com.djm.inventa.producto.core.CONSTANTS;
+import com.djm.inventa.stock.model.TipoMovimientoDTO;
 import com.djm.inventa.ui.component.TextField;
 import com.djm.ui.GlobalFrame;
 import com.djm.ui.component.OptionPane;
 import com.djm.ui.LayoutPanel;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -35,6 +37,8 @@ public class StockRapidoGUI implements ActionListener {
     private TextField tNuevaCantidad;
     private TextField tCantidadActual;
     private BigDecimal cantidadEntrante;
+    private JComboBox<TipoMovimientoDTO> cbTipoMovimiento;
+    private DefaultComboBoxModel<TipoMovimientoDTO> dcbTipoMovimiento;
 
     public StockRapidoGUI(){
         this(null);
@@ -106,6 +110,7 @@ public class StockRapidoGUI implements ActionListener {
 
         return panel;
     }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();

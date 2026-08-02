@@ -16,10 +16,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.StringJoiner;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.ArrayList;
-import java.sql.ResultSetMetaData;
 
 public class ProductoDAO {
     private Logger logger = Logger.getLogger(ProductoDAO.class.getName());
@@ -29,14 +30,7 @@ public class ProductoDAO {
 
     public Producto obtenerProducto(String codigo)throws ProductoException {
 
-        String sql = """            
-                SELECT p.*
-                    , COALESCE(sp.cantidad, 0) AS cantidad_stock, cat.nombre  AS categoria_nombre, m.nombre AS marca_nombre 
-                 FROM (producto p inner join categoria cat on p.categoria_id = cat.id) LEFT JOIN stock_producto sp 
-                    ON sp.producto_id = p.id
-                     LEFT JOIN marca m ON p.marca_id = m.id
-                WHERE codigo = ?
-            """;
+        String sql = querySelectProducto("WHERE codigo = ?");
 
         try (PreparedStatement ps = conn.prepareStatement(sql);) {
 
@@ -91,9 +85,6 @@ public class ProductoDAO {
         producto.setPrecioIncluyeImpuesto(rs.getBoolean("precio_incluye_impuesto"));
         producto.setDisponible(rs.getBoolean("disponible"));
 
-        BigDecimal stockCritico = rs.getBigDecimal("stock_critico");
-        producto.setStockCritico(stockCritico);
-
         producto.setNoRequiereStock(rs.getBoolean("no_requiere_stock"));
         producto.setReqAprobPrecioEspecial(rs.getBoolean("req_aprobacion_precio_especial"));
         producto.setMovimientoNegativo(rs.getBoolean("movimiento_negativo"));
@@ -107,6 +98,10 @@ public class ProductoDAO {
         producto.setNota(rs.getString("nota"));
 
         producto.setCantidadDisponible(new BigDecimal(rs.getString("cantidad_stock")));
+        producto.setStockMaximo(rs.getBigDecimal("stock_maximo"));
+        producto.setStockMinimo(rs.getBigDecimal("stock_minimo"));
+
+        producto.setEliminado(rs.getBoolean("eliminado"));
 
         return producto;
     }
@@ -114,17 +109,7 @@ public class ProductoDAO {
     public List<Producto> listarProductos() throws ProductoException {
         List<Producto> productos = new ArrayList<>();
 
-        String sql = """
-                SELECT p.*
-                    , COALESCE(sp.cantidad, 0) AS cantidad_stock
-                    , m.nombre AS marca_nombre
-                    , c.nombre AS categoria_nombre
-                FROM producto p
-                LEFT JOIN stock_producto sp ON sp.producto_id = p.id
-                LEFT JOIN marca m ON m.id = p.marca_id
-                LEFT JOIN categoria c ON c.id = p.categoria_id
-                ORDER BY p.nombre
-            """;
+        String sql = querySelectProducto("WHERE eliminado = 0","ORDER BY p.nombre");
 
         try (PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -142,14 +127,13 @@ public class ProductoDAO {
     public boolean guardarProducto(Producto producto)throws ProductoException {
 
         boolean nuevoProducto = producto.getID() == null;
-        String cols []={ "codigo", "codigo_barra", "nombre",
+        String [] cols ={ "codigo", "codigo_barra", "nombre",
                 "unidad_medida", "modelo", "serie", "marca_id",
                 "categoria_id", "precio_costo", "utilidad",
                 "precio1", "precio2", "precio3", "cant_mayor",
                 "precio_incluye_impuesto", "disponible",
-                 "stock_critico",
                 "no_requiere_stock", "req_aprobacion_precio_especial","movimiento_negativo",
-                "nota", "fecha_creacion", "fecha_actualizacion"};
+                "nota", "fecha_creacion", "fecha_actualizacion","eliminado"};
 
         try {
 
@@ -182,16 +166,15 @@ public class ProductoDAO {
             ps.setBoolean(15, Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
             ps.setBoolean(16, producto.isDisponible());
 
-            ps.setObject(17, producto.getStockCritico());
+            ps.setBoolean(17, producto.isNoRequiereStock());
+            ps.setBoolean(18, producto.isReqAprobPrecioEspecial());
 
-            ps.setBoolean(18, producto.isNoRequiereStock());
-            ps.setBoolean(19, producto.isReqAprobPrecioEspecial());
+            ps.setBoolean(19, producto.isMovimientoNegativo());
+            ps.setString(20, producto.getNota());
 
-            ps.setBoolean(20, producto.isMovimientoNegativo());
-            ps.setString(21, producto.getNota());
-
-            ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaCreacion()));
-            ps.setTimestamp(23, Timestamp.valueOf(producto.getFechaActualizacion()));
+            ps.setTimestamp(21, Timestamp.valueOf(producto.getFechaCreacion()));
+            ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaActualizacion()));
+            ps.setBoolean(23, producto.isEliminado());
 
             if(!nuevoProducto)
                 ps.setLong(24, producto.getID());
@@ -214,4 +197,118 @@ public class ProductoDAO {
     }
 
 
+    public boolean eliminarProducto(Integer idProducto) throws ProductoException {
+
+        if (puedeEliminarProducto(idProducto)) {
+
+            String sql = "DELETE FROM producto WHERE id = ?";
+
+            try (PreparedStatement ps = conn.prepareStatement(sql);) {
+
+                ps.setInt(1, idProducto);
+
+                int filasEliminadas = ps.executeUpdate();
+
+                if (filasEliminadas > 0) {
+                    return true;
+                }
+
+            } catch (SQLException exc) {
+                throw new ProductoException(exc.getMessage());
+            }
+        }
+        else{
+            int idUsuario = AppContext.getInstance().getInt("usuario.id");
+            try {
+                String [] cols = {"disponible","eliminado", "fecha_eliminacion", "usuario_id_eliminacion"};
+
+                String sql = SQLUtil.createUpdate("producto", "id = ?", cols);
+
+                try (PreparedStatement ps = conn.prepareStatement(sql);) {
+                    ps.setInt(1, 0);
+                    ps.setInt(2, 1);
+                    ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+                    ps.setInt(4, idUsuario);
+
+                    ps.setInt(5, idProducto);
+
+                    int filasEliminadas = ps.executeUpdate();
+
+                    if (filasEliminadas > 0) {
+                        return true;
+                    }
+
+                } catch (SQLException exc) {
+                    throw new ProductoException(exc.getMessage());
+                }
+            }catch (BaseDatosException exc){
+                throw new ProductoException(exc.getMessage());
+            }
+        }
+
+        return false;
+    }
+
+    private boolean puedeEliminarProducto(Integer idProducto) throws ProductoException {
+        String sql = """
+            SELECT
+                ms.total_movimientos,
+                ms.cantidad,
+                (SELECT COUNT(*) FROM documento_item WHERE producto_id = ?) AS items_documento
+            FROM (
+                 SELECT COUNT(*) AS total_movimientos, SUM(cantidad) AS cantidad
+                FROM movimiento_stock WHERE producto_id = ?) AS ms 
+            """;
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idProducto);
+            ps.setInt(2, idProducto);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int totalMovimientos = rs.getInt("total_movimientos");
+                    int cantidad = rs.getInt("cantidad");
+                    int itemsDocumento = rs.getInt("items_documento");
+
+                    // Validar: exactamente 1 movimiento, cantidad = 0, y sin documentos
+                    return totalMovimientos == 1 && cantidad == 0 && itemsDocumento == 0;
+                }
+            }
+        } catch (SQLException exc) {
+            throw new ProductoException(exc.getMessage());
+        }
+
+        return false;
+    }
+
+    private String querySelectProducto(String ... addSql){
+        StringJoiner columns = new StringJoiner(", ");
+        columns.add("p.*");
+        columns.add("COALESCE(sp.cantidad, 0) AS cantidad_stock");
+        columns.add("COALESCE(sp.stock_maximo, 0) AS stock_maximo");
+        columns.add("COALESCE(sp.stock_minimo, 0) AS stock_minimo");
+        columns.add("m.nombre AS marca_nombre");
+        columns.add("c.nombre AS categoria_nombre");
+
+        StringBuilder sql = new StringBuilder ();
+        sql.append("SELECT ");
+        sql.append(columns);
+        sql.append(" FROM producto p");
+        sql.append(" LEFT JOIN stock_producto sp ON sp.producto_id = p.id");
+        sql.append(" LEFT JOIN marca m ON m.id = p.marca_id");
+        sql.append(" LEFT JOIN categoria c ON c.id = p.categoria_id");
+
+        if(addSql != null){
+
+            sql.append(" ");
+            String resultado = String.join(" ", addSql);
+
+            sql.append(resultado);
+        }
+
+        //System.out.println(sql.toString());
+
+        return sql.toString();
+    }
 }

@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS producto (
     disponible INTEGER NOT NULL DEFAULT 1,
 
     cantidad_disponible INTEGER DEFAULT NULL,
-    stock_critico INTEGER DEFAULT NULL,
 
     movimiento_negativo INTEGER NOT NULL DEFAULT 0,
     no_requiere_stock INTEGER NOT NULL DEFAULT 0,
@@ -35,6 +34,10 @@ CREATE TABLE IF NOT EXISTS producto (
     fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP,
 
     nota TEXT DEFAULT NULL,
+
+    eliminado INTEGER NOT NULL DEFAULT 0,
+    fecha_eliminacion TEXT DEFAULT DEFAULT NULL,
+    usuario_eliminacion_id  INTEGER DEFAULT NULL,
 
     UNIQUE(codigo, codigo_barra), --El UNIQUE automáticamente crea un índice interno.
 

@@ -10,3 +10,4 @@ CREATE TABLE IF NOT EXISTS documento_item (
 	FOREIGN KEY (producto_id) REFERENCES producto (id) ON DELETE CASCADE
 );
 
+CREATE INDEX idx_documento_item_producto ON documento_item(producto_id);

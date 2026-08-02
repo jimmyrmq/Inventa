@@ -24,7 +24,8 @@ public class Producto implements Cloneable{
     private Boolean precioIncluyeImpuesto;
     private Boolean disponible = true;
     private BigDecimal cantidadDisponible;//Cantidad de stock
-    private BigDecimal stockCritico;
+    private BigDecimal stockMinimo;
+    private BigDecimal stockMaximo = BigDecimal.ZERO;
     private Boolean noRequiereStock = true;//Es un servicio
     private Boolean reqAprobPrecioEspecial = true;//Requiere aprobacion para precio especial
     private Boolean movimientoNegativo = true;//Requiere aprobacion para precio especial
@@ -34,6 +35,7 @@ public class Producto implements Cloneable{
     private LocalDateTime  fechaCreacion;
     private MovimientoStock movimientoStock;
     private String nota;
+    private Boolean eliminado = false;
 
     public Producto() { }
 
@@ -172,12 +174,20 @@ public class Producto implements Cloneable{
         this.cantidadDisponible = cantidadStock;
     }
 
-    public BigDecimal getStockCritico() {
-        return stockCritico;
+    public BigDecimal getStockMinimo() {
+        return stockMinimo;
     }
 
-    public void setStockCritico(BigDecimal stockCritico) {
-        this.stockCritico = stockCritico;
+    public void setStockMinimo(BigDecimal stockMinimo) {
+        this.stockMinimo = stockMinimo;
+    }
+
+    public BigDecimal getStockMaximo() {
+        return stockMaximo;
+    }
+
+    public void setStockMaximo(BigDecimal stockMaximo) {
+        this.stockMaximo = stockMaximo;
     }
 
     public Boolean isNoRequiereStock() {
@@ -212,7 +222,6 @@ public class Producto implements Cloneable{
         this.marca = marca;
     }
 
-
     public LocalDateTime getFechaActualizacion() {
         return fechaActualizacion;
     }
@@ -245,6 +254,14 @@ public class Producto implements Cloneable{
         this.reqAprobPrecioEspecial = reqAprobPrecioEspecial;
     }
 
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+    public Boolean isEliminado() {
+        return eliminado;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -264,7 +281,7 @@ public class Producto implements Cloneable{
                 ", precioIncluyeImpuesto=" + precioIncluyeImpuesto +
                 ", disponible=" + disponible +
                 ", cantidadDisponible=" + cantidadDisponible +
-                ", stockCritico=" + stockCritico +
+                ", stockCritico=" + stockMinimo +
                 ", noRequiereStock=" + noRequiereStock +
                 ", reqAprobPrecioEspecial=" + reqAprobPrecioEspecial +
                 ", categoria=" + categoria +

@@ -1,7 +1,6 @@
 package com.djm.inventa.producto;
 
 import com.djm.inventa.producto.dev.FrameRunDev;
-import com.djm.inventa.stock.model.TipoMovimiento;
 
 import javax.swing.UIManager;
 

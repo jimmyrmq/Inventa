@@ -77,8 +77,8 @@ public class InfoPluginProducto implements IPluginInfo {
                     PanelManagerProducto panelManagerProducto = new PanelManagerProducto();
 
                     //Crear la accion aqui
-                    ProductoListener productoListener = new ProductoListener(panelManagerProducto);
-                    panelManagerProducto.setActionListener(productoListener);
+                    ProductoListener productoManager = new ProductoListener(panelManagerProducto);
+                    panelManagerProducto.setActionListener(productoManager);
 
                     uiManager.showView(panelManagerProducto, InfoPluginProducto.this);
                 }

@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS movimiento_stock (
     stock_anterior NUMERIC NOT NULL,
     stock_nuevo NUMERIC NOT NULL,
 
-    referencia_id NUMERIC,
-    referencia_numero NUMERIC, -- Numero de la referencia
+    referencia_id NUMERIC, --Tipo Documento
+    referencia_numero NUMERIC, -- Numero de la referencia del documento
 
   FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE RESTRICT,-- SET NULL,
   FOREIGN KEY (producto_id) REFERENCES producto (id) ON DELETE RESTRICT,

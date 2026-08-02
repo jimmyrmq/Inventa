@@ -10,6 +10,8 @@ public class MovimientoStock {
     private Integer productoId;
     private Integer almacenId;
     private BigDecimal cantidad;
+    private BigDecimal stock_minimo;
+    private BigDecimal stock_maximo;
     private byte tipo;
     private LocalDateTime fecha;
     private String observacion;
@@ -74,6 +76,22 @@ public class MovimientoStock {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public BigDecimal getStockMinimo() {
+        return stock_minimo;
+    }
+
+    public void setStockMinimo(BigDecimal stock_minimo) {
+        this.stock_minimo = stock_minimo;
+    }
+
+    public BigDecimal getStockMaximo() {
+        return stock_maximo;
+    }
+
+    public void setStockMaximo(BigDecimal stock_maximo) {
+        this.stock_maximo = stock_maximo;
     }
 
     public BigDecimal getStockAnterior() {

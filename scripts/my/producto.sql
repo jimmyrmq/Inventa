@@ -17,13 +17,15 @@ CREATE TABLE IF NOT EXISTS producto (
     precio_incluye_impuesto TINYINT(1) NOT NULL DEFAULT 1,
     disponible TINYINT(1) NOT NULL DEFAULT 1,
     cantidad_disponible INT DEFAULT NULL,
-    stock_critico INT DEFAULT NULL,
     no_requiere_stock TINYINT(1) NOT NULL DEFAULT 0,
     req_aprobacion_precio_especial TINYINT(1) NOT NULL DEFAULT 1,
     movimiento_negativo TINYINT(1) NOT NULL DEFAULT 1,
     fecha_actualizacion DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     nota TEXT DEFAULT NULL,
+    eliminado TINYINT(1) NOT NULL DEFAULT 0,
+    fecha_eliminacion DATETIME DEFAULT NULL,
+    usuario_eliminacion  INT DEFAULT NULL,
 
     PRIMARY KEY (id),
 

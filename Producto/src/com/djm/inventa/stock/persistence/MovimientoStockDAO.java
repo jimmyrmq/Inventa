@@ -26,7 +26,7 @@ public class MovimientoStockDAO {
     public void agregarStock(MovimientoStock stock)throws ProductoException {
         String cols []= {"usuario_id",
                 "producto_id", "almacen_id", "cantidad",
-                "tipo", "fecha", "observacion", "stock_anterior", "stock_nuevo"};
+                "tipo_movimiento_id", "fecha", "observacion", "stock_anterior", "stock_nuevo"};
 
 
         try {
@@ -63,15 +63,17 @@ public class MovimientoStockDAO {
 
     public void updateStockProducto(MovimientoStock stock)throws ProductoException{
         String sql = """
-                update stock_producto set cantidad = ?
+                update stock_producto set cantidad = ?, stock_minimo = ? , stock_maximo = ?
                 where producto_id = ? and almacen_id = ?;
                 """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setBigDecimal(1, stock.getCantidad());
-            ps.setInt(2, stock.getProductoId());
-            ps.setInt(3, stock.getAlmacenId());
+            ps.setBigDecimal(2, stock.getStockMinimo());
+            ps.setBigDecimal(3, stock.getStockMaximo());
+            ps.setInt(4, stock.getProductoId());
+            ps.setInt(5, stock.getAlmacenId());
 
             ps.executeUpdate();
 

@@ -5,6 +5,7 @@ import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.inventa.producto.exception.ProductoException;
 import com.djm.inventa.stock.model.MovimientoStock;
 import com.djm.inventa.stock.model.TipoMovimiento;
+import com.djm.inventa.stock.model.TipoMovimientoDTO;
 import com.djm.inventa.stock.persistence.MovimientoStockDAO;
 
 import java.math.BigDecimal;
@@ -18,7 +19,7 @@ public class StockManager {
         movimientoStockDAO = new MovimientoStockDAO();
     }
 
-    public MovimientoStock obtenerMovimientoStock(BigDecimal cantNueva, BigDecimal cantActual,
+    public MovimientoStock obtenerMovimientoStock(BigDecimal cantNueva, BigDecimal cantActual, BigDecimal stockMinimo,
                                                   Integer productoID, Integer almacen_id, boolean editar, boolean agregar) throws ProductoException{
 
         BigDecimal stockNuevo= BigDecimal.ZERO;
@@ -34,6 +35,7 @@ public class StockManager {
 
         if(editar){
             int resultado = cantNueva.compareTo(cantActual);
+
             TipoMovimiento tipoMovimiento = resultado > 0 ? TipoMovimiento.AJUSTE_POSITIVO: TipoMovimiento.AJUSTE_NEGATIVO;
             movimientoStock.setTipo(tipoMovimiento);
 

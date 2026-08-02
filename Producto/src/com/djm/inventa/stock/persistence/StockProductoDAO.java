@@ -50,16 +50,18 @@ public class StockProductoDAO {
         }
     }
 
-    public void actualizarCantidad(Integer idProducto, BigDecimal cantidad)throws ProductoException{
+    public void actualizarCantidad(Integer idProducto, BigDecimal cantidad, BigDecimal stockMinimo, BigDecimal stockMaximo)throws ProductoException{
 
-        String columns [] = {"cantidad"};
+        String columns [] = {"cantidad", "stock_minimo", "stock_maximo"};
         try {
             String sql = SQLUtil.createUpdate("stock_producto","producto_id = ?", columns);
             //System.out.println(sql+" -> "+stock);
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setBigDecimal(1, cantidad);
-            ps.setInt(2, idProducto);
+            ps.setBigDecimal(2, stockMinimo);
+            ps.setBigDecimal(3, stockMaximo);
+            ps.setInt(4, idProducto);
 
             ps.executeUpdate();
 

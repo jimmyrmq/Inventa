@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS movimiento_stock (
 
     CONSTRAINT fk_movimiento_usuario FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE RESTRICT,
     CONSTRAINT fk_movimiento_producto FOREIGN KEY (producto_id) REFERENCES producto(id) ON DELETE RESTRICT,
-    CONSTRAINT fk_movimiento_almacen FOREIGN KEY (almacen_id) REFERENCES almacen(id) ON DELETE RESTRICT
-    CONSTRAINT fk_movimiento_tipo_movimiento FOREIGN KEY (tipo_movimiento_id) REFERENCES tipo_movimiento(id) ON DELETE RESTRICT
+    CONSTRAINT fk_movimiento_almacen FOREIGN KEY (almacen_id) REFERENCES almacen(id) ON DELETE RESTRICT,
+    CONSTRAINT fk_movimiento_tipo_movimiento FOREIGN KEY (tipo_movimiento_id) REFERENCES tipo_movimiento(id) ON DELETE RESTRICT,
     CONSTRAINT fk_movimiento_tipo_documento FOREIGN KEY (referencia_id) REFERENCES tipo_documento(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
