@@ -19,11 +19,8 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
 
     @Override
     public Producto getDataForm() {
-        // Obtiene un producto vacío o el existente del manager
-        Producto producto = super.isData() ? super.getValue() : new Producto();
-
         // Llena el producto con los datos del formulario UI
-        return panelProducto.getDataForm(producto);
+        return panelProducto.getDataForm();
     }
 
     @Override
