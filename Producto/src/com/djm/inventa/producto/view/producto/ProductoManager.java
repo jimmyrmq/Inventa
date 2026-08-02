@@ -94,6 +94,9 @@ public class ProductoManager {
 
     public Integer guardarProducto(Producto producto) {
 
+        if(producto == null)
+            return null;
+
         ProductoDAO productoDB = new ProductoDAO();
         Integer productoId = null;
         //panelProducto.getValue();

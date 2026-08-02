@@ -43,8 +43,10 @@ public class ProductoListener implements ActionListener{
                 Integer productoId = this.productoManager.guardarProducto(
                         panelManagerProducto.getDataForm());
 
-                //panelManagerProducto.setIdProducto(productoId);
-                panelManagerProducto.clearForm();
+                if(productoId != null) {
+                    //panelManagerProducto.setIdProducto(productoId);
+                    panelManagerProducto.clearForm();
+                }
             }
             else {
                 OptionPane.information( CONSTANTS.i18n.getValue("producto.mensaje.campos_incompletos"));

@@ -741,19 +741,19 @@ public class PanelProducto{
 
         tCantMayor.setText(producto.getCantMayor() != null
                 ? producto.getCantMayor().toString()
-                : "");
+                : "0");
 
         tCantidadDisponible.setText(producto.getCantidadDisponible() != null
                 ? producto.getCantidadDisponible().toString()
-                : "");
+                : "0");
 
         tStockCritico.setText(producto.getStockMinimo() != null
                 ? producto.getStockMinimo().toString()
-                : "");
+                : "0");
 
         tStockMaximo.setText(producto.getStockMaximo() != null
                 ? producto.getStockMaximo().toString()
-                : "");
+                : "0");
 
         boolean dispon = Boolean.TRUE.equals(producto.isDisponible());
 
@@ -858,6 +858,7 @@ public class PanelProducto{
 
         tNota.setText(null);
         tCosto.setText("0,00");
+        tCantMayor.setText("0");
         tUtilidad.setText("0");
 
         tPrecio1.setText("0,00");
@@ -941,6 +942,12 @@ public class PanelProducto{
             tCodigo.setText(cod);
         }
 
+        if(cod.isBlank()){
+            OptionPane.error(CONSTANTS.i18n.getValue("producto.mensaje.codigo.null"));
+            tCodigo.requestFocus();
+            return null;
+        }
+
         Marca marca = (Marca)dcbMarca.getSelectedItem();
         Categoria categoria = (Categoria) dcbCategoria.getSelectedItem();
 
@@ -993,7 +1000,7 @@ public class PanelProducto{
             cantMayorInt = Integer.parseInt(cantMayor);
         }
 
-        boolean elim = true;
+        boolean elim = false;
 
         if(producto.getID() != null){
             elim = !disp;

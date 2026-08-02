@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS producto (
     nota TEXT DEFAULT NULL,
 
     eliminado INTEGER NOT NULL DEFAULT 0,
-    fecha_eliminacion TEXT DEFAULT DEFAULT NULL,
+    fecha_eliminacion TEXT DEFAULT NULL,
     usuario_eliminacion_id  INTEGER DEFAULT NULL,
 
     UNIQUE(codigo, codigo_barra), --El UNIQUE automáticamente crea un índice interno.

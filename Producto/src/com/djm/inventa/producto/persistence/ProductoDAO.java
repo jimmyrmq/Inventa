@@ -32,7 +32,8 @@ public class ProductoDAO {
 
         String sql = querySelectProducto("WHERE codigo = ?");
 
-        try (PreparedStatement ps = conn.prepareStatement(sql);) {
+        try(//Connection conn = db.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, codigo);
 
@@ -111,7 +112,8 @@ public class ProductoDAO {
 
         String sql = querySelectProducto("WHERE eliminado = 0","ORDER BY p.nombre");
 
-        try (PreparedStatement ps = conn.prepareStatement(sql);
+        try (//Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
@@ -135,61 +137,64 @@ public class ProductoDAO {
                 "no_requiere_stock", "req_aprobacion_precio_especial","movimiento_negativo",
                 "nota", "fecha_creacion", "fecha_actualizacion","eliminado"};
 
-        try {
-
+        //try (Connection conn = db.getConnection()) {
+        try{
             String sql = nuevoProducto
                     ? SQLUtil.createInsert("producto",cols )//"INSERT INTO producto (codigo, codigo_barra, nombre, unidad_medida, modelo, serie, marca_id, categoria_id, precio_costo, utilidad, precio1, precio2, precio3, cant_mayor, precio_incluye_impuesto, disponible, cantidad_disponible, stock_critico, no_requiere_stock, req_aprobacion_precio_especial, nota, fecha_creacion, fecha_actualizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-                : SQLUtil.createUpdate("producto","id = ?",cols );//"UPDATE producto SET codigo = ?, codigo_barra = ?, nombre = ?, unidad_medida = ?, modelo = ?, serie = ?, marca_id = ?, categoria_id = ?, precio_costo = ?, utilidad = ?, precio1 = ?, precio2 = ?, precio3 = ?, cant_mayor = ?, precio_incluye_impuesto = ?, disponible = ?, cantidad_disponible = ?, stock_critico = ?, no_requiere_stock = ?, req_aprobacion_precio_especial = ?, nota = ?, fecha_creacion = ?, fecha_actualizacion = ? WHERE id = ?;";
+                    : SQLUtil.createUpdate("producto","id = ?",cols );//"UPDATE producto SET codigo = ?, codigo_barra = ?, nombre = ?, unidad_medida = ?, modelo = ?, serie = ?, marca_id = ?, categoria_id = ?, precio_costo = ?, utilidad = ?, precio1 = ?, precio2 = ?, precio3 = ?, cant_mayor = ?, precio_incluye_impuesto = ?, disponible = ?, cantidad_disponible = ?", stock_critico = ?", no_requiere_stock = ?", req_aprobacion_precio_especial = ?", nota = ?", fecha_creacion = ?", fecha_actualizacion = ? WHERE id = ?;";
 
-            PreparedStatement ps =nuevoProducto? conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS):
-                    conn.prepareStatement(sql);
+            //try (
+                    PreparedStatement ps =nuevoProducto?
+                    conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS):
+                    conn.prepareStatement(sql);//) {
 
-            ps.setString(1, producto.getCodigo());
-            ps.setString(2, producto.getCodigoBarra());
-            ps.setString(3, producto.getNombre());
-            ps.setString(4, producto.getUnidadMedida());
-            ps.setString(5, producto.getModelo());
-            ps.setString(6, producto.getSerie());
+                ps.setString(1, producto.getCodigo());
+                ps.setString(2, producto.getCodigoBarra());
+                ps.setString(3, producto.getNombre());
+                ps.setString(4, producto.getUnidadMedida());
+                ps.setString(5, producto.getModelo());
+                ps.setString(6, producto.getSerie());
 
-            ps.setObject(7, producto.getMarca() != null ? producto.getMarca().getID() : null);
-            ps.setObject(8, producto.getCategoria() != null ? producto.getCategoria().getID() : null);
+                ps.setObject(7, producto.getMarca() != null ? producto.getMarca().getID() : null);
+                ps.setObject(8, producto.getCategoria() != null ? producto.getCategoria().getID() : null);
 
-            ps.setBigDecimal(9, producto.getPrecioCosto());
-            ps.setObject(10, producto.getUtilidad());
+                ps.setBigDecimal(9, producto.getPrecioCosto());
+                ps.setObject(10, producto.getUtilidad());
 
-            ps.setBigDecimal(11, producto.getPrecio1());
-            ps.setBigDecimal(12, producto.getPrecio2());
-            ps.setBigDecimal(13, producto.getPrecio3());
+                ps.setBigDecimal(11, producto.getPrecio1());
+                ps.setBigDecimal(12, producto.getPrecio2());
+                ps.setBigDecimal(13, producto.getPrecio3());
 
-            ps.setObject(14, producto.getCantMayor());
+                ps.setObject(14, producto.getCantMayor());
 
-            ps.setBoolean(15, Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
-            ps.setBoolean(16, producto.isDisponible());
+                ps.setBoolean(15, Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
+                ps.setBoolean(16, producto.isDisponible());
 
-            ps.setBoolean(17, producto.isNoRequiereStock());
-            ps.setBoolean(18, producto.isReqAprobPrecioEspecial());
+                ps.setBoolean(17, producto.isNoRequiereStock());
+                ps.setBoolean(18, producto.isReqAprobPrecioEspecial());
 
-            ps.setBoolean(19, producto.isMovimientoNegativo());
-            ps.setString(20, producto.getNota());
+                ps.setBoolean(19, producto.isMovimientoNegativo());
+                ps.setString(20, producto.getNota());
 
-            ps.setTimestamp(21, Timestamp.valueOf(producto.getFechaCreacion()));
-            ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaActualizacion()));
-            ps.setBoolean(23, producto.isEliminado());
+                ps.setTimestamp(21, Timestamp.valueOf(producto.getFechaCreacion()));
+                ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaActualizacion()));
+                ps.setBoolean(23, producto.isEliminado());
 
-            if(!nuevoProducto)
-                ps.setLong(24, producto.getID());
+                if (!nuevoProducto)
+                    ps.setLong(24, producto.getID());
 
-            int filas = ps.executeUpdate();
+                int filas = ps.executeUpdate();
 
-            if (nuevoProducto && filas > 0) {
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        producto.setID(rs.getInt(1));
+                if (nuevoProducto && filas > 0) {
+                    try (ResultSet rs = ps.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            producto.setID(rs.getInt(1));
+                        }
                     }
                 }
-            }
 
-            return true;
+                return true;
+            //}
         } catch (SQLException | BaseDatosException exc) {
             logger.info(exc.getMessage());
             throw new ProductoException(exc.getMessage());
@@ -200,21 +205,11 @@ public class ProductoDAO {
     public boolean eliminarProducto(Integer idProducto) throws ProductoException {
 
         if (puedeEliminarProducto(idProducto)) {
-
-            String sql = "DELETE FROM producto WHERE id = ?";
-
-            try (PreparedStatement ps = conn.prepareStatement(sql);) {
-
-                ps.setInt(1, idProducto);
-
-                int filasEliminadas = ps.executeUpdate();
-
-                if (filasEliminadas > 0) {
-                    return true;
-                }
-
-            } catch (SQLException exc) {
-                throw new ProductoException(exc.getMessage());
+            try {
+                eliminarProductoDB(idProducto);
+                return true;
+            } catch (SQLException e) {
+                throw new ProductoException(e.getMessage());
             }
         }
         else{
@@ -224,7 +219,8 @@ public class ProductoDAO {
 
                 String sql = SQLUtil.createUpdate("producto", "id = ?", cols);
 
-                try (PreparedStatement ps = conn.prepareStatement(sql);) {
+                try (//Connection conn = db.getConnection();
+                     PreparedStatement ps = conn.prepareStatement(sql)) {
                     ps.setInt(1, 0);
                     ps.setInt(2, 1);
                     ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
@@ -260,7 +256,8 @@ public class ProductoDAO {
                 FROM movimiento_stock WHERE producto_id = ?) AS ms 
             """;
 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (//Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, idProducto);
             ps.setInt(2, idProducto);
@@ -310,5 +307,58 @@ public class ProductoDAO {
         //System.out.println(sql.toString());
 
         return sql.toString();
+    }
+
+    public void eliminarProductoDB(int productoId) throws SQLException {
+        String deleteMovimientos = """
+        DELETE FROM movimiento_stock
+        WHERE producto_id = ?
+        """;
+
+        String deleteStock = """
+        DELETE FROM stock_producto
+        WHERE producto_id = ?
+        """;
+
+        String deleteProducto = """
+        DELETE FROM producto
+        WHERE id = ?
+        """;
+
+        //try(Connection conn = db.getConnection()) {
+            conn.setAutoCommit(false);
+
+            try (
+                    PreparedStatement psMov = conn.prepareStatement(deleteMovimientos);
+                    PreparedStatement psStock = conn.prepareStatement(deleteStock);
+                    PreparedStatement psProd = conn.prepareStatement(deleteProducto)
+            ) {
+
+                psMov.setInt(1, productoId);
+                psMov.executeUpdate();
+
+                psStock.setInt(1, productoId);
+                psStock.executeUpdate();
+
+                psProd.setInt(1, productoId);
+                psProd.executeUpdate();
+
+                conn.commit();
+
+            } catch (SQLException e) {
+
+                try {
+                    conn.rollback();
+                } catch (SQLException rollbackEx) {
+                    e.addSuppressed(rollbackEx);
+                }
+
+                throw e;
+            }
+            finally {
+
+                conn.setAutoCommit(true);
+            }
+        //}
     }
 }

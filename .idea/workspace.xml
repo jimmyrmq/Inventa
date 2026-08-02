@@ -10,45 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8676725b-e613-4ac5-9a4a-045aa23279b0" name="Changes" comment="Inventa 2.0 - Desarrollo">
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ModelTableProductoCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProductoManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/TipoMovimientoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/categoria_documento.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/schema_migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/schema_migrations.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppShell/resources/lang/global_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell/resources/lang/global_es.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common-Core/resources/lang/global_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Common-Core/resources/lang/global_es.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/ProductoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/ProductoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/InfoPluginProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/InfoPluginProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/dev/FrameRunDev.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/dev/FrameRunDev.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/model/Producto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/DialogBuscarProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/DialogBuscarProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelManagerProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelManagerProducto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProductoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/ProductoListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/MovimientoStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/model/MovimientoStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/MovimientoStockDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/MovimientoStockDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/StockDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/StockDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/StockProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/persistence/StockProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/service/StockManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/service/StockManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/view/StockRapidoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/stock/view/StockRapidoGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/inventa.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/inventa.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ext/producto.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ext/producto.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/djm-api-ui.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/djm-api-ui.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/categoriadocumento.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/documentoitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/documento_item.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/movimiento_stock.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/movimiento_stock.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/lite/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/producto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/tipo_movimiento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/tipo_movimiento.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/categoriadocumento.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/documentoitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/documento_item.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/movimiento_stock.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/movimiento_stock.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/producto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/tipo_movimiento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/tipo_movimiento.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,7 +279,23 @@
       <option name="project" value="LOCAL" />
       <updated>1784174786346</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Inventa 2.0 - Desarrollo">
+      <option name="closed" value="true" />
+      <created>1785629585909</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1785629585909</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Inventa 2.0 - Desarrollo">
+      <option name="closed" value="true" />
+      <created>1785629601589</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1785629601589</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
