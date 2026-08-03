@@ -3,7 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/scripts/my/atributo_valores.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/scripts/my/atributos.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/scripts/my/precio.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/scripts/my/producto_precio.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/scripts/my/producto_variante.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/scripts/my/tipo_precio.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/scripts/my/variante_atributos.sql" dialect="GenericSQL" />

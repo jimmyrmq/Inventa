@@ -9,8 +9,7 @@ CREATE TABLE IF NOT EXISTS producto_variante (
     disponible TINYINT NOT NULL DEFAULT 1,
 
     CONSTRAINT fk_producto_variante_producto FOREIGN KEY (producto_id) REFERENCES producto(id) ON DELETE CASCADE
-
-    ) ENGINE=InnoDB;
+) ENGINE=InnoDB;
 
 CREATE INDEX idx_producto_variante_codbar ON producto_variante(codigo_barra);
 

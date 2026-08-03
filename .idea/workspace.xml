@@ -10,27 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8676725b-e613-4ac5-9a4a-045aa23279b0" name="Changes" comment="Inventa 2.0 - Desarrollo">
-      <change afterPath="$PROJECT_DIR$/scripts/lite/atributo_valores.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/atributos.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/precio.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/producto_variante.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/tipo_precio.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/lite/variante_atributo.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/atributo_valores.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/atributos.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/precio.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/producto_variante.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/tipo_precio.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/my/variante_atributos.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/moneda.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/unidad_medida.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/moneda.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/unidad_medida .sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inventa.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/lite/precio.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/producto_precio.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/lite/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/producto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lite/stock_producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/stock_producto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/my/precio.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/producto_precio.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/my/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/producto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/my/stock_producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/stock_producto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/my/producto_variante.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/producto_variante.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,31 +91,31 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ApplicationBootstrap.executor": "Run",
-    "Application.OrdenCompraApplication.executor": "Run",
-    "Application.ProductoApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/scripts/my",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/stock/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApplicationBootstrap.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrdenCompraApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/scripts/my&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/stock/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\scripts\my" />
@@ -319,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785639095336</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Inventa 2.0 - Desarrollo">
+      <option name="closed" value="true" />
+      <created>1785731037518</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1785731037518</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

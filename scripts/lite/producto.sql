@@ -5,17 +5,15 @@ CREATE TABLE IF NOT EXISTS producto (
     nombre TEXT NOT NULL,
 
     modelo TEXT DEFAULT NULL,
-    serie TEXT DEFAULT NULL,
 
     marca_id INTEGER DEFAULT NULL,
     categoria_id INTEGER DEFAULT NULL,
+    unidad_medida_id INTEGER DEFAULT NULL,
 
     cant_mayor INTEGER DEFAULT NULL,
 
     precio_incluye_impuesto INTEGER NOT NULL DEFAULT 1,
     disponible INTEGER NOT NULL DEFAULT 1,
-
-    cantidad_disponible INTEGER DEFAULT NULL,
 
     movimiento_negativo INTEGER NOT NULL DEFAULT 0,
     no_requiere_stock INTEGER NOT NULL DEFAULT 0,
@@ -31,5 +29,6 @@ CREATE TABLE IF NOT EXISTS producto (
     usuario_eliminacion_id  INTEGER DEFAULT NULL,
 
     FOREIGN KEY (categoria_id) REFERENCES categoria (id) ON DELETE CASCADE,
-    FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE
+    FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE,
+    FOREIGN KEY (unidad_medida_id) REFERENCES unidad_medida (id) ON DELETE SET NULL
 );

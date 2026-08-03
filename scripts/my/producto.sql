@@ -1,35 +1,49 @@
 CREATE TABLE IF NOT EXISTS producto (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 
-    codigo TEXT NOT NULL UNIQUE,
-    nombre TEXT NOT NULL,
+    codigo VARCHAR(100) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
 
-    modelo TEXT DEFAULT NULL,
-    serie TEXT DEFAULT NULL,
+    modelo VARCHAR(255) DEFAULT NULL,
 
-    marca_id INTEGER DEFAULT NULL,
-    categoria_id INTEGER DEFAULT NULL,
+    marca_id INT DEFAULT NULL,
+    categoria_id INT DEFAULT NULL,
+    unidad_medida_id INT DEFAULT NULL,
 
-    cant_mayor INTEGER DEFAULT NULL,
+    cant_mayor INT DEFAULT NULL,
 
-    precio_incluye_impuesto INTEGER NOT NULL DEFAULT 1,
-    disponible INTEGER NOT NULL DEFAULT 1,
+    precio_incluye_impuesto TINYINT(1) NOT NULL DEFAULT 1,
+    disponible TINYINT(1) NOT NULL DEFAULT 1,
 
-    cantidad_disponible INTEGER DEFAULT NULL,
+    movimiento_negativo TINYINT(1) NOT NULL DEFAULT 0,
+    no_requiere_stock TINYINT(1) NOT NULL DEFAULT 0,
+    req_aprobacion_precio_especial TINYINT(1) NOT NULL DEFAULT 1,
 
-    movimiento_negativo INTEGER NOT NULL DEFAULT 0,
-    no_requiere_stock INTEGER NOT NULL DEFAULT 0,
-    req_aprobacion_precio_especial INTEGER NOT NULL DEFAULT 1,
+    fecha_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
 
-    fecha_actualizacion TEXT DEFAULT CURRENT_TIMESTAMP,
-    fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     nota TEXT DEFAULT NULL,
 
-    eliminado INTEGER NOT NULL DEFAULT 0,
-    fecha_eliminacion TEXT DEFAULT NULL,
-    usuario_eliminacion_id INTEGER DEFAULT NULL,
+    eliminado TINYINT(1) NOT NULL DEFAULT 0,
+    fecha_eliminacion DATETIME DEFAULT NULL,
+    usuario_eliminacion_id INT DEFAULT NULL,
 
-    FOREIGN KEY (categoria_id) REFERENCES categoria (id) ON DELETE CASCADE,
-    FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE
-);
+    UNIQUE KEY uk_producto_codigo (codigo),
+
+    CONSTRAINT fk_producto_categoria
+    FOREIGN KEY (categoria_id)
+    REFERENCES categoria(id)
+    ON DELETE CASCADE,
+
+    CONSTRAINT fk_producto_marca
+    FOREIGN KEY (marca_id)
+    REFERENCES marca(id)
+    ON DELETE CASCADE,
+
+    CONSTRAINT fk_producto_unidad_medida
+    FOREIGN KEY (unidad_medida_id)
+    REFERENCES unidad_medida(id)
+    ON DELETE SET NULL
+) ENGINE=InnoDB;
