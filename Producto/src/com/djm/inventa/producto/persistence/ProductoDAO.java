@@ -280,6 +280,8 @@ public class ProductoDAO {
     }
 
     private String querySelectProducto(String ... addSql){
+        //COALESCE: Devuelve el primer valor que no sea null
+
         StringJoiner columns = new StringJoiner(", ");
         columns.add("p.*");
         columns.add("COALESCE(sp.cantidad, 0) AS cantidad_stock");

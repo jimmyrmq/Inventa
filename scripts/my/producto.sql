@@ -1,35 +1,35 @@
 CREATE TABLE IF NOT EXISTS producto (
-    id BIGINT NOT NULL AUTO_INCREMENT,
-    codigo VARCHAR(20) NOT NULL UNIQUE,
-    codigo_barra VARCHAR(50) DEFAULT NULL UNIQUE,
-    nombre VARCHAR(50) NOT NULL,
-    unidad_medida VARCHAR(10) DEFAULT NULL,
-    modelo VARCHAR(20) DEFAULT NULL,
-    serie VARCHAR(20) DEFAULT NULL,
-    marca_id INT DEFAULT NULL,
-    categoria_id INT DEFAULT NULL,
-    precio_costo DECIMAL(10,2) NOT NULL,
-    utilidad INT DEFAULT 0,
-    precio1 DECIMAL(10,2) NOT NULL,
-    precio2 DECIMAL(10,2) NOT NULL,
-    precio3 DECIMAL(10,2) NOT NULL,
-    cant_mayor INT DEFAULT NULL,
-    precio_incluye_impuesto TINYINT(1) NOT NULL DEFAULT 1,
-    disponible TINYINT(1) NOT NULL DEFAULT 1,
-    cantidad_disponible INT DEFAULT NULL,
-    no_requiere_stock TINYINT(1) NOT NULL DEFAULT 0,
-    req_aprobacion_precio_especial TINYINT(1) NOT NULL DEFAULT 1,
-    movimiento_negativo TINYINT(1) NOT NULL DEFAULT 1,
-    fecha_actualizacion DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    codigo TEXT NOT NULL UNIQUE,
+    nombre TEXT NOT NULL,
+
+    modelo TEXT DEFAULT NULL,
+    serie TEXT DEFAULT NULL,
+
+    marca_id INTEGER DEFAULT NULL,
+    categoria_id INTEGER DEFAULT NULL,
+
+    cant_mayor INTEGER DEFAULT NULL,
+
+    precio_incluye_impuesto INTEGER NOT NULL DEFAULT 1,
+    disponible INTEGER NOT NULL DEFAULT 1,
+
+    cantidad_disponible INTEGER DEFAULT NULL,
+
+    movimiento_negativo INTEGER NOT NULL DEFAULT 0,
+    no_requiere_stock INTEGER NOT NULL DEFAULT 0,
+    req_aprobacion_precio_especial INTEGER NOT NULL DEFAULT 1,
+
+    fecha_actualizacion TEXT DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP,
+
     nota TEXT DEFAULT NULL,
-    eliminado TINYINT(1) NOT NULL DEFAULT 0,
-    fecha_eliminacion DATETIME DEFAULT NULL,
-    usuario_eliminacion  INT DEFAULT NULL,
 
-    PRIMARY KEY (id),
+    eliminado INTEGER NOT NULL DEFAULT 0,
+    fecha_eliminacion TEXT DEFAULT NULL,
+    usuario_eliminacion_id INTEGER DEFAULT NULL,
 
-    FOREIGN KEY (categoria_id) REFERENCES categoria(id) ON DELETE CASCADE,
-    FOREIGN KEY (marca_id) REFERENCES marca(id) ON DELETE CASCADE
-
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    FOREIGN KEY (categoria_id) REFERENCES categoria (id) ON DELETE CASCADE,
+    FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE
+);

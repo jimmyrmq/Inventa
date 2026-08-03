@@ -10,13 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8676725b-e613-4ac5-9a4a-045aa23279b0" name="Changes" comment="Inventa 2.0 - Desarrollo">
+      <change afterPath="$PROJECT_DIR$/scripts/lite/atributo_valores.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/atributos.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/precio.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/producto_variante.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/tipo_precio.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/lite/variante_atributo.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/atributo_valores.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/atributos.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/precio.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/producto_variante.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/tipo_precio.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/my/variante_atributos.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/resources/lang_dev/producto_es.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/core/ConexionDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/persistence/ProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producto/src/com/djm/inventa/producto/view/producto/PanelProducto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inventa.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/inventa.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ext/producto.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ext/producto.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inventa.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/lite/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/producto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/lite/stock_producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/lite/stock_producto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/my/producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/producto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/my/stock_producto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/my/stock_producto.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +115,9 @@
     "copilot.chat.legacySessionMetadata.migrated": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/Producto/src/com/djm/inventa/producto/view/producto",
+    "last_opened_file_path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/scripts/my",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Exiuser/Documents/workspace java/Inventa 2.0/stock/src/Main.java",
     "project.structure.last.edited": "Modules",
@@ -112,11 +128,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\Producto\src\com\djm\inventa\producto\view\producto" />
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\scripts\my" />
+      <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\scripts\lite" />
+      <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\Producto\src\com\djm\inventa\producto\view\producto" />
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\stock\src" />
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\stock" />
-      <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\Compra\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Exiuser\Documents\workspace java\Inventa 2.0\ext_del" />
@@ -187,8 +203,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65" />
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65" />
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.337" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.337" />
       </set>
     </attachedChunks>
   </component>
@@ -295,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785629601589</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Inventa 2.0 - Desarrollo">
+      <option name="closed" value="true" />
+      <created>1785639095336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1785639095336</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
