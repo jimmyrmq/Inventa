@@ -8,3 +8,9 @@ CREATE TABLE IF NOT EXISTS moneda (
     UNIQUE KEY uk_moneda_nombre (nombre),
     UNIQUE KEY uk_moneda_simbolo (simbolo)
 ) ENGINE=InnoDB;
+
+INSERT INTO moneda (nombre, simbolo) VALUES
+                                         ('Peso', '$'),
+                                         ('Dólar', 'USD'),
+                                         ('Euro', '€'),
+                                         ('Bolivares', 'Bs');

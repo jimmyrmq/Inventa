@@ -37,7 +37,12 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
         setDimension(10,10);
 
         //Reajustar el tamaño del panel para que se muestre correctamente
-        pack();
+        if(view.getSize() == null)
+            pack();
+        else {
+            setPreferredSize(view.getSize());
+            setSize(view.getSize());
+        }
 
         //setResizable(false);
         /*setClosable(false);

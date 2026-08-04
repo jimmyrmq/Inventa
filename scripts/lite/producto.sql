@@ -10,14 +10,10 @@ CREATE TABLE IF NOT EXISTS producto (
     categoria_id INTEGER DEFAULT NULL,
     unidad_medida_id INTEGER DEFAULT NULL,
 
-    cant_mayor INTEGER DEFAULT NULL,
-
     precio_incluye_impuesto INTEGER NOT NULL DEFAULT 1,
     disponible INTEGER NOT NULL DEFAULT 1,
-
     movimiento_negativo INTEGER NOT NULL DEFAULT 0,
     no_requiere_stock INTEGER NOT NULL DEFAULT 0,
-    req_aprobacion_precio_especial INTEGER NOT NULL DEFAULT 1,
 
     fecha_actualizacion TEXT  DEFAULT CURRENT_TIMESTAMP,
     fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -32,3 +28,5 @@ CREATE TABLE IF NOT EXISTS producto (
     FOREIGN KEY (marca_id) REFERENCES marca (id) ON DELETE CASCADE,
     FOREIGN KEY (unidad_medida_id) REFERENCES unidad_medida (id) ON DELETE SET NULL
 );
+
+CREATE INDEX idx_producto_codigo ON producto_variante(codigo);

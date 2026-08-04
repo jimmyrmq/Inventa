@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS producto_precio (
     usuario_id INTEGER NOT NULL,
 
     valor NUMERIC NOT NULL,
+    requiere_autorizacion INTEGER DEFAULT 0,
 
     fecha_inicio TEXT  DEFAULT NULL,
     fecha_fin TEXT DEFAULT NULL,

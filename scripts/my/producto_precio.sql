@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS producto_precio (
     usuario_id INT NOT NULL,
 
     valor DECIMAL(15,2) NOT NULL,
+    requiere_autorizacion TINYINT(1) NOT NULL DEFAULT 0,
 
     fecha_inicio DATETIME DEFAULT NULL,
     fecha_fin DATETIME DEFAULT NULL,

@@ -10,17 +10,12 @@ CREATE TABLE IF NOT EXISTS producto (
     categoria_id INT DEFAULT NULL,
     unidad_medida_id INT DEFAULT NULL,
 
-    cant_mayor INT DEFAULT NULL,
-
     precio_incluye_impuesto TINYINT(1) NOT NULL DEFAULT 1,
     disponible TINYINT(1) NOT NULL DEFAULT 1,
-
     movimiento_negativo TINYINT(1) NOT NULL DEFAULT 0,
     no_requiere_stock TINYINT(1) NOT NULL DEFAULT 0,
-    req_aprobacion_precio_especial TINYINT(1) NOT NULL DEFAULT 1,
 
-    fecha_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-    ON UPDATE CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

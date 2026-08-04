@@ -3,13 +3,13 @@ CREATE TABLE IF NOT EXISTS tipo_precio (
     nombre VARCHAR(255) NOT NULL UNIQUE
 );
 
+
 INSERT INTO tipo_precio (nombre) VALUES
-                 ('Compra'),
-                 ('Venta'),
-                 ('Mayorista'),
-                 ('Distribuidor');
-                     -- ('Especial'),
-                     -- ('Promoción'),
-                     -- ('Descuento'),
-                     -- ('Liquidación'),
-                     -- ('Oferta')
+                                     ('Venta'),
+                                     ('Mayorista'),
+                                     ('Distribuidor');
+-- ('Especial'),
+-- ('Promoción'),
+-- ('Descuento'),
+-- ('Liquidación'),
+-- ('Oferta')

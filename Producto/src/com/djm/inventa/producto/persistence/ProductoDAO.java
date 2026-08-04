@@ -5,6 +5,7 @@ import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.exception.BaseDatosException;
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
+import com.djm.inventa.modelo.UnidadMedida;
 import com.djm.inventa.producto.exception.ProductoException;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.util.SQLUtil;
@@ -57,9 +58,7 @@ public class ProductoDAO {
         producto.setCodigo(rs.getString("codigo"));
         producto.setCodigoBarra(rs.getString("codigo_barra"));
         producto.setNombre(rs.getString("nombre"));
-        producto.setUnidadMedida(rs.getString("unidad_medida"));
         producto.setModelo(rs.getString("modelo"));
-        producto.setSerie(rs.getString("serie"));
 
         Marca marca = new Marca();
         marca.setID(rs.getInt("marca_id"));
@@ -70,6 +69,11 @@ public class ProductoDAO {
         categoria.setID(rs.getInt("categoria_id"));
         categoria.setNombre(rs.getString("categoria_nombre"));
         producto.setCategoria(categoria);
+
+        UnidadMedida unidadMedida =  new UnidadMedida();
+        unidadMedida.setId(rs.getInt("unidad_medida"));
+        unidadMedida.setNombre(rs.getString("unidad_medida_id"));
+        producto.setUnidadMedida(unidadMedida);
 
         producto.setPrecioCosto(rs.getBigDecimal("precio_costo"));
 
@@ -130,7 +134,7 @@ public class ProductoDAO {
 
         boolean nuevoProducto = producto.getID() == null;
         String [] cols ={ "codigo", "codigo_barra", "nombre",
-                "unidad_medida", "modelo", "serie", "marca_id",
+                "unidad_medida", "modelo",  "marca_id",
                 "categoria_id", "precio_costo", "utilidad",
                 "precio1", "precio2", "precio3", "cant_mayor",
                 "precio_incluye_impuesto", "disponible",
@@ -151,37 +155,36 @@ public class ProductoDAO {
                 ps.setString(1, producto.getCodigo());
                 ps.setString(2, producto.getCodigoBarra());
                 ps.setString(3, producto.getNombre());
-                ps.setString(4, producto.getUnidadMedida());
+                ps.setObject(4, producto.getUnidadMedida() != null ? producto.getUnidadMedida().getID() : null);
                 ps.setString(5, producto.getModelo());
-                ps.setString(6, producto.getSerie());
 
-                ps.setObject(7, producto.getMarca() != null ? producto.getMarca().getID() : null);
-                ps.setObject(8, producto.getCategoria() != null ? producto.getCategoria().getID() : null);
+                ps.setObject(6, producto.getMarca() != null ? producto.getMarca().getID() : null);
+                ps.setObject(7, producto.getCategoria() != null ? producto.getCategoria().getID() : null);
 
-                ps.setBigDecimal(9, producto.getPrecioCosto());
-                ps.setObject(10, producto.getUtilidad());
+                ps.setBigDecimal(8, producto.getPrecioCosto());
+                ps.setObject(9, producto.getUtilidad());
 
-                ps.setBigDecimal(11, producto.getPrecio1());
-                ps.setBigDecimal(12, producto.getPrecio2());
-                ps.setBigDecimal(13, producto.getPrecio3());
+                ps.setBigDecimal(10, producto.getPrecio1());
+                ps.setBigDecimal(11, producto.getPrecio2());
+                ps.setBigDecimal(12, producto.getPrecio3());
 
-                ps.setObject(14, producto.getCantMayor());
+                ps.setObject(13, producto.getCantMayor());
 
-                ps.setBoolean(15, Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
-                ps.setBoolean(16, producto.isDisponible());
+                ps.setBoolean(14, Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
+                ps.setBoolean(15, producto.isDisponible());
 
-                ps.setBoolean(17, producto.isNoRequiereStock());
-                ps.setBoolean(18, producto.isReqAprobPrecioEspecial());
+                ps.setBoolean(16, producto.isNoRequiereStock());
+                ps.setBoolean(17, producto.isReqAprobPrecioEspecial());
 
-                ps.setBoolean(19, producto.isMovimientoNegativo());
-                ps.setString(20, producto.getNota());
+                ps.setBoolean(18, producto.isMovimientoNegativo());
+                ps.setString(19, producto.getNota());
 
-                ps.setTimestamp(21, Timestamp.valueOf(producto.getFechaCreacion()));
-                ps.setTimestamp(22, Timestamp.valueOf(producto.getFechaActualizacion()));
-                ps.setBoolean(23, producto.isEliminado());
+                ps.setTimestamp(20, Timestamp.valueOf(producto.getFechaCreacion()));
+                ps.setTimestamp(21, Timestamp.valueOf(producto.getFechaActualizacion()));
+                ps.setBoolean(22, producto.isEliminado());
 
                 if (!nuevoProducto)
-                    ps.setLong(24, producto.getID());
+                    ps.setLong(23, producto.getID());
 
                 int filas = ps.executeUpdate();
 

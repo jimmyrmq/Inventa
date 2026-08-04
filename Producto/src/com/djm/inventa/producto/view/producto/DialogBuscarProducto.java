@@ -61,7 +61,7 @@ public class DialogBuscarProducto extends JDialog {
         }
 
         JComboBox<Categoria> cbFilCategoria = new JComboBox<>(dmCat);
-        cbFilCategoria.setPreferredSize(CONSTANTS.CDDIM);
+        cbFilCategoria.setPreferredSize(CONSTANTS.CDDIM_227);
 
         top.add(cbFilCategoria);
         top.add(tfFiltro);

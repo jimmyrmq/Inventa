@@ -2,6 +2,7 @@ package com.djm.inventa.producto.model;
 
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
+import com.djm.inventa.modelo.UnidadMedida;
 import com.djm.inventa.stock.model.MovimientoStock;
 
 import java.math.BigDecimal;
@@ -12,9 +13,8 @@ public class Producto implements Cloneable{
     private String codigo;
     private String codigoBarra;
     private String nombre;
-    private String unidadMedida;
+    private UnidadMedida unidadMedida;
     private String modelo;
-    private String serie;
     private Integer utilidad;
     private BigDecimal precioCosto;
     private BigDecimal precio1;
@@ -71,11 +71,11 @@ public class Producto implements Cloneable{
         this.nombre = nombre;
     }
 
-    public String getUnidadMedida() {
+    public UnidadMedida getUnidadMedida() {
         return unidadMedida;
     }
 
-    public void setUnidadMedida(String unidadMedida) {
+    public void setUnidadMedida(UnidadMedida unidadMedida) {
         this.unidadMedida = unidadMedida;
     }
 
@@ -85,14 +85,6 @@ public class Producto implements Cloneable{
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public String getSerie() {
-        return serie;
-    }
-
-    public void setSerie(String serie) {
-        this.serie = serie;
     }
 
     public Integer getUtilidad() {
@@ -271,7 +263,6 @@ public class Producto implements Cloneable{
                 ", nombre='" + nombre + '\'' +
                 ", unidadMedida='" + unidadMedida + '\'' +
                 ", modelo='" + modelo + '\'' +
-                ", serie='" + serie + '\'' +
                 ", utilidad=" + utilidad +
                 ", precioCosto=" + precioCosto +
                 ", precio1=" + precio1 +

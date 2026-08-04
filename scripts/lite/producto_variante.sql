@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS producto_variante (
     disponible INTEGER NOT NULL DEFAULT 1,
     costo_base REAL NOT NULL,
     precio_incluye_impuesto INTEGER NOT NULL DEFAULT 1,
+    cant_mayor INTEGER DEFAULT NULL,
 
     FOREIGN KEY (producto_id) REFERENCES producto (id)  ON DELETE CASCADE
 );

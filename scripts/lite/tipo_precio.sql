@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS tipo_precio (
 );
 
 INSERT INTO tipo_precio (nombre) VALUES
-                     ('Compra'),
                      ('Venta'),
                      ('Mayorista'),
                      ('Distribuidor');

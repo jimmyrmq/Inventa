@@ -75,7 +75,7 @@ public class InfoPluginProducto implements IPluginInfo {
                 public int getMenuOrden() { return 1; }
                 public void onClick(IUIManager uiManager) {
                     PanelManagerProducto panelManagerProducto = new PanelManagerProducto();
-
+                    panelManagerProducto.setSize(727 ,700);
                     //Crear la accion aqui
                     ProductoListener productoManager = new ProductoListener(panelManagerProducto);
                     panelManagerProducto.setActionListener(productoManager);
