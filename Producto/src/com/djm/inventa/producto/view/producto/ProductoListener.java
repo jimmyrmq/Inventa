@@ -68,11 +68,11 @@ public class ProductoListener implements ActionListener{
             BigDecimal cantActual;
             BigDecimal stockMinimo;
             if (editar && this.panelManagerProducto.isData()) {
-                cantActual = panelManagerProducto.getValue().getCantidadDisponible();
-                stockMinimo = panelManagerProducto.getValue().getStockMinimo();
+                cantActual = BigDecimal.ZERO;//panelManagerProducto.getValue().getCantidadDisponible();
+                stockMinimo = BigDecimal.ZERO;//panelManagerProducto.getValue().getStockMinimo();
             } else {
-                cantActual = panelManagerProducto.getDataForm().getCantidadDisponible();
-                stockMinimo = panelManagerProducto.getDataForm().getStockMinimo();
+                cantActual = BigDecimal.ZERO;//panelManagerProducto.getDataForm().getCantidadDisponible();
+                stockMinimo = BigDecimal.ZERO;//panelManagerProducto.getDataForm().getStockMinimo();
             }
 
             Integer productoId = null;

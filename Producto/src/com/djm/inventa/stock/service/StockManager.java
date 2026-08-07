@@ -2,10 +2,9 @@ package com.djm.inventa.stock.service;
 
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.producto.core.CONSTANTS;
-import com.djm.inventa.producto.exception.ProductoException;
+import com.djm.inventa.core.exception.ProductoException;
 import com.djm.inventa.stock.model.MovimientoStock;
 import com.djm.inventa.stock.model.TipoMovimiento;
-import com.djm.inventa.stock.model.TipoMovimientoDTO;
 import com.djm.inventa.stock.persistence.MovimientoStockDAO;
 
 import java.math.BigDecimal;

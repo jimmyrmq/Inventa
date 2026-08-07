@@ -1,4 +1,4 @@
-package com.djm.inventa.ui.component.renderer;
+package com.djm.inventa.producto.view.producto.renderer;
 
 
 import com.djm.inventa.ui.IconManager;
@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.function.Function;
 
-public class ThreeLabelRenderer<T> extends JPanel
+public class ThreeLabelRendererPrecio<T> extends JPanel
         implements ListCellRenderer<T> {
 
     private final JLabel label1 = new JLabel();
@@ -22,7 +22,7 @@ public class ThreeLabelRenderer<T> extends JPanel
     private final Function<T, String> mapper4;
     private final Color colorFont = UIManager.getColor("List.foreground");//new Color(0, 90, 200);
 
-    public ThreeLabelRenderer(
+    public ThreeLabelRendererPrecio(
             Function<T, String> mapper1, //Tipo
             Function<T, String> mapper2, //Valor + Simbolo
             Function<T, Boolean> mapper3,
@@ -35,7 +35,7 @@ public class ThreeLabelRenderer<T> extends JPanel
         this.mapper4 = mapper4;
 
         setLayout(new GridBagLayout());
-        setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
+        setBorder(BorderFactory.createEmptyBorder(3, 0, 3, 5));
 
         setOpaque(false);
 

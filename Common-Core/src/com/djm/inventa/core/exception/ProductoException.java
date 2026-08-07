@@ -1,4 +1,4 @@
-package com.djm.inventa.producto.exception;
+package com.djm.inventa.core.exception;
 
 public class ProductoException extends Exception {
     public ProductoException(String message) {

@@ -3,7 +3,7 @@ package com.djm.inventa.stock.persistence;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.exception.BaseDatosException;
-import com.djm.inventa.producto.exception.ProductoException;
+import com.djm.inventa.core.exception.ProductoException;
 import com.djm.inventa.stock.model.MovimientoStock;
 import com.djm.inventa.util.SQLUtil;
 

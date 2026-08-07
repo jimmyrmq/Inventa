@@ -3,13 +3,13 @@ package com.djm.inventa.modelo;
 public class UnidadMedida {
     private Integer id;
     private String nombre;
-    private String abreviacion;
+    private String simbolo;
 
     public Integer getID() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 
@@ -21,12 +21,12 @@ public class UnidadMedida {
         this.nombre = nombre;
     }
 
-    public String getAbreviacion() {
-        return abreviacion;
+    public String getSimbolo() {
+        return simbolo;
     }
 
-    public void setAbreviacion(String abreviacion) {
-        this.abreviacion = abreviacion;
+    public void setSimbolo(String simbolo) {
+        this.simbolo = simbolo;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class UnidadMedida {
         return "UnidadMedida{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", abreviacion='" + abreviacion + '\'' +
+                ", simbolo='" + simbolo + '\'' +
                 '}';
     }
 }

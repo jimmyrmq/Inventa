@@ -1,15 +1,15 @@
 package com.djm.inventa.modelo;
 
 public class Moneda {
-    private String id;
+    private Integer id;
     private String nombre;
     private String simbolo;
 
-    public String getID() {
+    public Integer getID() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 
@@ -36,5 +36,20 @@ public class Moneda {
                 ", nombre='" + nombre + '\'' +
                 ", simbolo='" + simbolo + '\'' +
                 '}';
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (!(obj instanceof Moneda)) return false;
+
+        Moneda otro = (Moneda) obj;
+
+        return this.id == otro.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
     }
 }

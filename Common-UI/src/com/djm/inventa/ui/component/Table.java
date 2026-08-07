@@ -61,7 +61,6 @@ public class Table<E> extends JTable {
 
     }
 
-
     public JScrollPane getPanel() {
         return getPanel(null);
     }
@@ -172,4 +171,6 @@ public class Table<E> extends JTable {
     public Dimension getDimension(){
         return dimension;
     }
+
+
 }

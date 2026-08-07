@@ -8,7 +8,7 @@ public class Atributo {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 

@@ -1,6 +1,6 @@
 package com.djm.inventa.producto.view.producto;
 
-import com.djm.inventa.producto.exception.ProductoException;
+import com.djm.inventa.core.exception.ProductoException;
 import com.djm.inventa.producto.persistence.ProductoDAO;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.modelo.Categoria;
@@ -35,8 +35,8 @@ public class DialogBuscarProducto extends JDialog {
     private TableRowSorter sorter;
     private Producto productoSeleccionado;
 
-    public DialogBuscarProducto(JFrame owner, List<Categoria> categorias) {
-        super(owner, CONSTANTS.i18n.getValue("producto.label.buscar"), true);
+    public DialogBuscarProducto(List<Categoria> categorias) {
+        super(GlobalFrame.getInstance().getFrame(), CONSTANTS.i18n.getValue("producto.label.buscar"), true);
 
         setLayout(new GridBagLayout());
 

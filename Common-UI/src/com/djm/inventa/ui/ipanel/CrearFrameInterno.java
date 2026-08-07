@@ -18,7 +18,7 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
     private ImageIcon icon;
 
     public CrearFrameInterno(IPanelDataAction view, boolean filterIcon, Rectangle bounds) {
-        super(view.getTitle(), false, true, false, false);
+        super(view.getTitle(), true, true, false, false);
         this.bounds = bounds;
 
         ImageIcon icon = view.getIcon();
@@ -34,7 +34,7 @@ public class CrearFrameInterno extends JInternalFrame implements InternalFrameLi
             getContentPane().add(panel);
         }
 
-        setDimension(10,10);
+        setDimension(15,15);
 
         //Reajustar el tamaño del panel para que se muestre correctamente
         if(view.getSize() == null)

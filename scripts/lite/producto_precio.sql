@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS producto_precio (
     fecha_inicio TEXT  DEFAULT NULL,
     fecha_fin TEXT DEFAULT NULL,
 
+    disponible INTEGER NOT NULL DEFAULT 1,
     --UNIQUE (variante_id, tipo_precio_id, fecha_inicio),
 
     FOREIGN KEY (variante_id) REFERENCES producto_variante (id)  ON DELETE RESTRICT,

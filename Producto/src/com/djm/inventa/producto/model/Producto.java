@@ -2,32 +2,23 @@ package com.djm.inventa.producto.model;
 
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
+import com.djm.inventa.modelo.ProductoVariante;
 import com.djm.inventa.modelo.UnidadMedida;
 import com.djm.inventa.stock.model.MovimientoStock;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Producto implements Cloneable{
     private Integer ID;
     private String codigo;
-    private String codigoBarra;
     private String nombre;
     private UnidadMedida unidadMedida;
     private String modelo;
-    private Integer utilidad;
-    private BigDecimal precioCosto;
-    private BigDecimal precio1;
-    private BigDecimal precio2;
-    private BigDecimal precio3;
-    private Integer cantMayor;//Cantidad para aplicar precio mayorista
     private Boolean precioIncluyeImpuesto;
     private Boolean disponible = true;
-    private BigDecimal cantidadDisponible;//Cantidad de stock
-    private BigDecimal stockMinimo;
-    private BigDecimal stockMaximo = BigDecimal.ZERO;
     private Boolean noRequiereStock = true;//Es un servicio
-    private Boolean reqAprobPrecioEspecial = true;//Requiere aprobacion para precio especial
     private Boolean movimientoNegativo = true;//Requiere aprobacion para precio especial
     private Categoria categoria;
     private Marca marca;
@@ -36,6 +27,7 @@ public class Producto implements Cloneable{
     private MovimientoStock movimientoStock;
     private String nota;
     private Boolean eliminado = false;
+    private List<ProductoVariante> variantes;
 
     public Producto() { }
 
@@ -53,14 +45,6 @@ public class Producto implements Cloneable{
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    public String getCodigoBarra() {
-        return codigoBarra;
-    }
-
-    public void setCodigoBarra(String codigoBarra) {
-        this.codigoBarra = codigoBarra;
     }
 
     public String getNombre() {
@@ -87,54 +71,6 @@ public class Producto implements Cloneable{
         this.modelo = modelo;
     }
 
-    public Integer getUtilidad() {
-        return utilidad;
-    }
-
-    public void setUtilidad(Integer utilidad) {
-        this.utilidad = utilidad;
-    }
-
-    public BigDecimal getPrecioCosto() {
-        return precioCosto;
-    }
-
-    public void setPrecioCosto(BigDecimal precioCosto) {
-        this.precioCosto = precioCosto;
-    }
-
-    public BigDecimal getPrecio1() {
-        return precio1;
-    }
-
-    public void setPrecio1(BigDecimal precio1) {
-        this.precio1 = precio1;
-    }
-
-    public BigDecimal getPrecio2() {
-        return precio2;
-    }
-
-    public void setPrecio2(BigDecimal precio2) {
-        this.precio2 = precio2;
-    }
-
-    public BigDecimal getPrecio3() {
-        return precio3;
-    }
-
-    public void setPrecio3(BigDecimal precio3) {
-        this.precio3 = precio3;
-    }
-
-    public Integer getCantMayor() {
-        return cantMayor;
-    }
-
-    public void setCantMayor(Integer cantMayor) {
-        this.cantMayor = cantMayor;
-    }
-
     public Boolean isPrecioIncluyeImpuesto() {
         return precioIncluyeImpuesto;
     }
@@ -156,30 +92,6 @@ public class Producto implements Cloneable{
 
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
-    }
-
-    public BigDecimal getCantidadDisponible() {
-        return cantidadDisponible;
-    }
-
-    public void setCantidadDisponible(BigDecimal cantidadStock) {
-        this.cantidadDisponible = cantidadStock;
-    }
-
-    public BigDecimal getStockMinimo() {
-        return stockMinimo;
-    }
-
-    public void setStockMinimo(BigDecimal stockMinimo) {
-        this.stockMinimo = stockMinimo;
-    }
-
-    public BigDecimal getStockMaximo() {
-        return stockMaximo;
-    }
-
-    public void setStockMaximo(BigDecimal stockMaximo) {
-        this.stockMaximo = stockMaximo;
     }
 
     public Boolean isNoRequiereStock() {
@@ -238,14 +150,6 @@ public class Producto implements Cloneable{
         this.nota = nota;
     }
 
-    public Boolean isReqAprobPrecioEspecial() {
-        return reqAprobPrecioEspecial;
-    }
-
-    public void setReqAprobPrecioEspecial(Boolean reqAprobPrecioEspecial) {
-        this.reqAprobPrecioEspecial = reqAprobPrecioEspecial;
-    }
-
     public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
     }
@@ -254,27 +158,25 @@ public class Producto implements Cloneable{
         return eliminado;
     }
 
+    public List<ProductoVariante> getVariantes() {
+        return variantes;
+    }
+
+    public void setVariantes(List<ProductoVariante> variantes) {
+        this.variantes = variantes;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
                 "ID=" + ID +
                 ", codigo='" + codigo + '\'' +
-                ", codigoBarra='" + codigoBarra + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", unidadMedida='" + unidadMedida + '\'' +
                 ", modelo='" + modelo + '\'' +
-                ", utilidad=" + utilidad +
-                ", precioCosto=" + precioCosto +
-                ", precio1=" + precio1 +
-                ", precio2=" + precio2 +
-                ", precio3=" + precio3 +
-                ", cantMayor=" + cantMayor +
                 ", precioIncluyeImpuesto=" + precioIncluyeImpuesto +
                 ", disponible=" + disponible +
-                ", cantidadDisponible=" + cantidadDisponible +
-                ", stockCritico=" + stockMinimo +
                 ", noRequiereStock=" + noRequiereStock +
-                ", reqAprobPrecioEspecial=" + reqAprobPrecioEspecial +
                 ", categoria=" + categoria +
                 ", marca=" + marca +
                 ", fechaActualizacion=" + fechaActualizacion +

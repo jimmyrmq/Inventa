@@ -3,7 +3,7 @@ package com.djm.inventa.stock.persistence;
 import com.djm.inventa.core.AppContext;
 import com.djm.inventa.core.DatabaseService;
 import com.djm.inventa.exception.BaseDatosException;
-import com.djm.inventa.producto.exception.ProductoException;
+import com.djm.inventa.core.exception.ProductoException;
 import com.djm.inventa.stock.model.StockProducto;
 import com.djm.inventa.util.SQLUtil;
 
@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.logging.Logger;
 
 public class StockProductoDAO {

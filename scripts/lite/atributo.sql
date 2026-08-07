@@ -1,20 +1,20 @@
-CREATE TABLE IF NOT EXISTS atributos (
+CREATE TABLE IF NOT EXISTS atributo (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
 	nombre varchar(150) NOT NULL
 );
 
-INSERT INTO atributos (nombre) VALUES
+INSERT INTO atributo (nombre) VALUES
             ('Talla'),
+            ('Volumen'),
+            ('Peso'),
             ('Color'),
             ('Modelo'),
             ('Presentación'),
-            ('Tamaño'),
-            ('Peso'),
-            ('Género'),
             ('Capacidad'),
+            ('Tamaño'),
+            ('Género'),
             ('Material'),
             ('Dimensiones'),
-            ('Volumen'),
             ('Sabor'),
             ('Fragancia'),
             ('Número de Serie'),

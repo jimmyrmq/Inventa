@@ -1,36 +1,28 @@
 package com.djm.inventa.producto.view.producto;
 
 import com.djm.inventa.core.AppContext;
-import com.djm.inventa.modelo.Atributo;
-import com.djm.inventa.modelo.AtributoValor;
-import com.djm.inventa.modelo.Moneda;
-import com.djm.inventa.modelo.PrecioProducto;
 import com.djm.inventa.modelo.ProductoVariante;
-import com.djm.inventa.modelo.TipoPrecio;
 import com.djm.inventa.modelo.UnidadMedida;
 import com.djm.inventa.producto.core.CONSTANTS;
-import com.djm.inventa.producto.exception.ProductoException;
-import com.djm.inventa.producto.persistence.CategoriaDAO;
-import com.djm.inventa.producto.persistence.MarcaDAO;
+import com.djm.inventa.core.exception.ProductoException;
+import com.djm.inventa.persistence.CategoriaDAO;
+import com.djm.inventa.persistence.MarcaDAO;
 import com.djm.inventa.producto.persistence.ProductoDAO;
+import com.djm.inventa.persistence.UnidadMedidaDAO;
 import com.djm.inventa.stock.model.MovimientoStock;
 import com.djm.inventa.ui.IconManager;
 import com.djm.inventa.ui.component.Table;
-import com.djm.inventa.ui.component.renderer.ThreeLabelRenderer;
 import com.djm.inventa.ui.ipanel.IPanelDataAction;
 import com.djm.inventa.ui.component.renderer.TwoColumnRenderer;
-import com.djm.inventa.ui.util.BorderUtil;
 import com.djm.inventa.ui.PropiedadesLookAndFeel;
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.ui.component.TextField;
 import com.djm.inventa.ui.component.TextArea;
-import com.djm.inventa.util.DecimalField;
+import com.djm.inventa.util.ColorUtil;
 import com.djm.inventa.util.FechaUtil;
 import com.djm.inventa.util.LoggerApp;
-import com.djm.inventa.util.FormatDecimalDocument;
-import com.djm.inventa.util.NumberUtils;
 import com.djm.ui.GlobalFrame;
 import com.djm.ui.LayoutPanel;
 import com.djm.ui.component.Button;
@@ -44,7 +36,6 @@ import javax.swing.Action;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.InputVerifier;
@@ -53,17 +44,16 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -83,50 +73,33 @@ public class PanelProducto{
     private JPanel panelPrincipal;
 
     private ModelTableVarianteCustom mtc;
-    private Table<Producto> tabla;
+    private Table<ProductoVariante> tabla;
 
-    //Producto
     private TextField tCodigo, tNombre, tModelo, tFechaActualizacion, tFechaCreacion;
-    //Variante
-    private TextField tSKU,tCodigoBarra, tCantidadStock, tCantidadMinima, tCantidadMaxima,
-                        tPrecio;
-    private DefaultListModel<PrecioProducto> modelPrecioProducto;
 
-    private Button bAddMarca, bEnter, bBuscar, bDelPrecio, bEditPrecio;
-    private JButton bGuardar, bCancelar, bEliminar, bAddPrecio;
+    private Button bUnidad,bEnter, bBuscar;
+    private JButton bGuardar, bCancelar, bEliminar, bAgregarVariante;
     private JLabel lInfo;
     //private ToggleButton bCodigoBarra;
     private TextArea tNota;
-    private JComboBox<Atributo> cbAtributo;
-    private JComboBox<AtributoValor> cbAtributoValor;
-    private JComboBox<TipoPrecio> cbTipoPrecio;
-    private JComboBox<Moneda> cbMoneda;
+
     private JComboBox<UnidadMedida> cbUnidadMedida;
     private JComboBox<Categoria> cbCategoria;
     private JComboBox<Marca> cbMarca;
-    private DefaultComboBoxModel<Atributo> dcbAtributo;
-    private DefaultComboBoxModel<AtributoValor> dcbAtributoValor;
-    private DefaultComboBoxModel<TipoPrecio> dcbTipoPrecio;
-    private DefaultComboBoxModel<Moneda> dcbMoneda;
     private DefaultComboBoxModel<UnidadMedida> dcbUnidadMedida;
     private DefaultComboBoxModel<Categoria> dcbCategoria;
     private DefaultComboBoxModel<Marca> dcbMarca;
-    private JCheckBox disponibleProd, disponibleVar, noRequiereStock, precioImpuesto, movimientoNegativo, reqAutPrec;
-    private Color greenButton = new Color(77, 170, 71);
-    private LostFocusPrecio lostFocusPrecio = new LostFocusPrecio();
-    private ProcesadorProducto procesadorProducto = new ProcesadorProducto();
-    private Color color1 = UIManager.getColor("Panel.background");
-    private Color color2 = UIManager.getColor("TextField.background");
-    private Color color3 = UIManager.getColor("TextField.foreground");
 
-    private JPanel pDetalles, pVariante;
-    private ImageIcon iDel, iok, ibuscar, icancel;;//
+    private JTextField editorMarca;
+    private JTextField editorCategoria;
+
+    private JCheckBox disponibleProd, noRequiereStock, precioImpuesto, movimientoNegativo;
+    private Color greenButton = new Color(77, 170, 71);
+
+;    private ImageIcon iDel, iok, iProduct, ibuscar, icancel;;//
 
     private Producto producto = null;
     private boolean skipInputVerifier = true;
-
-    private final int dimColumText = 30;//27;
-    private Dimension dimLabel = null;
 
     private final IPanelDataAction iPanelDataAction;
 
@@ -136,9 +109,9 @@ public class PanelProducto{
         panelPrincipal = new JPanel(new GridBagLayout()) {
             @Override
             public void updateUI(){
-                color1 = UIManager.getColor("Panel.background");
-                color2 = UIManager.getColor("TextField.background");
-                color3 = UIManager.getColor("TextField.foreground");
+                ContanstLocal.COLOR_PANEL_BACKGROUND = UIManager.getColor("Panel.background");
+                ContanstLocal.COLOR_TEXT_BACKGROUND = UIManager.getColor("TextField.background");
+                ContanstLocal.COLOR_TEXT_FOREGROUND = UIManager.getColor("TextField.foreground");
 
                 /*if(pDetalles != null)
                     pDetalles.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.detalle")));
@@ -152,7 +125,7 @@ public class PanelProducto{
                 Color colButton = AppContext.getInstance().getColor("Label.colorDarker");
 
                 if(colButton == null || "LIGTH".equals(PropiedadesLookAndFeel.getPropiedad("Apariencia.lookandfeel"))){
-                    colButton = color3;
+                    colButton = ContanstLocal.COLOR_TEXT_FOREGROUND;
                 }
 
                 /*if(bCodigoBarra != null)
@@ -171,6 +144,7 @@ public class PanelProducto{
                 }
 
 
+                iProduct =  new ImageIcon(ColorFilter.filterImage( IconManager.getIcon(getClass().getResource("/icons/btn_product.png")) ,colButton,false));
                 iok =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("ok16"),colButton,false));
                 icancel =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("closed"),colButton,false));
 
@@ -184,6 +158,12 @@ public class PanelProducto{
                     bGuardar.updateUI();
                 }
 
+                if(bAgregarVariante != null) {
+                    //bAgregarVariante.setBackground(colButton);
+                    bAgregarVariante.setIcon(iProduct);
+                    bAgregarVariante.updateUI();
+                }
+
 
                 revalidate();
                 repaint();
@@ -194,38 +174,45 @@ public class PanelProducto{
 
         panelPrincipal.setOpaque(false);
 
-        pDetalles = panelDatelle();
-        pVariante = panelVariante();
-
-        final JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.addTab(CONSTANTS.i18n.getValue("producto.border.title.detalle"), pDetalles);
-        tabbedPane.addTab(CONSTANTS.i18n.getValue("producto.border.title.variante"), pVariante);
 
         //JPanel panel = new JPanel(new GridBagLayout());
         //panel.setOpaque(false);
-        bEliminar = new JButton(CONSTANTS.i18n.getValue("button.eliminar"),iDel);
-        bEliminar.setEnabled(false);
-        bEliminar.setActionCommand("BUTTON_ELIMINAR");
-        bEliminar.setToolTipText(CONSTANTS.i18n.getValue("button.eliminar.producto.tooltip"));
 
-        panelPrincipal.add(tabbedPane, LayoutPanel.constantePane(0, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
-        //panelPrincipal.add(pDetalles, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
-        //panelPrincipal.add(pVariante, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
-        //panelPrincipal.add(pStock, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
-        panelPrincipal.add(bEliminar, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 10, 5, 0, 1.0f, 0.0f));
-        panelPrincipal.add(getPanelButton(), LayoutPanel.constantePane(1, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 5, 0, 5, 10, 1.0f, 0.0f));
-        panelPrincipal.add(panelFecha(), LayoutPanel.constantePane(0, 5, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 10, 5, 0, 0.0f, 0.0f));
+        bAgregarVariante = new JButton(CONSTANTS.i18n.getValue("producto.button.inventarioprecio"), iProduct);
+        bAgregarVariante.setActionCommand("BUTTON_AGREGAR_VARIANTE");
+        bAgregarVariante.setToolTipText(CONSTANTS.i18n.getValue("button.agregar.variante.tooltip"));
+        bAgregarVariante.addActionListener(ae->{
+
+            //UnidadMedida unidadMedida = (UnidadMedida)dcbUnidadMedida.getSelectedItem();
+
+            SwingUtilities.invokeLater(() -> {
+                PanelVariante panelVariante = new PanelVariante(tabla,iProduct);//unidadMedida);
+            });
+        });
+
+        panelPrincipal.add(panelDatelle(), LayoutPanel.constantePane(0, 0, 1, 2, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 0, 0.0f, 0.0f));
+        panelPrincipal.add(panelFecha(), LayoutPanel.constantePane(1, 0, 0, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_END, 15, 0, 0, 10, 0.0f, 0.0f));
+        panelPrincipal.add(bAgregarVariante, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LAST_LINE_END, 0, 0, 0, 10, 0.0f, 0.0f));
+
+        panelPrincipal.add(pTable(), LayoutPanel.constantePane(0, 2, 0, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 10, 10, 0, 10, 1.0f, 0.0f));
+
+        panelPrincipal.add(getPanelButton(), LayoutPanel.constantePane(0, 3, 0, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.LINE_END, 5, 10, 5, 10, 1.0f, 0.0f));
     }
 
     public JPanel getPanelButton(){
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
 
-        iok =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("ok16"),color3,false));
-        icancel =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("closed"),color3,false));
+        bEliminar = new JButton(CONSTANTS.i18n.getValue("button.eliminar"),iDel);
+        bEliminar.setEnabled(false);
+        bEliminar.setActionCommand("BUTTON_ELIMINAR");
+        bEliminar.setToolTipText(CONSTANTS.i18n.getValue("button.eliminar.producto.tooltip"));
 
-        //iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,color3,false));
-        //icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,color3,false));
+        iok =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("ok16"),ContanstLocal.COLOR_TEXT_FOREGROUND,false));
+        icancel =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("closed"),ContanstLocal.COLOR_TEXT_FOREGROUND,false));
+
+        //iok = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/ok16.png") ,ContanstLocal.color3,false));
+        //icancel = new ImageIcon(ColorFilter.filterImage( Image.getIcon("16/closed.png") ,ContanstLocal.color3,false));
 
         bGuardar = new JButton(CONSTANTS.i18n.getValue("button.guardar"), iok);//,"F5",null);//,new ImageIcon("com.djm.inventa.icon/ok.png"));
         bCancelar = new JButton(CONSTANTS.i18n.getValue("button.cancelar"), icancel);//,new ImageIcon("com.djm.inventa.icon/close.png"));
@@ -242,8 +229,9 @@ public class PanelProducto{
 
         bGuardar.setFocusable(true);
 
-        panel.add(bCancelar, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LAST_LINE_START, 5, 0, 0, 0, 0.0f, 1.0f));
-        panel.add(bGuardar, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LAST_LINE_END, 5, 5, 0, 0, 0.0f, 1.0f));
+        panel.add(bEliminar, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 1.0f, 0.0f));
+        panel.add(bCancelar, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(bGuardar, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         return panel;
     }
@@ -270,40 +258,41 @@ public class PanelProducto{
         bEnter.setButtonIcon(true);
         bEnter.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar"));
         bEnter.setFocusable(false);
-        bEnter.setColorBackIn(color1);
-        bEnter.setColorBackSelected(color2);
+        bEnter.setColorBackIn(ContanstLocal.COLOR_PANEL_BACKGROUND);
+        bEnter.setColorBackSelected(ContanstLocal.COLOR_TEXT_BACKGROUND);
 
-        ibuscar =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("buscar"),color3,false));
+        ibuscar =  new ImageIcon(ColorFilter.filterImage( IconManager.get16("buscar"),ContanstLocal.COLOR_TEXT_FOREGROUND,false));
         bBuscar = new Button(ibuscar,true);
         bBuscar.setPaintBack(false);
         bBuscar.setButtonIcon(true);
         bBuscar.setToolTipText(CONSTANTS.i18n.getValue("producto.label.buscar"));
         bBuscar.setFocusable(false);
-        bBuscar.setColorBackIn(color1);
-        bBuscar.setColorBackSelected(color2);
-        bBuscar.setColorFilter(color3);
+        bBuscar.setColorBackIn(ContanstLocal.COLOR_PANEL_BACKGROUND);
+        bBuscar.setColorBackSelected(ContanstLocal.COLOR_TEXT_BACKGROUND);
+        bBuscar.setColorFilter(ContanstLocal.COLOR_TEXT_FOREGROUND);
 
         /*bCodigoBarra = new ToggleButton(IconManager.getIcon(getClass().getResource("/icons/barcode.png")));
         bCodigoBarra.setToolTipText(CONSTANTS.i18n.getValue("producto.inf.buscarporcodbarra"));
-        bCodigoBarra.setColorIn(color2);
-        bCodigoBarra.setColorFilter(color3);
+        bCodigoBarra.setColorIn(ContanstLocal.color2);
+        bCodigoBarra.setColorFilter(ContanstLocal.color3);
         bCodigoBarra.setFocusable(false);*/
 
-        bAddMarca = new Button(IconManager.get16("add"),true);
-        bAddMarca.setPaintBack(false);
-        bAddMarca.setColorFilter(greenButton);
-        bAddMarca.setForeground(Color.RED);
-        bAddMarca.setActionCommand("ADD_MARCA_PRODUCTO");
-        //bAddMarca.addActionListener(this);
-        bAddMarca.setButtonIcon(true);
-        bAddMarca.setToolTipText(CONSTANTS.i18n.getValue("producto.marca.add"));
-        bAddMarca.setFocusable(false);
-        bAddMarca.setColorBackIn(color1);
-        bAddMarca.setColorBackSelected(color2);
+
+        bUnidad = new Button(IconManager.get16("add"),true);
+        bUnidad.setPaintBack(false);
+        bUnidad.setColorFilter(greenButton);
+        bUnidad.setForeground(Color.RED);
+        bUnidad.setActionCommand("ADD_UNIDAD_PRODUCTO");
+        //bUnidad.addActionListener(this);
+        bUnidad.setButtonIcon(true);
+        bUnidad.setToolTipText(CONSTANTS.i18n.getValue("producto.unidad.add"));
+        bUnidad.setFocusable(false);
+        bUnidad.setColorBackIn(ContanstLocal.COLOR_PANEL_BACKGROUND);
+        bUnidad.setColorBackSelected(ContanstLocal.COLOR_TEXT_BACKGROUND);
 
         tCodigo = new TextField(20,20);
-        tNombre = new TextField(dimColumText,50);
-        tModelo = new TextField(dimColumText,20);
+        tNombre = new TextField(ContanstLocal.DIM_COLUM_TEXT,50);
+        tModelo = new TextField(ContanstLocal.DIM_COLUM_TEXT,20);
 
          tCodigo.setToolTipText(CONSTANTS.i18n.getValue("producto.inf.buscarcodigo"));
          tCodigo.setPlaceHolder(CONSTANTS.i18n.getValue("producto.inf.buscarcodigo"));
@@ -335,7 +324,7 @@ public class PanelProducto{
          Color color = tCodigo.getSelectionColor();
          Color colBack = tCodigo.getBackground();
 
-        tNota = new TextArea(2,dimColumText);
+        tNota = new TextArea(2,ContanstLocal.DIM_COLUM_TEXT);
         tNota.setBackground(colBack);
         tNota.setLimitText(512);
         tNota.addKeyListener(new KeyAdapter() {
@@ -388,32 +377,18 @@ public class PanelProducto{
         cbUnidadMedida.setRenderer(
                 new TwoColumnRenderer<>(
                         UnidadMedida::getNombre,
-                        UnidadMedida::getAbreviacion
+                        UnidadMedida::getSimbolo
                 )
         );
 
-        UnidadMedida unidadMedida = new UnidadMedida();
-        unidadMedida.setNombre(CONSTANTS.i18n.getValue("label.ninguno"));
-        dcbUnidadMedida.addElement(unidadMedida);
-
-        UnidadMedida um2 = new UnidadMedida();
-        um2.setNombre("Litro");
-        um2.setAbreviacion("Lt");
-        dcbUnidadMedida.addElement(um2);
-
-        UnidadMedida um3 = new UnidadMedida();
-        um3.setNombre("Kilogramo");
-        um3.setAbreviacion("Kg");
-        dcbUnidadMedida.addElement(um3);
-
         dcbMarca = new DefaultComboBoxModel<Marca> ();
 
-        Marca marca = new Marca();
-        marca.setNombre(CONSTANTS.i18n.getValue("label.ninguno"));
-        dcbMarca.addElement(marca);
 
         cbMarca = new JComboBox<>(dcbMarca);
         cbMarca.setPreferredSize(CONSTANTS.CDDIM_227);
+
+        eventoMarca();
+        eventoCategoria();
 
         disponibleProd = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.habilitado"));
         disponibleProd.setOpaque(false);
@@ -423,6 +398,8 @@ public class PanelProducto{
             if(producto != null && !producto.isEliminado()) {
                 bEliminar.setEnabled( !disponibleProd.isSelected());
             }
+            if(!noRequiereStock.isSelected())
+                bAgregarVariante.setEnabled(disponibleProd.isSelected());
         });
 
         noRequiereStock = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.no_requiere_stock"));
@@ -431,6 +408,10 @@ public class PanelProducto{
         noRequiereStock.addActionListener((ae)->{
             if (producto == null || !producto.isEliminado()) {
                 bloquearFormStock(!noRequiereStock.isSelected());
+            }
+
+            if(disponibleProd.isSelected()) {
+                bAgregarVariante.setEnabled(!noRequiereStock.isSelected());
             }
         });
 
@@ -446,27 +427,27 @@ public class PanelProducto{
         panel.add(tCodigo, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
         panel.add(bEnter, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 4, 0, 0, 0.0f, 0.0f));
         //panel.add(bCodigoBarra, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 3, 0, 0, 0.0f, 0.0f));
-        panel.add(bBuscar, LayoutPanel.constantePane(4, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 3, 0, 0, 0.0f, 0.0f));
+        panel.add(bBuscar, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 3, 0, 0, 0.0f, 0.0f));
 
         panel.add(lNombre, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tNombre, LayoutPanel.constantePane(1, 2, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(tNombre, LayoutPanel.constantePane(1, 2, 0, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
         panel.add(lModelo, LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tModelo, LayoutPanel.constantePane(1, 3, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(tModelo, LayoutPanel.constantePane(1, 3, 0, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         panel.add(lUnidad, LayoutPanel.constantePane(0, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(cbUnidadMedida, LayoutPanel.constantePane(1, 4, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(cbUnidadMedida, LayoutPanel.constantePane(1, 4, 0, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(bUnidad, LayoutPanel.constantePane(4, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 3, 0, 0, 0.0f, 0.0f));
 
         panel.add(lMarca, LayoutPanel.constantePane(0, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(cbMarca, LayoutPanel.constantePane(1, 5, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(bAddMarca, LayoutPanel.constantePane(4, 5, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 3, 0, 0, 0.0f, 0.0f));
 
         panel.add(lCategoria, LayoutPanel.constantePane(0, 6, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(cbCategoria, LayoutPanel.constantePane(1, 6, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         panel.add(disponibleProd, LayoutPanel.constantePane(1, 7, 2, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
         panel.add(noRequiereStock, LayoutPanel.constantePane(1, 8, 3, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(precioImpuesto, LayoutPanel.constantePane(1, 9, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(movimientoNegativo, LayoutPanel.constantePane(1, 10, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(movimientoNegativo, LayoutPanel.constantePane(1, 9, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
+        panel.add(precioImpuesto, LayoutPanel.constantePane(1, 10, 4, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
 
         panel.add(lNota, LayoutPanel.constantePane(0, 11, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
         panel.add(jsp, LayoutPanel.constantePane(1, 11, 4, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 5, 0, 0, 1.0f, 1.0f));
@@ -482,8 +463,8 @@ public class PanelProducto{
         JLabel lFechaActualizacion = new JLabel(CONSTANTS.i18n.getLabel("producto.label.fechaactualizacion"));
         JLabel lFechaCreacion = new JLabel(CONSTANTS.i18n.getLabel("producto.label.fechacreacion"));
 
-        tFechaActualizacion = new TextField(10,20);
-        tFechaCreacion = new TextField(10,20);
+        tFechaActualizacion = new TextField(15);
+        tFechaCreacion = new TextField(15);
 
         tFechaActualizacion.setEditable(false);
         tFechaCreacion.setEditable(false);
@@ -491,240 +472,11 @@ public class PanelProducto{
         tFechaActualizacion.setText("-");
         tFechaCreacion.setText("-");
 
-        panel.add(lFechaCreacion, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 1.0f));
-        panel.add(tFechaCreacion, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 1.0f));
-
-        panel.add(lFechaActualizacion, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tFechaActualizacion, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-
-        return panel;
-    }
-
-    private JPanel panelVariante() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setOpaque(false);
-        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        //panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.variante")));
-
-        panel.add(panelAtributos(), LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(panelCantidad(), LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
-
-        panel.add(panelPrecio(), LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
-
-        panel.add(pTable(), LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 10, 0, 0, 0, 0.0f, 0.0f));
-
-        return panel;
-    }
-
-
-    private JPanel panelAtributos() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setOpaque(false);
-        //panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.precio")));
-
-        JLabel lCodigoBarra = new JLabel(CONSTANTS.i18n.getLabel("producto.label.codigobarra"));
-        JLabel lSKU = new JLabel(CONSTANTS.i18n.getLabel("producto.label.sku"));
-        JLabel lAtributo = new JLabel(CONSTANTS.i18n.getLabel("producto.label.atributo"));
-        //JLabel lAtributoValor = new JLabel(CONSTANTS.i18n.getLabel("producto.label.atributovalor"));
-
-        dimLabel = lCodigoBarra.getPreferredSize();//new Dimension(90,23);
-
-        tCodigoBarra = new TextField(dimColumText,20,true);
-        tSKU = new TextField(dimColumText,20);
-
-        disponibleVar = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.habilitado"));
-        disponibleVar.setOpaque(false);
-        disponibleVar.setSelected(true);
-
-        reqAutPrec = new JCheckBox(CONSTANTS.i18n.getValue("producto.label.reqAprobPrecio"));
-        reqAutPrec.setOpaque(false);
-
-        dcbAtributo = new DefaultComboBoxModel<Atributo> ();
-        dcbAtributoValor = new DefaultComboBoxModel<AtributoValor>();
-
-        cbAtributo = new JComboBox<>(dcbAtributo);
-        cbAtributo.setPreferredSize(CONSTANTS.CDDIM_120);
-
-        cbAtributoValor = new JComboBox<>(dcbAtributoValor);
-        cbAtributoValor.setPreferredSize(CONSTANTS.CDDIM_120);
-        cbAtributoValor.setEditable(false);
-
-        Atributo atributo = new Atributo();
-        atributo.setNombre(CONSTANTS.i18n.getValue("label.ninguno"));
-        dcbAtributo.addElement(atributo);
-
-        AtributoValor atributoValor = new AtributoValor();
-        atributoValor.setAtributo(atributo);
-        atributoValor.setValor("");
-
-        dcbAtributoValor.addElement(atributoValor);
-
-        cbAtributoValor.setEnabled(false);
-
-        panel.add(lCodigoBarra, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tCodigoBarra, LayoutPanel.constantePane(1, 1, 0, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lSKU, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tSKU, LayoutPanel.constantePane(1, 0, 0, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lAtributo, LayoutPanel.constantePane(0, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(cbAtributo, LayoutPanel.constantePane(1, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        //panel.add(lAtributoValor, LayoutPanel.constantePane(0, 3, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(cbAtributoValor, LayoutPanel.constantePane(2, 2, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(disponibleVar, LayoutPanel.constantePane(1, 4, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-
-
-        return panel;
-    }
-
-    private JPanel panelPrecio() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setOpaque(false);
-        panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.precio")));
-
-        JLabel lTipoPrecio = new JLabel(CONSTANTS.i18n.getLabel("producto.label.tipo_precio"));
-        JLabel lMoneda = new JLabel(CONSTANTS.i18n.getLabel("producto.label.moneda"));
-        JLabel lPrecio = new JLabel(CONSTANTS.i18n.getLabel("producto.label.precio"));
-
-        //lTipoPrecio.setPreferredSize(dimLabel);
-
-        bAddPrecio = new JButton(CONSTANTS.i18n.getValueMsgFormat("producto.button.addprecio"));
-
-        tPrecio = new TextField(10,10);
-
-        tPrecio.addFocusListener(lostFocusPrecio);
-        DecimalField.configurar(tPrecio, true);
-
-        tPrecio.setText("0,00");
-
-        dcbTipoPrecio = new DefaultComboBoxModel<TipoPrecio>();
-        dcbMoneda = new DefaultComboBoxModel<Moneda>();
-        dcbCategoria = new DefaultComboBoxModel<Categoria>();
-
-        cbTipoPrecio = new JComboBox<>(dcbTipoPrecio);
-        cbTipoPrecio.setPreferredSize(CONSTANTS.CDDIM_120);
-
-        cbMoneda = new JComboBox<>(dcbMoneda);
-        cbMoneda.setPreferredSize(CONSTANTS.CDDIM_120);
-
-        cbMoneda.setRenderer(
-                new TwoColumnRenderer<>(
-                        Moneda::getNombre,
-                        Moneda::getSimbolo
-                )
-        );
-
-        Moneda m1 = new Moneda();
-        Moneda m2 = new Moneda();
-        Moneda m3 = new Moneda();
-        Moneda m4 = new Moneda();
-
-        m1.setNombre("Pesos");
-        m1.setSimbolo("$");
-        m2.setNombre("Bolivar");
-        m2.setSimbolo("Bs");
-        m3.setNombre("Dólar");
-        m3.setSimbolo("USD");
-        m4.setNombre("Euro");
-        m4.setSimbolo("EUR");
-
-        dcbMoneda.addElement(m1);
-        dcbMoneda.addElement(m2);
-        dcbMoneda.addElement(m3);
-        dcbMoneda.addElement(m4);
-
-        panel.add(lTipoPrecio, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(cbTipoPrecio, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lMoneda, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(cbMoneda, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lPrecio, LayoutPanel.constantePane(4, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tPrecio, LayoutPanel.constantePane(5, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-
-        panel.add(reqAutPrec, LayoutPanel.constantePane(0, 1, 0, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(bAddPrecio, LayoutPanel.constantePane(5, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_END, 5, 0, 0, 5, 0.0f, 0.0f));
-
-        panel.add(pTablePrecio(), LayoutPanel.constantePane(0, 2, 0, 0, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 5, 0.0f, 0.0f));
-
-        return panel;
-    }
-
-
-    private JPanel panelCantidad() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setOpaque(false);
-        panel.setBorder(new BorderUtil(CONSTANTS.i18n.getValue("producto.border.title.stock")));
-
-        JLabel lCantidadMinima = new JLabel(CONSTANTS.i18n.getLabel("producto.label.stockcritico"));
-        JLabel lCantidadMaxima = new JLabel(CONSTANTS.i18n.getLabel("producto.label.stock_maximo"));
-        JLabel lCantidadStock = new JLabel(CONSTANTS.i18n.getLabel("producto.label.cantidad_disponible"));
-
-        //lCantidadMinima.setPreferredSize(dimLabel);
-
-        tCantidadStock = new TextField(10,10);
-        tCantidadMinima = new TextField(10,10);
-        tCantidadMaxima = new TextField(10,10);
-
-        tCantidadStock.setText("0");
-        tCantidadMinima.setText("0");
-        tCantidadMaxima.setText("0");
-
-        DecimalField.configurar(tCantidadStock);
-        DecimalField.configurar(tCantidadMinima);
-        DecimalField.configurar(tCantidadMaxima);
-
-
-        panel.add(lCantidadMinima, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
-        panel.add(tCantidadMinima, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lCantidadMaxima, LayoutPanel.constantePane(2, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tCantidadMaxima, LayoutPanel.constantePane(3, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-        panel.add(lCantidadStock, LayoutPanel.constantePane(4, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 0.0f));
-        panel.add(tCantidadStock, LayoutPanel.constantePane(5, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
-
-        return panel;
-    }
-
-    private JPanel pTablePrecio(){
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setOpaque(false);
-
-        bDelPrecio = new Button("X");
-        bEditPrecio = new Button("E");
-
-        modelPrecioProducto = new DefaultListModel<>();
-        JList<PrecioProducto> lista = new JList<>(modelPrecioProducto);
-
-        //lista.setPreferredSize(new Dimension(400, 50));
-
-        JScrollPane jsp = new JScrollPane(lista,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jsp.setViewportBorder(null);//BorderFactory.createLineBorder(GlobalUI.getInstance().getTheme().getColorBorderField()));
-        jsp.getViewport().setOpaque(true);
-        jsp.setOpaque(false);
-
-        jsp.setPreferredSize(new Dimension(350, 70));
-
-        lista.setCellRenderer(
-                new ThreeLabelRenderer<>(
-                        precio -> precio.getTipoPrecio() != null
-                                ? precio.getTipoPrecio().getNombre()
-                                : "",
-
-                        precio -> NumberUtils.format(precio.getValor())
-                                + " "
-                                + precio.getMoneda().getSimbolo(),
-
-                        precio -> Boolean.TRUE.equals(precio.getRequiereAutorizacion()),
-
-                        precio -> precio.getTipoPrecio() != null
-                                ? precio.getMoneda().getNombre()
-                                : ""
-                )
-        );
-
-        cargarDatosFictisios();
-
-        panel.add(jsp, LayoutPanel.constantePane(0, 0, 1, 2, GridBagConstraints.VERTICAL, GridBagConstraints.LINE_START, 5, 10, 0, 0, 0.0f, 1.0f));
-        panel.add(bEditPrecio, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 5, 2, 0, 10, 1.0f, 0.0f));
-        panel.add(bDelPrecio, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.FIRST_LINE_START, 2, 2, 0, 10, 1.0f, 0.0f));
+        panel.add(lFechaCreacion, LayoutPanel.constantePane(0, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tFechaCreacion, LayoutPanel.constantePane(1, 0, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 0, 5, 0, 0, 0.0f, 0.0f));
+
+        panel.add(lFechaActualizacion, LayoutPanel.constantePane(0, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 0, 0, 0, 0.0f, 0.0f));
+        panel.add(tFechaActualizacion, LayoutPanel.constantePane(1, 1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.LINE_START, 5, 5, 0, 0, 0.0f, 0.0f));
 
         return panel;
     }
@@ -737,7 +489,7 @@ public class PanelProducto{
 
         tabla = new Table(modelo, 70);
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+        mtc.headerGroup(tabla);
 
         tabla.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -762,58 +514,6 @@ public class PanelProducto{
         return tabla.getPanel();
     }
 
-    private void cargarDatosFictisios(){
-
-        Moneda pesos = new Moneda();
-        pesos.setId("ARS");
-        pesos.setNombre("Peso Argentino");
-        pesos.setSimbolo("$");
-
-        Moneda dolar = new Moneda();
-        dolar.setId("USD");
-        dolar.setNombre("Dólar");
-        dolar.setSimbolo("U$S");
-
-
-        TipoPrecio lista = new TipoPrecio();
-        lista.setId(1);
-        lista.setNombre("Precio Lista");
-
-        TipoPrecio oferta = new TipoPrecio();
-        oferta.setId(2);
-        oferta.setNombre("Precio Oferta");
-
-        TipoPrecio mayorista = new TipoPrecio();
-        mayorista.setId(3);
-        mayorista.setNombre("Precio Mayorista");
-
-
-        PrecioProducto p1 = new PrecioProducto();
-        p1.setId(1);
-        p1.setTipoPrecio(lista);
-        p1.setMoneda(pesos);
-        p1.setValor(new BigDecimal("12500.50"));
-        p1.setRequiereAutorizacion(false);
-
-        PrecioProducto p2 = new PrecioProducto();
-        p2.setId(2);
-        p2.setTipoPrecio(oferta);
-        p2.setMoneda(pesos);
-        p2.setValor(new BigDecimal("9999.99"));
-        p2.setRequiereAutorizacion(true);
-
-        PrecioProducto p3 = new PrecioProducto();
-        p3.setId(3);
-        p3.setTipoPrecio(mayorista);
-        p3.setMoneda(dolar);
-        p3.setValor(new BigDecimal("15.75"));
-        p3.setRequiereAutorizacion(false);
-
-
-        modelPrecioProducto.addElement(p1);
-        modelPrecioProducto.addElement(p2);
-        modelPrecioProducto.addElement(p3);
-    }
 
     private void bloquearFormStock(boolean enabled) {
 
@@ -897,7 +597,7 @@ public class PanelProducto{
         this.producto = producto;
 
         tCodigo.setText(producto.getCodigo());
-        tCodigoBarra.setText(producto.getCodigoBarra());
+        //tCodigoBarra.setText(producto.getCodigoBarra());
         tNombre.setText(producto.getNombre());
         tModelo.setText(producto.getModelo());
 
@@ -947,7 +647,7 @@ public class PanelProducto{
 
         cbUnidadMedida.setSelectedItem(producto.getUnidadMedida());
 
-        boolean excesivo = producto.getUtilidad() > 100;
+        //boolean excesivo = producto.getUtilidad() > 100;
 
 
         //FALSE SI NO ESTA ELIMINADO
@@ -973,12 +673,10 @@ public class PanelProducto{
     protected void clearForm(){
         GlobalFrame.getInstance().getFrame().setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
-
-
         bEliminar.setEnabled(false);
 
         tCodigo.setText(null);
-        tCodigoBarra.setText(null);
+        //tCodigoBarra.setText(null);
         tNombre.setText(null);
         cbUnidadMedida.setSelectedIndex(-1);
         tModelo.setText(null);
@@ -1025,7 +723,7 @@ public class PanelProducto{
             producto = new Producto();
 
         String cod = tCodigo.getText();
-        String codBarra = tCodigoBarra.getText();
+        String codBarra = null;//tCodigoBarra.getText();
         String nombre = tNombre.getText();
         UnidadMedida unidadMedida = (UnidadMedida)cbUnidadMedida.getSelectedItem();
         String modelo = tModelo.getText();
@@ -1112,7 +810,7 @@ public class PanelProducto{
         }
 
         producto.setCodigo(cod);
-        producto.setCodigoBarra(codBarra);
+        //producto.setCodigoBarra(codBarra);
         producto.setNombre(nombre);
         producto.setUnidadMedida(unidadMedida);
         producto.setModelo(modelo);
@@ -1123,16 +821,16 @@ public class PanelProducto{
         producto.setNoRequiereStock(noReqStock);
         producto.setMovimientoNegativo(movNegativo);
         producto.setNota(nota);
-        producto.setUtilidad(util);
-        producto.setPrecioCosto(c);
-        producto.setPrecio1(p1);
-        producto.setPrecio2(p2);
-        producto.setPrecio3(p3);
-        producto.setCantMayor(cantMayorInt);
-        producto.setReqAprobPrecioEspecial(reqAprob);
+        //producto.setUtilidad(util);
+        //producto.setPrecioCosto(c);
+        //producto.setPrecio1(p1);
+        //producto.setPrecio2(p2);
+        //producto.setPrecio3(p3);
+        //producto.setCantMayor(cantMayorInt);
+        //producto.setReqAprobPrecioEspecial(reqAprob);
         producto.setPrecioIncluyeImpuesto(isImpuesto);
-        producto.setStockMinimo(scritico);
-        producto.setStockMaximo(smaximo);
+        //producto.setStockMinimo(scritico);
+        //producto.setStockMaximo(smaximo);
 
         if(producto.getID() == null)
             producto.setFechaCreacion(FechaUtil.parseFecha(tFechaCreacion.getText()));
@@ -1140,7 +838,7 @@ public class PanelProducto{
         producto.setFechaActualizacion(LocalDateTime.now());//FechaUtil.parseFecha(tFechaActualizacion.getText()));
 
         String cantDisponible = null;//tCantidadDisponible.getText();
-        producto.setCantidadDisponible(new BigDecimal(cantDisponible));
+        //producto.setCantidadDisponible(new BigDecimal(cantDisponible));
 
         return producto;
     }
@@ -1153,13 +851,12 @@ public class PanelProducto{
         tCodigo.setEnabled(enabled);
         bEnter.setEnabled(enabled);
 
-        tCodigoBarra.setEnabled(enabled);
+        //tCodigoBarra.setEnabled(enabled);
         tNombre.setEnabled(enabled);
         cbUnidadMedida.setEnabled(enabled);
         tModelo.setEnabled(enabled);
 
         cbMarca.setEnabled(enabled);
-        bAddMarca.setEnabled(enabled);
         cbCategoria.setEnabled(enabled);
 
         disponibleProd.setEnabled(enabled);
@@ -1190,6 +887,58 @@ public class PanelProducto{
         return cantidad;*/
     }
 
+    private void eventoMarca() {
+        cbMarca.addActionListener(e -> {
+
+            Object sel = dcbMarca.getSelectedItem();
+
+            if (!(sel instanceof Marca))
+                return;
+
+            Marca marca = (Marca) sel;
+
+            if(marca.getID() != null && marca.getID() == -1) {
+
+                cbMarca.setEditable(true);
+
+                editorMarca = (JTextField) cbMarca.getEditor().getEditorComponent();
+
+                editorMarca.addActionListener(ev -> agregarMarca());
+
+                SwingUtilities.invokeLater(() -> {
+                    editorMarca.setText("");
+                    editorMarca.requestFocus();
+                });
+            }
+        });
+    }
+
+    private void eventoCategoria() {
+        cbCategoria.addActionListener(e -> {
+
+            Object sel = dcbCategoria.getSelectedItem();
+
+            if (!(sel instanceof Categoria))
+                return;
+
+            Categoria categoria = (Categoria) sel;
+
+            if(categoria.getID() != null && categoria.getID() == -1) {
+
+                cbCategoria.setEditable(true);
+
+                editorCategoria = (JTextField) cbCategoria.getEditor().getEditorComponent();
+
+                editorCategoria.addActionListener(ev -> agregarCategoria());
+
+                SwingUtilities.invokeLater(() -> {
+                    editorCategoria.setText("");
+                    editorCategoria.requestFocus();
+                });
+            }
+        });
+    }
+
     public JPanel getPanel() {
         return panelPrincipal;
     }
@@ -1217,7 +966,7 @@ public class PanelProducto{
                 categorias.add(dcbCategoria.getElementAt(i));
             }
 
-            DialogBuscarProducto dialog = new DialogBuscarProducto(GlobalFrame.getInstance().getFrame(), categorias);
+            DialogBuscarProducto dialog = new DialogBuscarProducto(categorias);
 
             Producto p = dialog.getSelectedProducto();
 
@@ -1251,7 +1000,7 @@ public class PanelProducto{
      */
     public boolean hasFormData() {
         return !tCodigo.getText().isBlank()
-                || !tCodigoBarra.getText().isBlank()
+                //|| !tCodigoBarra.getText().isBlank()
                 || !tNombre.getText().isBlank();
     }
 
@@ -1261,16 +1010,6 @@ public class PanelProducto{
 
         if( bCancelar.getActionListeners().length == 1)
             bCancelar.getActionListeners()[0].actionPerformed(eventoSimulado);
-    }
-
-    private class LostFocusPrecio implements FocusListener{
-        @Override
-        public void focusGained(FocusEvent e) {}
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            //procesadorProducto.validadPrecio(tCosto, tPrecio1, lPrecio1Adv, tPrecio2, lPrecio2Adv, tPrecio3, lPrecio3Adv);
-        }
     }
 
     private void guardarF5() {
@@ -1300,14 +1039,105 @@ public class PanelProducto{
                 dcbCategoria.addElement(categoria);
             }
 
+            Categoria categoriaNueva = new Categoria();
+            categoriaNueva.setID(-1);
+            categoriaNueva.setNombre(CONSTANTS.i18n.getValue("label.nuevo"));
+            dcbCategoria.addElement(categoriaNueva);
+
+
             MarcaDAO marcaDAO = new MarcaDAO();
             List<Marca> marcaList = marcaDAO.listarMarca();
+
+            Marca marcaNull = new Marca();
+            marcaNull.setNombre(CONSTANTS.i18n.getValue("label.ninguno"));
+            dcbMarca.addElement(marcaNull);
 
             for (Marca marca : marcaList) {
                 dcbMarca.addElement(marca);
             }
+
+            Marca marcaNuevo = new Marca();
+            marcaNuevo.setID(-1);
+            marcaNuevo.setNombre(CONSTANTS.i18n.getValue("label.nuevo"));
+            dcbMarca.addElement(marcaNuevo);
+
+            UnidadMedidaDAO unidadMedidaDAO = new UnidadMedidaDAO();
+            List<UnidadMedida> unidadesMedidaList = unidadMedidaDAO.listarUnidadesMedida();
+
+            for (UnidadMedida unidadMedida : unidadesMedidaList) {
+                dcbUnidadMedida.addElement(unidadMedida);
+            }
+
         } catch (ProductoException exc) {
             OptionPane.error(exc);
         }
+    }
+
+    private void agregarMarca() {
+        editorMarca = (JTextField) cbMarca.getEditor().getEditorComponent();
+
+        String nombre = editorMarca.getText().trim();
+
+        if(nombre.isEmpty()) {
+            return;
+        }
+
+        // Buscar existente
+        for (int i = 0; i < cbMarca.getItemCount(); i++) {
+            Marca marca = cbMarca.getItemAt(i);
+            if (marca.getNombre().equals(nombre)) {
+                cbMarca.setSelectedItem(marca);
+                cbMarca.setEditable(false);
+                return;
+            }
+        }
+
+        MarcaDAO marcaDAO = new MarcaDAO();
+        Marca marca = marcaDAO.nuevoMarca(nombre);
+
+        if(marca != null) {
+            dcbMarca.insertElementAt(marca, dcbMarca.getSize() - 1);
+
+            cbMarca.setSelectedItem(marca);
+        }
+        else{
+            OptionPane.error(CONSTANTS.i18n.getValue("producto.error.marca.guardar"));
+        }
+
+        cbMarca.setEditable(false);
+    }
+
+    private void agregarCategoria() {
+        editorCategoria = (JTextField) cbCategoria.getEditor().getEditorComponent();
+
+        String nombre = editorCategoria.getText().trim();
+
+        if(nombre.isEmpty()) {
+            return;
+        }
+
+        // Buscar existente
+        for (int i = 0; i < cbCategoria.getItemCount(); i++) {
+            Categoria categoria = cbCategoria.getItemAt(i);
+            if (categoria.getNombre().equals(nombre)) {
+                cbCategoria.setSelectedItem(categoria);
+                cbCategoria.setEditable(false);
+                return;
+            }
+        }
+
+        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        Categoria categoria = categoriaDAO.nuevaCategoria(nombre, ColorUtil.generarRGB());
+
+        if(categoria != null) {
+            dcbCategoria.insertElementAt(categoria, dcbCategoria.getSize() - 1);
+
+            cbCategoria.setSelectedItem(categoria);
+        }
+        else{
+            OptionPane.error(CONSTANTS.i18n.getValue("producto.error.categoria.guardar"));
+        }
+
+        cbCategoria.setEditable(false);
     }
 }

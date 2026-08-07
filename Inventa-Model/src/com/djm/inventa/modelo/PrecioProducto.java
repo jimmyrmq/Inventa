@@ -29,7 +29,7 @@ public class PrecioProducto {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 
@@ -95,5 +95,21 @@ public class PrecioProducto {
 
     public void setFechaFin(LocalDateTime fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (!(obj instanceof PrecioProducto)) return false;
+
+        PrecioProducto otro = (PrecioProducto) obj;
+
+        return this.id == otro.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
     }
 }

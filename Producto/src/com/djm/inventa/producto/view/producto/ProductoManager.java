@@ -1,7 +1,7 @@
 package com.djm.inventa.producto.view.producto;
 
 import com.djm.inventa.core.AppContext;
-import com.djm.inventa.producto.exception.ProductoException;
+import com.djm.inventa.core.exception.ProductoException;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.producto.core.CONSTANTS;
 import com.djm.inventa.producto.persistence.ProductoDAO;
@@ -127,7 +127,7 @@ public class ProductoManager {
     private void guardarStock(Producto producto)throws ProductoException {
         Integer almacen_id = 1;
         Integer productoID = producto.getID();
-        BigDecimal cantidad = producto.getCantidadDisponible();
+        BigDecimal cantidad = null;//producto.getCantidadDisponible();
 
         StockProducto stockProducto = new StockProducto();
 
@@ -135,7 +135,7 @@ public class ProductoManager {
         stockProducto.setProductoId(productoID);
         stockProducto.setAlmacenId(almacen_id);
         stockProducto.setCantidad(cantidad);
-        stockProducto.setStockMinimo(producto.getStockMinimo());
+        //stockProducto.setStockMinimo(producto.getStockMinimo());
 
         boolean isNuevo = !stockProductoDAO.existeProducto(productoID);
 
@@ -161,7 +161,7 @@ public class ProductoManager {
 
         }
         else {
-            stockProductoDAO.actualizarCantidad(producto.getID(), producto.getCantidadDisponible(), producto.getStockMinimo(), producto.getStockMaximo());
+            //stockProductoDAO.actualizarCantidad(producto.getID(), producto.getCantidadDisponible(), producto.getStockMinimo(), producto.getStockMaximo());
         }
     }
 

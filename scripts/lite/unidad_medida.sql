@@ -1,5 +1,42 @@
 CREATE TABLE IF NOT EXISTS unidad_medida (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     nombre TEXT NOT NULL UNIQUE,
-    abreviacion TEXT NOT NULL UNIQUE
+    simbolo TEXT NOT NULL UNIQUE
 );
+
+INSERT INTO unidad_medida (nombre, simbolo) VALUES
+                                                ('Litro', 'L'),
+                                                ('Mililitro', 'mL'),
+                                                ('Gramo', 'g'),
+                                                ('Kilogramo', 'kg'),
+                                                ('Metro', 'm'),
+                                                ('Miligramo', 'mg'),
+                                                ('Par', 'Par'),--Para zapateria
+                                                ('Pieza', 'Pza'),--Ropa,
+                                                ('Unidad', 'Und'),
+                                                ('Caja', 'Caja'),
+                                                ('Galón', 'Gal'),
+                                                ('Docena', 'Doc'),
+                                                ('Juego', 'Jgo'),
+                                                ('Kit', 'Kit'),
+                                                ('Rollo', 'Rll'),
+                                                ('Bolsa', 'Bol'),
+                                                ('Saco', 'Sac'),
+                                                ('Lata', 'Lat'),
+                                                ('Botella', 'Bot'),
+                                                ('Frasco', 'Fra'),
+                                                ('Tarro', 'Tar'),
+                                                ('Sobre', 'Sob'),
+                                                ('Blíster', 'Bli'),
+                                                ('Tubo', 'Tub'),
+                                                ('Tonelada', 't'),
+                                                ('Onza', 'oz'),
+                                                ('Libra', 'lb'),
+                                                ('Centímetro', 'cm'),
+                                                ('Milímetro', 'mm'),
+                                                ('Kilómetro', 'km'),
+                                                ('Pulgada', 'in'),
+                                                ('Pie', 'ft'),
+                                                ('Metro cuadrado', 'm2'),
+                                                ('Metro cúbico', 'm3'),
+                                                ('Centímetro cúbico', 'cm3');

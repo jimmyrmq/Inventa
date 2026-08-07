@@ -1,9 +1,45 @@
 CREATE TABLE IF NOT EXISTS unidad_medida (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    abreviacion VARCHAR(20) NOT NULL,
+    simbolo VARCHAR(20) NOT NULL,
 
 
     UNIQUE KEY uk_unidad_nombre (nombre),
-    UNIQUE KEY uk_unidad_abreviacion (abreviacion)
+    UNIQUE KEY uk_unidad_simbolo (simbolo)
 ) ENGINE=InnoDB;
+INSERT INTO unidad_medida (nombre, simbolo) VALUES
+                                                ('Litro', 'L'),
+                                                ('Mililitro', 'mL'),
+                                                ('Gramo', 'g'),
+                                                ('Kilogramo', 'kg'),
+                                                ('Miligramo', 'mg'),
+                                                ('Par', 'Par'),--Para zapateria
+                                                ('Pieza', 'Pza'),--Ropa,
+                                                ('Unidad', 'Und'),
+                                                ('Caja', 'Caja'),
+                                                ('Galón', 'Gal'),
+                                                ('Docena', 'Doc'),
+                                                ('Juego', 'Jgo'),
+                                                ('Kit', 'Kit'),
+                                                ('Rollo', 'Rll'),
+                                                ('Bolsa', 'Bol'),
+                                                ('Saco', 'Sac'),
+                                                ('Lata', 'Lat'),
+                                                ('Botella', 'Bot'),
+                                                ('Frasco', 'Fra'),
+                                                ('Tarro', 'Tar'),
+                                                ('Sobre', 'Sob'),
+                                                ('Blíster', 'Bli'),
+                                                ('Tubo', 'Tub'),
+                                                ('Tonelada', 't'),
+                                                ('Onza', 'oz'),
+                                                ('Libra', 'lb'),
+                                                ('Metro', 'm'),
+                                                ('Centímetro', 'cm'),
+                                                ('Milímetro', 'mm'),
+                                                ('Kilómetro', 'km'),
+                                                ('Pulgada', 'in'),
+                                                ('Pie', 'ft'),
+                                                ('Metro cuadrado', 'm2'),
+                                                ('Metro cúbico', 'm3'),
+                                                ('Centímetro cúbico', 'cm3');

@@ -79,6 +79,6 @@ public class PanelManagerProducto extends IPanelDataAction<Producto> {
 
     public void setCantidadDisponible(BigDecimal cantidad){//, boolean agregar) {
         panelProducto.setCantidadDisponible(cantidad);//, agregar);
-        getValue().setCantidadDisponible(cantidad);
+        //getValue().setCantidadDisponible(cantidad);
     }
 }

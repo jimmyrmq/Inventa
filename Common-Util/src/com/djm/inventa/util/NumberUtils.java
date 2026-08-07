@@ -1,10 +1,16 @@
 package com.djm.inventa.util;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 public class NumberUtils {
-    
+
+    private static final Locale SYSTEM_LOCALE = Locale.getDefault();
+
     public static String format(BigDecimal value) {
         if(value == null) return "";
 
@@ -34,5 +40,25 @@ public class NumberUtils {
         }
 
         return "0";
+    }
+
+    public static BigDecimal parseBigDecimal(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+
+        try {
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(SYSTEM_LOCALE);
+
+            DecimalFormat decimalFormat = new DecimalFormat("#,##0.##", symbols);
+            decimalFormat.setParseBigDecimal(true);
+
+            return (BigDecimal) decimalFormat.parse(value);
+
+        } catch (ParseException e) {
+            System.out.println("Error parse number: " + e.getMessage());
+        }
+
+        return null;
     }
 }

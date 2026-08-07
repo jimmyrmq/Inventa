@@ -6,7 +6,7 @@ import com.djm.inventa.exception.BaseDatosException;
 import com.djm.inventa.modelo.Categoria;
 import com.djm.inventa.modelo.Marca;
 import com.djm.inventa.modelo.UnidadMedida;
-import com.djm.inventa.producto.exception.ProductoException;
+import com.djm.inventa.core.exception.ProductoException;
 import com.djm.inventa.producto.model.Producto;
 import com.djm.inventa.util.SQLUtil;
 
@@ -56,7 +56,7 @@ public class ProductoDAO {
         Producto producto = new Producto();
         producto.setID(rs.getInt("id"));
         producto.setCodigo(rs.getString("codigo"));
-        producto.setCodigoBarra(rs.getString("codigo_barra"));
+        //producto.setCodigoBarra(rs.getString("codigo_barra"));
         producto.setNombre(rs.getString("nombre"));
         producto.setModelo(rs.getString("modelo"));
 
@@ -71,27 +71,28 @@ public class ProductoDAO {
         producto.setCategoria(categoria);
 
         UnidadMedida unidadMedida =  new UnidadMedida();
-        unidadMedida.setId(rs.getInt("unidad_medida"));
-        unidadMedida.setNombre(rs.getString("unidad_medida_id"));
+        unidadMedida.setID(rs.getInt("unidad_medida"));
+        unidadMedida.setNombre(rs.getString("unidad_medida_nombre"));
+        unidadMedida.setSimbolo(rs.getString("unidad_medida_simbolo"));
         producto.setUnidadMedida(unidadMedida);
 
-        producto.setPrecioCosto(rs.getBigDecimal("precio_costo"));
+        //producto.setPrecioCosto(rs.getBigDecimal("precio_costo"));
 
         Integer utilidad = (Integer) rs.getObject("utilidad");
-        producto.setUtilidad(utilidad);
+        //producto.setUtilidad(utilidad);
 
-        producto.setPrecio1(rs.getBigDecimal("precio1"));
-        producto.setPrecio2(rs.getBigDecimal("precio2"));
-        producto.setPrecio3(rs.getBigDecimal("precio3"));
+        //producto.setPrecio1(rs.getBigDecimal("precio1"));
+        //producto.setPrecio2(rs.getBigDecimal("precio2"));
+        //producto.setPrecio3(rs.getBigDecimal("precio3"));
 
         Integer cantMayor = (Integer) rs.getObject("cant_mayor");
-        producto.setCantMayor(cantMayor);
+        //producto.setCantMayor(cantMayor);
 
         producto.setPrecioIncluyeImpuesto(rs.getBoolean("precio_incluye_impuesto"));
         producto.setDisponible(rs.getBoolean("disponible"));
 
         producto.setNoRequiereStock(rs.getBoolean("no_requiere_stock"));
-        producto.setReqAprobPrecioEspecial(rs.getBoolean("req_aprobacion_precio_especial"));
+        //producto.setReqAprobPrecioEspecial(rs.getBoolean("req_aprobacion_precio_especial"));
         producto.setMovimientoNegativo(rs.getBoolean("movimiento_negativo"));
 
         Timestamp ts = new Timestamp(rs.getLong("fecha_actualizacion"));
@@ -102,9 +103,9 @@ public class ProductoDAO {
 
         producto.setNota(rs.getString("nota"));
 
-        producto.setCantidadDisponible(new BigDecimal(rs.getString("cantidad_stock")));
-        producto.setStockMaximo(rs.getBigDecimal("stock_maximo"));
-        producto.setStockMinimo(rs.getBigDecimal("stock_minimo"));
+        //producto.setCantidadDisponible(new BigDecimal(rs.getString("cantidad_stock")));
+        //producto.setStockMaximo(rs.getBigDecimal("stock_maximo"));
+        //producto.setStockMinimo(rs.getBigDecimal("stock_minimo"));
 
         producto.setEliminado(rs.getBoolean("eliminado"));
 
@@ -153,7 +154,7 @@ public class ProductoDAO {
                     conn.prepareStatement(sql);//) {
 
                 ps.setString(1, producto.getCodigo());
-                ps.setString(2, producto.getCodigoBarra());
+                //ps.setString(2, producto.getCodigoBarra());
                 ps.setString(3, producto.getNombre());
                 ps.setObject(4, producto.getUnidadMedida() != null ? producto.getUnidadMedida().getID() : null);
                 ps.setString(5, producto.getModelo());
@@ -161,20 +162,20 @@ public class ProductoDAO {
                 ps.setObject(6, producto.getMarca() != null ? producto.getMarca().getID() : null);
                 ps.setObject(7, producto.getCategoria() != null ? producto.getCategoria().getID() : null);
 
-                ps.setBigDecimal(8, producto.getPrecioCosto());
-                ps.setObject(9, producto.getUtilidad());
+                //ps.setBigDecimal(8, producto.getPrecioCosto());
+                //ps.setObject(9, producto.getUtilidad());
 
-                ps.setBigDecimal(10, producto.getPrecio1());
-                ps.setBigDecimal(11, producto.getPrecio2());
-                ps.setBigDecimal(12, producto.getPrecio3());
+                //ps.setBigDecimal(10, producto.getPrecio1());
+                //ps.setBigDecimal(11, producto.getPrecio2());
+                //ps.setBigDecimal(12, producto.getPrecio3());
 
-                ps.setObject(13, producto.getCantMayor());
+                //ps.setObject(13, producto.getCantMayor());
 
                 ps.setBoolean(14, Boolean.TRUE.equals(producto.isPrecioIncluyeImpuesto()));
                 ps.setBoolean(15, producto.isDisponible());
 
                 ps.setBoolean(16, producto.isNoRequiereStock());
-                ps.setBoolean(17, producto.isReqAprobPrecioEspecial());
+                //ps.setBoolean(17, producto.isReqAprobPrecioEspecial());
 
                 ps.setBoolean(18, producto.isMovimientoNegativo());
                 ps.setString(19, producto.getNota());

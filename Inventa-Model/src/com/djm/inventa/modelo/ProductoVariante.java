@@ -7,7 +7,8 @@ public class ProductoVariante {
     private Integer id;
     private String SKU;
     private String codigoBarra;
-    private AtributoValor atributoProducto;
+    private String urlImagen;
+    private List<AtributoValor> listAtributos;
 
     private Boolean disponible;
 
@@ -18,11 +19,11 @@ public class ProductoVariante {
 
     private List<PrecioProducto> precioProductos;
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 
@@ -42,12 +43,12 @@ public class ProductoVariante {
         this.codigoBarra = codigoBarra;
     }
 
-    public AtributoValor getAtributoProducto() {
-        return atributoProducto;
+    public List<AtributoValor> getListAtributos() {
+        return listAtributos;
     }
 
-    public void setAtributoProducto(AtributoValor atributoProducto) {
-        this.atributoProducto = atributoProducto;
+    public void setListAtributos(List<AtributoValor> listAtributos) {
+        this.listAtributos = listAtributos;
     }
 
     public Boolean getDisponible() {
@@ -98,13 +99,20 @@ public class ProductoVariante {
         this.precioProductos = precioProductos;
     }
 
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
     @Override
     public String toString() {
         return "ProductoVariante{" +
                 "id=" + id +
                 ", SKU='" + SKU + '\'' +
                 ", codigoBarra='" + codigoBarra + '\'' +
-                ", atributoProducto=" + atributoProducto +
                 ", disponible=" + disponible +
                 ", cantidadStock=" + cantidadStock +
                 ", cantidadMinina=" + cantidadMinina +

@@ -21,7 +21,7 @@ public class ConexionDB {
         if(db.isConnected()) {
             TableSQL tableSQL = new TableSQL("inventa");
             String[] tables = {"almacen","categoria","marca","unidad_medida",
-                    "moneda","producto_precio","tipo_precio","atributos","atributo_valores","producto",
+                    "moneda","producto_precio","tipo_precio","atributo","atributo_valor","producto",
                     "producto_variante","variante_atributo",
                     "movimiento_stock","stock_producto","tipo_movimiento",
                     "documento_item","usuario"};

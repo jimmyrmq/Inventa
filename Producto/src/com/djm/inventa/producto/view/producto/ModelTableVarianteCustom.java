@@ -1,13 +1,18 @@
 package com.djm.inventa.producto.view.producto;
 
 import com.djm.inventa.modelo.ProductoVariante;
+import com.djm.inventa.ui.component.table.ColumnGroup;
+import com.djm.inventa.ui.component.table.GroupableTableHeader;
 import com.djm.inventa.util.LoggerApp;
 import com.djm.ui.component.table.IModelTableCustom;
 import com.djm.ui.component.table.ObjectModelTable;
 
+import javax.swing.JTable;
+import javax.swing.table.TableColumnModel;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ModelTableVarianteCustom implements IModelTableCustom<ProductoVariante> {
 
@@ -16,7 +21,7 @@ public class ModelTableVarianteCustom implements IModelTableCustom<ProductoVaria
 
     //"Codigo", "Nombre", "Modelo", "Marca", "Categoria"
     private String[] columnName = {
-            "SKU","Cod. Barra","Atributo","Valor","Cant. Min.","Cant. Max.","Cant. May.", "Cant. Disp."
+            "Presentacion","SKU","Cod. Barra","Cant. May.","Cant. Min.","Cant. Max.", "Cant. Disp."
             /*CONSTANTS.i18n.getValue("label.nombre"),
             CONSTANTS.i18n.getValue("producto.label.modelo"),
             CONSTANTS.i18n.getValue("producto.label.marca"),
@@ -24,7 +29,7 @@ public class ModelTableVarianteCustom implements IModelTableCustom<ProductoVaria
     };
 
 
-    private Class[] columnClass = {String.class, String.class, String.class, String.class, BigDecimal.class, BigDecimal.class, BigDecimal.class, BigDecimal.class};
+    private Class[] columnClass = {String.class, String.class, String.class, BigDecimal.class, BigDecimal.class, BigDecimal.class, BigDecimal.class};
 
     @Override
     public Class[] getColumnClass() {
@@ -47,25 +52,42 @@ public class ModelTableVarianteCustom implements IModelTableCustom<ProductoVaria
             try {
                 ProductoVariante aux = datos.get(rowIndex);
 
-                // Se obtiene el campo apropiado según el valor de columnIndex
-                //"SKU","Cod. Barra","Atributo","Valor","Cant. Min.","Cant. Max.","Cant. May.", "Cant. Disp."
                 if (columnIndex == 0) {
+                    // Se obtiene el campo apropiado según el valor de columnIndex
+                    //"SKU","Cod. Barra","Atributo","Valor","Cant. Min.","Cant. Max.","Cant. May.", "Cant. Disp."
+                    /*
+                    StringJoiner joiner = new StringJoiner(", ");
+
+                    for (AtributoValor atrib : aux.getListVariantes()) {
+                        joiner.add(atrib.getAtributo().getNombre() + ": " + atrib.getValor());
+                    }
+                    */
+
+                    String resultado = aux.getListAtributos().stream()
+                            .map(atrib -> atrib.getAtributo().getNombre() + ": " + atrib.getValor())
+                            .collect(Collectors.joining("\n"));
+
+                    return resultado;
+                }
+                else if (columnIndex == 1) {
                     return aux.getSKU();
-                } else if (columnIndex == 1) {
+                }
+                else if (columnIndex == 2) {
                     return aux.getCodigoBarra();
-                } else if (columnIndex == 2) {
-                    return aux.getAtributoProducto().getAtributo().getNombre();
-                } else if (columnIndex == 3) {
-                    return aux.getAtributoProducto().getValor();
-                } else if (columnIndex == 4) {
-                    return aux.getCantidadMinina();
-                } else if (columnIndex == 5) {
-                    return aux.getCantidadMaxima();
-                } else if (columnIndex == 6) {
+                }
+                else if (columnIndex == 3) {
                     return aux.getCantidadMayor();
-                } else if (columnIndex == 7) {
+                }
+                else if (columnIndex == 4) {
+                    return aux.getCantidadMinina();
+                }
+                else if (columnIndex == 5) {
+                    return aux.getCantidadMaxima();
+                }
+                else if (columnIndex == 6) {
                     return aux.getCantidadStock();
-                } else return null;
+                }
+                else return null;
             } catch (IndexOutOfBoundsException exc) {
                 LoggerApp.error("rowIndex: " + rowIndex + ", columnIndex:" + columnIndex + " -> " + exc);
                 return null;
@@ -137,7 +159,24 @@ public class ModelTableVarianteCustom implements IModelTableCustom<ProductoVaria
 
     @Override
     public int[] getWidthCell() {
-        int[] anchoColum = {100, 150, 80,70,70,70,70,70};
+        int[] anchoColum = {120,100, 170, 70,70,70,70};
         return anchoColum;
+    }
+
+    public void headerGroup(JTable table){
+        TableColumnModel cm = table.getColumnModel();
+
+        GroupableTableHeader header = new GroupableTableHeader(cm);
+
+        ColumnGroup cantidad = new ColumnGroup("Cantidad");
+
+        cantidad.add(cm.getColumn(3)); // Máxima
+        cantidad.add(cm.getColumn(4)); // Mínima
+        cantidad.add(cm.getColumn(5)); // Disponible
+        cantidad.add(cm.getColumn(6)); // Disponible
+
+        header.addColumnGroup(cantidad);
+
+        table.setTableHeader(header);
     }
 }

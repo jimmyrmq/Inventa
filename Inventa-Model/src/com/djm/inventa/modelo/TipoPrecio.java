@@ -8,7 +8,7 @@ public class TipoPrecio {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setID(Integer id) {
         this.id = id;
     }
 
@@ -22,9 +22,9 @@ public class TipoPrecio {
 
     @Override
     public String toString() {
-        return "TipoPrecio{" +
+        return nombre;/*"TipoPrecio{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                '}';
+                '}';*/
     }
 }
